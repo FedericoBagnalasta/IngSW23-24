@@ -10,6 +10,8 @@ public class CategoriaNonFoglia implements Categoria {
 	private ArrayList<String> dominio = new ArrayList<>();
 	
 	private String valore;	//è un elemento del dominio. Eventuale descrizione => creazione classe
+	
+	private ArrayList<Categoria> figli = new ArrayList<>();
 
 	public CategoriaNonFoglia(String nome, String campo, String valore) {
 		super();
@@ -18,5 +20,15 @@ public class CategoriaNonFoglia implements Categoria {
 		this.valore = valore;
 	}
 	
-	
+	public CategoriaNonFoglia creaNonFoglia(ArrayList<String> dominioPadre, String nome) {
+		
+	}
+
+	public ArrayList<String> getDominio() {
+		return dominio;
+	}
+
+	public void setDominio(ArrayList<String> dominio) {
+		this.dominio = dominio;
+	}
 }
