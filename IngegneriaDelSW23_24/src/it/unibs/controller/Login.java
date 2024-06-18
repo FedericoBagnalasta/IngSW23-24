@@ -11,10 +11,10 @@ public class Login {
 		else return false;
 	}
 	
-	public void cambiaCredenziali(String nome) {
+	public void cambiaCredenziali() {
 		do {
 			//Si richiama un metodo della view che richiede all'utente di inserire le nuove credenziali
-		} while(!verificaUnicita(nome));
+		} while(!verificaUnicita());
 		//Crea un oggetto credenziali e lo aggiunge al loro elenco
 	}
 	
