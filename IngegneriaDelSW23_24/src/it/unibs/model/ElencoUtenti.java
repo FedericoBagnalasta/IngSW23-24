@@ -1,21 +1,21 @@
 package it.unibs.model;
 
 import java.util.ArrayList;
-import it.unibs.controller.Credenziali;
+import it.unibs.controller.Utente;
 
-public class ElencoCredenziali {
+public class ElencoUtenti {
 	
-	private static ArrayList<Credenziali> listaCredenziali=new ArrayList<>();
+	private static ArrayList<Utente> listaCredenziali=new ArrayList<>();
 	private static final String utentePredefinito = "utenteBase";
 	private static final String passwordPredefinita = "passwordBase";
-	private static final Credenziali credenzialiBase=new Credenziali(utentePredefinito, passwordPredefinita, "Configuratore");
+	private static final Utente credenzialiBase=new Utente(utentePredefinito, passwordPredefinita, "Configuratore");
 	
-	public ElencoCredenziali() {
+	public ElencoUtenti() {
 		super();
 		listaCredenziali.add(credenzialiBase);
 	}
 	
-	public static void aggiungiCredenziali(Credenziali newCredenziali) {
+	public static void aggiungiUtenti(Utente newCredenziali) {
 		listaCredenziali.add(newCredenziali);
 	}
 	
@@ -36,7 +36,7 @@ public class ElencoCredenziali {
 	}
 	
 	public static boolean controllaDuplicati(String nome) {
-		for(Credenziali credenziali: listaCredenziali) {
+		for(Utente credenziali: listaCredenziali) {
 			if(credenziali.getNome()==nome) {
 				return true;
 			}

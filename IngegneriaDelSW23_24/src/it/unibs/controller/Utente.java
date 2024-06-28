@@ -1,12 +1,12 @@
 package it.unibs.controller;
 
-public class Credenziali {//Probabilmente in model
+public class Utente {//Probabilmente in model. ERA LA CLASSE CREDENZIALI
 
 	private String nome;
 	private String password;
 	private String ruolo;//Si potrebbe mettere un boolean al posto
 	
-	public Credenziali(String nome, String password, String ruolo) {
+	public Utente(String nome, String password, String ruolo) {
 		super();
 		this.nome = nome;
 		this.password = password;

@@ -8,9 +8,12 @@ public class Login {
 	private String nome;
 	private String password;
 	private String ruolo;
+	
+	/*
+	
 	/*
 	 * Metodo per eseguire il login
-	 */
+	 *
 	public void login(String nome, String password) {
 		ruolo=LoginView.chiediRuolo();
 		//La view restituisce il nome e la password (inseriti dall'utente) che si utilizzano di seguito
@@ -26,6 +29,30 @@ public class Login {
 		
 	}
 	
+	*/
+	
+	public void login() {
+		String ruolo = LoginView.chiediRuolo();
+		//String nome = LoginView.chiediNome();
+		//String password = LoginView.chiediPswd();
+		if(ruolo.equals("Configuratore")) {
+			boolean isFirstAccess = ElencoUtenti.verificaPrimoAccesso(ruolo, ruolo);
+			if(isFirstAccess) {
+				cambiaCredenziali();
+			}
+		}
+		//else ruolo = fruitore
+		
+		
+		
+	}
+	
+	public Utente creaUtente(String nome, String password, String ruolo) {
+		Utente newUtente = new Utente(nome, password, ruolo);
+		ElencoUtenti.aggiungiUtenti(newUtente);
+		return newUtente;
+	}
+	
 	/*
 	 * Metodo per impostare le credenziali del configuratore
 	 */
@@ -39,8 +66,7 @@ public class Login {
 			
 		} while(verificaDuplicati(nome,ruolo));
 		//Crea un oggetto credenziali e lo aggiunge al loro elenco
-		Credenziali newCredenziali=new Credenziali(nome, password, ruolo);
-		ElencoCredenziali.aggiungiCredenziali(newCredenziali);
+		creaUtente(nome, ruolo, password);
 	}
 	
 	/*
@@ -50,10 +76,10 @@ public class Login {
 	public boolean verificaDuplicati(String nome,String ruolo) {
 		//Serve un ciclo che controlla il nome di tutte le persone (conf e fruit) che saranno salvati su un arraylist
 		//Oppure facciamo un hashmap di tutte le credenziali e in questo caso guardiamo solo il nome (chiave)
-		if(ElencoCredenziali.erratoUsoCredenzialiBase(nome,ruolo)) {
+		if(ElencoUtenti.erratoUsoCredenzialiBase(nome,ruolo)) {
 			return true;
 		}
-		if(ElencoCredenziali.controllaDuplicati(nome)) {
+		if(ElencoUtenti.controllaDuplicati(nome)) {
 			return true;
 		}
 		return false;
