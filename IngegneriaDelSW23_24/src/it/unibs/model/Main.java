@@ -1,11 +1,15 @@
 package it.unibs.model;
 
+import it.unibs.controller.LoginController;
+import it.unibs.controller.Menu;
+import it.unibs.controller.Utente;
+
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		// IL PIU' GRANDE DEI PROCI SI CHIAMA GIO
+		Utente utente = LoginController.login();
+		
+		Menu.menu(utente);
 		
 	}
-
 }

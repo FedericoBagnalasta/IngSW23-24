@@ -1,13 +1,12 @@
 package it.unibs.controller;
 
-public class Utente {//Probabilmente in model. ERA LA CLASSE CREDENZIALI
+public class Utente {	//Probabilmente in model
 
 	private String nome;
 	private String password;
-	private String ruolo;//Si potrebbe mettere un boolean al posto
+	private String ruolo;	//Si potrebbe pensare di trasformarlo in un boolean
 	
 	public Utente(String nome, String password, String ruolo) {
-		super();
 		this.nome = nome;
 		this.password = password;
 		this.ruolo = ruolo;
@@ -36,6 +35,4 @@ public class Utente {//Probabilmente in model. ERA LA CLASSE CREDENZIALI
 	public void setRuolo(String ruolo) {
 		this.ruolo = ruolo;
 	}
-	
-	
 }

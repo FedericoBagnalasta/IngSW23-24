@@ -20,10 +20,14 @@ public class CategoriaNonFoglia implements Categoria {
 		this.valore = valore;
 	}
 	
+	
+	/*
 	public CategoriaNonFoglia creaNonFoglia(ArrayList<String> dominioPadre, String nome) {
 		
 	}
-
+	*/
+	
+	
 	public ArrayList<String> getDominio() {
 		return dominio;
 	}
