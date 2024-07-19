@@ -1,6 +1,7 @@
 package it.unibs.controller;
 
 import it.unibs.fp.mylib.MyMenu;
+import it.unibs.model.Utente;
 
 public class Menu {
 

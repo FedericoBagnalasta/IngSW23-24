@@ -9,7 +9,9 @@ public class LoginController {
 		String ruolo = LoginView.inserisciRuolo();
 		String nome = LoginView.inserisciNome();
 		String password = LoginView.inserisciPassword();
-		Utente utente = LoginModel.creaUtente(nome, password, ruolo);
+		Utente utente = LoginModel.creaUtente(nome, password, ruolo);	//Ogni volta che avviene un login, si crea un utente. DA CAMBIARE
+		
+		//Inserire i 2 login in 2 metodi diversi richimati da questo login generico?
 		
 		if(ruolo.equals("Configuratore")) {
 			boolean isPrimoAccesso = ElencoUtenti.isPrimoAccesso(nome, password);
@@ -32,7 +34,7 @@ public class LoginController {
 	public static Utente cambiaCredenziali() {
 		String nome;
 		String password;
-		String ruolo = "Fruitore";
+		String ruolo = "Configuratore";
 		
 		do {
 			nome = LoginView.inserisciNome();

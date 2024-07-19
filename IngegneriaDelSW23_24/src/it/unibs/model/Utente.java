@@ -1,6 +1,6 @@
-package it.unibs.controller;
+package it.unibs.model;
 
-public class Utente {	//Probabilmente in model
+public class Utente {
 
 	private String nome;
 	private String password;

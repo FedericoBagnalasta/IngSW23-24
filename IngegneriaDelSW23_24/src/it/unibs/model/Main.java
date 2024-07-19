@@ -2,7 +2,6 @@ package it.unibs.model;
 
 import it.unibs.controller.LoginController;
 import it.unibs.controller.Menu;
-import it.unibs.controller.Utente;
 
 public class Main {
 

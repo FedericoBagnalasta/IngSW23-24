@@ -1,7 +1,5 @@
 package it.unibs.model;
 
-import it.unibs.controller.Utente;
-
 public class LoginModel {
 	
 	ElencoUtenti listaUtenti = new ElencoUtenti();

@@ -1,7 +1,6 @@
 package it.unibs.model;
 
 import java.util.ArrayList;
-import it.unibs.controller.Utente;
 
 public class ElencoUtenti {
 	
