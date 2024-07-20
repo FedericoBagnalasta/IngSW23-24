@@ -6,7 +6,7 @@ import it.unibs.fp.mylib.InputDati;
 
 public class ConfiguratoreView {
 
-	//Non sono sicuro sia static
+//Non sono sicuro sia static
 	public static String inserisciNomeComprensorio() {
 		return InputDati.leggiStringaNonVuota("Inserisci un nuovo comprensorio geografico\n");
 	}
