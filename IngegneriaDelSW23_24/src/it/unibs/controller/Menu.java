@@ -1,10 +1,13 @@
 package it.unibs.controller;
 
 import it.unibs.fp.mylib.MyMenu;
+import it.unibs.model.ElencoComprensori;
 import it.unibs.model.Utente;
 
 public class Menu {
 
+	//Oggetto elencoComprensori per gestire i comprensori 
+	private static ElencoComprensori elencoComprensori=new ElencoComprensori(); 
 	//Voci configuratore
 	private static final String CREA_COMPRENSORIO = "Crea un nuovo comprensorio geografico";
 	private static final String CREA_GERARCHIA = "Crea una nuova gerarchia di categorie";
@@ -28,6 +31,8 @@ public class Menu {
 			//scelta=menu.scegli();
 			switch(scelta) {
 				case 1:
+					
+					//qui verrà usato il metodo creaComprensorio di configuratoreController
 					
 					//utente.riceviBiscotti();
 					break;
