@@ -10,6 +10,15 @@ public class ElencoComprensori {
 		elencoComprensori.add(new Comprensorio(nome, comuniComprensorio));
 	}
 
+	public static boolean verificaOriginalita(String nomeNuovoComprensorio) {
+		for(Comprensorio c: elencoComprensori) {
+			if(nomeNuovoComprensorio.equals(c.getNome())) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	public static ArrayList<Comprensorio> getElencoComprensori() {
 		return elencoComprensori;
 	}

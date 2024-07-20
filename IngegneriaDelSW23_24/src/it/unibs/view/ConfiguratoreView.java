@@ -24,4 +24,16 @@ public class ConfiguratoreView {
 	public static boolean rispostaConfiguratore() {
 		return InputDati.yesOrNo("Vuoi inserire un nuovo comprensorio geografico?");
 	}
+	
+	public static String inserisciNomeRadiceGerarchia() {
+		return InputDati.leggiStringaNonVuota("Inserisci il nome della radice appartenente alla nuova gerarchia\n");
+	}
+	
+	public static String inserisciCampo() {
+		return InputDati.leggiStringaNonVuota("Inserisci il campo della categoria\n");
+	}
+	
+	public static void nomegiaPresente() {
+		System.out.println("Il nome che hai scelto e' gia' presente\n");
+	}
 }

@@ -11,9 +11,28 @@ public class CategoriaRadice implements Categoria {
 	
 	private ArrayList<Categoria> figli = new ArrayList<>();
 
-	public CategoriaRadice(String nome, String campo, String valore) {
+	//Ho tolto String valore dai parametri
+	public CategoriaRadice(String nome, String campo) {
 		super();
 		this.nome = nome;
 		this.campo = campo;
 	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public String getCampo() {
+		return campo;
+	}
+
+	public ArrayList<String> getDominio() {
+		return dominio;
+	}
+
+	public ArrayList<Categoria> getFigli() {
+		return figli;
+	}
+	
+	
 }

@@ -6,8 +6,7 @@ import it.unibs.model.Utente;
 
 public class Menu {
 
-	//Oggetto elencoComprensori per gestire i comprensori 
-	private static ElencoComprensori elencoComprensori=new ElencoComprensori(); 
+	 
 	//Voci configuratore
 	private static final String CREA_COMPRENSORIO = "Crea un nuovo comprensorio geografico";
 	private static final String CREA_GERARCHIA = "Crea una nuova gerarchia di categorie";

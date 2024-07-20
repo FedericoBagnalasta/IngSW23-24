@@ -2,7 +2,8 @@ package it.unibs.controller;
 
 import java.util.ArrayList;
 
-import it.unibs.model.Comprensorio;
+import it.unibs.model.ElencoComprensori;
+import it.unibs.model.ElencoGerarchie;
 import it.unibs.model.Utente;
 import it.unibs.view.ConfiguratoreView;
 
@@ -10,18 +11,29 @@ import it.unibs.view.ConfiguratoreView;
 
 public class ConfiguratoreController extends Utente {//Da tenere extends Utente? 
 	
+	
 	public ConfiguratoreController(String nome, String password, String ruolo) {
 		super(nome, password, ruolo);
 	}
 	
 	public void creaGerarchia() {
-		
+		String nomeRadice=ConfiguratoreView.inserisciNomeRadiceGerarchia();
+		while(!ElencoGerarchie.verificaOriginalita(nomeRadice)) {
+			ConfiguratoreView.nomegiaPresente();
+			nomeRadice=ConfiguratoreView.inserisciNomeRadiceGerarchia();
+		}
+		String campo=ConfiguratoreView.inserisciCampo();
+		ElencoGerarchie.aggiungiGerarchia(nomeRadice, campo);
 	}
 	
-	public Comprensorio creaComprensorio() {
+	public void creaComprensorio() {
 		String nomeComprensorio=ConfiguratoreView.inserisciNomeComprensorio();
+		while(!ElencoComprensori.verificaOriginalita(nomeComprensorio)) {//Verifica se il nome non è già presente nella lista dei comprensori
+			ConfiguratoreView.nomegiaPresente();
+			nomeComprensorio=ConfiguratoreView.inserisciNomeComprensorio();
+		}
 		ArrayList<String> elencoComuni=ConfiguratoreView.inserisciComuniComprensorio();
-		return (new Comprensorio(nomeComprensorio, elencoComuni));
+		ElencoComprensori.aggiungiComprensorio(nomeComprensorio, elencoComuni);
 	}
 		
 }
