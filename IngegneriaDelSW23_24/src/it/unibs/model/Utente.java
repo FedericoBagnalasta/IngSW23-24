@@ -1,5 +1,7 @@
 package it.unibs.model;
 
+import it.unibs.view.LoginView;
+
 public class Utente {
 
 	private String nome;
@@ -11,7 +13,7 @@ public class Utente {
 		this.password = password;
 		this.ruolo = ruolo;
 	}
-	
+		
 	public String getNome() {
 		return nome;
 	}
