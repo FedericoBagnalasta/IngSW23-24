@@ -26,4 +26,8 @@ public class LoginView {
 	public static String inserisciPassword() {
 		return InputDati.leggiStringaNonVuota("Inserisci una password\n");
 	}
+	
+	public static void messaggioErrore() {
+		System.out.println("Le credenziali inserite non corrispondono a nessun configuratore esistente");
+	}
 }

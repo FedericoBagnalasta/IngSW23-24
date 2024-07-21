@@ -5,19 +5,20 @@ import it.unibs.view.*;
 
 public class LoginController {
 	
+	/*
 	public static void login() {
 		String ruolo = LoginView.inserisciRuolo();
 		String nome = LoginView.inserisciNome();
 		String password = LoginView.inserisciPassword();
-		Utente utente/* = LoginModel.creaUtente(nome, password, ruolo)*/;	//Ogni volta che avviene un login, si crea un utente. DA CAMBIARE
+		Utente utente;
 		
-		//Inserire i 2 login in 2 metodi diversi richimati da questo login generico?
+		//Inserire i 2 login in 2 metodi diversi richiamati da questo login generico?
 		
 		if(ruolo.equals("Configuratore")) {
 			boolean isPrimoAccesso = ElencoUtenti.isPrimoAccesso(nome, password);
 			
 			if(isPrimoAccesso) {
-				utente = cambiaCredenziali();
+				utente = ConfiguratoreController.cambiaCredenziali();
 				//cambiaCredenz(utente);
 			}
 			
@@ -33,34 +34,36 @@ public class LoginController {
 		//else ruolo = fruitore
 	
 	}
-	
-	public static Utente cambiaCredenziali() {
-		String nome;
-		String password;
-		String ruolo = "Configuratore";
-		
-		do {
-			nome = LoginView.inserisciNome();
-		} while(LoginModel.verificaDuplicati(nome));	//oppure si usa direttamente ElencoUtenti.controllaDuplicati()
-		password = LoginView.inserisciPassword();
-		
-		return LoginModel.creaUtente(nome, password, ruolo);
-	}
-	
-	/*
-	//Seconda versione del metodo sopra
-	public static void cambiaCredenz(Utente utente) {
-		String nome;
-		String password;
-		
-		do {
-			nome = LoginView.inserisciNome();
-		} while(ElencoUtenti.isDuplicato(nome));
-		
-		utente.setNome(nome);
-		password = LoginView.inserisciPassword();
-		utente.setPassword(password);
-	}
 	*/
 	
+	public static void loginGenerale() {
+		String ruolo = LoginView.inserisciRuolo();
+		String nome = LoginView.inserisciNome();
+		String password = LoginView.inserisciPassword();
+		
+		if(ruolo.equals("Configuratore")) {
+			loginConfiguratore(nome, password);
+		}
+		//else loginFruitore();
+	}
+	
+	//Si potrebbe distinguere tra accesso e registrazione
+	
+	public static void loginConfiguratore(String nome, String password) {
+		boolean isPrimoAccesso = ElencoUtenti.isPrimoAccesso(nome, password);
+		boolean isAccountVerificato = ElencoUtenti.verificaAccount(nome, password);
+		if(isPrimoAccesso) {
+			Utente utente = new Utente(nome, password, "Configuratore");
+			ConfiguratoreController.cambiaCredenz(utente);
+			//opzioni
+		}
+		else if(isAccountVerificato) {
+			//opzioni
+		}
+		else {
+			LoginView.messaggioErrore();
+			
+			//Facciamo un ciclo che gli permetta di inserire altre credenziali??
+		}
+	}
 }

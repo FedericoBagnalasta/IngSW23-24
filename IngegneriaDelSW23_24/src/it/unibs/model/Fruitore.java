@@ -2,6 +2,8 @@ package it.unibs.model;
 
 import it.unibs.view.FruitoreView;
 
+//SARA' DA SPOSTARE NEL CONTROLLER COME ABBIAMO FATTO PERR CONFIGURATORE
+
 public class Fruitore extends Utente {
 	
 	private Comprensorio comprensorio;
