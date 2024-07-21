@@ -6,8 +6,8 @@ public class ElencoGerarchie {
 
 	private static ArrayList<Gerarchia> elencoGerarchie=new ArrayList<>();
 
-	public static void aggiungiGerarchia(String nome, String campo) {
-		Gerarchia nuovaGerarchia=new Gerarchia(nome, campo);
+	public static void aggiungiGerarchia(String nome, String campo, ArrayList<ValoreDominio> dominio) {
+		Gerarchia nuovaGerarchia=new Gerarchia(nome, campo, dominio);
 		elencoGerarchie.add(nuovaGerarchia);
 	}
 	

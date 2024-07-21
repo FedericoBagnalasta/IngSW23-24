@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import it.unibs.model.ElencoComprensori;
 import it.unibs.model.ElencoGerarchie;
 import it.unibs.model.Utente;
+import it.unibs.model.ValoreDominio;
 import it.unibs.view.ConfiguratoreView;
 
 	//Ho spostato configuratore in controller perchè i suoi metodi invocano metodi della view(inserisciNomeComprensorio...)
@@ -20,10 +21,11 @@ public class ConfiguratoreController extends Utente {//Da tenere extends Utente?
 		String nomeRadice=ConfiguratoreView.inserisciNomeRadiceGerarchia();
 		while(!ElencoGerarchie.verificaOriginalita(nomeRadice)) {
 			ConfiguratoreView.nomegiaPresente();
-			nomeRadice=ConfiguratoreView.inserisciNomeRadiceGerarchia();
+			nomeRadice = ConfiguratoreView.inserisciNomeRadiceGerarchia();
 		}
-		String campo=ConfiguratoreView.inserisciCampo();
-		ElencoGerarchie.aggiungiGerarchia(nomeRadice, campo);
+		String campo = ConfiguratoreView.inserisciCampo();
+		ArrayList<ValoreDominio> dominio = ConfiguratoreView.inserisciDominio();
+		ElencoGerarchie.aggiungiGerarchia(nomeRadice, campo, dominio);
 	}
 	
 	public void creaComprensorio() {

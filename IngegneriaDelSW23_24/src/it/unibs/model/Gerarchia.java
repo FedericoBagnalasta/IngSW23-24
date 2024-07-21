@@ -1,11 +1,13 @@
 package it.unibs.model;
 
+import java.util.ArrayList;
+
 public class Gerarchia {
 
 	private CategoriaRadice radice;
 
-	public Gerarchia(String nome, String campo) {
-		radice=new CategoriaRadice(nome, campo);
+	public Gerarchia(String nome, String campo, ArrayList<ValoreDominio> dominio) {
+		radice=new CategoriaRadice(nome, campo, dominio);
 	}
 
 	public CategoriaRadice getRadice() {

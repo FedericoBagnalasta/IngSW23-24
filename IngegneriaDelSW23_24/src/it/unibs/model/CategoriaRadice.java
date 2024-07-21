@@ -7,15 +7,16 @@ public class CategoriaRadice implements Categoria {
 	private String nome;
 	
 	private String campo;
-	private ArrayList<String> dominio = new ArrayList<>();
+	private ArrayList<ValoreDominio> dominio = new ArrayList<>();
 	
 	private ArrayList<Categoria> figli = new ArrayList<>();
 
 	//Ho tolto String valore dai parametri
-	public CategoriaRadice(String nome, String campo) {
+	public CategoriaRadice(String nome, String campo, ArrayList<ValoreDominio> dominio) {
 		super();
 		this.nome = nome;
 		this.campo = campo;
+		this.dominio = dominio;
 	}
 
 	public String getNome() {
@@ -26,7 +27,7 @@ public class CategoriaRadice implements Categoria {
 		return campo;
 	}
 
-	public ArrayList<String> getDominio() {
+	public ArrayList<ValoreDominio> getDominio() {
 		return dominio;
 	}
 

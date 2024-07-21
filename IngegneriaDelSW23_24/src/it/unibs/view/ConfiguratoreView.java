@@ -3,6 +3,7 @@ package it.unibs.view;
 import java.util.ArrayList;
 
 import it.unibs.fp.mylib.InputDati;
+import it.unibs.model.ValoreDominio;
 
 public class ConfiguratoreView {
 
@@ -35,5 +36,19 @@ public class ConfiguratoreView {
 	
 	public static void nomegiaPresente() {
 		System.out.println("Il nome che hai scelto e' gia' presente\n");
+	}
+
+	public static ArrayList<ValoreDominio> inserisciDominio() {
+		ArrayList<ValoreDominio> dominio = new ArrayList<>();
+		String nome;
+		String descrizione = "Assente";
+		do {
+			nome = InputDati.leggiStringaNonVuota("Inserisci il nome del nuovo elemento del dominio\n");
+			if(InputDati.yesOrNo("Desideri aggiungere una descrizione al nuovo elemento?\n")) {
+				descrizione = InputDati.leggiStringaNonVuota("Inserisci la descrizione\n");	
+			}
+			dominio.add(new ValoreDominio(nome, descrizione));
+		}while(InputDati.yesOrNo("Desideri aggiungere un altro elemento al dominio?\n"));
+		return dominio;
 	}
 }

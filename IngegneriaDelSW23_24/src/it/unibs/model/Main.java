@@ -9,6 +9,5 @@ public class Main {
 		//Utente utente = LoginController.login();
 		
 		//Menu.menu(utente);
-		
 	}
 }
