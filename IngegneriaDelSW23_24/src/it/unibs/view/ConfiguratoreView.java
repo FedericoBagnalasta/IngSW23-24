@@ -1,7 +1,5 @@
 package it.unibs.view;
 
-import java.util.ArrayList;
-
 import it.unibs.fp.mylib.InputDati;
 
 public class ConfiguratoreView {
@@ -9,13 +7,16 @@ public class ConfiguratoreView {
 	public static String inserisciNomeComprensorio() {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome del nuovo comprensorio geografico\n");
 	}
+		
+	public static String inserisciComuniComprensorio() {
+		return InputDati.leggiStringaNonVuota("Inserisci il nome comune\n");
+	}
 	
-	public static ArrayList<String> inserisciComuniComprensorio() {
-		ArrayList<String> comuni = new ArrayList<>();
-		InputDati.leggiStringaNonVuota("Inserisci il nome del comune appartenente al nuovo comprensorio\n");
-		while(InputDati.yesOrNo("Vuoi aggiungere un altro comune?\n")) {
-			comuni.add(InputDati.leggiStringaNonVuota("Inserisci il nome del comune\n"));
-		}
-		return comuni;
+	public static boolean inserisciAltroComune() {
+		return(InputDati.yesOrNo("Vuoi inserire un altro comune?"));
+	}
+	
+	public static void comuneGiaPresente() {
+		System.out.println("Il comune inserito è già presente in questo comprensorio");
 	}
 }

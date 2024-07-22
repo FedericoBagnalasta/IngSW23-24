@@ -9,14 +9,12 @@ public class ElencoUtenti {
 	private static final String passwordPredefinita = "passwordBase";
 	private static final Utente credenzialiBase = new Utente(utentePredefinito, passwordPredefinita, "Configuratore");
 	
-	//Serve?
-	
 	public ElencoUtenti() {
-		listaUtenti.add(credenzialiBase);
+		listaUtenti.add(credenzialiBase);	//Serve? Se no, neanche credenzialiBase serve
 	}
 	
 	public static void aggiungiUtente(Utente newCredenziali) {
-		listaUtenti.add(newCredenziali);
+		listaUtenti.add(newCredenziali);	//Ricordarsi che ciascun utente (Configuratore/Fruitore) è individuato univocamente dal nome
 	}
 	
 	public static boolean isPrimoAccesso(String nome, String password) {
