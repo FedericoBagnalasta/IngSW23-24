@@ -6,8 +6,29 @@ public class ElencoComprensori {
 
 	private static ArrayList<Comprensorio> elencoComprensori = new ArrayList<>();
 	
+	//Non sono sicuro serva
 	public static void aggiungiComprensorio(String nome, ArrayList<String> comuniComprensorio) {
 		elencoComprensori.add(new Comprensorio(nome, comuniComprensorio));
+	}
+	
+	/*
+	public boolean verificaComune(Comprensorio comprensorio, String comune) {
+		for(String nomeComune : comprensorio.getComuniComprensorio()) {
+			if(nomeComune.equals(comune)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	*/
+	
+	public static boolean verificaComprensorio(String nomeComprensorio) {
+		for(Comprensorio comprensorio : elencoComprensori) {
+			if(comprensorio.getNome().equals(nomeComprensorio)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public static boolean verificaOriginalita(String nomeNuovoComprensorio) {

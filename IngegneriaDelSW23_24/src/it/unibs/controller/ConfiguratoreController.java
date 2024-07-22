@@ -2,12 +2,15 @@ package it.unibs.controller;
 
 import java.util.ArrayList;
 
+
 import it.unibs.model.Categoria;
 import it.unibs.model.CategoriaFoglia;
 import it.unibs.model.CategoriaNonFoglia;
 import it.unibs.model.CategoriaRadice;
 import it.unibs.model.ElencoComprensori;
 import it.unibs.model.ElencoGerarchie;
+import it.unibs.model.Comprensorio;
+import it.unibs.model.ElencoComprensori;
 import it.unibs.model.ElencoUtenti;
 import it.unibs.model.Gerarchia;
 import it.unibs.model.Utente;
@@ -83,7 +86,7 @@ public class ConfiguratoreController extends Utente {//Da tenere extends Utente?
 		elencoValoriDisponibili.removeAll(elencoValoriUsati);
 		return elencoValoriDisponibili;
 	}
-	*/
+	
 	
 	public void creaComprensorio() {
 		String nomeComprensorio=ConfiguratoreView.inserisciNomeComprensorio();
@@ -93,10 +96,56 @@ public class ConfiguratoreController extends Utente {//Da tenere extends Utente?
 		}
 		ArrayList<String> elencoComuni=ConfiguratoreView.inserisciComuniComprensorio();
 		ElencoComprensori.aggiungiComprensorio(nomeComprensorio, elencoComuni);
+		*/
+
+	public String creaNomeComprensorio() {
+		String nomeComprensorio;
+		do {
+			nomeComprensorio = ConfiguratoreView.inserisciNomeComprensorio();
+		} while(ElencoComprensori.verificaComprensorio(nomeComprensorio));
+		return nomeComprensorio;
 	}
 	
+	public ArrayList<String> creaComuniComprensorio() {
+		ArrayList<String> elencoComuni = new ArrayList<>();
+		do {
+			String comune = ConfiguratoreView.inserisciComuniComprensorio();
+			for(String s : elencoComuni) {
+				if(s.equals(comune)) {
+					ConfiguratoreView.comuneGiaPresente();
+					break;
+				}
+				else {
+					elencoComuni.add(comune);
+				}
+			}
+		} while(ConfiguratoreView.inserisciAltroComune());
+		
+		return elencoComuni;
+	}
+	
+	public Comprensorio creaComprensorio() {
+		return new Comprensorio(creaNomeComprensorio(), creaComuniComprensorio());
+	}
+	
+	//Se questa classe eredita da Utente, si riesce a rendere questo metodo non-static
+	
+	public static void cambiaCredenziali(Utente utente) {
+		String nome;
+		String password;
+		
+		do {
+			nome = LoginView.inserisciNome();
+		} while(ElencoUtenti.isDuplicato(nome));
+		
+		utente.setNome(nome);
+		password = LoginView.inserisciPassword();
+		utente.setPassword(password);
+	}
+	
+
 	/*
-	public static Utente cambiaCredenziali() {
+	public static Utente cambiaCredenz() {
 		String nome;
 		String password;
 		String ruolo = "Configuratore";
@@ -109,24 +158,6 @@ public class ConfiguratoreController extends Utente {//Da tenere extends Utente?
 		return LoginModel.creaUtente(nome, password, ruolo);
 	}
 	*/
-	
-	
-	//Versione alternativa del metodo sopra
-	
-	//Se questa classe eredita da Utente, si riesce a rendere questo metodo non-static
-	
-	public static void cambiaCredenz(Utente utente) {
-		String nome;
-		String password;
-		
-		do {
-			nome = LoginView.inserisciNome();
-		} while(ElencoUtenti.isDuplicato(nome));
-		
-		utente.setNome(nome);
-		password = LoginView.inserisciPassword();
-		utente.setPassword(password);
-	}
 	
 	
 }

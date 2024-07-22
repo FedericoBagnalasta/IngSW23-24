@@ -1,7 +1,5 @@
 package it.unibs.model;
 
-import it.unibs.view.LoginView;
-
 public class Utente {
 
 	private String nome;
