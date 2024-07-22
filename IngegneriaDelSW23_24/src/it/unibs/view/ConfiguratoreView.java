@@ -45,4 +45,30 @@ public class ConfiguratoreView {
 		}while(InputDati.yesOrNo("Desideri aggiungere un altro elemento al dominio?\n"));
 		return dominio;
 	}
+
+	public static boolean richiestaContinuazioneStruttura() {
+		return InputDati.yesOrNo("Desideri aggiungere un altro figlio alla struttura?\n");
+	}
+
+	public static boolean richiestaVerificaCategoriaFoglia() {
+		return InputDati.yesOrNo("Desideri aggiungere una Categoria Foglia?\n");
+	}
+
+	public static String inserisciNomeFoglia() {
+		return InputDati.leggiStringaNonVuota("Inserisci il nome della nuova Categoria Foglia\n");
+	}	
+	
+	public static String inserisciNomeNonFoglia() {
+		return InputDati.leggiStringaNonVuota("Inserisci il nome della nuova Categoria Non Foglia\n");
+	}
+	
+	public static boolean richiestaAggiuntaCategoriaNonFoglia(ValoreDominio dominio) {
+		return InputDati.yesOrNo("Desideri aggiungere una Categoria Non Foglia a "+dominio.getValore()+"\n");
+	}
+	
+	public static boolean richiestaAggiuntaCategoriaFoglia(ValoreDominio dominio) {
+		return InputDati.yesOrNo("Desideri aggiungere una Categoria Foglia a "+dominio.getValore()+"\n");
+	}
+
+	
 }

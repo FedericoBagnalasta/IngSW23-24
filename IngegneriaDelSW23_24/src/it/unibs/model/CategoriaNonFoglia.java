@@ -5,20 +5,23 @@ import java.util.ArrayList;
 public class CategoriaNonFoglia implements Categoria {
 
 	private String nome;
-	
 	private String campo;
-	private ArrayList<String> dominio = new ArrayList<>();
-	
-	private String valore;	//è un elemento del dominio. Eventuale descrizione => creazione classe
-	
+	private ArrayList<ValoreDominio> dominio = new ArrayList<>();
+	private ValoreDominio valore;	//è un elemento del dominio. Eventuale descrizione => creazione classe
 	private ArrayList<Categoria> figli = new ArrayList<>();
 
-	public CategoriaNonFoglia(String nome, String campo, String valore) {
+	public CategoriaNonFoglia(String nome, String campo, ValoreDominio valore, ArrayList<ValoreDominio> dominio) {
 		super();
 		this.nome = nome;
 		this.campo = campo;
 		this.valore = valore;
+		this.dominio = dominio;
 	}
+	
+	/*public void aggiungiFiglio(Categoria nuovoFiglio) {
+		figli.add(nuovoFiglio);
+	}
+	*/
 	
 	
 	/*
@@ -27,12 +30,24 @@ public class CategoriaNonFoglia implements Categoria {
 	}
 	*/
 	
+
+	public String getNome() {
+		return nome;
+	}
+
+	public String getCampo() {
+		return campo;
+	}
 	
-	public ArrayList<String> getDominio() {
+	public ArrayList<ValoreDominio> getDominio() {
 		return dominio;
 	}
 
-	public void setDominio(ArrayList<String> dominio) {
-		this.dominio = dominio;
+	public ValoreDominio getValore() {
+		return valore;
+	}
+
+	public ArrayList<Categoria> getFigli() {
+		return figli;
 	}
 }

@@ -1,9 +1,15 @@
 package it.unibs.controller;
 
 import java.util.ArrayList;
+
+import it.unibs.model.Categoria;
+import it.unibs.model.CategoriaFoglia;
+import it.unibs.model.CategoriaNonFoglia;
+import it.unibs.model.CategoriaRadice;
 import it.unibs.model.ElencoComprensori;
 import it.unibs.model.ElencoGerarchie;
 import it.unibs.model.ElencoUtenti;
+import it.unibs.model.Gerarchia;
 import it.unibs.model.Utente;
 import it.unibs.model.ValoreDominio;
 import it.unibs.view.ConfiguratoreView;
@@ -18,14 +24,66 @@ public class ConfiguratoreController extends Utente {//Da tenere extends Utente?
 	
 	public void creaGerarchia() {
 		String nomeRadice=ConfiguratoreView.inserisciNomeRadiceGerarchia();
-		while(!ElencoGerarchie.verificaOriginalita(nomeRadice)) {
+		while(!ElencoGerarchie.verificaOriginalitaRadiceNome(nomeRadice)) {
 			ConfiguratoreView.nomegiaPresente();
 			nomeRadice = ConfiguratoreView.inserisciNomeRadiceGerarchia();
 		}
 		String campo = ConfiguratoreView.inserisciCampo();
 		ArrayList<ValoreDominio> dominio = ConfiguratoreView.inserisciDominio();
-		ElencoGerarchie.aggiungiGerarchia(nomeRadice, campo, dominio);
+		Gerarchia nuovaGerarchia = ElencoGerarchie.aggiungiGerarchia(nomeRadice, campo, dominio);
+		creaFigliCategoria(nuovaGerarchia.getRadice());//Si occupa di creare la struttura (Foglie e NonFolgie) della gerarchia
 	}
+	
+	private void creaFigliCategoria(Categoria categoriaPadre) {
+		//DEVO POTER SCEGLIERE A QUALE CATEGORIA COLLEGARE IL NUOVO ELEMENTO	
+		
+		do {
+			for(ValoreDominio valore: categoriaPadre.getDominio()) {
+				if(ConfiguratoreView.richiestaAggiuntaCategoriaFoglia(valore)) {
+					CategoriaFoglia foglia = creaFoglia(categoriaPadre, valore);
+					categoriaPadre.getFigli().add(foglia); //AGGIUNGE IL FIGLIO NELL'ELENCO DEL PADRE					
+				}
+				else if(ConfiguratoreView.richiestaAggiuntaCategoriaNonFoglia(valore)) {
+					CategoriaNonFoglia nonFoglia = creaNonFoglia(categoriaPadre, valore);
+					
+					//CHIAMATA RICORSIVA
+					creaFigliCategoria(nonFoglia);
+					
+					categoriaPadre.getFigli().add(nonFoglia);
+				}
+			}
+		}while(ConfiguratoreView.richiestaContinuazioneStruttura());//Finchè l'utente lo desidera, continua a creare figli
+	}
+	
+	public CategoriaFoglia creaFoglia(Categoria padre, ValoreDominio valore) {
+		String nomeFoglia = ConfiguratoreView.inserisciNomeFoglia();//manca controllo sul nome della foglia
+		CategoriaFoglia foglia = new CategoriaFoglia(nomeFoglia, valore);
+		
+		//CHIEDE SE (FORSE OBBLIGATORIO) VUOLE AGGIUNGERE DEI FATTORI DI CONVERSIONE
+		
+		return foglia;
+	}
+	
+	public CategoriaNonFoglia creaNonFoglia(Categoria padre, ValoreDominio valore) {
+		String nomeNonFoglia = ConfiguratoreView.inserisciNomeNonFoglia(); 
+		String campo = ConfiguratoreView.inserisciCampo();
+		ArrayList<ValoreDominio> dominio = ConfiguratoreView.inserisciDominio();//METODO PER IL DOMINIO DA SPOSTARE IN CONTROLLER
+		return new CategoriaNonFoglia(nomeNonFoglia, campo, valore, dominio);
+		
+		
+	}
+	
+	//NON SERVE PIU' (I VALORI VENGONO ASSEGNATI PRIMA DELLA CREAZIONE)
+	/*private ArrayList<ValoreDominio> ottieniValoriDominioDisponibili(Categoria padre){
+		ArrayList<ValoreDominio> elencoValoriDisponibili = padre.getDominio();
+		ArrayList<ValoreDominio> elencoValoriUsati = new ArrayList<ValoreDominio>();
+		for(Categoria c: padre.getFigli()) {
+			elencoValoriUsati.add(c.getValore());
+		}
+		elencoValoriDisponibili.removeAll(elencoValoriUsati);
+		return elencoValoriDisponibili;
+	}
+	*/
 	
 	public void creaComprensorio() {
 		String nomeComprensorio=ConfiguratoreView.inserisciNomeComprensorio();

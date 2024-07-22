@@ -6,12 +6,13 @@ public class ElencoGerarchie {
 
 	private static ArrayList<Gerarchia> elencoGerarchie=new ArrayList<>();
 
-	public static void aggiungiGerarchia(String nome, String campo, ArrayList<ValoreDominio> dominio) {
+	public static Gerarchia aggiungiGerarchia(String nome, String campo, ArrayList<ValoreDominio> dominio) {
 		Gerarchia nuovaGerarchia=new Gerarchia(nome, campo, dominio);
 		elencoGerarchie.add(nuovaGerarchia);
+		return nuovaGerarchia;
 	}
 	
-	public static boolean verificaOriginalita(String nomeNuovaRadice) {
+	public static boolean verificaOriginalitaRadiceNome(String nomeNuovaRadice) {
 		for(Gerarchia c: elencoGerarchie) {
 			if(nomeNuovaRadice.equals(c.getRadice().getNome())) {
 				return false;
