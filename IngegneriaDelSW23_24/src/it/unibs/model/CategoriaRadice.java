@@ -42,4 +42,9 @@ public class CategoriaRadice implements Categoria {
 		return figli;
 	}
 	
+	//DA RIVEDERE
+	public CategoriaRadice getCategoriaRadice() {
+		return this;
+	}
+	
 }

@@ -72,5 +72,9 @@ public class ConfiguratoreView {
 		return InputDati.yesOrNo("Desideri aggiungere una Categoria Foglia a "+dominio.getValore()+"\n");
 	}
 
+	public static double inserisciValoreFDC() {
+		return InputDati.leggiDoubleRange("Inserisci il valore del fattore di conversione", 0.5, 2.0);
+	}
+
 	
 }

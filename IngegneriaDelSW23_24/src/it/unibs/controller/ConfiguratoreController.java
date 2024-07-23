@@ -8,10 +8,12 @@ import it.unibs.model.CategoriaFoglia;
 import it.unibs.model.CategoriaNonFoglia;
 import it.unibs.model.CategoriaRadice;
 import it.unibs.model.ElencoComprensori;
+import it.unibs.model.ElencoFattoriDiConversione;
 import it.unibs.model.ElencoGerarchie;
 import it.unibs.model.Comprensorio;
 import it.unibs.model.ElencoComprensori;
 import it.unibs.model.ElencoUtenti;
+import it.unibs.model.FattoreDiConversione;
 import it.unibs.model.Gerarchia;
 import it.unibs.model.Utente;
 import it.unibs.model.ValoreDominio;
@@ -60,9 +62,10 @@ public class ConfiguratoreController extends Utente {//Da tenere extends Utente?
 	
 	public CategoriaFoglia creaFoglia(Categoria padre, ValoreDominio valore) {
 		String nomeFoglia = ConfiguratoreView.inserisciNomeFoglia();//manca controllo sul nome della foglia
-		CategoriaFoglia foglia = new CategoriaFoglia(nomeFoglia, valore);
+		CategoriaFoglia foglia = new CategoriaFoglia(nomeFoglia, valore, padre.getCategoriaRadice());
 		
 		//CHIEDE SE (FORSE OBBLIGATORIO) VUOLE AGGIUNGERE DEI FATTORI DI CONVERSIONE
+		
 		
 		return foglia;
 	}
@@ -71,10 +74,22 @@ public class ConfiguratoreController extends Utente {//Da tenere extends Utente?
 		String nomeNonFoglia = ConfiguratoreView.inserisciNomeNonFoglia(); 
 		String campo = ConfiguratoreView.inserisciCampo();
 		ArrayList<ValoreDominio> dominio = ConfiguratoreView.inserisciDominio();//METODO PER IL DOMINIO DA SPOSTARE IN CONTROLLER
-		return new CategoriaNonFoglia(nomeNonFoglia, campo, valore, dominio);
+		return new CategoriaNonFoglia(nomeNonFoglia, campo, valore, dominio, padre.getCategoriaRadice());
 		
 		
 	}
+	
+	/*public FattoreDiConversione creaFattoreDiConversione() {
+		CategoriaFoglia f1, f2;
+		double valore;
+		do {
+		//METODO PER MOSTRARE LA STRUTTURA DELLA GERARCHIA
+		f1 = selezionaCategoriaFoglia();
+		f2 = selezioneCategoriaFoglia();
+		valore = ConfiguratoreView.inserisciValoreFDC();
+		}while(ElencoFattoriDiConversione.verificaEsistenzaFDC(new FattoreDiConversione(f1, f2, valore)));
+			
+	}*/
 	
 	//NON SERVE PIU' (I VALORI VENGONO ASSEGNATI PRIMA DELLA CREAZIONE)
 	/*private ArrayList<ValoreDominio> ottieniValoriDominioDisponibili(Categoria padre){
