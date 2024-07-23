@@ -1,7 +1,9 @@
 package it.unibs.view;
 
 import it.unibs.fp.mylib.InputDati;
+import it.unibs.model.Categoria;
 import it.unibs.model.FattoreDiConversione;
+import it.unibs.model.Gerarchia;
 import it.unibs.model.ValoreDominio;
 
 public class ConfiguratoreView {
@@ -36,6 +38,14 @@ public class ConfiguratoreView {
 	
 	public static String inserisciNomeRadiceGerarchia() {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome della radice appartenente alla nuova gerarchia\n");
+	}
+	
+	public static void visualizzaNomeRadiceGerarchia(Gerarchia gerarchia) {
+		System.out.println("\nRadice gerarchia: " + gerarchia.getRadice().getNome());
+	}
+	
+	public static void visualizzaNomeFiglioCategoria(Categoria categoria, Gerarchia gerarchia) {
+		System.out.println("Figlio di " + gerarchia.getRadice().getNome() + ": " + categoria.getNome());
 	}
 	
 	public static String inserisciCampo() {

@@ -21,7 +21,7 @@ public class ElencoGerarchie {
 		return false;
 	}
 	
-	public ArrayList<Gerarchia> getElencoGerarchie() {
+	public static ArrayList<Gerarchia> getElencoGerarchie() {
 		return elencoGerarchie;
 	}
 }

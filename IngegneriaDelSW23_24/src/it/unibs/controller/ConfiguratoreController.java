@@ -151,7 +151,20 @@ public class ConfiguratoreController {
 			}
 		}
 	}
-
+	
+	public static void visualizzaGerarchie() {
+		for(Gerarchia gerarchia : ElencoGerarchie.getElencoGerarchie()) {
+			ConfiguratoreView.visualizzaNomeRadiceGerarchia(gerarchia);
+			visualizzaFigliCategoria(gerarchia.getRadice(), gerarchia);
+		}
+	}
+	
+	public static void visualizzaFigliCategoria(Categoria categoria, Gerarchia gerarchia) {
+		for(Categoria c : categoria.getFigli()) {
+			ConfiguratoreView.visualizzaNomeFiglioCategoria(categoria, gerarchia);
+			visualizzaFigliCategoria(c, gerarchia);
+		}
+	}
 	
 	public static void visualizzaFattoriDiConversione(CategoriaFoglia foglia) {
 		for(FattoreDiConversione fattore : ElencoFattoriDiConversione.getElencoFattoriDiConversione()) {
