@@ -6,11 +6,12 @@ public class CategoriaRadice implements Categoria {
 
 	private String nome;
 	private String campo;
-	private final ValoreDominio valore = new ValoreDominio("Radice", "Valore dell'elemento radice");
 	private ArrayList<ValoreDominio> dominio = new ArrayList<>();
 	private ArrayList<Categoria> figli = new ArrayList<>();
+	private CategoriaRadice radice;
+	
+	private final ValoreDominio valore = new ValoreDominio("Radice", "Valore dell'elemento radice");
 
-	//Ho tolto String valore dai parametri
 	public CategoriaRadice(String nome, String campo, ArrayList<ValoreDominio> dominio) {
 		super();
 		this.nome = nome;
@@ -18,7 +19,7 @@ public class CategoriaRadice implements Categoria {
 		this.dominio = dominio;
 	}
 	
-	public void aggiungiFiglo(Categoria nuovoFiglio) {
+	public void aggiungiFiglio(Categoria nuovoFiglio) {
 		figli.add(nuovoFiglio);
 	}
 
@@ -41,5 +42,8 @@ public class CategoriaRadice implements Categoria {
 	public ArrayList<Categoria> getFigli() {
 		return figli;
 	}
-	
+
+	public CategoriaRadice getCategoriaRadice() {
+		return radice;
+	}
 }

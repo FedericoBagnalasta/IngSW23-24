@@ -2,7 +2,7 @@ package it.unibs.model;
 
 import it.unibs.view.FruitoreView;
 
-//SARA' DA SPOSTARE NEL CONTROLLER COME ABBIAMO FATTO PERR CONFIGURATORE
+//SARA' DA SPOSTARE NEL CONTROLLER COME ABBIAMO FATTO PER CONFIGURATORE
 
 public class Fruitore extends Utente {
 	
@@ -41,7 +41,7 @@ public class Fruitore extends Utente {
 				return c;
 			}
 		}
-		return null;	//eccezione
+		return null;	//eccezione o messaggio di errore
 	}
 	
 	public Comprensorio getComprensorio() {

@@ -7,11 +7,6 @@ public class ElencoUtenti {
 	private static ArrayList<Utente> listaUtenti = new ArrayList<>();
 	private static final String utentePredefinito = "utenteBase";
 	private static final String passwordPredefinita = "passwordBase";
-	private static final Utente credenzialiBase = new Utente(utentePredefinito, passwordPredefinita, "Configuratore");
-	
-	public ElencoUtenti() {
-		listaUtenti.add(credenzialiBase);	//Serve? Se no, neanche credenzialiBase serve
-	}
 	
 	public static void aggiungiUtente(Utente newCredenziali) {
 		listaUtenti.add(newCredenziali);	//Ricordarsi che ciascun utente (Configuratore/Fruitore) è individuato univocamente dal nome
@@ -37,18 +32,6 @@ public class ElencoUtenti {
 		return listaUtenti;
 	}
 	
-	//Metodo per verificare che un FRUITORE non stia facendo login con le credenziali base
-	public static boolean erratoUsoCredenzialiBase(String nome, String ruolo) {
-		if(nome.equals(utentePredefinito) && ruolo.equals("Fruitore")) {
-			return true;
-		}
-		return false;
-	}
-	
-	//=====================================================================================
-	
-	//METODI CHE ERANO IN LOGINMODEL
-	
 	public static boolean verificaAccount(String nome, String password) {
 		for(Utente utente : getListaCredenziali()) {
 			if(utente.getNome().equals(nome) && utente.getPassword().equals(password)) {
@@ -58,22 +41,11 @@ public class ElencoUtenti {
 		return false;
 	}
 	
-	//Questi 2 si possono probabilmente eliminare
-	
-	/*
-	public static Utente creaUtente(String nome, String password, String ruolo) {
-		Utente newUtente = new Utente(nome, password, ruolo);
-		aggiungiUtente(newUtente);
-		return newUtente;
-	}
-	
-	public static boolean verificaDuplicati(String nome) {
-		if(isDuplicato(nome)) {
+	//Metodo per verificare che un FRUITORE non stia facendo login con le credenziali base
+	public static boolean erratoUsoCredenzialiBase(String nome, String ruolo) {
+		if(nome.equals(utentePredefinito) && ruolo.equals("Fruitore")) {
 			return true;
 		}
 		return false;
 	}
-	*/
-	
-	//======================================================================================
 }

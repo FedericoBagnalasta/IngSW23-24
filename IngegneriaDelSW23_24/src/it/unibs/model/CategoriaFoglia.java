@@ -6,16 +6,18 @@ public class CategoriaFoglia implements Categoria {
 
 	private String nome;
 	private ValoreDominio valore;
+	private ArrayList<FattoreDiConversione> elencoFattoriDiConversione = new ArrayList<FattoreDiConversione>();
+	private CategoriaRadice radice;
+	
+	//Si potrebbe non dichiararli
 	private final ArrayList<ValoreDominio> dominio = new ArrayList<ValoreDominio>();
-	private ArrayList<FattoreDiConversione> elencoFattoriDiConversione = 
-													new ArrayList<FattoreDiConversione>();
 	private final ArrayList<Categoria> figli = new ArrayList<>();
 	
-
-	public CategoriaFoglia(String nome, ValoreDominio valore) {
+	public CategoriaFoglia(String nome, ValoreDominio valore, CategoriaRadice radice) {
 		super();
 		this.nome = nome;
 		this.valore = valore;
+		this.radice = radice;
 	}
 	
 	public void aggiungiFattoreDiConversione(CategoriaFoglia c, double valore) {
@@ -32,6 +34,16 @@ public class CategoriaFoglia implements Categoria {
 		return valore;
 	}
 	
+	public ArrayList<FattoreDiConversione> getElencoFattoriDiConversione() {
+		return elencoFattoriDiConversione;
+	}
+	
+	public CategoriaRadice getCategoriaRadice() {
+		return radice;
+	}
+	
+	//Potrebbero restituire null, senza dichiarare gli attributi
+	
 	public ArrayList<ValoreDominio> getDominio() {
 		return dominio;
 	}
@@ -39,8 +51,4 @@ public class CategoriaFoglia implements Categoria {
 	public ArrayList<Categoria> getFigli() {
 		return figli;
 	}
-
-	public ArrayList<FattoreDiConversione> getElencoFattoriDiConversione() {
-		return elencoFattoriDiConversione;
-	}	
 }

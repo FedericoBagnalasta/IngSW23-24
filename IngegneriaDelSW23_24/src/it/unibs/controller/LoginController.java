@@ -5,7 +5,7 @@ import it.unibs.view.*;
 
 public class LoginController {
 		
-	public static void loginGenerale() {
+	public void loginGenerale() {
 		String ruolo = LoginView.inserisciRuolo();
 		String nome = LoginView.inserisciNome();
 		String password = LoginView.inserisciPassword();
@@ -16,15 +16,13 @@ public class LoginController {
 		//else loginFruitore();
 	}
 	
-	
 	//Si potrebbe distinguere tra accesso e registrazione
-	
-	public static void loginConfiguratore(String nome, String password) {
+	public void loginConfiguratore(String nome, String password) {
 		boolean isPrimoAccesso = ElencoUtenti.isPrimoAccesso(nome, password);
 		boolean isAccountVerificato = ElencoUtenti.verificaAccount(nome, password);
 		if(isPrimoAccesso) {
 			Utente utente = new Utente(nome, password, "Configuratore");
-			ConfiguratoreController.cambiaCredenziali(utente);
+			cambiaCredenziali(utente);
 			//opzioni
 		}
 		else if(isAccountVerificato) {
@@ -35,5 +33,18 @@ public class LoginController {
 			
 			//Se dividiamo registrazione e login possiamo fargli fare una registrazione se il login non va a buon fine
 		}
+	}
+	
+	public void cambiaCredenziali(Utente utente) {
+		String nome;
+		String password;
+		
+		do {
+			nome = LoginView.inserisciNome();
+		} while(ElencoUtenti.isDuplicato(nome));
+		
+		utente.setNome(nome);
+		password = LoginView.inserisciPassword();
+		utente.setPassword(password);
 	}
 }
