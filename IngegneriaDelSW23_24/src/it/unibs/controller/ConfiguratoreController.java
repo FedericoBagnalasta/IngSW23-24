@@ -5,16 +5,12 @@ import java.util.ArrayList;
 import it.unibs.model.Categoria;
 import it.unibs.model.CategoriaFoglia;
 import it.unibs.model.CategoriaNonFoglia;
-import it.unibs.model.CategoriaRadice;
 import it.unibs.model.ElencoComprensori;
 import it.unibs.model.ElencoGerarchie;
 import it.unibs.model.Comprensorio;
-import it.unibs.model.ElencoUtenti;
 import it.unibs.model.Gerarchia;
-import it.unibs.model.Utente;
 import it.unibs.model.ValoreDominio;
 import it.unibs.view.ConfiguratoreView;
-import it.unibs.view.LoginView;
 
 public class ConfiguratoreController {
 	
@@ -23,7 +19,7 @@ public class ConfiguratoreController {
 		
 		do {
 			nomeRadice = ConfiguratoreView.inserisciNomeRadiceGerarchia();
-			ConfiguratoreView.nomeGiaPresente();
+			ConfiguratoreView.radiceGiaPresente();
 		} while(ElencoGerarchie.verificaEsistenzaRadice(nomeRadice));
 		
 		String campo = ConfiguratoreView.inserisciCampo();
@@ -128,6 +124,15 @@ public class ConfiguratoreController {
 	
 	public Comprensorio creaComprensorio() {
 		return new Comprensorio(creaNomeComprensorio(), creaComuniComprensorio());
+	}
+	
+	public static void visualizzaComprensorio() {
+		for(Comprensorio comprensorio : ElencoComprensori.getElencoComprensori()) {
+			ConfiguratoreView.visualizzaNomeComprensorio(comprensorio.getNome());
+			for(String comune : comprensorio.getComuniComprensorio()) {
+				ConfiguratoreView.visualizzaNomeComune(comune);
+			}
+		}
 	}
 	
 	//NON SERVE PIU' (I VALORI VENGONO ASSEGNATI PRIMA DELLA CREAZIONE)
