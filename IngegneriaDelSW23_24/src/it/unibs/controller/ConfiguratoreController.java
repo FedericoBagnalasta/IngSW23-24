@@ -8,9 +8,8 @@ import it.unibs.model.CategoriaNonFoglia;
 import it.unibs.model.ElencoComprensori;
 import it.unibs.model.ElencoFattoriDiConversione;
 import it.unibs.model.ElencoGerarchie;
+import it.unibs.model.FattoreDiConversione;
 import it.unibs.model.Comprensorio;
-import it.unibs.model.ElencoComprensori;
-import it.unibs.model.ElencoUtenti;
 import it.unibs.model.Gerarchia;
 import it.unibs.model.ValoreDominio;
 import it.unibs.view.ConfiguratoreView;
@@ -64,7 +63,8 @@ public class ConfiguratoreController {
 		CategoriaFoglia foglia = new CategoriaFoglia(nomeFoglia, valore, padre.getCategoriaRadice());
 		
 		//CHIEDE SE (FORSE OBBLIGATORIO) VUOLE AGGIUNGERE DEI FATTORI DI CONVERSIONE
-		
+		//ElencoFattoriDiConversione.creaFattoreDiConversione();
+		//DERIVARE TUTTI I FDC POSSIBILI
 		
 		return foglia;
 	}
@@ -82,7 +82,6 @@ public class ConfiguratoreController {
 		return new CategoriaNonFoglia(nomeNonFoglia, campo, valore, dominio, padre.getCategoriaRadice());
 	}
 	
-	// 		NON RIMUOVERE
 	
 	/*public FattoreDiConversione creaFattoreDiConversione() {
 		CategoriaFoglia f1, f2;
@@ -94,7 +93,8 @@ public class ConfiguratoreController {
 		valore = ConfiguratoreView.inserisciValoreFDC();
 		}while(ElencoFattoriDiConversione.verificaEsistenzaFDC(new FattoreDiConversione(f1, f2, valore)));
 			
-	}*/
+	}
+	*/
 	
 	public ArrayList<ValoreDominio> creaDominio() {
 		ArrayList<ValoreDominio> dominio = new ArrayList<>();

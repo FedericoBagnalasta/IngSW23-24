@@ -18,5 +18,7 @@ public class ElencoFattoriDiConversione {
 		}
 		return false;
 	}
+	
+	
 
 }
