@@ -2,6 +2,8 @@ package it.unibs.model;
 
 import java.util.ArrayList;
 
+import it.unibs.view.ConfiguratoreView;
+
 public class ElencoComprensori {
 
 	private static ArrayList<Comprensorio> elencoComprensori = new ArrayList<>();
@@ -23,6 +25,7 @@ public class ElencoComprensori {
 		return elencoComprensori;
 	}
 	
+	//VIENE USATO SOLO DA FRUITORE
 	public static int numeroComprensori() {
 		return elencoComprensori.size();
 	}
