@@ -130,6 +130,7 @@ public class ConfiguratoreController {
 		return new Comprensorio(creaNomeComprensorio(), creaComuniComprensorio());
 	}
 	
+	
 	//NON SERVE PIU' (I VALORI VENGONO ASSEGNATI PRIMA DELLA CREAZIONE)
 	/*private ArrayList<ValoreDominio> ottieniValoriDominioDisponibili(Categoria padre){
 		ArrayList<ValoreDominio> elencoValoriDisponibili = padre.getDominio();
