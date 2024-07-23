@@ -85,9 +85,13 @@ public class ConfiguratoreView {
 	public static boolean richiestaAggiuntaCategoriaFoglia(ValoreDominio dominio) {
 		return InputDati.yesOrNo("Desideri aggiungere una Categoria Foglia a " + dominio.getValore() + "\n");
 	}
+
 	
 	//PARTE FATTORI DI CONVERSIONE
 	
+
+
+
 	public static double inserisciValoreFDC() {
 		return InputDati.leggiDoubleRange("Inserisci il valore del fattore di conversione\n", 0.5, 2.0);
 	}

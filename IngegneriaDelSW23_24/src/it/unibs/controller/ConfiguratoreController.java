@@ -6,6 +6,7 @@ import it.unibs.model.Categoria;
 import it.unibs.model.CategoriaFoglia;
 import it.unibs.model.CategoriaNonFoglia;
 import it.unibs.model.ElencoComprensori;
+import it.unibs.model.ElencoFattoriDiConversione;
 import it.unibs.model.ElencoGerarchie;
 import it.unibs.model.FattoreDiConversione;
 import it.unibs.model.Comprensorio;
@@ -46,6 +47,7 @@ public class ConfiguratoreController {
 					//CHIAMATA RICORSIVA
 					creaFigliCategoria(nonFoglia);
 					
+					
 					categoriaPadre.getFigli().add(nonFoglia);
 				}
 			}
@@ -58,10 +60,10 @@ public class ConfiguratoreController {
 		do {
 			nomeFoglia = ConfiguratoreView.inserisciNomeFoglia();
 		} while(elencoNomiGerarchia.contains(nomeFoglia));
-		
 		CategoriaFoglia foglia = new CategoriaFoglia(nomeFoglia, valore, padre.getCategoriaRadice());
 		
 		//CHIEDE SE (FORSE OBBLIGATORIO) VUOLE AGGIUNGERE DEI FATTORI DI CONVERSIONE
+		
 		
 		return foglia;
 	}
@@ -78,6 +80,20 @@ public class ConfiguratoreController {
 		
 		return new CategoriaNonFoglia(nomeNonFoglia, campo, valore, dominio, padre.getCategoriaRadice());
 	}
+	
+	// 		NON RIMUOVERE
+	
+	/*public FattoreDiConversione creaFattoreDiConversione() {
+		CategoriaFoglia f1, f2;
+		double valore;
+		do {
+		//METODO PER MOSTRARE LA STRUTTURA DELLA GERARCHIA
+		f1 = selezionaCategoriaFoglia();
+		f2 = selezioneCategoriaFoglia();
+		valore = ConfiguratoreView.inserisciValoreFDC();
+		}while(ElencoFattoriDiConversione.verificaEsistenzaFDC(new FattoreDiConversione(f1, f2, valore)));
+			
+	}*/
 	
 	public ArrayList<ValoreDominio> creaDominio() {
 		ArrayList<ValoreDominio> dominio = new ArrayList<>();
@@ -135,15 +151,17 @@ public class ConfiguratoreController {
 			}
 		}
 	}
+
 	
 	public static void visualizzaFattoriDiConversione(CategoriaFoglia foglia) {
-		for(FattoreDiConversione fattore : ElencoFattoriDiConversione.getElencoFattori()) {
+		for(FattoreDiConversione fattore : ElencoFattoriDiConversione.getElencoFattoriDiConversione()) {
 			if(fattore.getC1().verificaUguaglianzaFoglie(foglia)) {
 				ConfiguratoreView.visualizzaFattoreDiConversione(fattore);
 			}
 		}
 	}
-	
+
+	/*
 	//NON SERVE PIU' (I VALORI VENGONO ASSEGNATI PRIMA DELLA CREAZIONE)
 	/*private ArrayList<ValoreDominio> ottieniValoriDominioDisponibili(Categoria padre){
 		ArrayList<ValoreDominio> elencoValoriDisponibili = padre.getDominio();
