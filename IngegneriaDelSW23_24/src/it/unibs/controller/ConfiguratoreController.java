@@ -1,7 +1,6 @@
 package it.unibs.controller;
 
 import java.util.ArrayList;
-
 import it.unibs.model.Categoria;
 import it.unibs.model.CategoriaFoglia;
 import it.unibs.model.CategoriaNonFoglia;
