@@ -7,6 +7,7 @@ import it.unibs.model.CategoriaFoglia;
 import it.unibs.model.CategoriaNonFoglia;
 import it.unibs.model.ElencoComprensori;
 import it.unibs.model.ElencoGerarchie;
+import it.unibs.model.FattoreDiConversione;
 import it.unibs.model.Comprensorio;
 import it.unibs.model.Gerarchia;
 import it.unibs.model.ValoreDominio;
@@ -135,6 +136,13 @@ public class ConfiguratoreController {
 		}
 	}
 	
+	public static void visualizzaFattoriDiConversione(CategoriaFoglia foglia) {
+		for(FattoreDiConversione fattore : ElencoFattoriDiConversione.getElencoFattori()) {
+			if(fattore.getC1().verificaUguaglianzaFoglie(foglia)) {
+				ConfiguratoreView.visualizzaFattoreDiConversione(fattore);
+			}
+		}
+	}
 	
 	//NON SERVE PIU' (I VALORI VENGONO ASSEGNATI PRIMA DELLA CREAZIONE)
 	/*private ArrayList<ValoreDominio> ottieniValoriDominioDisponibili(Categoria padre){

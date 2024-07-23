@@ -25,6 +25,13 @@ public class CategoriaFoglia implements Categoria {
 		c.aggiungiFattoreDiConversione(this, 1/valore);//Aggiunto il simmetrico del fattoreDiConversione
 		//Ricerca automatica dei FDC ricavabili da quelli esistenti
 	}
+	
+	public boolean verificaUguaglianzaFoglie(CategoriaFoglia foglia) {
+		if(this.getNome().equals(foglia.getNome()) && this.getCategoriaRadice().getNome().equals(foglia.getCategoriaRadice().getNome())) {
+			return true;
+		}
+		return false;
+	}
 
 	public String getNome() {
 		return nome;
