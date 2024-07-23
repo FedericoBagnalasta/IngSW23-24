@@ -5,7 +5,7 @@ import it.unibs.view.*;
 
 public class LoginController {
 		
-	public static void loginGenerale() {
+	public void loginGenerale() {
 		String ruolo = LoginView.inserisciRuolo();
 		String nome = LoginView.inserisciNome();
 		String password = LoginView.inserisciPassword();
@@ -17,13 +17,12 @@ public class LoginController {
 	}
 	
 	//Si potrebbe distinguere tra accesso e registrazione
-	
-	public static void loginConfiguratore(String nome, String password) {
+	public void loginConfiguratore(String nome, String password) {
 		boolean isPrimoAccesso = ElencoUtenti.isPrimoAccesso(nome, password);
 		boolean isAccountVerificato = ElencoUtenti.verificaAccount(nome, password);
 		if(isPrimoAccesso) {
 			Utente utente = new Utente(nome, password, "Configuratore");
-			ConfiguratoreController.cambiaCredenziali(utente);
+			cambiaCredenziali(utente);
 			//opzioni
 		}
 		else if(isAccountVerificato) {
@@ -36,36 +35,16 @@ public class LoginController {
 		}
 	}
 	
-	
-	
-	/*
-	public static void login() {
-		String ruolo = LoginView.inserisciRuolo();
-		String nome = LoginView.inserisciNome();
-		String password = LoginView.inserisciPassword();
-		Utente utente;
+	public void cambiaCredenziali(Utente utente) {
+		String nome;
+		String password;
 		
-		//Inserire i 2 login in 2 metodi diversi richiamati da questo login generico?
+		do {
+			nome = LoginView.inserisciNome();
+		} while(ElencoUtenti.isDuplicato(nome));
 		
-		if(ruolo.equals("Configuratore")) {
-			boolean isPrimoAccesso = ElencoUtenti.isPrimoAccesso(nome, password);
-			
-			if(isPrimoAccesso) {
-				utente = ConfiguratoreController.cambiaCredenziali();
-				//cambiaCredenz(utente);
-			}
-			
-			boolean isAccountValido = LoginModel.verificaAccount(nome, password);
-			
-			if(isAccountValido) {
-				
-				//fase login configuratore finita. ora servono le opzioni
-				
-			}
-		}
-		
-		//else ruolo = fruitore
-	
+		utente.setNome(nome);
+		password = LoginView.inserisciPassword();
+		utente.setPassword(password);
 	}
-	*/
 }

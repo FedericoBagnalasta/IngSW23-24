@@ -7,12 +7,10 @@ public class Gerarchia {
 	private CategoriaRadice radice;
 
 	public Gerarchia(String nome, String campo, ArrayList<ValoreDominio> dominio) {
-		radice=new CategoriaRadice(nome, campo, dominio);
+		this.radice = new CategoriaRadice(nome, campo, dominio);
 	}
 
 	public CategoriaRadice getRadice() {
 		return radice;
 	}
-	
-	
 }

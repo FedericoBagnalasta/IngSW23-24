@@ -2,13 +2,32 @@ package it.unibs.model;
 
 import java.util.ArrayList;
 
+import it.unibs.view.ConfiguratoreView;
+
 public class ElencoComprensori {
 
 	private static ArrayList<Comprensorio> elencoComprensori = new ArrayList<>();
 	
-	//Non sono sicuro serva
 	public static void aggiungiComprensorio(String nome, ArrayList<String> comuniComprensorio) {
 		elencoComprensori.add(new Comprensorio(nome, comuniComprensorio));
+	}
+	
+	public static boolean verificaEsistenzaComprensorio(String nomeComprensorio) {
+		for(Comprensorio comprensorio : elencoComprensori) {
+			if(comprensorio.getNome().equals(nomeComprensorio)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static ArrayList<Comprensorio> getElencoComprensori() {
+		return elencoComprensori;
+	}
+	
+	//VIENE USATO SOLO DA FRUITORE
+	public static int numeroComprensori() {
+		return elencoComprensori.size();
 	}
 	
 	/*
@@ -21,30 +40,4 @@ public class ElencoComprensori {
 		return false;
 	}
 	*/
-	
-	public static boolean verificaComprensorio(String nomeComprensorio) {
-		for(Comprensorio comprensorio : elencoComprensori) {
-			if(comprensorio.getNome().equals(nomeComprensorio)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public static boolean verificaOriginalita(String nomeNuovoComprensorio) {
-		for(Comprensorio c: elencoComprensori) {
-			if(nomeNuovoComprensorio.equals(c.getNome())) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	public static ArrayList<Comprensorio> getElencoComprensori() {
-		return elencoComprensori;
-	}
-	
-	public static int numeroComprensori() {
-		return elencoComprensori.size();
-	}
 }

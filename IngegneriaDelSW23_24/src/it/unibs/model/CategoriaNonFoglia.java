@@ -52,7 +52,7 @@ public class CategoriaNonFoglia implements Categoria {
 	public ArrayList<Categoria> getFigli() {
 		return figli;
 	}
-	
+
 	public CategoriaRadice getCategoriaRadice() {
 		return radice;
 	}
