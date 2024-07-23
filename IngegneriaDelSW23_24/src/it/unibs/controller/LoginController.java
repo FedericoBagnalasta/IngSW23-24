@@ -16,6 +16,7 @@ public class LoginController {
 		//else loginFruitore();
 	}
 	
+	
 	//Si potrebbe distinguere tra accesso e registrazione
 	
 	public static void loginConfiguratore(String nome, String password) {
