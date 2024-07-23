@@ -42,6 +42,7 @@ public class ConfiguratoreController extends Utente {//Da tenere extends Utente?
 		
 		do {
 			for(ValoreDominio valore: categoriaPadre.getDominio()) {
+				//E' POSSIBILE NON ASSOCIARE UNA FOGLIA AD UN VALORE DEL DOMINIO
 				if(ConfiguratoreView.richiestaAggiuntaCategoriaFoglia(valore)) {
 					CategoriaFoglia foglia = creaFoglia(categoriaPadre, valore);
 					categoriaPadre.getFigli().add(foglia); //AGGIUNGE IL FIGLIO NELL'ELENCO DEL PADRE					
