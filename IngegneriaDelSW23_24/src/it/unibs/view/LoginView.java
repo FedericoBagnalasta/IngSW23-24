@@ -10,7 +10,7 @@ public class LoginView {
 		
 		do {
 			ruolo = InputDati.leggiInteroRange("Inserisci 1 per Configuratore e 2 per Fruitore\n", 1, 2);
-			risposta = InputDati.yesOrNo("Sei sicuro della tua scelta?");
+			risposta = InputDati.yesOrNo("Sei sicuro della tua scelta?\n");
 		} while(!risposta);
 		
 		if(ruolo == 1) {

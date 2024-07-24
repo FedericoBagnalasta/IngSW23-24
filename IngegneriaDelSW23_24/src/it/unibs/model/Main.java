@@ -1,13 +1,25 @@
 package it.unibs.model;
 
+import it.unibs.controller.ConfiguratoreController;
 import it.unibs.controller.LoginController;
 import it.unibs.controller.Menu;
 
 public class Main {
 
 	public static void main(String[] args) {
-		//Utente utente = LoginController.login();
+		LoginController loginController = new LoginController();
+		Utente utente = loginController.loginGenerale();
 		
-		//Menu.menu(utente);
+		ConfiguratoreController configuratore;
+		
+		if(utente == null) {
+			return;
+		}
+		
+		else if(utente.getRuolo() == "Configuratore") {
+			configuratore = new ConfiguratoreController();
+			configuratore.setUtente(utente);
+			Menu.menu(configuratore);
+		}
 	}
 }

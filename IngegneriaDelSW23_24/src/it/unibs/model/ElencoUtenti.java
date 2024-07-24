@@ -28,17 +28,17 @@ public class ElencoUtenti {
 		return false;
 	}
 	
-	public static ArrayList<Utente> getListaCredenziali() {
-		return listaUtenti;
-	}
-	
-	public static boolean verificaAccount(String nome, String password) {
-		for(Utente utente : getListaCredenziali()) {
+	public static Utente restituisciUtente(String nome, String password) {
+		for(Utente utente : getListaUtenti()) {
 			if(utente.getNome().equals(nome) && utente.getPassword().equals(password)) {
-				return true;
+				return utente;
 			}
 		}
-		return false;
+		return null;
+	}
+	
+	public static ArrayList<Utente> getListaUtenti() {
+		return listaUtenti;
 	}
 	
 	//Metodo per verificare che un FRUITORE non stia facendo login con le credenziali base

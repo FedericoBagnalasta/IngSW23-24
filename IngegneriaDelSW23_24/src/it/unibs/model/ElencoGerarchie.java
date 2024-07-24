@@ -21,7 +21,7 @@ public class ElencoGerarchie {
 		return false;
 	}
 	
-	public static CategoriaFoglia trovaRadice(String nomeFoglia, String nomeRadice) {
+	public static CategoriaFoglia selezionaFoglia(String nomeFoglia, String nomeRadice) {
 		for(Gerarchia g : elencoGerarchie) {
 			if(g.getRadice().getNome().equals(nomeRadice)) {
 				return Gerarchia.trovaFoglia(g.getRadice(), nomeFoglia);

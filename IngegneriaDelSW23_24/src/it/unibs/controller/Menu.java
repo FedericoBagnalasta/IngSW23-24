@@ -17,7 +17,7 @@ public class Menu {
 	private static final String SCELTA = "Scegli l'opzione";
 	
 
-	public static void menuConfiguratore(ConfiguratoreController configuratore) {
+	public static void menu(ConfiguratoreController configuratore) {
 		String[] vociConfiguratore = {CREA_COMPRENSORIO, CREA_GERARCHIA, SALVA_SU_XML, VISUALIZZA_COMPRENSORI, VISUALIZZA_GERARCHIE, VISUALIZZA_FDC};
 		int scelta = 0;
 		MyMenu menu = new MyMenu(SCELTA, vociConfiguratore);
@@ -29,20 +29,24 @@ public class Menu {
 					configuratore.creaComprensorio();
 					break;
 				case 2:
-				configuratore.creaGerarchia();
+					configuratore.creaGerarchia();
 					break;
 				case 3:
-					//configuratore.salvaSuXML();	//ancora da implementare
+					//configuratore.salvaSuXML();	//ancora da implementare. Potrebbe non essere un'opzione
+					break;
 				case 4:
 					ConfiguratoreController.visualizzaComprensori();
+					break;
 				case 5:
 					ConfiguratoreController.visualizzaGerarchie();
+					break;
 				case 6:
 					ConfiguratoreController.visualizzaGerarchie();
 					String nomeFoglia = ConfiguratoreView.inserisciFogliaPerFDC();
 					String nomeRadice = ConfiguratoreView.inserisciRadicePerFDC();
-					CategoriaFoglia foglia = ElencoGerarchie.trovaRadice(nomeFoglia, nomeRadice);
+					CategoriaFoglia foglia = ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
 					ConfiguratoreController.visualizzaFattoriDiConversione(foglia);
+					break;
 				default:
 					break;
 			}

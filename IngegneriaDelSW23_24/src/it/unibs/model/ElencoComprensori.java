@@ -6,8 +6,8 @@ public class ElencoComprensori {
 
 	private static ArrayList<Comprensorio> elencoComprensori = new ArrayList<>();
 	
-	public static void aggiungiComprensorio(String nome, ArrayList<String> comuniComprensorio) {
-		elencoComprensori.add(new Comprensorio(nome, comuniComprensorio));
+	public static void aggiungiComprensorio(Comprensorio comprensorio) {
+		elencoComprensori.add(comprensorio);
 	}
 	
 	public static boolean verificaEsistenzaComprensorio(String nomeComprensorio) {

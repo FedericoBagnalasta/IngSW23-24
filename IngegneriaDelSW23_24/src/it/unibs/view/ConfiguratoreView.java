@@ -14,16 +14,16 @@ public class ConfiguratoreView {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome del nuovo comprensorio geografico\n");
 	}
 		
-	public static String inserisciComuniComprensorio() {
+	public static String inserisciComuneComprensorio() {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome comune\n");
 	}
 	
 	public static boolean inserisciAltroComune() {
-		return InputDati.yesOrNo("Vuoi inserire un altro comune?");
+		return InputDati.yesOrNo("Vuoi inserire un altro comune?\n");
 	}
 	
 	public static void comuneGiaPresente() {
-		System.out.println("Il comune inserito è già presente in questo comprensorio\n");
+		System.out.println("Il comune inserito è già presente in questo comprensorio");
 	}
 	
 	public static void visualizzaNomeComprensorio(String nome) {
@@ -61,7 +61,7 @@ public class ConfiguratoreView {
 	}
 	
 	public static boolean richiestaNomeValoreDominio() {
-		return InputDati.yesOrNo("Desideri aggiungere un altro valore al dominio?");
+		return InputDati.yesOrNo("Desideri aggiungere un altro valore al dominio?\n");
 	}
 	
 	public static String inserisciDescrizioneValoreDominio() {
@@ -69,15 +69,15 @@ public class ConfiguratoreView {
 	}
 	
 	public static boolean richiestaDescrizioneValoreDominio() {
-		return InputDati.yesOrNo("Desideri aggiungere una descrizione al valore del dominio?");
+		return InputDati.yesOrNo("Desideri aggiungere una descrizione al valore del dominio?\n");
 	}
 
 	public static boolean richiestaContinuazioneStruttura() {
-		return InputDati.yesOrNo("Desideri aggiungere un altro figlio alla struttura?");
+		return InputDati.yesOrNo("Desideri aggiungere un altro figlio alla struttura?\n");
 	}
 
 	public static boolean richiestaVerificaCategoriaFoglia() {
-		return InputDati.yesOrNo("Desideri aggiungere una Categoria Foglia?");
+		return InputDati.yesOrNo("Desideri aggiungere una Categoria Foglia?\n");
 	}
 
 	public static String inserisciNomeFoglia() {

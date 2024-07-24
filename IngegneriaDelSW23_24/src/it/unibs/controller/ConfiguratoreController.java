@@ -11,15 +11,19 @@ import it.unibs.model.ElencoGerarchie;
 import it.unibs.model.FattoreDiConversione;
 import it.unibs.model.Comprensorio;
 import it.unibs.model.Gerarchia;
+import it.unibs.model.Utente;
 import it.unibs.model.ValoreDominio;
+import it.unibs.model.XMLWriter;
 import it.unibs.view.ConfiguratoreView;
 
 public class ConfiguratoreController {
 	
-	public ConfiguratoreController() {
-		super();
-	}
+	Utente utente;
 	
+	public void setUtente(Utente utente) {
+		this.utente = utente;
+	}
+
 	public void creaGerarchia() {
 		String nomeRadice;
 		
@@ -128,23 +132,19 @@ public class ConfiguratoreController {
 	public ArrayList<String> creaComuniComprensorio() {
 		ArrayList<String> elencoComuni = new ArrayList<>();
 		do {
-			String comune = ConfiguratoreView.inserisciComuniComprensorio();
-			for(String s : elencoComuni) {
-				if(s.equals(comune)) {
-					ConfiguratoreView.comuneGiaPresente();
-					break;
-				}
-				else {
-					elencoComuni.add(comune);
-				}
+			String nuovoComune = ConfiguratoreView.inserisciComuneComprensorio();
+			if(elencoComuni.contains(nuovoComune)) {
+				ConfiguratoreView.comuneGiaPresente();
 			}
+			else elencoComuni.add(nuovoComune);
 		} while(ConfiguratoreView.inserisciAltroComune());
 		
 		return elencoComuni;
 	}
 	
-	public Comprensorio creaComprensorio() {
-		return new Comprensorio(creaNomeComprensorio(), creaComuniComprensorio());
+	public void creaComprensorio() {
+		Comprensorio comprensorio = new Comprensorio(creaNomeComprensorio(), creaComuniComprensorio());
+		ElencoComprensori.aggiungiComprensorio(comprensorio);
 	}
 	
 	public static void visualizzaComprensori() {
