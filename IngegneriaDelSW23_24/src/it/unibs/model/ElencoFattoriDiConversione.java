@@ -12,7 +12,7 @@ public class ElencoFattoriDiConversione {
 	}
 	
 	public static boolean verificaEsistenzaFDC(FattoreDiConversione fdC) {
-		for(FattoreDiConversione f: elencoFattoriDiConversione) {
+		for(FattoreDiConversione f : elencoFattoriDiConversione) {
 			if(fdC.verificaUguaglianzaFattoriDiConversione(f)) {
 				return true;
 			}
@@ -25,9 +25,9 @@ public class ElencoFattoriDiConversione {
 	}
 	
 	public static void creaFDC_Deducibili(FattoreDiConversione fdcNuovo) {
-		for(FattoreDiConversione fdc: elencoFattoriDiConversione) {
+		for(FattoreDiConversione fdc : elencoFattoriDiConversione) {
 			if(fdc.getC1().verificaUguaglianzaFoglie(fdcNuovo.getC2())) {
-				aggiungiFDC(new FattoreDiConversione(fdcNuovo.getC1(), fdc.getC2(), fdcNuovo.getValore()*fdc.getValore()));	
+				aggiungiFDC(new FattoreDiConversione(fdcNuovo.getC1(), fdc.getC2(), fdcNuovo.getValore() * fdc.getValore()));	
 			}
 		}
 	}

@@ -54,9 +54,7 @@ public class ConfiguratoreController {
 				else if(ConfiguratoreView.richiestaAggiuntaCategoriaNonFoglia(valore)) {
 					CategoriaNonFoglia nonFoglia = creaNonFoglia(categoriaPadre, valore);
 					
-					//CHIAMATA RICORSIVA
 					creaFigliCategoria(nonFoglia);
-					
 					
 					categoriaPadre.getFigli().add(nonFoglia);
 				}
@@ -68,7 +66,7 @@ public class ConfiguratoreController {
 		String nomeFoglia;
 		ArrayList<String> elencoNomiGerarchia = padre.getCategoriaRadice().getNomiGerarchia();
 		do {
-			nomeFoglia = ConfiguratoreView.inserisciNomeFoglia();
+			nomeFoglia = ConfiguratoreView.inserisciNomeFogliaGerarchia();
 		} while(elencoNomiGerarchia.contains(nomeFoglia));
 		CategoriaFoglia foglia = new CategoriaFoglia(nomeFoglia, valore, padre.getCategoriaRadice());
 		
@@ -83,7 +81,7 @@ public class ConfiguratoreController {
 		String nomeNonFoglia;
 		ArrayList<String> elencoNomiGerarchia = padre.getCategoriaRadice().getNomiGerarchia();
 		do {
-			nomeNonFoglia = ConfiguratoreView.inserisciNomeNonFoglia();
+			nomeNonFoglia = ConfiguratoreView.inserisciNomeNonFogliaGerarchia();
 		} while(elencoNomiGerarchia.contains(nomeNonFoglia));
 		
 		String campo = ConfiguratoreView.inserisciCampo();
@@ -108,7 +106,7 @@ public class ConfiguratoreController {
 		
 			valore = ConfiguratoreView.inserisciValoreFDC();
 			fdcNuovo = new FattoreDiConversione(f1, f2, valore);
-		}while(ElencoFattoriDiConversione.verificaEsistenzaFDC(fdcNuovo));
+		} while(ElencoFattoriDiConversione.verificaEsistenzaFDC(fdcNuovo));
 		ElencoFattoriDiConversione.aggiungiFDC(fdcNuovo);
 		return fdcNuovo;
 			
@@ -116,8 +114,8 @@ public class ConfiguratoreController {
 	
 	//DA FINIRE
 	public CategoriaFoglia selezionaCategoriaFoglia() {
-		String nomeFoglia = ConfiguratoreView.inserisciNomeFogliaRicerca();
-		String nomeRadice = ConfiguratoreView.inserisciNomeRadiceRicerca();
+		String nomeFoglia = ConfiguratoreView.inserisciNomeFogliaGerarchia();
+		String nomeRadice = ConfiguratoreView.inserisciNomeRadiceGerarchia();
 		
 		//FORSE Da fin modo da stampare messaggio per fallimento operazione di ricerca
 		CategoriaFoglia foglia = ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
@@ -159,7 +157,7 @@ public class ConfiguratoreController {
 	public ArrayList<String> creaComuniComprensorio() {
 		ArrayList<String> elencoComuni = new ArrayList<>();
 		do {
-			String nuovoComune = ConfiguratoreView.inserisciComuneComprensorio();
+			String nuovoComune = ConfiguratoreView.inserisciComune();
 			if(elencoComuni.contains(nuovoComune)) {
 				ConfiguratoreView.comuneGiaPresente();
 			}
