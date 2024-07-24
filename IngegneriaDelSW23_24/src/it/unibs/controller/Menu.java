@@ -41,7 +41,7 @@ public class Menu {
 					ConfiguratoreController.visualizzaGerarchie();
 					String nomeFoglia = ConfiguratoreView.inserisciFogliaPerFDC();
 					String nomeRadice = ConfiguratoreView.inserisciRadicePerFDC();
-					CategoriaFoglia foglia = ElencoGerarchie.trovaRadice(nomeFoglia, nomeRadice);
+					CategoriaFoglia foglia = ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
 					ConfiguratoreController.visualizzaFattoriDiConversione(foglia);
 				default:
 					break;

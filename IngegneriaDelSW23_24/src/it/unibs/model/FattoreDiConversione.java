@@ -52,7 +52,7 @@ public class FattoreDiConversione {
 		}
 		FattoreDiConversione fdC = (FattoreDiConversione) o;
 		CategoriaFoglia c12 = fdC.getC1();
-		CategoriaFoglia c22 = fdC.getC2();
+		CategoriaFoglia c22 = fdC.getC2(); 
 		double valore = fdC.getValore();
 		if(!(c12.getCategoriaRadice().getNome().equals(c1.getCategoriaRadice().getNome())
 				&& c22.getCategoriaRadice().getNome().equals(c2.getCategoriaRadice().getNome()))) {

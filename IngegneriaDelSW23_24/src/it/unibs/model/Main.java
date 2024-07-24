@@ -6,8 +6,10 @@ import it.unibs.controller.Menu;
 public class Main {
 
 	public static void main(String[] args) {
-		//Utente utente = LoginController.login();
-		
-		//Menu.menu(utente);
+		/*
+		ConfiguratoreController utente = LoginController.login();
+		Menu menu = new Menu();
+		menu.menuConfiguratore(utente);
+		*/
 	}
 }

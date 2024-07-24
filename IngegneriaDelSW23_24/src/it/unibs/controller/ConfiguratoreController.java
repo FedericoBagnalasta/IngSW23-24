@@ -15,6 +15,8 @@ import it.unibs.view.ConfiguratoreView;
 
 public class ConfiguratoreController {
 	
+	
+	
 	public ConfiguratoreController() {
 		super();
 	}
@@ -91,19 +93,35 @@ public class ConfiguratoreController {
 		double valore;
 		do {
 		//METODO PER MOSTRARE LA STRUTTURA DELLA GERARCHIA
-		f1 = selezionaCategoriaFoglia();
-		f2 = selezionaCategoriaFoglia();
-		valore = ConfiguratoreView.inserisciValoreFDC();
-		fdcNuovo = new FattoreDiConversione(f1, f2, valore);
+			do {
+				f1 = selezionaCategoriaFoglia();
+			}while(f1 == null);
+			
+			do {
+				f2 = selezionaCategoriaFoglia();
+			}while(f2 == null);
+		
+			valore = ConfiguratoreView.inserisciValoreFDC();
+			fdcNuovo = new FattoreDiConversione(f1, f2, valore);
 		}while(ElencoFattoriDiConversione.verificaEsistenzaFDC(fdcNuovo));
-		ElencoFattoriDiConversione.getElencoFattoriDiConversione().add(fdcNuovo);
+		ElencoFattoriDiConversione.aggiungiFDC(fdcNuovo);
 		return fdcNuovo;
 			
 	}
 	
 	//DA FINIRE
 	public CategoriaFoglia selezionaCategoriaFoglia() {
-		return null;
+		String nomeFoglia = ConfiguratoreView.inserisciNomeFogliaRicerca();
+		String nomeRadice = ConfiguratoreView.inserisciNomeRadiceRicerca();
+		
+		//FORSE Da fin modo da stampare messaggio per fallimento operazione di ricerca
+		CategoriaFoglia foglia = ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
+		if(foglia == null){
+			ConfiguratoreView.fogliaNonTrovata();
+			return null;
+		}
+		else return foglia;
+		
 	}
 	
 	public ArrayList<ValoreDominio> creaDominio() {
