@@ -27,7 +27,7 @@ public class ElencoGerarchie {
 				return Gerarchia.trovaFoglia(g.getRadice(), nomeFoglia);
 			}
 		}
-		return null;	//messaggio di errore
+		return null;	 
 	}
 	
 	public static ArrayList<Gerarchia> getElencoGerarchie() {

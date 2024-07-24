@@ -1,7 +1,6 @@
 package it.unibs.controller;
 
 import java.util.ArrayList;
-
 import it.unibs.model.Categoria;
 import it.unibs.model.CategoriaFoglia;
 import it.unibs.model.CategoriaNonFoglia;
@@ -13,12 +12,15 @@ import it.unibs.model.Comprensorio;
 import it.unibs.model.Gerarchia;
 import it.unibs.model.Utente;
 import it.unibs.model.ValoreDominio;
-import it.unibs.model.XMLWriter;
 import it.unibs.view.ConfiguratoreView;
 
 public class ConfiguratoreController {
 	
 	Utente utente;
+	
+	public ConfiguratoreController() {
+		super();
+	}
 	
 	public void setUtente(Utente utente) {
 		this.utente = utente;
@@ -71,7 +73,8 @@ public class ConfiguratoreController {
 		CategoriaFoglia foglia = new CategoriaFoglia(nomeFoglia, valore, padre.getCategoriaRadice());
 		
 		//CHIEDE SE (FORSE OBBLIGATORIO) VUOLE AGGIUNGERE DEI FATTORI DI CONVERSIONE
-		
+		ElencoFattoriDiConversione.creaFDC_Deducibili(creaFattoreDiConversione());
+		//DERIVARE TUTTI I FDC POSSIBILI
 		
 		return foglia;
 	}
@@ -89,19 +92,42 @@ public class ConfiguratoreController {
 		return new CategoriaNonFoglia(nomeNonFoglia, campo, valore, dominio, padre.getCategoriaRadice());
 	}
 	
-	// 		NON RIMUOVERE
-	
-	/*public FattoreDiConversione creaFattoreDiConversione() {
+	public FattoreDiConversione creaFattoreDiConversione() {
+		FattoreDiConversione fdcNuovo;
 		CategoriaFoglia f1, f2;
 		double valore;
 		do {
 		//METODO PER MOSTRARE LA STRUTTURA DELLA GERARCHIA
-		f1 = selezionaCategoriaFoglia();
-		f2 = selezioneCategoriaFoglia();
-		valore = ConfiguratoreView.inserisciValoreFDC();
-		}while(ElencoFattoriDiConversione.verificaEsistenzaFDC(new FattoreDiConversione(f1, f2, valore)));
+			do {
+				f1 = selezionaCategoriaFoglia();
+			}while(f1 == null);
 			
-	}*/
+			do {
+				f2 = selezionaCategoriaFoglia();
+			}while(f2 == null);
+		
+			valore = ConfiguratoreView.inserisciValoreFDC();
+			fdcNuovo = new FattoreDiConversione(f1, f2, valore);
+		}while(ElencoFattoriDiConversione.verificaEsistenzaFDC(fdcNuovo));
+		ElencoFattoriDiConversione.aggiungiFDC(fdcNuovo);
+		return fdcNuovo;
+			
+	}
+	
+	//DA FINIRE
+	public CategoriaFoglia selezionaCategoriaFoglia() {
+		String nomeFoglia = ConfiguratoreView.inserisciNomeFogliaRicerca();
+		String nomeRadice = ConfiguratoreView.inserisciNomeRadiceRicerca();
+		
+		//FORSE Da fin modo da stampare messaggio per fallimento operazione di ricerca
+		CategoriaFoglia foglia = ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
+		if(foglia == null){
+			ConfiguratoreView.fogliaNonTrovata();
+			return null;
+		}
+		else return foglia;
+		
+	}
 	
 	public ArrayList<ValoreDominio> creaDominio() {
 		ArrayList<ValoreDominio> dominio = new ArrayList<>();

@@ -95,7 +95,19 @@ public class ConfiguratoreView {
 	public static boolean richiestaAggiuntaCategoriaFoglia(ValoreDominio dominio) {
 		return InputDati.yesOrNo("Desideri aggiungere una Categoria Foglia a " + dominio.getValore() + "\n");
 	}
-
+	
+	public static String inserisciNomeFogliaRicerca() {
+		return InputDati.leggiStringaNonVuota("Inserisci il nome della Categoria Foglia che desideri selezionare\n");
+	}	
+	
+	public static String inserisciNomeRadiceRicerca() {
+		return InputDati.leggiStringaNonVuota("Inserisci il nome della Categoria Radice che desideri selezionare\n");
+	}
+	
+	public static void fogliaNonTrovata() {
+		System.out.println("Attenzione: La foglia che hai selezionato non esiste!");
+	}
+	
 	//PARTE FATTORI DI CONVERSIONE
 	
 	public static double inserisciValoreFDC() {
@@ -113,4 +125,6 @@ public class ConfiguratoreView {
 	public static String inserisciRadicePerFDC() {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome della radice della gerarchia a cui appartiene la foglia\n");
 	}
+
+	
 }

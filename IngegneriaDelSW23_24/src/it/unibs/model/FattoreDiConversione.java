@@ -24,7 +24,12 @@ public class FattoreDiConversione {
 		return valore;
 	}
 	
-	public boolean verificaEsistenzaFattoriDiConversione(FattoreDiConversione fdC) {
+	public FattoreDiConversione creaSimmetrico() {
+		return new FattoreDiConversione(getC2(), getC1(), 1/getValore());
+	}
+	
+	//DA FINIRE
+	public boolean verificaUguaglianzaFattoriDiConversione(FattoreDiConversione fdC) {
 		CategoriaFoglia c12 = fdC.getC1();
 		CategoriaFoglia c22 = fdC.getC2();
 		double valore = fdC.getValore();
@@ -32,6 +37,10 @@ public class FattoreDiConversione {
 				&& c22.getCategoriaRadice().getNome().equals(c2.getCategoriaRadice().getNome()))) {
 			return false;
 		}
+		if(!(c12.getNome().equals(c1.getNome()) && c22.getNome().equals(c2.getNome()))) {
+			return false;
+		}
+		//Potrei fare controllo su valore per evitare inconsistenze 
 		//return (valore==this.valore); //SERVE CONTROLLO INCONSISTENZA?
 		return true;
 	}
@@ -43,7 +52,7 @@ public class FattoreDiConversione {
 		}
 		FattoreDiConversione fdC = (FattoreDiConversione) o;
 		CategoriaFoglia c12 = fdC.getC1();
-		CategoriaFoglia c22 = fdC.getC2();
+		CategoriaFoglia c22 = fdC.getC2(); 
 		double valore = fdC.getValore();
 		if(!(c12.getCategoriaRadice().getNome().equals(c1.getCategoriaRadice().getNome())
 				&& c22.getCategoriaRadice().getNome().equals(c2.getCategoriaRadice().getNome()))) {

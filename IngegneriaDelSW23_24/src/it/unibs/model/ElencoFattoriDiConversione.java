@@ -6,13 +6,14 @@ public class ElencoFattoriDiConversione {
 	
 	private static ArrayList<FattoreDiConversione> elencoFattoriDiConversione = new ArrayList<>();
 	
-	public void aggiungiFDC(FattoreDiConversione fdC) {
+	public static void aggiungiFDC(FattoreDiConversione fdC) {
 		elencoFattoriDiConversione.add(fdC);
+		elencoFattoriDiConversione.add(fdC.creaSimmetrico());
 	}
 	
 	public static boolean verificaEsistenzaFDC(FattoreDiConversione fdC) {
 		for(FattoreDiConversione f: elencoFattoriDiConversione) {
-			if(fdC.verificaEsistenzaFattoriDiConversione(f)) {
+			if(fdC.verificaUguaglianzaFattoriDiConversione(f)) {
 				return true;
 			}
 		}
@@ -21,5 +22,13 @@ public class ElencoFattoriDiConversione {
 
 	public static ArrayList<FattoreDiConversione> getElencoFattoriDiConversione() {
 		return elencoFattoriDiConversione;
+	}
+	
+	public static void creaFDC_Deducibili(FattoreDiConversione fdcNuovo) {
+		for(FattoreDiConversione fdc: elencoFattoriDiConversione) {
+			if(fdc.getC1().verificaUguaglianzaFoglie(fdcNuovo.getC2())) {
+				aggiungiFDC(new FattoreDiConversione(fdcNuovo.getC1(), fdc.getC2(), fdcNuovo.getValore()*fdc.getValore()));	
+			}
+		}
 	}
 }

@@ -16,8 +16,6 @@ public interface Categoria {
 	
 	public CategoriaRadice getCategoriaRadice();
 	
-	
-	
 	default public ArrayList<String> getNomiGerarchia() {
 		ArrayList<String> nomiGerarchia = new ArrayList<>();
 		for(Categoria c : this.getFigli()) {
