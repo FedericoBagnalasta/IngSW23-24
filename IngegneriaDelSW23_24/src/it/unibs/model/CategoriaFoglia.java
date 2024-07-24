@@ -28,6 +28,15 @@ public class CategoriaFoglia implements Categoria {
 		//Ricerca automatica dei FDC ricavabili da quelli esistenti
 	}
 	*/
+	public boolean sonoUguali(CategoriaFoglia f2) {
+		if(!(getCategoriaRadice().getNome().equals(f2.getCategoriaRadice().getNome()))) {
+			return false;
+		}
+		else if(!(getNome().equals(f2.getNome()))) {
+			return false;
+		}
+		return true;
+	}
 
 	public String getNome() {
 		return nome;

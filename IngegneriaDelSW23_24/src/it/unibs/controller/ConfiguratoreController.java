@@ -62,7 +62,7 @@ public class ConfiguratoreController {
 		CategoriaFoglia foglia = new CategoriaFoglia(nomeFoglia, valore, padre.getCategoriaRadice());
 		
 		//CHIEDE SE (FORSE OBBLIGATORIO) VUOLE AGGIUNGERE DEI FATTORI DI CONVERSIONE
-		//ElencoFattoriDiConversione.creaFattoreDiConversione();
+		ElencoFattoriDiConversione.creaFDC_Deducibili(creaFattoreDiConversione());
 		//DERIVARE TUTTI I FDC POSSIBILI
 		
 		return foglia;
@@ -81,19 +81,27 @@ public class ConfiguratoreController {
 		return new CategoriaNonFoglia(nomeNonFoglia, campo, valore, dominio, padre.getCategoriaRadice());
 	}
 	
-	
-	/*public FattoreDiConversione creaFattoreDiConversione() {
+	public FattoreDiConversione creaFattoreDiConversione() {
+		FattoreDiConversione fdcNuovo;
 		CategoriaFoglia f1, f2;
 		double valore;
 		do {
 		//METODO PER MOSTRARE LA STRUTTURA DELLA GERARCHIA
 		f1 = selezionaCategoriaFoglia();
-		f2 = selezioneCategoriaFoglia();
+		f2 = selezionaCategoriaFoglia();
 		valore = ConfiguratoreView.inserisciValoreFDC();
-		}while(ElencoFattoriDiConversione.verificaEsistenzaFDC(new FattoreDiConversione(f1, f2, valore)));
+		fdcNuovo = new FattoreDiConversione(f1, f2, valore);
+		}while(ElencoFattoriDiConversione.verificaEsistenzaFDC(fdcNuovo));
+		ElencoFattoriDiConversione.getElencoFattoriDiConversione().add(fdcNuovo);
+		return fdcNuovo;
 			
 	}
-	*/
+	
+	
+	//DA FINIRE
+	public CategoriaFoglia selezionaCategoriaFoglia() {
+		return null;
+	}
 	
 	public ArrayList<ValoreDominio> creaDominio() {
 		ArrayList<ValoreDominio> dominio = new ArrayList<>();
