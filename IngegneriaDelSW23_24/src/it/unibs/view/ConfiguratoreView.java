@@ -96,6 +96,10 @@ public class ConfiguratoreView {
 		return InputDati.yesOrNo("Desideri aggiungere una Categoria Foglia a " + dominio.getValore() + "\n");
 	}
 	
+	public static void presentazioneAggiuntaFDC() {
+		System.out.println("CREAZIONE DEI FATTORI DI CONVERSIONE");
+	}
+	
 	public static String inserisciNomeFogliaRicerca() {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome della Categoria Foglia che desideri selezionare\n");
 	}	

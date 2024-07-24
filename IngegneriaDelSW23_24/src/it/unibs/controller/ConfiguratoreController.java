@@ -23,12 +23,12 @@ public class ConfiguratoreController {
 	}
 
 	public void creaGerarchia() {
-		String nomeRadice;
+		String nomeRadice = ConfiguratoreView.inserisciNomeRadiceGerarchia();;
 		
-		do {
-			nomeRadice = ConfiguratoreView.inserisciNomeRadiceGerarchia();
+		while(ElencoGerarchie.verificaEsistenzaRadice(nomeRadice)) {
 			ConfiguratoreView.radiceGiaPresente();
-		} while(ElencoGerarchie.verificaEsistenzaRadice(nomeRadice));
+			nomeRadice = ConfiguratoreView.inserisciNomeRadiceGerarchia();
+		} 
 		
 		String campo = ConfiguratoreView.inserisciCampo();
 		ArrayList<ValoreDominio> dominio = creaDominio();
@@ -44,8 +44,7 @@ public class ConfiguratoreController {
 			for(ValoreDominio valore : categoriaPadre.getDominio()) {
 				//E' POSSIBILE NON ASSOCIARE UNA FOGLIA AD UN VALORE DEL DOMINIO
 				if(ConfiguratoreView.richiestaAggiuntaCategoriaFoglia(valore)) {
-					CategoriaFoglia foglia = creaFoglia(categoriaPadre, valore);
-					categoriaPadre.getFigli().add(foglia);				
+					CategoriaFoglia foglia = creaFoglia(categoriaPadre, valore);			
 				}
 				else if(ConfiguratoreView.richiestaAggiuntaCategoriaNonFoglia(valore)) {
 					CategoriaNonFoglia nonFoglia = creaNonFoglia(categoriaPadre, valore);
@@ -54,7 +53,7 @@ public class ConfiguratoreController {
 					creaFigliCategoria(nonFoglia);
 					
 					
-					categoriaPadre.getFigli().add(nonFoglia);
+				
 				}
 			}
 		} while(ConfiguratoreView.richiestaContinuazioneStruttura());
@@ -67,9 +66,14 @@ public class ConfiguratoreController {
 			nomeFoglia = ConfiguratoreView.inserisciNomeFoglia();
 		} while(elencoNomiGerarchia.contains(nomeFoglia));
 		CategoriaFoglia foglia = new CategoriaFoglia(nomeFoglia, valore, padre.getCategoriaRadice());
-		
+		padre.getFigli().add(foglia);
 		//CHIEDE SE (FORSE OBBLIGATORIO) VUOLE AGGIUNGERE DEI FATTORI DI CONVERSIONE
-		ElencoFattoriDiConversione.creaFDC_Deducibili(creaFattoreDiConversione());
+		//Verifica che non venga creato un fdc prima che ci siano almeno 2 foglie
+		if(ElencoGerarchie.dueOpiuFoglie()) {
+			//ERRORE checkForComodification
+			ElencoFattoriDiConversione.creaFDC_Deducibili(creaFattoreDiConversione());
+		}
+		
 		//DERIVARE TUTTI I FDC POSSIBILI
 		
 		return foglia;
@@ -77,6 +81,7 @@ public class ConfiguratoreController {
 	
 	public CategoriaNonFoglia creaNonFoglia(Categoria padre, ValoreDominio valore) {
 		String nomeNonFoglia;
+		CategoriaNonFoglia nonFoglia;
 		ArrayList<String> elencoNomiGerarchia = padre.getCategoriaRadice().getNomiGerarchia();
 		do {
 			nomeNonFoglia = ConfiguratoreView.inserisciNomeNonFoglia();
@@ -85,10 +90,12 @@ public class ConfiguratoreController {
 		String campo = ConfiguratoreView.inserisciCampo();
 		ArrayList<ValoreDominio> dominio = creaDominio();
 		
-		return new CategoriaNonFoglia(nomeNonFoglia, campo, valore, dominio, padre.getCategoriaRadice());
+		nonFoglia = new CategoriaNonFoglia(nomeNonFoglia, campo, valore, dominio, padre.getCategoriaRadice());
+		padre.getFigli().add(nonFoglia);
+		return nonFoglia;
 	}
 	
-	public FattoreDiConversione creaFattoreDiConversione() {
+	public FattoreDiConversione creaFattoreDiConversione() {		//LA PRIMA FOGLIA CON CHI FA FDC????
 		FattoreDiConversione fdcNuovo;
 		CategoriaFoglia f1, f2;
 		double valore;
@@ -112,6 +119,7 @@ public class ConfiguratoreController {
 	
 	//DA FINIRE
 	public CategoriaFoglia selezionaCategoriaFoglia() {
+		ConfiguratoreView.presentazioneAggiuntaFDC();
 		String nomeFoglia = ConfiguratoreView.inserisciNomeFogliaRicerca();
 		String nomeRadice = ConfiguratoreView.inserisciNomeRadiceRicerca();
 		
