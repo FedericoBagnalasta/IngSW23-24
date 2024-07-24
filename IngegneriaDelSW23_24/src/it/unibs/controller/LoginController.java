@@ -5,33 +5,39 @@ import it.unibs.view.*;
 
 public class LoginController {
 		
-	public void loginGenerale() {
+	public Utente loginGenerale() {
 		String ruolo = LoginView.inserisciRuolo();
 		String nome = LoginView.inserisciNome();
 		String password = LoginView.inserisciPassword();
 		
 		if(ruolo.equals("Configuratore")) {
-			loginConfiguratore(nome, password);
+			Utente utente = loginConfiguratore(nome, password);
+			return utente;
 		}
-		//else loginFruitore();
+		else {
+			return null;	//messaggio di errore
+		}
 	}
 	
 	//Si potrebbe distinguere tra accesso e registrazione
-	public void loginConfiguratore(String nome, String password) {
+	public Utente loginConfiguratore(String nome, String password) {
 		boolean isPrimoAccesso = ElencoUtenti.isPrimoAccesso(nome, password);
-		boolean isAccountVerificato = ElencoUtenti.verificaAccount(nome, password);
+		Utente utente;
+		
 		if(isPrimoAccesso) {
-			Utente utente = new Utente(nome, password, "Configuratore");
+			utente = new Utente(nome, password, "Configuratore");
 			cambiaCredenziali(utente);
-			//opzioni. invochi il menu passandogli il configuratore/utente => login ti fornisce l'oggetto
+			ElencoUtenti.aggiungiUtente(utente);
+			return utente;
 		}
-		else if(isAccountVerificato) {
-			//opzioni. invochi il menu passandogli il configuratore/utente => login ti fornisce l'oggetto
+		
+		utente = ElencoUtenti.restituisciUtente(nome, password);
+		if(utente != null) {
+			return utente;
 		}
 		else {
 			LoginView.messaggioErrore();
-			
-			//Se dividiamo registrazione e login possiamo fargli fare una registrazione se il login non va a buon fine
+			return null;
 		}
 	}
 	
