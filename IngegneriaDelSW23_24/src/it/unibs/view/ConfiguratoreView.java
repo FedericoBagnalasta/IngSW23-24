@@ -1,6 +1,9 @@
 package it.unibs.view;
 
 import it.unibs.fp.mylib.InputDati;
+import it.unibs.model.Categoria;
+import it.unibs.model.FattoreDiConversione;
+import it.unibs.model.Gerarchia;
 import it.unibs.model.ValoreDominio;
 
 public class ConfiguratoreView {
@@ -35,6 +38,14 @@ public class ConfiguratoreView {
 	
 	public static String inserisciNomeRadiceGerarchia() {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome della radice appartenente alla nuova gerarchia\n");
+	}
+	
+	public static void visualizzaNomeRadiceGerarchia(Gerarchia gerarchia) {
+		System.out.println("\nRadice gerarchia: " + gerarchia.getRadice().getNome());
+	}
+	
+	public static void visualizzaNomeFiglioCategoria(Categoria categoria, Gerarchia gerarchia) {
+		System.out.println("Figlio di " + gerarchia.getRadice().getNome() + ": " + categoria.getNome());
 	}
 	
 	public static String inserisciCampo() {
@@ -85,9 +96,21 @@ public class ConfiguratoreView {
 		return InputDati.yesOrNo("Desideri aggiungere una Categoria Foglia a " + dominio.getValore() + "\n");
 	}
 
+	//PARTE FATTORI DI CONVERSIONE
+	
 	public static double inserisciValoreFDC() {
 		return InputDati.leggiDoubleRange("Inserisci il valore del fattore di conversione\n", 0.5, 2.0);
 	}
 	
+	public static void visualizzaFattoreDiConversione(FattoreDiConversione fattore) {
+		System.out.println("Il fattore di conversione tra " + fattore.getC1() + "e " + fattore.getC2() + "vale: " + fattore.getValore());
+	}
 	
+	public static String inserisciFogliaPerFDC() {
+		return InputDati.leggiStringaNonVuota("Inserisci il nome della foglia di cui vuoi conoscere tutti i fattori di conversione\n");
+	}
+	
+	public static String inserisciRadicePerFDC() {
+		return InputDati.leggiStringaNonVuota("Inserisci il nome della radice della gerarchia a cui appartiene la foglia\n");
+	}
 }

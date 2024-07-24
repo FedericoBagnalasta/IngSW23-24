@@ -27,11 +27,9 @@ public class ElencoFattoriDiConversione {
 	public static void creaFDC_Deducibili(FattoreDiConversione fdcNuovo) {
 		elencoFattoriDiConversione.add(fdcNuovo.creaSimmetrico());	//PRIMA CREO E AGGIUNGO IL SIMMETRICO
 		for(FattoreDiConversione fdc: elencoFattoriDiConversione) {
-			if(fdc.getC1().sonoUguali(fdcNuovo.getC2())) {
+			if(fdc.getC1().verificaUguaglianzaFoglie(fdcNuovo.getC2())) {
 				aggiungiFDC(new FattoreDiConversione(fdcNuovo.getC1(), fdc.getC2(), fdcNuovo.getValore()*fdc.getValore()));	
 			}
 		}
 	}
-	
-
 }

@@ -15,6 +15,10 @@ import it.unibs.view.ConfiguratoreView;
 
 public class ConfiguratoreController {
 	
+	public ConfiguratoreController() {
+		super();
+	}
+	
 	public void creaGerarchia() {
 		String nomeRadice;
 		
@@ -150,7 +154,7 @@ public class ConfiguratoreController {
 		return new Comprensorio(creaNomeComprensorio(), creaComuniComprensorio());
 	}
 	
-	public static void visualizzaComprensorio() {
+	public static void visualizzaComprensori() {
 		for(Comprensorio comprensorio : ElencoComprensori.getElencoComprensori()) {
 			ConfiguratoreView.visualizzaNomeComprensorio(comprensorio.getNome());
 			for(String comune : comprensorio.getComuniComprensorio()) {
@@ -158,8 +162,30 @@ public class ConfiguratoreController {
 			}
 		}
 	}
-	/*
 	
+	public static void visualizzaGerarchie() {
+		for(Gerarchia gerarchia : ElencoGerarchie.getElencoGerarchie()) {
+			ConfiguratoreView.visualizzaNomeRadiceGerarchia(gerarchia);
+			visualizzaFigliCategoria(gerarchia.getRadice(), gerarchia);
+		}
+	}
+	
+	public static void visualizzaFigliCategoria(Categoria categoria, Gerarchia gerarchia) {
+		for(Categoria c : categoria.getFigli()) {
+			ConfiguratoreView.visualizzaNomeFiglioCategoria(categoria, gerarchia);
+			visualizzaFigliCategoria(c, gerarchia);
+		}
+	}
+	
+	public static void visualizzaFattoriDiConversione(CategoriaFoglia foglia) {
+		for(FattoreDiConversione fattore : ElencoFattoriDiConversione.getElencoFattoriDiConversione()) {
+			if(fattore.getC1().verificaUguaglianzaFoglie(foglia)) {
+				ConfiguratoreView.visualizzaFattoreDiConversione(fattore);
+			}
+		}
+	}
+
+	/*
 	//NON SERVE PIU' (I VALORI VENGONO ASSEGNATI PRIMA DELLA CREAZIONE)
 	/*private ArrayList<ValoreDominio> ottieniValoriDominioDisponibili(Categoria padre){
 		ArrayList<ValoreDominio> elencoValoriDisponibili = padre.getDominio();

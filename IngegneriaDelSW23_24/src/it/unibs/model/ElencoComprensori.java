@@ -2,8 +2,6 @@ package it.unibs.model;
 
 import java.util.ArrayList;
 
-import it.unibs.view.ConfiguratoreView;
-
 public class ElencoComprensori {
 
 	private static ArrayList<Comprensorio> elencoComprensori = new ArrayList<>();
