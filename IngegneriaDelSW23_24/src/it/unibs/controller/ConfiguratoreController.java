@@ -27,12 +27,12 @@ public class ConfiguratoreController {
 	}
 
 	public void creaGerarchia() {
-		String nomeRadice;
+		String nomeRadice = ConfiguratoreView.inserisciNomeRadiceGerarchia();
 		
-		do {
-			nomeRadice = ConfiguratoreView.inserisciNomeRadiceGerarchia();
+		while(ElencoGerarchie.verificaEsistenzaRadice(nomeRadice)) {
 			ConfiguratoreView.radiceGiaPresente();
-		} while(ElencoGerarchie.verificaEsistenzaRadice(nomeRadice));
+			nomeRadice = ConfiguratoreView.inserisciNomeRadiceGerarchia();
+		}
 		
 		String campo = ConfiguratoreView.inserisciCampo();
 		ArrayList<ValoreDominio> dominio = creaDominio();
@@ -146,11 +146,12 @@ public class ConfiguratoreController {
 	}
 	
 	public String creaNomeComprensorio() {
-		String nomeComprensorio;
+		String nomeComprensorio = ConfiguratoreView.inserisciNomeComprensorio();
 		
-		do {
+		while(ElencoComprensori.verificaEsistenzaComprensorio(nomeComprensorio)) {
+			ConfiguratoreView.comuneGiaPresente();
 			nomeComprensorio = ConfiguratoreView.inserisciNomeComprensorio();
-		} while(ElencoComprensori.verificaEsistenzaComprensorio(nomeComprensorio));
+		};
 		
 		return nomeComprensorio;
 	}

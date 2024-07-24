@@ -15,54 +15,55 @@ import org.w3c.dom.Element;
 import java.io.File;
 
 public class XMLWriter {
+	
+	public static void salvataggioCompleto(String filePath) {
+		salvaElencoComprensoriSuXML(filePath);
+	}
+	//Bisogna assicurarsi che il metodo per le gerarchie non sovrascriva quello che scrive quelle per i comprensori
 
-	/*
-    public static void main(String[] args) {
-        Persona persona = new Persona("Mario Rossi", 30);
-        salvaPersonaSuXML(persona, "persona.xml");
-    }
-	*/
-    public static void salvaComprensorioSuXML(Comprensorio comprensorio, String filePath) {
-        try {
-            // Creazione del documento XML
-            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+	public static void salvaElencoComprensoriSuXML(String filePath) {
+		try {
+			//Creazione file xml
+			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+			Document doc = docBuilder.newDocument();
 
-            // Elemento radice
-            Document doc = docBuilder.newDocument();
-            Element rootElement = doc.createElement("comprensorio");
-            doc.appendChild(rootElement);
-            
-           for(String c : comprensorio.getComuniComprensorio()) {
-        	   Element comune = doc.createElement("comune");
-               comune.appendChild(doc.createTextNode(comprensorio.getNome()));
-               rootElement.appendChild(comune);
-           }
-            
-            
-            
-/*
-            // Nome
-            Element nome = doc.createElement("nome");
-            nome.appendChild(doc.createTextNode(persona.getNome()));
-            rootElement.appendChild(nome);
-*/
-           
+			//Creazione elencoComprensori
+			Element rootElement = doc.createElement("elencoComprensori");
+			doc.appendChild(rootElement);
+			
+			for(Comprensorio comprensorio : ElencoComprensori.getElencoComprensori()) {
+				//Creazione comprensorio
+				Element nuovoComprensorio = doc.createElement("comprensorio");
+				//Creazione nome comprensorio
+				Element nome = doc.createElement("nome");
+	            nome.appendChild(doc.createTextNode(comprensorio.getNome()));
+	            nuovoComprensorio.appendChild(nome);
+	            
+				rootElement.appendChild(nuovoComprensorio);
+				
+				for(String comune : comprensorio.getComuniComprensorio()) {
+					//Creazione comune
+					Element nomeComune = doc.createElement("comune");
+					nomeComune.appendChild(doc.createTextNode(comune));
+					nuovoComprensorio.appendChild(nomeComune);
+				}
+			}
+			
+			//Inserimento dei dati sul file xml
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			DOMSource source = new DOMSource(doc);
+			StreamResult result = new StreamResult(new File(filePath));
 
-            // Scrittura del contenuto su file XML
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);
-            StreamResult result = new StreamResult(new File(filePath));
+			transformer.transform(source, result);
 
-            transformer.transform(source, result);
+			System.out.println("File salvato");
 
-            System.out.println("File salvato!");
-
-        } catch (ParserConfigurationException pce) {
-            pce.printStackTrace();
-        } catch (TransformerException tfe) {
-            tfe.printStackTrace();
-        }
-    }
+		} catch(ParserConfigurationException pce) {
+			pce.printStackTrace();
+		} catch(TransformerException tfe) {
+			tfe.printStackTrace();
+		}
+	}
 }

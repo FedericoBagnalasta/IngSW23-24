@@ -22,6 +22,10 @@ public class ConfiguratoreView {
 		return InputDati.yesOrNo("Vuoi inserire un altro comune?\n");
 	}
 	
+	public static void comprensorioGiaPresente() {
+		System.out.println("Esiste già un comprensorio con questo nome");
+	}
+	
 	public static void comuneGiaPresente() {
 		System.out.println("Il comune inserito è già presente in questo comprensorio");
 	}

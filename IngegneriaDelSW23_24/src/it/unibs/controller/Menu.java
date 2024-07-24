@@ -3,6 +3,7 @@ package it.unibs.controller;
 import it.unibs.fp.mylib.MyMenu;
 import it.unibs.model.CategoriaFoglia;
 import it.unibs.model.ElencoGerarchie;
+import it.unibs.model.XMLWriter;
 import it.unibs.view.ConfiguratoreView;
 
 public class Menu {
@@ -32,7 +33,7 @@ public class Menu {
 					configuratore.creaGerarchia();
 					break;
 				case 3:
-					//configuratore.salvaSuXML();	//ancora da implementare. Potrebbe non essere un'opzione
+					XMLWriter.salvataggioCompleto("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/NewFile.xml");
 					break;
 				case 4:
 					ConfiguratoreController.visualizzaComprensori();

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class ElencoUtenti {
 	
 	private static ArrayList<Utente> listaUtenti = new ArrayList<>();
-	private static final String utentePredefinito = "utenteBase";
-	private static final String passwordPredefinita = "passwordBase";
+	private static final String utentePredefinito = "utente";
+	private static final String passwordPredefinita = "password";
 	
 	public static void aggiungiUtente(Utente newCredenziali) {
 		listaUtenti.add(newCredenziali);	//Ricordarsi che ciascun utente (Configuratore/Fruitore) è individuato univocamente dal nome
