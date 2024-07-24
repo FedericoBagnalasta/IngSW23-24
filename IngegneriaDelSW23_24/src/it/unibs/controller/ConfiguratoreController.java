@@ -16,6 +16,10 @@ import it.unibs.view.ConfiguratoreView;
 
 public class ConfiguratoreController {
 	
+	public ConfiguratoreController() {
+		super();
+	}
+	
 	public void creaGerarchia() {
 		String nomeRadice;
 		
@@ -143,7 +147,7 @@ public class ConfiguratoreController {
 		return new Comprensorio(creaNomeComprensorio(), creaComuniComprensorio());
 	}
 	
-	public static void visualizzaComprensorio() {
+	public static void visualizzaComprensori() {
 		for(Comprensorio comprensorio : ElencoComprensori.getElencoComprensori()) {
 			ConfiguratoreView.visualizzaNomeComprensorio(comprensorio.getNome());
 			for(String comune : comprensorio.getComuniComprensorio()) {

@@ -23,10 +23,10 @@ public class LoginController {
 		if(isPrimoAccesso) {
 			Utente utente = new Utente(nome, password, "Configuratore");
 			cambiaCredenziali(utente);
-			//opzioni
+			//opzioni. invochi il menu passandogli il configuratore/utente => login ti fornisce l'oggetto
 		}
 		else if(isAccountVerificato) {
-			//opzioni
+			//opzioni. invochi il menu passandogli il configuratore/utente => login ti fornisce l'oggetto
 		}
 		else {
 			LoginView.messaggioErrore();

@@ -14,11 +14,20 @@ public class ElencoGerarchie {
 	
 	public static boolean verificaEsistenzaRadice(String nomeRadice) {
 		for(Gerarchia g : elencoGerarchie) {
-			if(nomeRadice.equals(g.getRadice().getNome())) {
+			if(g.getRadice().getNome().equals(nomeRadice)) {
 				return true;
 			}
 		}
 		return false;
+	}
+	
+	public static CategoriaFoglia trovaRadice(String nomeFoglia, String nomeRadice) {
+		for(Gerarchia g : elencoGerarchie) {
+			if(g.getRadice().getNome().equals(nomeRadice)) {
+				return Gerarchia.trovaFoglia(g.getRadice(), nomeFoglia);
+			}
+		}
+		return null;	//messaggio di errore
 	}
 	
 	public static ArrayList<Gerarchia> getElencoGerarchie() {

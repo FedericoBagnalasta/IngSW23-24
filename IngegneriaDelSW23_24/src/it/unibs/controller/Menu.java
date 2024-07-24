@@ -1,46 +1,51 @@
 package it.unibs.controller;
 
 import it.unibs.fp.mylib.MyMenu;
-import it.unibs.model.ElencoComprensori;
-import it.unibs.model.Utente;
+import it.unibs.model.CategoriaFoglia;
+import it.unibs.model.ElencoGerarchie;
+import it.unibs.view.ConfiguratoreView;
 
 public class Menu {
-
-	 
-	//Voci configuratore
+	
 	private static final String CREA_COMPRENSORIO = "Crea un nuovo comprensorio geografico";
-	private static final String CREA_GERARCHIA = "Crea una nuova gerarchia di categorie";
+	private static final String CREA_GERARCHIA = "Crea una nuova gerarchia di categorie";	//racchiude i compiti 2-3-4 del configuratore???
+	private static final String SALVA_SU_XML = "Salva i dati su file xml";
+	private static final String VISUALIZZA_COMPRENSORI = "Visualiza tutti i comprensori";
+	private static final String VISUALIZZA_GERARCHIE = "Visualizza tutte le gerarchie";
+	private static final String VISUALIZZA_FDC = "Visualizza tutti i fattori di conversione di una certa foglia";
 	
 	private static final String SCELTA = "Scegli l'opzione";
 	
 
-	public static void menu(Utente utente) {
-		
-		String[] vociConfiguratore = {CREA_COMPRENSORIO, CREA_GERARCHIA};
-		//String[] vociFruitore = {DAI_BISCOTTI, DAI_CAREZZE};
+	public static void menuConfiguratore(ConfiguratoreController configuratore) {
+		String[] vociConfiguratore = {CREA_COMPRENSORIO, CREA_GERARCHIA, SALVA_SU_XML, VISUALIZZA_COMPRENSORI, VISUALIZZA_GERARCHIE, VISUALIZZA_FDC};
 		int scelta = 0;
-		MyMenu menu;
+		MyMenu menu = new MyMenu(SCELTA, vociConfiguratore);
 		
-		if(utente.getRuolo().equals("Configuratore")) {
-			menu=new MyMenu(SCELTA, vociConfiguratore);
-		}
-		//else menu=new MyMenu(SCELTA, vociFruitore);
-		System.out.println("Bagna è un coglione");     // DA TOGLIERE. Era una prova
 		do {
-			//scelta=menu.scegli();
+			scelta = menu.scegli();
 			switch(scelta) {
 				case 1:
-					
-					//qui verrà usato il metodo creaComprensorio di configuratoreController
-					
-					//utente.riceviBiscotti();
+					configuratore.creaComprensorio();
 					break;
 				case 2:
-					//utente.riceviCarezze();
+				configuratore.creaGerarchia();
 					break;
+				case 3:
+					//configuratore.salvaSuXML();	//ancora da implementare
+				case 4:
+					ConfiguratoreController.visualizzaComprensori();
+				case 5:
+					ConfiguratoreController.visualizzaGerarchie();
+				case 6:
+					ConfiguratoreController.visualizzaGerarchie();
+					String nomeFoglia = ConfiguratoreView.inserisciFogliaPerFDC();
+					String nomeRadice = ConfiguratoreView.inserisciRadicePerFDC();
+					CategoriaFoglia foglia = ElencoGerarchie.trovaRadice(nomeFoglia, nomeRadice);
+					ConfiguratoreController.visualizzaFattoriDiConversione(foglia);
 				default:
 					break;
 			}
-		}while(scelta != 0 /*&& !tamagotchi.sonoMorto()*/);
+		} while(scelta != 0);
 	}
 }
