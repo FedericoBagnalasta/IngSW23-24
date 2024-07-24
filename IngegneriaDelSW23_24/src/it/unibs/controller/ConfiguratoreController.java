@@ -97,7 +97,6 @@ public class ConfiguratoreController {
 			
 	}
 	
-	
 	//DA FINIRE
 	public CategoriaFoglia selezionaCategoriaFoglia() {
 		return null;
