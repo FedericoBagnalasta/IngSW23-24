@@ -128,4 +128,10 @@ public class ConfiguratoreView {
 	public static String inserisciRadicePerFDC() {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome della Categoria Radice della Gerarchia a cui appartiene la Foglia\n");
 	}
+	
+	//PARTE FILE XML (forse è il caso di creare un'altra classe)
+	
+	public static void salvataggioFileXML() {
+		System.out.println("Il file e' stato salvato");
+	}
 }
