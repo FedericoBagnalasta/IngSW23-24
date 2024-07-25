@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import it.unibs.model.Categoria;
 import it.unibs.model.CategoriaFoglia;
 import it.unibs.model.CategoriaNonFoglia;
+import it.unibs.model.CategoriaRadice;
 import it.unibs.model.ElencoComprensori;
 import it.unibs.model.ElencoFattoriDiConversione;
 import it.unibs.model.ElencoGerarchie;
@@ -69,7 +70,7 @@ public class ConfiguratoreController {
 		//Verifica che non venga creato un fdc prima che ci siano almeno 2 foglie
 		if(ElencoGerarchie.dueOpiuFoglie()) {
 			//ERRORE checkForComodification
-			ElencoFattoriDiConversione.creaFDC_Deducibili(creaFattoreDiConversione());
+			ElencoFattoriDiConversione.creaFDC_Deducibili(creaFattoreDiConversione(foglia));
 		}
 		
 		//DERIVARE TUTTI I FDC POSSIBILI
@@ -93,14 +94,15 @@ public class ConfiguratoreController {
 		return nonFoglia;
 	}
 	
-	public FattoreDiConversione creaFattoreDiConversione() {		//LA PRIMA FOGLIA CON CHI FA FDC????
+	public FattoreDiConversione creaFattoreDiConversione(CategoriaFoglia fogliaNuova) {		//LA PRIMA FOGLIA CON CHI FA FDC????
 		FattoreDiConversione fdcNuovo;
 		CategoriaFoglia f1, f2;
 		double valore;
 		do {
 		//METODO PER MOSTRARE LA STRUTTURA DELLA GERARCHIA
 			do {
-				f1 = selezionaCategoriaFoglia();
+				//Impongo che almeno una foglia della fdc sia della nuova gerarchia (ovvero abbia la stessa radice della gerarchia appena creata)
+				f1 = selezionaCategoriaFogliaConRadiceFissata(fogliaNuova.getCategoriaRadice());
 			}while(f1 == null);
 			
 			do {
@@ -113,6 +115,28 @@ public class ConfiguratoreController {
 		ElencoFattoriDiConversione.aggiungiFDC(fdcNuovo);
 		return fdcNuovo;
 			
+	}
+	
+	public CategoriaFoglia selezionaCategoriaFogliaConRadiceFissata(CategoriaRadice radice) {
+		ConfiguratoreView.presentazioneAggiuntaFDC();
+		String nomeFoglia = ConfiguratoreView.inserisciNomeFogliaRicerca();
+		String nomeRadice = ConfiguratoreView.inserisciNomeRadiceRicerca();
+		
+		
+		//FORSE Da fin modo da stampare messaggio per fallimento operazione di ricerca
+		CategoriaFoglia foglia = ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
+		if(foglia == null){
+			ConfiguratoreView.fogliaNonTrovata();
+			return null;
+		}
+		
+		if(!radice.getNome().equals(nomeRadice)) {
+			ConfiguratoreView.fogliaDiGerarchiaVecchia(radice.getNome());
+			return null;
+		}
+		
+		else return foglia;
+		
 	}
 	
 	//DA FINIRE
@@ -195,7 +219,7 @@ public class ConfiguratoreController {
 		for(Categoria c : categoria.getFigli()) {
 			//Da cambiare parametri con String
 			//Da cambiare definizione di padre: stampa solo radice
-			ConfiguratoreView.visualizzaNomeFiglioCategoria(categoria.getNome(), c.getNome());
+			ConfiguratoreView.visualizzaNomeFiglioCategoria(categoria.getNome(), c.getNome(), c.getTipo());
 			visualizzaFigliCategoria(c);
 		}
 	}

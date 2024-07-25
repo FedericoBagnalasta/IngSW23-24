@@ -17,6 +17,7 @@ public class Gerarchia {
 				return (CategoriaFoglia)c;
 			}
 			//Se una sua figlia contiene la foglia fa return
+			//Forse if è superfluo
 			foglia = trovaFoglia(c, nomeFoglia);
 			if(foglia instanceof CategoriaFoglia) {
 				return foglia;

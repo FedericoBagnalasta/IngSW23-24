@@ -45,8 +45,8 @@ public class ConfiguratoreView {
 	}
 	
 	//permette di visualizzare solo nomeRadice: nome figlio
-	public static void visualizzaNomeFiglioCategoria(String nomePadre, String nomeFiglio) {
-		System.out.println("Figlio di " + nomePadre + ": " + nomeFiglio);
+	public static void visualizzaNomeFiglioCategoria(String nomePadre, String nomeFiglio, String tipo) {
+		System.out.println("Figlio di " + nomePadre + ": " + nomeFiglio + " [" + tipo + "]");
 	}
 	
 	public static String inserisciCampo() {
@@ -116,7 +116,7 @@ public class ConfiguratoreView {
 	//PARTE FATTORI DI CONVERSIONE
 	
 	public static double inserisciValoreFDC() {
-		return InputDati.leggiDoubleRange("Inserisci il valore del fattore di conversione\n", 0.5, 2.0);
+		return InputDati.leggiDoubleRange("Inserisci il valore del fattore di conversione (Deve essere compreso tra 0,5 e 2,0)\n", 0.5, 2.0);
 	}
 	
 	public static void visualizzaFattoreDiConversione(String nomeClasse1, String nomeClasse2, double valore) {
@@ -129,6 +129,10 @@ public class ConfiguratoreView {
 	
 	public static String inserisciRadicePerFDC() {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome della radice della gerarchia a cui appartiene la foglia\n");
+	}
+
+	public static void fogliaDiGerarchiaVecchia(String nomeRadice) {
+		System.out.println("Attenzione: Devi inserire il nome di una categoria foglia che abbia come radice " + nomeRadice);
 	}
 
 	

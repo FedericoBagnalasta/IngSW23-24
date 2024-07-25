@@ -2,6 +2,8 @@ package it.unibs.model;
 
 import java.util.ArrayList;
 
+import it.unibs.view.ConfiguratoreView;
+
 public class CategoriaNonFoglia implements Categoria {
 
 	private String nome;
@@ -35,6 +37,10 @@ public class CategoriaNonFoglia implements Categoria {
 
 	public String getNome() {
 		return nome;
+	}
+	
+	public String getTipo() {
+		return "NonFoglia";
 	}
 
 	public String getCampo() {

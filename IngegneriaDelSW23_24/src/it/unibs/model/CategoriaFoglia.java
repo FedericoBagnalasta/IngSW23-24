@@ -39,6 +39,10 @@ public class CategoriaFoglia implements Categoria {
 	public String getNome() {
 		return nome;
 	}
+	
+	public String getTipo() {
+		return "Foglia";
+	}
 
 	public ValoreDominio getValore() {
 		return valore;
@@ -60,6 +64,13 @@ public class CategoriaFoglia implements Categoria {
 	
 	public ArrayList<Categoria> getFigli() {
 		return figli;
+	}
+
+	public boolean haStessaRadice(CategoriaFoglia fogliaNuova) {
+		if(this.getCategoriaRadice().getNome().equals(fogliaNuova.getCategoriaRadice().getNome())) {
+			return true;
+		}
+		return false;
 	}
 
 }
