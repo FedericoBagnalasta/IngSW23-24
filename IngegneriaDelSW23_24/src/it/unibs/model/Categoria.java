@@ -8,7 +8,7 @@ public interface Categoria {
 	
 	public String getTipo();
 	
-	public ValoreDominio getValore();
+	public ValoreDominio getValoreDominio();
 	
 	public ArrayList<ValoreDominio> getDominio();
 	
@@ -17,6 +17,8 @@ public interface Categoria {
 	public String getNome();
 	
 	public CategoriaRadice getCategoriaRadice();
+	
+	public String getCampo();
 	
 	default public ArrayList<String> getNomiGerarchia() {
 		ArrayList<String> nomiGerarchia = new ArrayList<>();

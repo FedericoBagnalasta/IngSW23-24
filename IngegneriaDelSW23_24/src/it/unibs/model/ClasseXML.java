@@ -74,16 +74,12 @@ public class ClasseXML {
 			
 			rootElement.appendChild(nuovaGerarchia);
 			
-			ricorsione(gerarchia.getRadice(), doc, nuovaGerarchia);
-			
-			
-			
-				
+			salvaFigliCategoria(gerarchia.getRadice(), doc, nuovaGerarchia);	
 		}
 		salvaFileXML(doc, filePath);
 	}
 	
-	public static void ricorsione(Categoria categoria, Document doc, Element nuovaGerarchia) {
+	public static void salvaFigliCategoria(Categoria categoria, Document doc, Element nuovaGerarchia) {
 		for(Categoria categoriaFiglio : categoria.getFigli()) {
 			Element nuovaCategoria = doc.createElement("categoria");
 			
@@ -91,12 +87,70 @@ public class ClasseXML {
 			nomeCategoria.appendChild(doc.createTextNode(categoriaFiglio.getNome()));
 			nuovaCategoria.appendChild(nomeCategoria);
 			
+			//
+			if(categoriaFiglio.getTipo().equals("Foglia")) {
+				salvaCategoriaFoglia(categoriaFiglio, doc, nuovaCategoria);
+			}
+			else if(categoriaFiglio.getTipo().equals("NonFoglia")) {
+				salvaCategoriaNonFoglia(categoriaFiglio, doc, nuovaCategoria);
+			}
+			else {
+				//salvaCategoriaRadice(categoriaFiglio, doc, nuovaCategoria);
+			}
+			
 			nuovaGerarchia.appendChild(nuovaCategoria);
+			
+			salvaFigliCategoria(categoriaFiglio, doc, nuovaCategoria);
 		}
 	}
 	
+	//
+	public static void salvaCategoriaFoglia(Categoria categoria, Document doc, Element nuovaGerarchia) {
+		Element valoreDominio = doc.createElement("valoreDominio");
+		
+		Element valore = doc.createElement("valore");
+		valore.appendChild(doc.createTextNode(categoria.getValoreDominio().getValore()));
+		valoreDominio.appendChild(valore);
+		
+		Element descrizione = doc.createElement("descrizione");
+		descrizione.appendChild(doc.createTextNode(categoria.getValoreDominio().getDescrizione()));
+		valoreDominio.appendChild(descrizione);
+		
+		nuovaGerarchia.appendChild(valoreDominio);
+		
+		Element radice = doc.createElement("radice");
+		radice.appendChild(doc.createTextNode(categoria.getCategoriaRadice().getNome()));
+		
+		nuovaGerarchia.appendChild(radice);
+	}
 	
-	
+	//
+	public static void salvaCategoriaNonFoglia(Categoria categoria, Document doc, Element nuovaGerarchia) {		
+		Element campo = doc.createElement("campo");
+		campo.appendChild(doc.createTextNode(categoria.getCampo()));
+		nuovaGerarchia.appendChild(campo);
+		
+		//dominio
+		
+		Element valoreDominio = doc.createElement("valoreDominio");
+		
+		Element valore = doc.createElement("valore");
+		valore.appendChild(doc.createTextNode(categoria.getValoreDominio().getValore()));
+		valoreDominio.appendChild(valore);
+		
+		Element descrizione = doc.createElement("descrizione");
+		descrizione.appendChild(doc.createTextNode(categoria.getValoreDominio().getDescrizione()));
+		valoreDominio.appendChild(descrizione);
+		
+		nuovaGerarchia.appendChild(valoreDominio);
+		
+		//figli
+		
+		Element radice = doc.createElement("radice");
+		radice.appendChild(doc.createTextNode(categoria.getCategoriaRadice().getNome()));
+		
+		nuovaGerarchia.appendChild(radice);
+	}
 	
 	public static Document creaFileXML() {
 		DocumentBuilderFactory docFactory;

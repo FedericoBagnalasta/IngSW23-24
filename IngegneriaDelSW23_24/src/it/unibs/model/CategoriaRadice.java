@@ -17,7 +17,7 @@ public class CategoriaRadice implements Categoria {
 		this.nome = nome;
 		this.campo = campo;
 		this.dominio = dominio;
-		radice = this;
+		this.radice = this;
 	}
 	
 	public void aggiungiFiglio(Categoria nuovoFiglio) {
@@ -36,7 +36,7 @@ public class CategoriaRadice implements Categoria {
 		return campo;
 	}
 
-	public ValoreDominio getValore() {
+	public ValoreDominio getValoreDominio() {
 		return valore;
 	}
 	

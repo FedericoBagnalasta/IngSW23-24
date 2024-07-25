@@ -5,8 +5,7 @@ import java.util.ArrayList;
 public class CategoriaFoglia implements Categoria {
 
 	private String nome;
-	private ValoreDominio valore;
-	private ArrayList<FattoreDiConversione> elencoFattoriDiConversione = new ArrayList<FattoreDiConversione>();
+	private ValoreDominio valoreDominio;
 	private CategoriaRadice radice;
 	
 	//Si potrebbe non dichiararli
@@ -17,7 +16,7 @@ public class CategoriaFoglia implements Categoria {
 	public CategoriaFoglia(String nome, ValoreDominio valore, CategoriaRadice radice) {
 		super();
 		this.nome = nome;
-		this.valore = valore;
+		this.valoreDominio = valore;
 		this.radice = radice;
 	}
 	
@@ -44,12 +43,8 @@ public class CategoriaFoglia implements Categoria {
 		return "Foglia";
 	}
 
-	public ValoreDominio getValore() {
-		return valore;
-	}
-	
-	public ArrayList<FattoreDiConversione> getElencoFattoriDiConversione() {
-		return elencoFattoriDiConversione;
+	public ValoreDominio getValoreDominio() {
+		return valoreDominio;
 	}
 	
 	public CategoriaRadice getCategoriaRadice() {
@@ -64,6 +59,10 @@ public class CategoriaFoglia implements Categoria {
 	
 	public ArrayList<Categoria> getFigli() {
 		return figli;
+	}
+	
+	public String getCampo() {
+		return null;
 	}
 
 	public boolean haStessaRadice(CategoriaFoglia fogliaNuova) {

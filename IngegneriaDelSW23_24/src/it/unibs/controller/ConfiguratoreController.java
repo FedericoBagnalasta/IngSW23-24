@@ -55,8 +55,6 @@ public class ConfiguratoreController {
 				CategoriaNonFoglia nonFoglia = creaNonFoglia(categoriaPadre, valore);
 
 				creaFigliCategoria(nonFoglia);
-
-				categoriaPadre.getFigli().add(nonFoglia);
 			}
 		}
 	}
@@ -161,9 +159,10 @@ public class ConfiguratoreController {
 	public ArrayList<ValoreDominio> creaDominio() {
 		ArrayList<ValoreDominio> dominio = new ArrayList<>();
 		String nomeValore;
-		String descrizione = "Assente";
+		String descrizione;
 		
 		do {
+			descrizione = "Assente";
 			nomeValore = ConfiguratoreView.inserisciNomeValoreDominio();
 			if(ConfiguratoreView.richiestaDescrizioneValoreDominio()) {
 				descrizione = ConfiguratoreView.inserisciDescrizioneValoreDominio();	
