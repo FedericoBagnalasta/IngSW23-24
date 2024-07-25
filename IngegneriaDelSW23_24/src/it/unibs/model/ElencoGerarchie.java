@@ -44,6 +44,7 @@ public class ElencoGerarchie {
 		}
 		return false;
 	}
+	
 	public static int contaFoglie(ArrayList<Categoria> listaCategorie) {
 		int count = 0;
 		for(Categoria c : listaCategorie) {

@@ -44,7 +44,6 @@ public class ConfiguratoreView {
 		System.out.println("\nRadice gerarchia: " + nomeRadice);
 	}
 	
-	//permette di visualizzare solo nomeRadice: nome figlio
 	public static void visualizzaNomeFiglioCategoria(String nomePadre, String nomeFiglio, String tipo) {
 		System.out.println("Figlio di " + nomePadre + ": " + nomeFiglio + " [" + tipo + "]");
 	}

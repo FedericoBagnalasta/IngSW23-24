@@ -21,19 +21,6 @@ public class CategoriaNonFoglia implements Categoria {
 		this.dominio = dominio;
 		this.radice = radice;
 	}
-	
-	/*public void aggiungiFiglio(Categoria nuovoFiglio) {
-		figli.add(nuovoFiglio);
-	}
-	*/
-	
-	
-	/*
-	public CategoriaNonFoglia creaNonFoglia(ArrayList<String> dominioPadre, String nome) {
-		
-	}
-	*/
-	
 
 	public String getNome() {
 		return nome;

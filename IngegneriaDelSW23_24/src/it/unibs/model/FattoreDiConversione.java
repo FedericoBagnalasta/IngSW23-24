@@ -47,22 +47,7 @@ public class FattoreDiConversione {
 		//return (valore==this.valore); //SERVE CONTROLLO INCONSISTENZA?
 		return true;
 	}
-	/*
-	@Override
-    public final boolean equals(Object o) {
-		if(!(o instanceof FattoreDiConversione)) {//Se non e' un FDC il metodo restituisce false 
-			return false;
-		}
-		FattoreDiConversione fdC = (FattoreDiConversione) o;
-		CategoriaFoglia c12 = fdC.getC1();
-		CategoriaFoglia c22 = fdC.getC2(); 
-		double valore = fdC.getValore();
-		if(!(c12.getCategoriaRadice().getNome().equals(c1.getCategoriaRadice().getNome())
-				&& c22.getCategoriaRadice().getNome().equals(c2.getCategoriaRadice().getNome()))) {
-			return false;
-		}
-		return (valore!=this.valore); //SERVE CONTROLLO INCONSISTENZA?
-	}*/
+
 	//COntrolla che non venga messo un fdc su una sola foglia
 	public boolean verificaFDCImpossibile() {
 		if(c1.verificaUguaglianzaFoglie(c2)){

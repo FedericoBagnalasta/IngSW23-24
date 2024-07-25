@@ -8,12 +8,6 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		/*
-		ConfiguratoreController utente = LoginController.login();
-		Menu menu = new Menu();
-		menu.menuConfiguratore(utente);
-		*/
-
 		LoginController loginController = new LoginController();
 		Utente utente = loginController.loginGenerale();
 		
