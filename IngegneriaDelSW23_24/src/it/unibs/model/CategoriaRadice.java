@@ -17,6 +17,7 @@ public class CategoriaRadice implements Categoria {
 		this.nome = nome;
 		this.campo = campo;
 		this.dominio = dominio;
+		radice = this;
 	}
 	
 	public void aggiungiFiglio(Categoria nuovoFiglio) {
@@ -25,6 +26,10 @@ public class CategoriaRadice implements Categoria {
 
 	public String getNome() {
 		return nome;
+	}
+	
+	public String getTipo() {
+		return "Radice";
 	}
 
 	public String getCampo() {

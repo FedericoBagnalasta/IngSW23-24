@@ -46,8 +46,18 @@ public class ConfiguratoreView {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome della Categoria Radice della Gerarchia\n");
 	}
 	
+
 	public static void visualizzaNomeRadiceGerarchia(Gerarchia gerarchia) {
 		System.out.println("\nRadice Gerarchia: " + gerarchia.getRadice().getNome());
+	}
+
+	public static void visualizzaNomeRadiceGerarchia(String nomeRadice) {
+		System.out.println("\nRadice gerarchia: " + nomeRadice);
+	}
+	
+	//permette di visualizzare solo nomeRadice: nome figlio
+	public static void visualizzaNomeFiglioCategoria(String nomePadre, String nomeFiglio, String tipo) {
+		System.out.println("Figlio di " + nomePadre + ": " + nomeFiglio + " [" + tipo + "]");
 	}
 	
 	public static void radiceGiaPresente() {
@@ -98,12 +108,25 @@ public class ConfiguratoreView {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome della Categoria Non Foglia\n");
 	}
 	
-	public static boolean richiestaAggiuntaCategoriaNonFoglia(ValoreDominio dominio) {
-		return InputDati.yesOrNo("Desideri aggiungere una Categoria Non Foglia a " + dominio.getValore() + "?\n");
+	public static boolean richiestaAggiuntaCategoriaNonFoglia(String dominioNome) {
+		return InputDati.yesOrNo("Desideri aggiungere una Categoria Non Foglia a " + dominioNome + "\n");
 	}
 	
-	public static boolean richiestaAggiuntaCategoriaFoglia(ValoreDominio dominio) {
-		return InputDati.yesOrNo("Desideri aggiungere una Categoria Foglia a " + dominio.getValore() + "?\n");
+	public static boolean richiestaAggiuntaCategoriaFoglia(String dominioNome) {
+		return InputDati.yesOrNo("Desideri aggiungere una Categoria Foglia a " + dominioNome + "\n");
+	}
+	
+	public static void presentazioneAggiuntaFDC() {
+		System.out.println("CREAZIONE DEI FATTORI DI CONVERSIONE");
+	}
+	
+	public static String inserisciNomeFogliaRicerca() {
+		return InputDati.leggiStringaNonVuota("Inserisci il nome della Categoria Foglia che desideri selezionare\n");
+	}	
+	
+	public static String inserisciNomeRadiceRicerca() {
+		return InputDati.leggiStringaNonVuota("Inserisci il nome della Categoria Radice che desideri selezionare\n");
+
 	}
 	
 	public static void fogliaNonTrovata() {
@@ -117,8 +140,8 @@ public class ConfiguratoreView {
 		return InputDati.leggiDoubleRange("Inserisci un valore tra 0.5 e 2.0 per il Fattore di Conversione\n", 0.5, 2.0);
 	}
 	
-	public static void visualizzaFattoreDiConversione(FattoreDiConversione fattore) {
-		System.out.println("Il fattore di conversione tra " + fattore.getC1() + "e " + fattore.getC2() + "vale: " + fattore.getValore());
+	public static void visualizzaFattoreDiConversione(String nomeClasse1, String nomeClasse2, double valore) {
+		System.out.println("Il fattore di conversione tra " + nomeClasse1 + " e " + nomeClasse2 + " vale: " + valore);
 	}
 	
 	public static String inserisciFogliaPerFDC() {
@@ -127,6 +150,10 @@ public class ConfiguratoreView {
 	
 	public static String inserisciRadicePerFDC() {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome della Categoria Radice della Gerarchia a cui appartiene la Foglia\n");
+	}
+
+	public static void fogliaDiGerarchiaVecchia(String nomeRadice) {
+		System.out.println("Attenzione: Devi inserire il nome di una categoria foglia che abbia come radice " + nomeRadice);
 	}
 	
 	//PARTE FILE XML (forse è il caso di creare un'altra classe)

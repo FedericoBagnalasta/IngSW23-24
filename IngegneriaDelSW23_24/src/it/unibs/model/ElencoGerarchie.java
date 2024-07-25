@@ -33,4 +33,26 @@ public class ElencoGerarchie {
 	public static ArrayList<Gerarchia> getElencoGerarchie() {
 		return elencoGerarchie;
 	}
+	
+	public static boolean dueOpiuFoglie() {
+		int count = 0;
+		for(Gerarchia g :	elencoGerarchie) {
+			count += contaFoglie(g.getRadice().getFigli());
+		}
+		if(count > 1) {
+			return true;
+		}
+		return false;
+	}
+	public static int contaFoglie(ArrayList<Categoria> listaCategorie) {
+		int count = 0;
+		for(Categoria c : listaCategorie) {
+			if(c instanceof CategoriaFoglia) {
+				count++;
+			}
+			count += contaFoglie(c.getFigli());
+		}
+		return count;
+	}
+		
 }

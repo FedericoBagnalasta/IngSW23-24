@@ -5,7 +5,9 @@ import java.util.ArrayList;
 public interface Categoria {
 	
 	//Si potrebbe inserire l'attributo nome
-
+	
+	public String getTipo();
+	
 	public ValoreDominio getValore();
 	
 	public ArrayList<ValoreDominio> getDominio();
@@ -24,4 +26,6 @@ public interface Categoria {
 		}
 		return nomiGerarchia;
 	}
+
+	
 }
