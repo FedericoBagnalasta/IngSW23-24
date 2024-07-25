@@ -19,18 +19,23 @@ public class ConfiguratoreController {
 	
 	Utente utente;
 	
+	public ConfiguratoreController() {
+		super();
+	}
+	
 	public void setUtente(Utente utente) {
 		this.utente = utente;
 	}
 
 	public void creaGerarchia() {
-		String nomeRadice = ConfiguratoreView.inserisciNomeRadiceGerarchia();;
+		String nomeRadice = ConfiguratoreView.inserisciNomeRadiceGerarchia();
 		
 		while(ElencoGerarchie.verificaEsistenzaRadice(nomeRadice)) {
 			ConfiguratoreView.radiceGiaPresente();
 			nomeRadice = ConfiguratoreView.inserisciNomeRadiceGerarchia();
-		} 
-		
+
+		}
+
 		String campo = ConfiguratoreView.inserisciCampo();
 		ArrayList<ValoreDominio> dominio = creaDominio();
 		Gerarchia nuovaGerarchia = ElencoGerarchie.aggiungiGerarchia(nomeRadice, campo, dominio);
@@ -40,7 +45,7 @@ public class ConfiguratoreController {
 	
 	private void creaFigliCategoria(Categoria categoriaPadre) {
 		//DEVO POTER SCEGLIERE A QUALE CATEGORIA COLLEGARE IL NUOVO ELEMENTO	
-		
+
 			for(ValoreDominio valore : categoriaPadre.getDominio()) {
 				//E' POSSIBILE NON ASSOCIARE UNA FOGLIA AD UN VALORE DEL DOMINIO
 				if(ConfiguratoreView.richiestaAggiuntaCategoriaFoglia(valore.getValore())) {
@@ -56,13 +61,14 @@ public class ConfiguratoreController {
 				
 				}
 			}
+			
 	}
 	
 	public CategoriaFoglia creaFoglia(Categoria padre, ValoreDominio valore) {
 		String nomeFoglia;
 		ArrayList<String> elencoNomiGerarchia = padre.getCategoriaRadice().getNomiGerarchia();
 		do {
-			nomeFoglia = ConfiguratoreView.inserisciNomeFoglia();
+			nomeFoglia = ConfiguratoreView.inserisciNomeFogliaGerarchia();
 		} while(elencoNomiGerarchia.contains(nomeFoglia));
 		CategoriaFoglia foglia = new CategoriaFoglia(nomeFoglia, valore, padre.getCategoriaRadice());
 		padre.getFigli().add(foglia);
@@ -83,7 +89,7 @@ public class ConfiguratoreController {
 		CategoriaNonFoglia nonFoglia;
 		ArrayList<String> elencoNomiGerarchia = padre.getCategoriaRadice().getNomiGerarchia();
 		do {
-			nomeNonFoglia = ConfiguratoreView.inserisciNomeNonFoglia();
+			nomeNonFoglia = ConfiguratoreView.inserisciNomeNonFogliaGerarchia();
 		} while(elencoNomiGerarchia.contains(nomeNonFoglia));
 		
 		String campo = ConfiguratoreView.inserisciCampo();
@@ -114,16 +120,15 @@ public class ConfiguratoreController {
 		
 			valore = ConfiguratoreView.inserisciValoreFDC();
 			fdcNuovo = new FattoreDiConversione(f1, f2, valore);
-		}while(ElencoFattoriDiConversione.verificaEsistenzaFDC(fdcNuovo) || fdcNuovo.verificaFDCImpossibile());
+		} while(ElencoFattoriDiConversione.verificaEsistenzaFDC(fdcNuovo) || fdcNuovo.verificaFDCImpossibile());
+
 		ElencoFattoriDiConversione.aggiungiFDC(fdcNuovo);
 		return fdcNuovo;
-			
 	}
 	
 	public CategoriaFoglia selezionaCategoriaFogliaConRadiceFissata(CategoriaRadice radice) {
 		String nomeFoglia = ConfiguratoreView.inserisciNomeFogliaRicerca();
 		String nomeRadice = ConfiguratoreView.inserisciNomeRadiceRicerca();
-		
 		
 		//FORSE Da fin modo da stampare messaggio per fallimento operazione di ricerca
 		CategoriaFoglia foglia = ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
@@ -145,6 +150,7 @@ public class ConfiguratoreController {
 	public CategoriaFoglia selezionaCategoriaFoglia() {
 		String nomeFoglia = ConfiguratoreView.inserisciNomeFogliaRicerca();
 		String nomeRadice = ConfiguratoreView.inserisciNomeRadiceRicerca();
+
 		
 		//FORSE Da fin modo da stampare messaggio per fallimento operazione di ricerca
 		CategoriaFoglia foglia = ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
@@ -153,7 +159,6 @@ public class ConfiguratoreController {
 			return null;
 		}
 		else return foglia;
-		
 	}
 	
 	public ArrayList<ValoreDominio> creaDominio() {
@@ -173,11 +178,12 @@ public class ConfiguratoreController {
 	}
 	
 	public String creaNomeComprensorio() {
-		String nomeComprensorio;
+		String nomeComprensorio = ConfiguratoreView.inserisciNomeComprensorio();
 		
-		do {
+		while(ElencoComprensori.verificaEsistenzaComprensorio(nomeComprensorio)) {
+			ConfiguratoreView.comuneGiaPresente();
 			nomeComprensorio = ConfiguratoreView.inserisciNomeComprensorio();
-		} while(ElencoComprensori.verificaEsistenzaComprensorio(nomeComprensorio));
+		};
 		
 		return nomeComprensorio;
 	}
@@ -185,7 +191,7 @@ public class ConfiguratoreController {
 	public ArrayList<String> creaComuniComprensorio() {
 		ArrayList<String> elencoComuni = new ArrayList<>();
 		do {
-			String nuovoComune = ConfiguratoreView.inserisciComuneComprensorio();
+			String nuovoComune = ConfiguratoreView.inserisciComune();
 			if(elencoComuni.contains(nuovoComune)) {
 				ConfiguratoreView.comuneGiaPresente();
 			}
