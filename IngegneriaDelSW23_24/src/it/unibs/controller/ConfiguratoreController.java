@@ -40,13 +40,12 @@ public class ConfiguratoreController {
 	private void creaFigliCategoria(Categoria categoriaPadre) {
 		//DEVO POTER SCEGLIERE A QUALE CATEGORIA COLLEGARE IL NUOVO ELEMENTO	
 		
-		do {
 			for(ValoreDominio valore : categoriaPadre.getDominio()) {
 				//E' POSSIBILE NON ASSOCIARE UNA FOGLIA AD UN VALORE DEL DOMINIO
-				if(ConfiguratoreView.richiestaAggiuntaCategoriaFoglia(valore)) {
+				if(ConfiguratoreView.richiestaAggiuntaCategoriaFoglia(valore.getValore())) {
 					CategoriaFoglia foglia = creaFoglia(categoriaPadre, valore);			
 				}
-				else if(ConfiguratoreView.richiestaAggiuntaCategoriaNonFoglia(valore)) {
+				else if(ConfiguratoreView.richiestaAggiuntaCategoriaNonFoglia(valore.getValore())) {
 					CategoriaNonFoglia nonFoglia = creaNonFoglia(categoriaPadre, valore);
 					
 					//CHIAMATA RICORSIVA
@@ -56,7 +55,6 @@ public class ConfiguratoreController {
 				
 				}
 			}
-		} while(ConfiguratoreView.richiestaContinuazioneStruttura());
 	}
 	
 	public CategoriaFoglia creaFoglia(Categoria padre, ValoreDominio valore) {
@@ -111,7 +109,7 @@ public class ConfiguratoreController {
 		
 			valore = ConfiguratoreView.inserisciValoreFDC();
 			fdcNuovo = new FattoreDiConversione(f1, f2, valore);
-		}while(ElencoFattoriDiConversione.verificaEsistenzaFDC(fdcNuovo));
+		}while(ElencoFattoriDiConversione.verificaEsistenzaFDC(fdcNuovo) || fdcNuovo.verificaFDCImpossibile());
 		ElencoFattoriDiConversione.aggiungiFDC(fdcNuovo);
 		return fdcNuovo;
 			
@@ -188,22 +186,28 @@ public class ConfiguratoreController {
 	
 	public static void visualizzaGerarchie() {
 		for(Gerarchia gerarchia : ElencoGerarchie.getElencoGerarchie()) {
-			ConfiguratoreView.visualizzaNomeRadiceGerarchia(gerarchia);
-			visualizzaFigliCategoria(gerarchia.getRadice(), gerarchia);
+			ConfiguratoreView.visualizzaNomeRadiceGerarchia(gerarchia.getRadice().getNome());
+			visualizzaFigliCategoria(gerarchia.getRadice());
 		}
 	}
 	
-	public static void visualizzaFigliCategoria(Categoria categoria, Gerarchia gerarchia) {
+	public static void visualizzaFigliCategoria(Categoria categoria) {
 		for(Categoria c : categoria.getFigli()) {
-			ConfiguratoreView.visualizzaNomeFiglioCategoria(categoria, gerarchia);
-			visualizzaFigliCategoria(c, gerarchia);
+			//Da cambiare parametri con String
+			//Da cambiare definizione di padre: stampa solo radice
+			ConfiguratoreView.visualizzaNomeFiglioCategoria(categoria.getNome(), c.getNome());
+			visualizzaFigliCategoria(c);
 		}
 	}
 	
 	public static void visualizzaFattoriDiConversione(CategoriaFoglia foglia) {
+		if(foglia == null) {
+			ConfiguratoreView.fogliaNonTrovata();
+			return;
+		}
 		for(FattoreDiConversione fattore : ElencoFattoriDiConversione.getElencoFattoriDiConversione()) {
 			if(fattore.getC1().verificaUguaglianzaFoglie(foglia)) {
-				ConfiguratoreView.visualizzaFattoreDiConversione(fattore);
+				ConfiguratoreView.visualizzaFattoreDiConversione(fattore.getC1().getNome(), fattore.getC2().getNome(), fattore.getValore());
 			}
 		}
 	}

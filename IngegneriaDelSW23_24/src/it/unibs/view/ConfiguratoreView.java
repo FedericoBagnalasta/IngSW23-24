@@ -40,12 +40,13 @@ public class ConfiguratoreView {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome della radice appartenente alla nuova gerarchia\n");
 	}
 	
-	public static void visualizzaNomeRadiceGerarchia(Gerarchia gerarchia) {
-		System.out.println("\nRadice gerarchia: " + gerarchia.getRadice().getNome());
+	public static void visualizzaNomeRadiceGerarchia(String nomeRadice) {
+		System.out.println("\nRadice gerarchia: " + nomeRadice);
 	}
 	
-	public static void visualizzaNomeFiglioCategoria(Categoria categoria, Gerarchia gerarchia) {
-		System.out.println("Figlio di " + gerarchia.getRadice().getNome() + ": " + categoria.getNome());
+	//permette di visualizzare solo nomeRadice: nome figlio
+	public static void visualizzaNomeFiglioCategoria(String nomePadre, String nomeFiglio) {
+		System.out.println("Figlio di " + nomePadre + ": " + nomeFiglio);
 	}
 	
 	public static String inserisciCampo() {
@@ -88,12 +89,12 @@ public class ConfiguratoreView {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome della nuova Categoria Non Foglia\n");
 	}
 	
-	public static boolean richiestaAggiuntaCategoriaNonFoglia(ValoreDominio dominio) {
-		return InputDati.yesOrNo("Desideri aggiungere una Categoria Non Foglia a " + dominio.getValore() + "\n");
+	public static boolean richiestaAggiuntaCategoriaNonFoglia(String dominioNome) {
+		return InputDati.yesOrNo("Desideri aggiungere una Categoria Non Foglia a " + dominioNome + "\n");
 	}
 	
-	public static boolean richiestaAggiuntaCategoriaFoglia(ValoreDominio dominio) {
-		return InputDati.yesOrNo("Desideri aggiungere una Categoria Foglia a " + dominio.getValore() + "\n");
+	public static boolean richiestaAggiuntaCategoriaFoglia(String dominioNome) {
+		return InputDati.yesOrNo("Desideri aggiungere una Categoria Foglia a " + dominioNome + "\n");
 	}
 	
 	public static void presentazioneAggiuntaFDC() {
@@ -118,8 +119,8 @@ public class ConfiguratoreView {
 		return InputDati.leggiDoubleRange("Inserisci il valore del fattore di conversione\n", 0.5, 2.0);
 	}
 	
-	public static void visualizzaFattoreDiConversione(FattoreDiConversione fattore) {
-		System.out.println("Il fattore di conversione tra " + fattore.getC1() + "e " + fattore.getC2() + "vale: " + fattore.getValore());
+	public static void visualizzaFattoreDiConversione(String nomeClasse1, String nomeClasse2, double valore) {
+		System.out.println("Il fattore di conversione tra " + nomeClasse1 + " e " + nomeClasse2 + " vale: " + valore);
 	}
 	
 	public static String inserisciFogliaPerFDC() {

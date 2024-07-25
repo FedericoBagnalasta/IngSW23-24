@@ -1,5 +1,8 @@
 package it.unibs.model;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class FattoreDiConversione {
 
 	private CategoriaFoglia c1;
@@ -9,7 +12,7 @@ public class FattoreDiConversione {
 	public FattoreDiConversione(CategoriaFoglia c1, CategoriaFoglia c2, double valore) {
 		this.c1 = c1;
 		this.c2 = c2;
-		this.valore = valore;
+		this.valore = new BigDecimal(valore).setScale(2, RoundingMode.HALF_EVEN).doubleValue();
 	}
 	
 	public CategoriaFoglia getC1() {
@@ -60,4 +63,11 @@ public class FattoreDiConversione {
 		}
 		return (valore!=this.valore); //SERVE CONTROLLO INCONSISTENZA?
 	}*/
+	//COntrolla che non venga messo un fdc su una sola foglia
+	public boolean verificaFDCImpossibile() {
+		if(c1.verificaUguaglianzaFoglie(c2)){
+			return true;
+			}
+		return false;
+		}
 }

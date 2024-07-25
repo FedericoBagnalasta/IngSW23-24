@@ -11,11 +11,16 @@ public class Gerarchia {
 	}
 	
 	public static CategoriaFoglia trovaFoglia(Categoria categoria, String nomeFoglia) {
+		CategoriaFoglia foglia;
 		for(Categoria c : categoria.getFigli()) {
-			if(c.getNome().equals(nomeFoglia)) {
+			if(c.getNome().equals(nomeFoglia) && c instanceof CategoriaFoglia) {
 				return (CategoriaFoglia)c;
 			}
-			trovaFoglia(c, nomeFoglia);
+			//Se una sua figlia contiene la foglia fa return
+			foglia = trovaFoglia(c, nomeFoglia);
+			if(foglia instanceof CategoriaFoglia) {
+				return foglia;
+			}
 		}
 		return null;	//messaggio di errore
 	}

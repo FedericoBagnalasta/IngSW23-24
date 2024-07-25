@@ -42,6 +42,7 @@ public class Menu {
 					break;
 				case 6:
 					ConfiguratoreController.visualizzaGerarchie();
+					//Selezione di foglia da mettere in metodo a parte
 					String nomeFoglia = ConfiguratoreView.inserisciFogliaPerFDC();
 					String nomeRadice = ConfiguratoreView.inserisciRadicePerFDC();
 					CategoriaFoglia foglia = ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
