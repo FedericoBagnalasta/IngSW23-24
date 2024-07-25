@@ -29,7 +29,7 @@ public class ConfiguratoreController {
 
 	public void creaGerarchia() {
 		String nomeRadice = ConfiguratoreView.inserisciNomeRadiceGerarchia();
-		
+
 		while(ElencoGerarchie.verificaEsistenzaRadice(nomeRadice)) {
 			ConfiguratoreView.radiceGiaPresente();
 			nomeRadice = ConfiguratoreView.inserisciNomeRadiceGerarchia();
@@ -39,29 +39,26 @@ public class ConfiguratoreController {
 		String campo = ConfiguratoreView.inserisciCampo();
 		ArrayList<ValoreDominio> dominio = creaDominio();
 		Gerarchia nuovaGerarchia = ElencoGerarchie.aggiungiGerarchia(nomeRadice, campo, dominio);
-		
+
 		creaFigliCategoria(nuovaGerarchia.getRadice());//Si occupa di creare la struttura (Foglie e NonFoglie) della gerarchia
 	}
 	
 	private void creaFigliCategoria(Categoria categoriaPadre) {
 		//DEVO POTER SCEGLIERE A QUALE CATEGORIA COLLEGARE IL NUOVO ELEMENTO	
 
-			for(ValoreDominio valore : categoriaPadre.getDominio()) {
-				//E' POSSIBILE NON ASSOCIARE UNA FOGLIA AD UN VALORE DEL DOMINIO
-				if(ConfiguratoreView.richiestaAggiuntaCategoriaFoglia(valore.getValore())) {
-					creaFoglia(categoriaPadre, valore);			
-				}
-				else if(ConfiguratoreView.richiestaAggiuntaCategoriaNonFoglia(valore.getValore())) {
-					CategoriaNonFoglia nonFoglia = creaNonFoglia(categoriaPadre, valore);
-					
-					//CHIAMATA RICORSIVA
-					creaFigliCategoria(nonFoglia);
-					
-					
-				
-				}
+		for(ValoreDominio valore : categoriaPadre.getDominio()) {
+			//E' POSSIBILE NON ASSOCIARE UNA FOGLIA AD UN VALORE DEL DOMINIO
+			if(ConfiguratoreView.richiestaAggiuntaCategoriaFoglia(valore.getValore())) {
+				creaFoglia(categoriaPadre, valore);			
 			}
-			
+			else if(ConfiguratoreView.richiestaAggiuntaCategoriaNonFoglia(valore.getValore())) {
+				CategoriaNonFoglia nonFoglia = creaNonFoglia(categoriaPadre, valore);
+
+				//CHIAMATA RICORSIVA
+				creaFigliCategoria(nonFoglia);		
+
+			}
+		}		
 	}
 	
 	public CategoriaFoglia creaFoglia(Categoria padre, ValoreDominio valore) {
@@ -78,9 +75,9 @@ public class ConfiguratoreController {
 			//ERRORE checkForComodification
 			ElencoFattoriDiConversione.creaFDC_Deducibili(creaFattoreDiConversione(foglia));
 		}
-		
+
 		//DERIVARE TUTTI I FDC POSSIBILI
-		
+
 		return foglia;
 	}
 	
@@ -91,10 +88,10 @@ public class ConfiguratoreController {
 		do {
 			nomeNonFoglia = ConfiguratoreView.inserisciNomeNonFogliaGerarchia();
 		} while(elencoNomiGerarchia.contains(nomeNonFoglia));
-		
+
 		String campo = ConfiguratoreView.inserisciCampo();
 		ArrayList<ValoreDominio> dominio = creaDominio();
-		
+
 		nonFoglia = new CategoriaNonFoglia(nomeNonFoglia, campo, valore, dominio, padre.getCategoriaRadice());
 		padre.getFigli().add(nonFoglia);
 		return nonFoglia;
@@ -106,18 +103,19 @@ public class ConfiguratoreController {
 		double valore;
 		do {
 			visualizzaGerarchie();
-		//METODO PER MOSTRARE LA STRUTTURA DELLA GERARCHIA
+			//METODO PER MOSTRARE LA STRUTTURA DELLA GERARCHIA
 			do {
 				ConfiguratoreView.inserimentoPrimaFoglia();
 				//Impongo che almeno una foglia della fdc sia della nuova gerarchia (ovvero abbia la stessa radice della gerarchia appena creata)
 				f1 = selezionaCategoriaFogliaConRadiceFissata(fogliaNuova.getCategoriaRadice());
 			}while(f1 == null);
-			
+
+
 			do {
 				ConfiguratoreView.inserimentoSecondaFoglia();
 				f2 = selezionaCategoriaFoglia();
 			}while(f2 == null);
-		
+
 			valore = ConfiguratoreView.inserisciValoreFDC();
 			fdcNuovo = new FattoreDiConversione(f1, f2, valore);
 		} while(ElencoFattoriDiConversione.verificaEsistenzaFDC(fdcNuovo) || fdcNuovo.verificaFDCImpossibile());
@@ -129,21 +127,21 @@ public class ConfiguratoreController {
 	public CategoriaFoglia selezionaCategoriaFogliaConRadiceFissata(CategoriaRadice radice) {
 		String nomeFoglia = ConfiguratoreView.inserisciNomeFogliaRicerca();
 		String nomeRadice = ConfiguratoreView.inserisciNomeRadiceRicerca();
-		
+
 		//FORSE Da fin modo da stampare messaggio per fallimento operazione di ricerca
 		CategoriaFoglia foglia = ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
 		if(foglia == null){
 			ConfiguratoreView.fogliaNonTrovata();
 			return null;
 		}
-		
+
 		if(!radice.getNome().equals(nomeRadice)) {
 			ConfiguratoreView.fogliaDiGerarchiaVecchia(radice.getNome());
 			return null;
 		}
-		
+
 		else return foglia;
-		
+
 	}
 	
 	//DA FINIRE
@@ -151,7 +149,7 @@ public class ConfiguratoreController {
 		String nomeFoglia = ConfiguratoreView.inserisciNomeFogliaRicerca();
 		String nomeRadice = ConfiguratoreView.inserisciNomeRadiceRicerca();
 
-		
+
 		//FORSE Da fin modo da stampare messaggio per fallimento operazione di ricerca
 		CategoriaFoglia foglia = ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
 		if(foglia == null){
@@ -164,27 +162,28 @@ public class ConfiguratoreController {
 	public ArrayList<ValoreDominio> creaDominio() {
 		ArrayList<ValoreDominio> dominio = new ArrayList<>();
 		String nomeValore;
-		String descrizione = "Assente";
-		
+		String descrizione;
+
 		do {
+			descrizione = "Assente";
 			nomeValore = ConfiguratoreView.inserisciNomeValoreDominio();
 			if(ConfiguratoreView.richiestaDescrizioneValoreDominio()) {
 				descrizione = ConfiguratoreView.inserisciDescrizioneValoreDominio();	
 			}
 			dominio.add(new ValoreDominio(nomeValore, descrizione));
 		} while(ConfiguratoreView.richiestaNomeValoreDominio());
-		
+
 		return dominio;
 	}
 	
 	public String creaNomeComprensorio() {
 		String nomeComprensorio = ConfiguratoreView.inserisciNomeComprensorio();
-		
+
 		while(ElencoComprensori.verificaEsistenzaComprensorio(nomeComprensorio)) {
 			ConfiguratoreView.comuneGiaPresente();
 			nomeComprensorio = ConfiguratoreView.inserisciNomeComprensorio();
 		};
-		
+
 		return nomeComprensorio;
 	}
 	
@@ -197,7 +196,7 @@ public class ConfiguratoreController {
 			}
 			else elencoComuni.add(nuovoComune);
 		} while(ConfiguratoreView.inserisciAltroComune());
-		
+
 		return elencoComuni;
 	}
 	

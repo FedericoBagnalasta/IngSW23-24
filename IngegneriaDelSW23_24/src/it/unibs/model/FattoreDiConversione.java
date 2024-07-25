@@ -52,7 +52,7 @@ public class FattoreDiConversione {
 	public boolean verificaFDCImpossibile() {
 		if(c1.verificaUguaglianzaFoglie(c2)){
 			return true;
-			}
-		return false;
 		}
+		return false;
+	}
 }

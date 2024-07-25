@@ -10,7 +10,7 @@ public class ElencoFattoriDiConversione {
 		elencoFattoriDiConversione.add(fdC);
 		elencoFattoriDiConversione.add(fdC.creaSimmetrico());
 	}
-	
+
 	public static boolean verificaEsistenzaFDC(FattoreDiConversione fdC) {
 		for(FattoreDiConversione f : elencoFattoriDiConversione) {
 			if(fdC.verificaUguaglianzaFattoriDiConversione(f)) {
@@ -27,36 +27,30 @@ public class ElencoFattoriDiConversione {
 	//Tenere ciclo for non-enhanced per evitare ConcurrentModificationException
 	public static void creaFDC_Deducibili(FattoreDiConversione fdcNuovo) {
 
-		for(FattoreDiConversione fdc : elencoFattoriDiConversione) {
-			if(fdc.getC1().verificaUguaglianzaFoglie(fdcNuovo.getC2())) {
-				aggiungiFDC(new FattoreDiConversione(fdcNuovo.getC1(), fdc.getC2(), fdcNuovo.getValore() * fdc.getValore()));	
+		FattoreDiConversione fdcDedotto;
+		double valore;
 
-				FattoreDiConversione fdcDedotto;
-				double valore;
+		for(int i = 0; i < elencoFattoriDiConversione.size(); i++) {
+			//Crea FDC con primo elemento quello del nuovo fdc e secondo quello di tutti quelli che
+			//hanno al primo elemento lo stesso del secondo elemeto del fdc nuovo
+			// FDCNuovo(c1, C2) fdcvecchio(C2, cx) Risultato: (c1, cx)
+			valore = fdcNuovo.getValore()*elencoFattoriDiConversione.get(i).getValore();
+			//VALORE viene limitato tra 0.5 e 2.0
+			if(valore < 0.5) {
+				valore = 0.5;
+			}
+			if(valore > 2.0) {
+				valore = 2.0;
+			}
 
-				for(int i = 0; i < elencoFattoriDiConversione.size(); i++) {
-					//Crea FDC con primo elemento quello del nuovo fdc e secondo quello di tutti quelli che
-					//hanno al primo elemento lo stesso del secondo elemeto del fdc nuovo
-					// FDCNuovo(c1, C2) fdcvecchio(C2, cx) Risultato: (c1, cx)
-					valore = fdcNuovo.getValore()*elencoFattoriDiConversione.get(i).getValore();
-					//VALORE viene limitato tra 0.5 e 2.0
-					if(valore < 0.5) {
-						valore = 0.5;
-					}
-					if(valore > 2.0) {
-						valore = 2.0;
-					}
+			fdcDedotto = new FattoreDiConversione(fdcNuovo.getC1(), 
+					elencoFattoriDiConversione.get(i).getC2(), 
+					valore);
 
-					fdcDedotto = new FattoreDiConversione(fdcNuovo.getC1(), 
-							elencoFattoriDiConversione.get(i).getC2(), 
-							valore);
-
-					//Controlla che non esista già e che non sia un fdc solo su una foglia
-					if(elencoFattoriDiConversione.get(i).getC1().verificaUguaglianzaFoglie(fdcNuovo.getC2())
-							&& !verificaEsistenzaFDC(fdcDedotto) && !fdcDedotto.getC1().verificaUguaglianzaFoglie(fdcDedotto.getC2())) {
-						aggiungiFDC(fdcDedotto);
-					}
-				}
+			//Controlla che non esista già e che non sia un fdc solo su una foglia
+			if(elencoFattoriDiConversione.get(i).getC1().verificaUguaglianzaFoglie(fdcNuovo.getC2())
+					&& !verificaEsistenzaFDC(fdcDedotto) && !fdcDedotto.getC1().verificaUguaglianzaFoglie(fdcDedotto.getC2())) {
+				aggiungiFDC(fdcDedotto);
 			}
 		}
 	}

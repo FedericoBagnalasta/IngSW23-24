@@ -26,14 +26,14 @@ public class LoginController {
 	public Utente loginConfiguratore(String nome, String password) {
 		boolean isPrimoAccesso = ElencoUtenti.isPrimoAccesso(nome, password);
 		Utente utente;
-		
+
 		if(isPrimoAccesso) {
 			utente = new Utente(nome, password, CONFIGURATORE);
 			cambiaCredenziali(utente);
 			ElencoUtenti.aggiungiUtente(utente);
 			return utente;
 		}
-		
+
 		utente = ElencoUtenti.restituisciUtente(nome, password);
 		if(utente != null) {
 			return utente;
