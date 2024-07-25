@@ -9,7 +9,6 @@ public class Main {
 	public static void main(String[] args) {
 
 		//ClasseXML.caricamentoCompleto();
-
 		LoginController loginController = new LoginController();
 		Utente utente = loginController.loginGenerale();
 
