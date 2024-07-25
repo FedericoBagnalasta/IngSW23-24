@@ -212,6 +212,7 @@ public class ConfiguratoreController {
 		}
 	}
 
+	
 	/*
 	//NON SERVE PIU' (I VALORI VENGONO ASSEGNATI PRIMA DELLA CREAZIONE)
 	/*private ArrayList<ValoreDominio> ottieniValoriDominioDisponibili(Categoria padre){
