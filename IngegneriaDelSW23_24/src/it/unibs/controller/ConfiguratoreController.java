@@ -44,7 +44,7 @@ public class ConfiguratoreController {
 			for(ValoreDominio valore : categoriaPadre.getDominio()) {
 				//E' POSSIBILE NON ASSOCIARE UNA FOGLIA AD UN VALORE DEL DOMINIO
 				if(ConfiguratoreView.richiestaAggiuntaCategoriaFoglia(valore.getValore())) {
-					CategoriaFoglia foglia = creaFoglia(categoriaPadre, valore);			
+					creaFoglia(categoriaPadre, valore);			
 				}
 				else if(ConfiguratoreView.richiestaAggiuntaCategoriaNonFoglia(valore.getValore())) {
 					CategoriaNonFoglia nonFoglia = creaNonFoglia(categoriaPadre, valore);
@@ -94,18 +94,21 @@ public class ConfiguratoreController {
 		return nonFoglia;
 	}
 	
-	public FattoreDiConversione creaFattoreDiConversione(CategoriaFoglia fogliaNuova) {		//LA PRIMA FOGLIA CON CHI FA FDC????
+	public FattoreDiConversione creaFattoreDiConversione(CategoriaFoglia fogliaNuova) {		
 		FattoreDiConversione fdcNuovo;
 		CategoriaFoglia f1, f2;
 		double valore;
 		do {
+			visualizzaGerarchie();
 		//METODO PER MOSTRARE LA STRUTTURA DELLA GERARCHIA
 			do {
+				ConfiguratoreView.inserimentoPrimaFoglia();
 				//Impongo che almeno una foglia della fdc sia della nuova gerarchia (ovvero abbia la stessa radice della gerarchia appena creata)
 				f1 = selezionaCategoriaFogliaConRadiceFissata(fogliaNuova.getCategoriaRadice());
 			}while(f1 == null);
 			
 			do {
+				ConfiguratoreView.inserimentoSecondaFoglia();
 				f2 = selezionaCategoriaFoglia();
 			}while(f2 == null);
 		
@@ -118,7 +121,6 @@ public class ConfiguratoreController {
 	}
 	
 	public CategoriaFoglia selezionaCategoriaFogliaConRadiceFissata(CategoriaRadice radice) {
-		ConfiguratoreView.presentazioneAggiuntaFDC();
 		String nomeFoglia = ConfiguratoreView.inserisciNomeFogliaRicerca();
 		String nomeRadice = ConfiguratoreView.inserisciNomeRadiceRicerca();
 		
@@ -141,7 +143,6 @@ public class ConfiguratoreController {
 	
 	//DA FINIRE
 	public CategoriaFoglia selezionaCategoriaFoglia() {
-		ConfiguratoreView.presentazioneAggiuntaFDC();
 		String nomeFoglia = ConfiguratoreView.inserisciNomeFogliaRicerca();
 		String nomeRadice = ConfiguratoreView.inserisciNomeRadiceRicerca();
 		
@@ -235,18 +236,4 @@ public class ConfiguratoreController {
 			}
 		}
 	}
-
-	
-	/*
-	//NON SERVE PIU' (I VALORI VENGONO ASSEGNATI PRIMA DELLA CREAZIONE)
-	/*private ArrayList<ValoreDominio> ottieniValoriDominioDisponibili(Categoria padre){
-		ArrayList<ValoreDominio> elencoValoriDisponibili = padre.getDominio();
-		ArrayList<ValoreDominio> elencoValoriUsati = new ArrayList<ValoreDominio>();
-		for(Categoria c: padre.getFigli()) {
-			elencoValoriUsati.add(c.getValore());
-		}
-		elencoValoriDisponibili.removeAll(elencoValoriUsati);
-		return elencoValoriDisponibili;
-	}
-	*/
 }

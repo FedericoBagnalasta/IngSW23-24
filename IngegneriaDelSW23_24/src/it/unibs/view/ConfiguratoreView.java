@@ -97,10 +97,6 @@ public class ConfiguratoreView {
 		return InputDati.yesOrNo("Desideri aggiungere una Categoria Foglia a " + dominioNome + "\n");
 	}
 	
-	public static void presentazioneAggiuntaFDC() {
-		System.out.println("CREAZIONE DEI FATTORI DI CONVERSIONE");
-	}
-	
 	public static String inserisciNomeFogliaRicerca() {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome della Categoria Foglia che desideri selezionare\n");
 	}	
@@ -133,6 +129,14 @@ public class ConfiguratoreView {
 
 	public static void fogliaDiGerarchiaVecchia(String nomeRadice) {
 		System.out.println("Attenzione: Devi inserire il nome di una categoria foglia che abbia come radice " + nomeRadice);
+	}
+
+	public static void inserimentoPrimaFoglia() {
+		System.out.println("INSERIMENTO PRIMA FOGLIA");
+	}
+
+	public static void inserimentoSecondaFoglia() {
+		System.out.println("INSERIMENTO SECONDA FOGLIA");
 	}
 
 	

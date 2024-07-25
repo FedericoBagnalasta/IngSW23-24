@@ -21,14 +21,6 @@ public class CategoriaFoglia implements Categoria {
 		this.radice = radice;
 	}
 	
-	/*NON VA PIU' QUI, FDC SPOSTATI IN CLASSE SEPARATA
-	public void aggiungiFattoreDiConversione(CategoriaFoglia c, double valore) {
-		elencoFattoriDiConversione.add(new FattoreDiConversione(c, valore));
-		c.aggiungiFattoreDiConversione(this, 1/valore);//Aggiunto il simmetrico del fattoreDiConversione
-		//Ricerca automatica dei FDC ricavabili da quelli esistenti
-	}
-	*/
-	
 	public boolean verificaUguaglianzaFoglie(CategoriaFoglia foglia) {
 		if(this.getNome().equals(foglia.getNome()) && this.getCategoriaRadice().getNome().equals(foglia.getCategoriaRadice().getNome())) {
 			return true;
@@ -57,7 +49,6 @@ public class CategoriaFoglia implements Categoria {
 	}
 	
 	//Potrebbero restituire null, senza dichiarare gli attributi
-	
 	public ArrayList<ValoreDominio> getDominio() {
 		return dominio;
 	}
