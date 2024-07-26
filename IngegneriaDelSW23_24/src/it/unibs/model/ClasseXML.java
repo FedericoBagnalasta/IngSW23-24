@@ -27,31 +27,27 @@ public class ClasseXML {
 		salvaElencoComprensoriSuXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileComprensori.xml");
 		salvaElencoGerarchieSuXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileGerarchie.xml");
 	}
-	//Bisogna assicurarsi che il metodo per le gerarchie e quello per i comprensori non sovrascrivano
-	//il file (perché non crearne 2?) a vicenda
 	
 	public static void salvaElencoComprensoriSuXML(String filePath) {
 		Document doc = creaFileXML();
-
-		//Salvataggio elencoComprensori (radice)
-		Element rootElement = doc.createElement("elencoComprensori");
-		doc.appendChild(rootElement);
+		
+		Element elementoElencoComprensori = doc.createElement("elencoComprensori");
+		doc.appendChild(elementoElencoComprensori);
 
 		for(Comprensorio comprensorio : ElencoComprensori.getElencoComprensori()) {
-			//Salvataggio comprensorio (figlio della radice)
-			Element nuovoComprensorio = doc.createElement("comprensorio");
-			//Salvataggio nome comprensorio
-			Element nome = doc.createElement("nome");
-			nome.appendChild(doc.createTextNode(comprensorio.getNome()));
-			nuovoComprensorio.appendChild(nome);
+			Element elementoComprensorio = doc.createElement("comprensorio");
+			
+			Element elementoNome = doc.createElement("nome");
+			elementoNome.appendChild(doc.createTextNode(comprensorio.getNome()));
+			elementoComprensorio.appendChild(elementoNome);
 
-			rootElement.appendChild(nuovoComprensorio);
+			elementoElencoComprensori.appendChild(elementoComprensorio);
 
 			for(String comune : comprensorio.getComuniComprensorio()) {
-				//Salvataggio comune (figlio del figlio)
-				Element nomeComune = doc.createElement("comune");
-				nomeComune.appendChild(doc.createTextNode(comune));
-				nuovoComprensorio.appendChild(nomeComune);
+				
+				Element elementoComune = doc.createElement("comune");
+				elementoComune.appendChild(doc.createTextNode(comune));
+				elementoComprensorio.appendChild(elementoComune);
 			}
 		}
 		salvaFileXML(doc, filePath);
@@ -60,103 +56,90 @@ public class ClasseXML {
 	public static void salvaElencoGerarchieSuXML(String filePath) {
 		Document doc = creaFileXML();
 
-		//Salvataggio elencoGerarchie
-		Element elencoGerarchie = doc.createElement("elencoGerarchie");
-		doc.appendChild(elencoGerarchie);
+		Element elementoElencoGerarchie = doc.createElement("elencoGerarchie");
+		doc.appendChild(elementoElencoGerarchie);
 
 		for(Gerarchia gerarchia : ElencoGerarchie.getElencoGerarchie()) {
-			Element nuovaGerarchia = doc.createElement("gerarchia");
+			Element elementoGerarchia = doc.createElement("gerarchia");
 			
-			Element nuovaRadice = salvaCategoriaRadice(gerarchia, doc, nuovaGerarchia);
-			salvaFigliCategoria(gerarchia.getRadice(), doc, nuovaRadice);	
-			nuovaGerarchia.appendChild(nuovaRadice);
+			Element elementoRadice = salvaCategoriaRadice(gerarchia, doc);
+			salvaFigliCategoria(gerarchia.getRadice(), doc, elementoRadice);	
+			elementoGerarchia.appendChild(elementoRadice);
 			
-			elencoGerarchie.appendChild(nuovaGerarchia);
+			elementoElencoGerarchie.appendChild(elementoGerarchia);
 		}
 		salvaFileXML(doc, filePath);
 	}
 	
-	public static Element salvaCategoriaRadice(Gerarchia gerarchia, Document doc, Element nuovaGerarchia) {
-		Element nuovaRadice = doc.createElement("radice");
+	public static Element salvaCategoriaRadice(Gerarchia gerarchia, Document doc) {
+		Element elementoRadice = doc.createElement("radice");
 		
-		Element nomeRadice = doc.createElement("nomeRadice");
-		nomeRadice.appendChild(doc.createTextNode(gerarchia.getRadice().getNome()));
-		nuovaRadice.appendChild(nomeRadice);
+		Element elementoNomeRadice = doc.createElement("nome");
+		elementoNomeRadice.appendChild(doc.createTextNode(gerarchia.getRadice().getNome()));
+		elementoRadice.appendChild(elementoNomeRadice);
 		
-		Element campo = doc.createElement("campo");
-		campo.appendChild(doc.createTextNode(gerarchia.getRadice().getCampo()));
-		nuovaRadice.appendChild(campo);
+		Element elementoCampo = doc.createElement("campo");
+		elementoCampo.appendChild(doc.createTextNode(gerarchia.getRadice().getCampo()));
+		elementoRadice.appendChild(elementoCampo);
 		
-		Element dominio = doc.createElement("dominio");
+		Element elementoDominio = doc.createElement("dominio");
 		for(int i = 0; i < gerarchia.getRadice().getDominio().size(); i++) {
-			salvaValoreDominio(gerarchia.getRadice(), doc, dominio);
+			salvaValoreDominio(gerarchia.getRadice(), doc, elementoDominio);
 		}
-		nuovaRadice.appendChild(dominio);
+		elementoRadice.appendChild(elementoDominio);
 		
-		Element radice = doc.createElement("radice");
-		radice.appendChild(doc.createTextNode(gerarchia.getRadice().getNome()));
-		nuovaRadice.appendChild(radice);
-		
-		return nuovaRadice;
+		return elementoRadice;
 	}
 	
-	public static void salvaCategoriaFoglia(Categoria categoria, Document doc, Element nuovaGerarchia) {
-		salvaValoreDominio(categoria, doc, nuovaGerarchia);
-		
-		Element radice = doc.createElement("radice");
-		radice.appendChild(doc.createTextNode(categoria.getCategoriaRadice().getNome()));
-		nuovaGerarchia.appendChild(radice);
+	public static void salvaCategoriaFoglia(Categoria categoria, Document doc, Element elementoGerarchia) {
+		salvaValoreDominio(categoria, doc, elementoGerarchia);
 	}
 	
-	public static void salvaCategoriaNonFoglia(Categoria categoria, Document doc, Element nuovaGerarchia) {		
-		Element campo = doc.createElement("campo");
-		campo.appendChild(doc.createTextNode(categoria.getCampo()));
-		nuovaGerarchia.appendChild(campo);
+	public static void salvaCategoriaNonFoglia(Categoria categoria, Document doc, Element elementoGerarchia) {		
+		Element elementoCampo = doc.createElement("campo");
+		elementoCampo.appendChild(doc.createTextNode(categoria.getCampo()));
+		elementoGerarchia.appendChild(elementoCampo);
 		
-		Element dominio = doc.createElement("dominio");
+		Element elementoDominio = doc.createElement("dominio");
 		for(int i = 0; i < categoria.getDominio().size(); i++) {
-			salvaValoreDominio(categoria, doc, dominio);
+			salvaValoreDominio(categoria, doc, elementoDominio);
 		}
-		nuovaGerarchia.appendChild(dominio);
+		elementoGerarchia.appendChild(elementoDominio);
 		
-		salvaValoreDominio(categoria, doc, nuovaGerarchia);
-		
-		Element radice = doc.createElement("radice");
-		radice.appendChild(doc.createTextNode(categoria.getCategoriaRadice().getNome()));
-		nuovaGerarchia.appendChild(radice);
+		salvaValoreDominio(categoria, doc, elementoGerarchia);
 	}
 	
-	public static void salvaValoreDominio(Categoria categoria, Document doc, Element nuovaGerarchia) {
-		Element valoreDominio = doc.createElement("valoreDominio");
+	public static void salvaValoreDominio(Categoria categoria, Document doc, Element elementoGerarchia) {
+		Element elementoValoreDominio = doc.createElement("valoreDominio");
 		
-		Element valore = doc.createElement("valore");
-		valore.appendChild(doc.createTextNode(categoria.getValoreDominio().getValore()));
-		valoreDominio.appendChild(valore);
+		Element elementoValore = doc.createElement("valore");
+		elementoValore.appendChild(doc.createTextNode(categoria.getValoreDominio().getValore()));
+		elementoValoreDominio.appendChild(elementoValore);
 		
-		Element descrizione = doc.createElement("descrizione");
-		descrizione.appendChild(doc.createTextNode(categoria.getValoreDominio().getDescrizione()));
-		valoreDominio.appendChild(descrizione);
+		Element elementoDescrizione = doc.createElement("descrizione");
+		elementoDescrizione.appendChild(doc.createTextNode(categoria.getValoreDominio().getDescrizione()));
+		elementoValoreDominio.appendChild(elementoDescrizione);
 
-		nuovaGerarchia.appendChild(valoreDominio);
+		elementoGerarchia.appendChild(elementoValoreDominio);
 	}
 	
-	public static void salvaFigliCategoria(Categoria categoria, Document doc, Element nuovaGerarchia) {
-		for(Categoria categoriaFiglio : categoria.getFigli()) {
+	public static void salvaFigliCategoria(Categoria categoria, Document doc, Element elementoGerarchia) {
+		for(Categoria cat : categoria.getFigli()) {
 			Element nuovaCategoria = doc.createElement("categoria");
 			
-			Element nomeCategoria = doc.createElement("nomeCategoria");
-			nomeCategoria.appendChild(doc.createTextNode(categoriaFiglio.getNome()));
+			Element nomeCategoria = doc.createElement("nome");
+			nomeCategoria.appendChild(doc.createTextNode(cat.getNome()));
 			nuovaCategoria.appendChild(nomeCategoria);
 			
-			if(categoriaFiglio.getTipo().equals("Foglia")) {
-				salvaCategoriaFoglia(categoriaFiglio, doc, nuovaCategoria);
+			if(cat.getTipo().equals("Foglia")) {
+				salvaCategoriaFoglia(cat, doc, nuovaCategoria);
 			}
 			else {
-				salvaCategoriaNonFoglia(categoriaFiglio, doc, nuovaCategoria);
+				salvaCategoriaNonFoglia(cat, doc, nuovaCategoria);
 			}
-			nuovaGerarchia.appendChild(nuovaCategoria);
+			elementoGerarchia.appendChild(nuovaCategoria);
 			
-			salvaFigliCategoria(categoriaFiglio, doc, nuovaCategoria);
+			salvaFigliCategoria(cat, doc, nuovaCategoria);
 		}
 	}
 	
@@ -195,7 +178,7 @@ public class ClasseXML {
 	
 	public static void caricamentoCompleto() {
 		caricaElencoComprensoriDaXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileComprensori.xml");
-		//caricaElencoGerarchieDaXML(filePath);
+		caricaElencoGerarchieDaXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileGerarchie.xml");
 	}
 	
 	public static void caricaElencoComprensoriDaXML(String filePath) {
@@ -210,7 +193,6 @@ public class ClasseXML {
 			if(nodoComprensorio.getNodeType() == Node.ELEMENT_NODE) {
 				Element element = (Element) nodoComprensorio;
 
-				//Caricamento del nome del comprensorio
 				String nome = element.getElementsByTagName("nome").item(0).getTextContent();
 
 				NodeList listaComuni = element.getElementsByTagName("comune");
@@ -218,8 +200,7 @@ public class ClasseXML {
 
 				for(int j = 0; j < listaComuni.getLength(); j++) {
 					Node nodoComune = listaComuni.item(j);
-					if (nodoComune.getNodeType() == Node.ELEMENT_NODE) {
-						//Salvataggio in un arraylist dei comuni del comprensorio
+					if(nodoComune.getNodeType() == Node.ELEMENT_NODE) {
 						comuniComprensorio.add(nodoComune.getTextContent());
 					}
 				}
@@ -227,6 +208,97 @@ public class ClasseXML {
 				ElencoComprensori.getElencoComprensori().add(comprensorio);
 			}
 		}
+	}
+	
+	public static void caricaElencoGerarchieDaXML(String filePath) {
+		Document doc = caricaFileXML(filePath);
+		doc.getDocumentElement().normalize();
+
+		NodeList listaGerarchie = doc.getElementsByTagName("gerarchia");
+
+		for(int i = 0; i < listaGerarchie.getLength(); i++) {
+			Node nodoGerarchia = listaGerarchie.item(i);
+			
+			if(nodoGerarchia.getNodeType() == Node.ELEMENT_NODE) {
+				Element elementoGerarchia = (Element) nodoGerarchia;
+				
+				Node nodoRadice = elementoGerarchia.getFirstChild();
+				if(nodoRadice.getNodeType() == Node.ELEMENT_NODE) {
+					Element elementoRadice = (Element)nodoRadice;
+
+					String nomeRadice = elementoRadice.getElementsByTagName("nome").item(0).getTextContent();
+
+					String campoRadice = elementoRadice.getElementsByTagName("campo").item(0).getTextContent();
+
+					ArrayList<ValoreDominio> dominioRadice = caricaValoriDominio(elementoRadice);
+
+					CategoriaRadice radice = new CategoriaRadice(nomeRadice, campoRadice, dominioRadice);
+
+					NodeList listaFigli = elementoRadice.getElementsByTagName("categoria");
+					ArrayList<Categoria> figliRadice = new ArrayList<>();
+
+					for(int k = 0; k < listaFigli.getLength(); k++) {
+						Node nodoFiglio = listaFigli.item(k);
+						if(nodoFiglio.getNodeType() == Node.ELEMENT_NODE) {
+							Element elementoFiglio = (Element)nodoFiglio;
+
+							//Se ha più di 2 figli è una foglia. Si potrebbe trovare un modo migliore
+							if(elementoFiglio.getChildNodes().getLength() < 3) {
+								figliRadice.add(caricaCategoriaFoglia(elementoFiglio, radice));
+							}
+							else {
+								figliRadice.add(caricaCategoriaNonFoglia(elementoFiglio, radice));
+							}
+						}
+					}
+					Gerarchia gerarchia = new Gerarchia(nomeRadice, campoRadice, dominioRadice, figliRadice);
+					ElencoGerarchie.getElencoGerarchie().add(gerarchia);
+				}
+			}
+		}
+	}
+	
+	public static CategoriaFoglia caricaCategoriaFoglia(Element elemento, CategoriaRadice radice) {
+		String nome = elemento.getElementsByTagName("nome").item(0).getTextContent();
+		
+		ValoreDominio valoreDominio = caricaValoreDominio(elemento.getLastChild());
+		
+		return new CategoriaFoglia(nome, valoreDominio, radice);
+	}
+	
+	public static CategoriaNonFoglia caricaCategoriaNonFoglia(Element elemento, CategoriaRadice radice) {
+		String nome = elemento.getElementsByTagName("nome").item(0).getTextContent();
+		
+		String campo = elemento.getElementsByTagName("campo").item(0).getTextContent();
+		
+		ValoreDominio valoreDominio = caricaValoreDominio(elemento.getLastChild());
+		
+		ArrayList<ValoreDominio> dominio = caricaValoriDominio(elemento);
+		
+		return new CategoriaNonFoglia(nome, campo, valoreDominio, dominio, radice);
+	}
+	
+	public static ValoreDominio caricaValoreDominio(Node node) {
+		Node nodoValoreDominio = node;
+		if(nodoValoreDominio.getNodeType() == Node.ELEMENT_NODE) {
+			Element elementoValoreDominio = (Element)nodoValoreDominio;
+			
+			String valore = elementoValoreDominio.getElementsByTagName("valore").item(0).getTextContent();
+			String descrizione = elementoValoreDominio.getElementsByTagName("descrizione").item(0).getTextContent();
+			
+			return new ValoreDominio(valore, descrizione);
+		}
+		return null;
+	}
+
+	public static ArrayList<ValoreDominio> caricaValoriDominio(Element elemento) {
+		NodeList listaValori = elemento.getElementsByTagName("valoreDominio");
+		ArrayList<ValoreDominio> dominioRadice = new ArrayList<>();
+
+		for(int j = 0; j < listaValori.getLength(); j++) {
+			dominioRadice.add(caricaValoreDominio(listaValori.item(j)));
+		}
+		return dominioRadice;
 	}
 	
 	public static Document caricaFileXML(String filePath) {

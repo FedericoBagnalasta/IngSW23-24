@@ -8,7 +8,6 @@ public class CategoriaRadice implements Categoria {
 	private String campo;
 	private ArrayList<ValoreDominio> dominio = new ArrayList<>();
 	private ArrayList<Categoria> figli = new ArrayList<>();
-	private CategoriaRadice radice;
 	
 	private final ValoreDominio valore = new ValoreDominio("Radice", "Valore dell'elemento radice");
 
@@ -17,7 +16,15 @@ public class CategoriaRadice implements Categoria {
 		this.nome = nome;
 		this.campo = campo;
 		this.dominio = dominio;
-		this.radice = this;
+	}
+	
+	//Costruttore per caricamento da xml
+	public CategoriaRadice(String nome, String campo, ArrayList<ValoreDominio> dominio, ArrayList<Categoria> figli) {
+		super();
+		this.nome = nome;
+		this.campo = campo;
+		this.dominio = dominio;
+		this.figli = figli;
 	}
 	
 	public void aggiungiFiglio(Categoria nuovoFiglio) {
@@ -49,6 +56,6 @@ public class CategoriaRadice implements Categoria {
 	}
 
 	public CategoriaRadice getCategoriaRadice() {
-		return radice;
+		return this;
 	}
 }
