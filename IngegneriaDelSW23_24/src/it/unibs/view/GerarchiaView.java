@@ -86,7 +86,6 @@ public class GerarchiaView {
 
 	public static String inserisciNomeRadiceRicerca() {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome della Categoria Radice che desideri selezionare\n");
-
 	}
 
 	public static void fogliaNonTrovata() {

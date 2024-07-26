@@ -26,6 +26,7 @@ public class ClasseXML {
 	public static void salvataggioCompleto() {
 		salvaElencoComprensoriSuXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileComprensori.xml");
 		salvaElencoGerarchieSuXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileGerarchie.xml");
+		salvaElencoFDCSuXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileFattoriDiConversione.xml");
 	}
 	
 	public static void salvaElencoComprensoriSuXML(String filePath) {
@@ -41,14 +42,38 @@ public class ClasseXML {
 			elementoNome.appendChild(doc.createTextNode(comprensorio.getNome()));
 			elementoComprensorio.appendChild(elementoNome);
 
-			elementoElencoComprensori.appendChild(elementoComprensorio);
-
-			for(String comune : comprensorio.getComuniComprensorio()) {
-				
+			for(String comune : comprensorio.getComuniComprensorio()) {		
 				Element elementoComune = doc.createElement("comune");
 				elementoComune.appendChild(doc.createTextNode(comune));
 				elementoComprensorio.appendChild(elementoComune);
 			}
+			elementoElencoComprensori.appendChild(elementoComprensorio);
+		}
+		salvaFileXML(doc, filePath);
+	}
+	
+	public static void salvaElencoFDCSuXML(String filePath) {
+		Document doc = creaFileXML();
+		
+		Element elementoElencoFDC = doc.createElement("elencoFattoriDiConversione");
+		doc.appendChild(elementoElencoFDC);
+		
+		for(FattoreDiConversione fattore : ElencoFattoriDiConversione.getElencoFattoriDiConversione()) {
+			Element elementoFDC = doc.createElement("fattore");
+			
+			Element elementoFoglia1 = doc.createElement("foglia1");
+			elementoFoglia1.appendChild(doc.createTextNode(fattore.getC1().getNome()));
+			elementoFDC.appendChild(elementoFoglia1);
+			
+			Element elementoValore = doc.createElement("valore");
+			elementoValore.appendChild(doc.createTextNode(String.valueOf(fattore.getValore())));
+			elementoFDC.appendChild(elementoValore);
+			
+			Element elementoFoglia2 = doc.createElement("foglia2");
+			elementoFoglia2.appendChild(doc.createTextNode(fattore.getC2().getNome()));
+			elementoFDC.appendChild(elementoFoglia2);
+			
+			elementoElencoFDC.appendChild(elementoFDC);
 		}
 		salvaFileXML(doc, filePath);
 	}
@@ -243,6 +268,7 @@ public class ClasseXML {
 							Element elementoFiglio = (Element)nodoFiglio;
 
 							//Se ha più di 2 figli è una foglia. Si potrebbe trovare un modo migliore
+							//Ex. inserire e controllare il tipo oppure vedere se ha il figlio campo
 							if(elementoFiglio.getChildNodes().getLength() < 3) {
 								figliRadice.add(caricaCategoriaFoglia(elementoFiglio, radice));
 							}

@@ -20,10 +20,6 @@ public class ElencoFattoriDiConversione {
 		return false;
 	}
 
-	public static ArrayList<FattoreDiConversione> getElencoFattoriDiConversione() {
-		return elencoFattoriDiConversione;
-	}
-
 	//Tenere ciclo for non-enhanced per evitare ConcurrentModificationException
 	public static void creaFDC_Deducibili(FattoreDiConversione fdcNuovo) {
 		FattoreDiConversione fdcDedotto;
@@ -57,5 +53,9 @@ public class ElencoFattoriDiConversione {
 			valore = 2.0;
 		}
 		return valore;
+	}
+	
+	public static ArrayList<FattoreDiConversione> getElencoFattoriDiConversione() {
+		return elencoFattoriDiConversione;
 	}
 }
