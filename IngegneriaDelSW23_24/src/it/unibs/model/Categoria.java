@@ -3,19 +3,17 @@ package it.unibs.model;
 import java.util.ArrayList;
 
 public interface Categoria {
-	
-	//Si potrebbe inserire l'attributo nome
-	
+
 	public String getTipo();
-	
+
 	public ValoreDominio getValoreDominio();
 	
 	public ArrayList<ValoreDominio> getDominio();
-	
+
 	public ArrayList<Categoria> getFigli();
-	
+
 	public String getNome();
-	
+
 	public CategoriaRadice getCategoriaRadice();
 	
 	public String getCampo();
@@ -28,6 +26,4 @@ public interface Categoria {
 		}
 		return nomiGerarchia;
 	}
-
-	
 }

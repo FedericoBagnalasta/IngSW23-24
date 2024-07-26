@@ -27,15 +27,4 @@ public class ElencoComprensori {
 	public static int numeroComprensori() {
 		return elencoComprensori.size();
 	}
-	
-	/*
-	public boolean verificaComune(Comprensorio comprensorio, String comune) {
-		for(String nomeComune : comprensorio.getComuniComprensorio()) {
-			if(nomeComune.equals(comune)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	*/
 }

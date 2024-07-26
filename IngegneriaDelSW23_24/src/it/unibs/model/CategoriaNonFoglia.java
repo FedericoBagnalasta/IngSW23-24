@@ -7,7 +7,9 @@ public class CategoriaNonFoglia implements Categoria {
 	private String nome;
 	private String campo;
 	private ArrayList<ValoreDominio> dominio = new ArrayList<>();
+
 	private ValoreDominio valoreDominio;	//è un elemento del dominio. Eventuale descrizione => creazione classe
+
 	private ArrayList<Categoria> figli = new ArrayList<>();
 	private CategoriaRadice radice;
 
@@ -19,24 +21,11 @@ public class CategoriaNonFoglia implements Categoria {
 		this.dominio = dominio;
 		this.radice = radice;
 	}
-	
-	/*public void aggiungiFiglio(Categoria nuovoFiglio) {
-		figli.add(nuovoFiglio);
-	}
-	*/
-	
-	
-	/*
-	public CategoriaNonFoglia creaNonFoglia(ArrayList<String> dominioPadre, String nome) {
-		
-	}
-	*/
-	
 
 	public String getNome() {
 		return nome;
 	}
-	
+
 	public String getTipo() {
 		return "NonFoglia";
 	}
@@ -44,7 +33,7 @@ public class CategoriaNonFoglia implements Categoria {
 	public String getCampo() {
 		return campo;
 	}
-	
+
 	public ArrayList<ValoreDominio> getDominio() {
 		return dominio;
 	}

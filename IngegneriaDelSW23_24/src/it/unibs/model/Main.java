@@ -7,17 +7,17 @@ import it.unibs.controller.Menu;
 public class Main {
 
 	public static void main(String[] args) {
-		ClasseXML.caricamentoCompleto();
-		
+
+		//ClasseXML.caricamentoCompleto();
 		LoginController loginController = new LoginController();
 		Utente utente = loginController.loginGenerale();
-		
+
 		ConfiguratoreController configuratore;
-		
+
 		if(utente == null) {
 			return;
 		}
-		
+
 		else if(utente.getRuolo() == "Configuratore") {
 			configuratore = new ConfiguratoreController();
 			configuratore.setUtente(utente);

@@ -8,7 +8,7 @@ public class CategoriaRadice implements Categoria {
 	private String campo;
 	private ArrayList<ValoreDominio> dominio = new ArrayList<>();
 	private ArrayList<Categoria> figli = new ArrayList<>();
-	
+
 	private final ValoreDominio valore = new ValoreDominio("Radice", "Valore dell'elemento radice");
 
 	public CategoriaRadice(String nome, String campo, ArrayList<ValoreDominio> dominio) {
@@ -26,7 +26,7 @@ public class CategoriaRadice implements Categoria {
 		this.dominio = dominio;
 		this.figli = figli;
 	}
-	
+
 	public void aggiungiFiglio(Categoria nuovoFiglio) {
 		figli.add(nuovoFiglio);
 	}
@@ -34,7 +34,7 @@ public class CategoriaRadice implements Categoria {
 	public String getNome() {
 		return nome;
 	}
-	
+
 	public String getTipo() {
 		return "Radice";
 	}
@@ -46,11 +46,11 @@ public class CategoriaRadice implements Categoria {
 	public ValoreDominio getValoreDominio() {
 		return valore;
 	}
-	
+
 	public ArrayList<ValoreDominio> getDominio() {
 		return dominio;
 	}
-	
+
 	public ArrayList<Categoria> getFigli() {
 		return figli;
 	}

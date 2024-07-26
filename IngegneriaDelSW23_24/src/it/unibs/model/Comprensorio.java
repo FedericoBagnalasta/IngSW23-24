@@ -6,7 +6,7 @@ public class Comprensorio {
 
 	private String nome;
 	private ArrayList<String> comuniComprensorio = new ArrayList<>();
-	
+
 	public Comprensorio(String name, ArrayList<String> comuniComprensorio) {
 		this.nome = name;
 		this.comuniComprensorio = comuniComprensorio;

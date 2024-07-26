@@ -14,7 +14,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import it.unibs.view.ConfiguratoreView;
+import it.unibs.view.XMLView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -167,7 +167,7 @@ public class ClasseXML {
 			StreamResult result = new StreamResult(new File(filePath));
 			transformer.transform(source, result);
 
-			ConfiguratoreView.salvataggioFileXML();
+			XMLView.salvataggioFileXML();
 
 		} catch(TransformerException tfe) {
 			tfe.printStackTrace();
