@@ -11,7 +11,6 @@ public class Menu {
 	private static final String VISUALIZZA_GERARCHIE = "Visualizza tutte le gerarchie";
 	private static final String VISUALIZZA_FDC = "Visualizza tutti i fattori di conversione di una certa foglia";
 	private static final String SALVA_SU_XML = "Salva i dati sul file xml";
-	
 	private static final String SCELTA = "Scegli l'opzione";
 	
 	public static void menu(ConfiguratoreController configuratore) {
