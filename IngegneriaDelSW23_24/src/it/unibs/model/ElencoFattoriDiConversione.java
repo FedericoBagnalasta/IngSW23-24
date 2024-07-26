@@ -3,9 +3,9 @@ package it.unibs.model;
 import java.util.ArrayList;
 
 public class ElencoFattoriDiConversione {
-	
+
 	private static ArrayList<FattoreDiConversione> elencoFattoriDiConversione = new ArrayList<>();
-	
+
 	public static void aggiungiFDC(FattoreDiConversione fdC) {
 		elencoFattoriDiConversione.add(fdC);
 		elencoFattoriDiConversione.add(fdC.creaSimmetrico());
@@ -23,10 +23,9 @@ public class ElencoFattoriDiConversione {
 	public static ArrayList<FattoreDiConversione> getElencoFattoriDiConversione() {
 		return elencoFattoriDiConversione;
 	}
-	
+
 	//Tenere ciclo for non-enhanced per evitare ConcurrentModificationException
 	public static void creaFDC_Deducibili(FattoreDiConversione fdcNuovo) {
-
 		FattoreDiConversione fdcDedotto;
 		double valore;
 
@@ -35,13 +34,7 @@ public class ElencoFattoriDiConversione {
 			//hanno al primo elemento lo stesso del secondo elemeto del fdc nuovo
 			// FDCNuovo(c1, C2) fdcvecchio(C2, cx) Risultato: (c1, cx)
 			valore = fdcNuovo.getValore()*elencoFattoriDiConversione.get(i).getValore();
-			//VALORE viene limitato tra 0.5 e 2.0
-			if(valore < 0.5) {
-				valore = 0.5;
-			}
-			if(valore > 2.0) {
-				valore = 2.0;
-			}
+			valore = limitaValoreFDC(valore);
 
 			fdcDedotto = new FattoreDiConversione(fdcNuovo.getC1(), 
 					elencoFattoriDiConversione.get(i).getC2(), 
@@ -53,5 +46,15 @@ public class ElencoFattoriDiConversione {
 				aggiungiFDC(fdcDedotto);
 			}
 		}
+	}
+
+	private static double limitaValoreFDC(double valore) {
+		if(valore < 0.5) {
+			valore = 0.5;
+		}
+		if(valore > 2.0) {
+			valore = 2.0;
+		}
+		return valore;
 	}
 }

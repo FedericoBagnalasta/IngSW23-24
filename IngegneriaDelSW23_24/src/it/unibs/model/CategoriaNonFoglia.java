@@ -2,14 +2,12 @@ package it.unibs.model;
 
 import java.util.ArrayList;
 
-import it.unibs.view.ConfiguratoreView;
-
 public class CategoriaNonFoglia implements Categoria {
 
 	private String nome;
 	private String campo;
 	private ArrayList<ValoreDominio> dominio = new ArrayList<>();
-	private ValoreDominio valore;	//è un elemento del dominio. Eventuale descrizione => creazione classe
+	private ValoreDominio valore;	
 	private ArrayList<Categoria> figli = new ArrayList<>();
 	private CategoriaRadice radice;
 
@@ -25,7 +23,7 @@ public class CategoriaNonFoglia implements Categoria {
 	public String getNome() {
 		return nome;
 	}
-	
+
 	public String getTipo() {
 		return "NonFoglia";
 	}
@@ -33,7 +31,7 @@ public class CategoriaNonFoglia implements Categoria {
 	public String getCampo() {
 		return campo;
 	}
-	
+
 	public ArrayList<ValoreDominio> getDominio() {
 		return dominio;
 	}

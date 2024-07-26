@@ -12,7 +12,7 @@ public class LoginController {
 		String ruolo = inserisciRuolo();
 		String nome = LoginView.inserisciNome();
 		String password = LoginView.inserisciPassword();
-		
+
 		if(ruolo.equals(CONFIGURATORE)) {
 			Utente utente = loginConfiguratore(nome, password);
 			return utente;
@@ -47,11 +47,11 @@ public class LoginController {
 	public void cambiaCredenziali(Utente utente) {
 		String nome;
 		String password;
-		
+
 		do {
 			nome = LoginView.inserisciNome();
 		} while(ElencoUtenti.isDuplicato(nome));
-		
+
 		utente.setNome(nome);
 		password = LoginView.inserisciPassword();
 		utente.setPassword(password);
@@ -60,12 +60,12 @@ public class LoginController {
 	public static String inserisciRuolo() {
 		int ruolo;
 		boolean risposta;
-		
+
 		do {
 			ruolo = LoginView.sceltaRuolo();
 			risposta = LoginView.confermaScelta();
 		} while(!risposta);
-		
+
 		if(ruolo == 1) {
 			return CONFIGURATORE;
 		}

@@ -8,11 +8,9 @@ public class CategoriaFoglia implements Categoria {
 	private ValoreDominio valore;
 	private ArrayList<FattoreDiConversione> elencoFattoriDiConversione = new ArrayList<FattoreDiConversione>();
 	private CategoriaRadice radice;
-	
-	//Si potrebbe non dichiararli
 	private final ArrayList<ValoreDominio> dominio = new ArrayList<ValoreDominio>();
 	private final ArrayList<Categoria> figli = new ArrayList<>();
-	
+
 
 	public CategoriaFoglia(String nome, ValoreDominio valore, CategoriaRadice radice) {
 		super();
@@ -20,7 +18,7 @@ public class CategoriaFoglia implements Categoria {
 		this.valore = valore;
 		this.radice = radice;
 	}
-	
+
 	public boolean verificaUguaglianzaFoglie(CategoriaFoglia foglia) {
 		if(this.getNome().equals(foglia.getNome()) && this.getCategoriaRadice().getNome().equals(foglia.getCategoriaRadice().getNome())) {
 			return true;
@@ -31,7 +29,7 @@ public class CategoriaFoglia implements Categoria {
 	public String getNome() {
 		return nome;
 	}
-	
+
 	public String getTipo() {
 		return "Foglia";
 	}
@@ -39,20 +37,20 @@ public class CategoriaFoglia implements Categoria {
 	public ValoreDominio getValore() {
 		return valore;
 	}
-	
+
 	public ArrayList<FattoreDiConversione> getElencoFattoriDiConversione() {
 		return elencoFattoriDiConversione;
 	}
-	
+
 	public CategoriaRadice getCategoriaRadice() {
 		return radice;
 	}
-	
+
 	//Potrebbero restituire null, senza dichiarare gli attributi
 	public ArrayList<ValoreDominio> getDominio() {
 		return dominio;
 	}
-	
+
 	public ArrayList<Categoria> getFigli() {
 		return figli;
 	}
@@ -63,5 +61,4 @@ public class CategoriaFoglia implements Categoria {
 		}
 		return false;
 	}
-
 }
