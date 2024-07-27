@@ -19,6 +19,8 @@ public class ElencoFattoriDiConversione {
 		}
 		return false;
 	}
+	
+	//METTO FUORI UNA CHIAMATA ANCHE AL SIMMETRICO
 
 	//Tenere ciclo for non-enhanced per evitare ConcurrentModificationException
 	public static void creaFDC_Deducibili(FattoreDiConversione fdcNuovo) {
@@ -32,6 +34,7 @@ public class ElencoFattoriDiConversione {
 			valore = fdcNuovo.getValore() * elencoFattoriDiConversione.get(i).getValore();
 
 			valore = limitaValoreFDC(valore);
+
 
 			fdcDedotto = new FattoreDiConversione(fdcNuovo.getC1(), elencoFattoriDiConversione.get(i).getC2(), valore);
 

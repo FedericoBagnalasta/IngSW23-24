@@ -23,4 +23,8 @@ public class LoginView {
 	public static boolean confermaScelta() {
 		return InputDati.yesOrNo("Sei sicuro della tua scelta?\n");
 	}
+
+	public static void faseCambiamentoCredenziali() {
+		System.out.println("Creazione di credenziali personali:");	
+	}
 }

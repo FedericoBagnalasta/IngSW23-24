@@ -21,7 +21,7 @@ public class ElencoUtenti {
 
 	public static boolean isDuplicato(String nome) {
 		for(Utente utente : listaUtenti) {
-			if(utente.getNome() == nome) {
+			if(utente.getNome() == nome && nome != utentePredefinito) {
 				return true;
 			}
 		}
