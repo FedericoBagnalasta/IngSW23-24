@@ -20,6 +20,15 @@ public class ElencoGerarchie {
 		}
 		return false;
 	}
+	
+	public static CategoriaRadice trovaRadice(String nomeRadice) {
+		for(Gerarchia g : elencoGerarchie) {
+			if(g.getRadice().getNome().equals(nomeRadice)) {
+				return g.getRadice();
+			}
+		}
+		return null;
+	}
 
 	public static CategoriaFoglia selezionaFoglia(String nomeFoglia, String nomeRadice) {
 		for(Gerarchia g : elencoGerarchie) {

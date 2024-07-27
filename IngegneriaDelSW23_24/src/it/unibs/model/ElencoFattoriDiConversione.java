@@ -33,13 +33,11 @@ public class ElencoFattoriDiConversione {
 
 			valore = limitaValoreFDC(valore);
 
-			fdcDedotto = new FattoreDiConversione(fdcNuovo.getC1(), 
-					elencoFattoriDiConversione.get(i).getC2(), 
-					valore);
+			fdcDedotto = new FattoreDiConversione(fdcNuovo.getC1(), elencoFattoriDiConversione.get(i).getC2(), valore);
 
 			//Controlla che non esista già e che non sia un fdc solo su una foglia
 			if(elencoFattoriDiConversione.get(i).getC1().verificaUguaglianzaFoglie(fdcNuovo.getC2())
-					&& !verificaEsistenzaFDC(fdcDedotto) && !fdcDedotto.getC1().verificaUguaglianzaFoglie(fdcDedotto.getC2())) {
+					&& !verificaEsistenzaFDC(fdcDedotto) && !fdcDedotto.verificaFDCImpossibile()) {
 				aggiungiFDC(fdcDedotto);
 			}
 		}

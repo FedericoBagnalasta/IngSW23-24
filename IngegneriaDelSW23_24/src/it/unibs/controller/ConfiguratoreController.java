@@ -72,12 +72,10 @@ public class ConfiguratoreController {
 		//CHIEDE SE (FORSE OBBLIGATORIO) VUOLE AGGIUNGERE DEI FATTORI DI CONVERSIONE
 		//Verifica che non venga creato un fdc prima che ci siano almeno 2 foglie
 		if(ElencoGerarchie.dueOpiuFoglie()) {
-			//ERRORE checkForComodification
-			ElencoFattoriDiConversione.creaFDC_Deducibili(creaFattoreDiConversione(foglia));
+			FattoreDiConversione fdcNuovo = creaFattoreDiConversione(foglia);
+			ElencoFattoriDiConversione.creaFDC_Deducibili(fdcNuovo);
+			ElencoFattoriDiConversione.creaFDC_Deducibili(fdcNuovo.creaSimmetrico());
 		}
-
-		//DERIVARE TUTTI I FDC POSSIBILI
-
 		return foglia;
 	}
 
@@ -114,7 +112,7 @@ public class ConfiguratoreController {
 			do {
 				FDCView.inserimentoSecondaFoglia();
 				f2 = selezionaCategoriaFoglia();
-			}while(f2 == null);
+			} while(f2 == null);
 
 			valore = FDCView.inserisciValoreFDC();
 			fdcNuovo = new FattoreDiConversione(f1, f2, valore);
