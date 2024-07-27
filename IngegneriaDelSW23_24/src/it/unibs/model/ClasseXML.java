@@ -24,9 +24,36 @@ public class ClasseXML {
 	//PARTE SALVATAGGIO ======================================================================================
 	
 	public static void salvataggioCompleto() {
+		salvaElencoUtentiSuXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileUtenti.xml");
 		salvaElencoComprensoriSuXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileComprensori.xml");
 		salvaElencoGerarchieSuXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileGerarchie.xml");
 		salvaElencoFDCSuXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileFattoriDiConversione.xml");
+	}
+	
+	public static void salvaElencoUtentiSuXML(String filePath) {
+		Document doc = creaFileXML();
+		
+		Element elementoElencoUtenti = doc.createElement("elencoUtenti");
+		doc.appendChild(elementoElencoUtenti);
+
+		for(Utente utente : ElencoUtenti.getElencoUtenti()) {
+			Element elementoUtente = doc.createElement("utente");
+			
+			Element elementoNome = doc.createElement("nome");
+			elementoNome.appendChild(doc.createTextNode(utente.getNome()));
+			elementoUtente.appendChild(elementoNome);
+			
+			Element elementoPassword = doc.createElement("password");
+			elementoPassword.appendChild(doc.createTextNode(utente.getPassword()));
+			elementoUtente.appendChild(elementoPassword);
+			
+			Element elementoRuolo = doc.createElement("ruolo");
+			elementoRuolo.appendChild(doc.createTextNode(utente.getRuolo()));
+			elementoUtente.appendChild(elementoRuolo);
+			
+			elementoElencoUtenti.appendChild(elementoUtente);
+		}
+		salvaFileXML(doc, filePath);
 	}
 	
 	public static void salvaElencoComprensoriSuXML(String filePath) {
@@ -214,9 +241,33 @@ public class ClasseXML {
 	//PARTE CARICAMENTO ======================================================================================
 	
 	public static void caricamentoCompleto() {
+		caricaElencoUtentiDaXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileUtenti.xml");
 		caricaElencoComprensoriDaXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileComprensori.xml");
 		caricaElencoGerarchieDaXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileGerarchie.xml");
 		caricaElencoFDCDaXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileFattoriDiConversione.xml");
+	}
+	
+	public static void caricaElencoUtentiDaXML(String filePath) {
+		Document doc = caricaFileXML(filePath);
+		doc.getDocumentElement().normalize();
+
+		NodeList listaUtenti = doc.getElementsByTagName("utente");
+
+		for(int i = 0; i < listaUtenti.getLength(); i++) {
+			Node nodoUtente = listaUtenti.item(i);
+			if(nodoUtente.getNodeType() == Node.ELEMENT_NODE) {
+				Element elementoUtente = (Element) nodoUtente;
+
+				String nome = elementoUtente.getElementsByTagName("nome").item(0).getTextContent();
+				
+				String password = elementoUtente.getElementsByTagName("password").item(0).getTextContent();
+				
+				String ruolo = elementoUtente.getElementsByTagName("ruolo").item(0).getTextContent();
+				
+				Utente utente = new Utente(nome, password, ruolo);
+				ElencoUtenti.getElencoUtenti().add(utente);
+			}
+		}
 	}
 	
 	public static void caricaElencoComprensoriDaXML(String filePath) {
@@ -228,11 +279,11 @@ public class ClasseXML {
 		for(int i = 0; i < listaComprensori.getLength(); i++) {
 			Node nodoComprensorio = listaComprensori.item(i);
 			if(nodoComprensorio.getNodeType() == Node.ELEMENT_NODE) {
-				Element element = (Element) nodoComprensorio;
+				Element elementoComprensorio = (Element) nodoComprensorio;
 
-				String nome = element.getElementsByTagName("nome").item(0).getTextContent();
+				String nome = elementoComprensorio.getElementsByTagName("nome").item(0).getTextContent();
 
-				NodeList listaComuni = element.getElementsByTagName("comune");
+				NodeList listaComuni = elementoComprensorio.getElementsByTagName("comune");
 				ArrayList<String> comuniComprensorio = new ArrayList<>();
 
 				for(int j = 0; j < listaComuni.getLength(); j++) {

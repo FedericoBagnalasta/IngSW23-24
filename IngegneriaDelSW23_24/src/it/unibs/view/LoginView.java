@@ -12,8 +12,12 @@ public class LoginView {
 		return InputDati.leggiStringaNonVuota("Inserisci una password\n");
 	}
 
-	public static void messaggioErrore() {
+	public static void msgConfiguratoreInesistente() {
 		System.out.println("Le credenziali inserite non corrispondono a nessun configuratore esistente");
+	}
+	
+	public static void msgConfiguratoreGiaEsistente() {
+		System.out.println("Il nome inserito corrisponde ad un configuratore gia' esistente");
 	}
 
 	public static int sceltaRuolo() {

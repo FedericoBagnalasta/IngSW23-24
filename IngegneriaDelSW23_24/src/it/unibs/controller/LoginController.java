@@ -16,7 +16,7 @@ public class LoginController {
 
 			utente = loginConfiguratore(nome, password);
 
-		}while(utente == null);
+		} while(utente == null);
 		return utente;
 	}
 
@@ -31,13 +31,12 @@ public class LoginController {
 			ElencoUtenti.aggiungiUtente(utente);
 			return utente;
 		}
-
-		utente = ElencoUtenti.restituisciUtente(nome, password);
+		utente = ElencoUtenti.trovaUtente(nome, password);
 		if(utente != null) {
 			return utente;
 		}
 		else {
-			LoginView.messaggioErrore();
+			LoginView.msgConfiguratoreInesistente();
 			return null;
 		}
 	}
@@ -47,15 +46,18 @@ public class LoginController {
 		String password;
 		LoginView.faseCambiamentoCredenziali();
 
-		do {
+		nome = LoginView.inserisciNome();
+		while(ElencoUtenti.isDuplicato(nome)) {
+			LoginView.msgConfiguratoreGiaEsistente();
 			nome = LoginView.inserisciNome();
-		} while(ElencoUtenti.isDuplicato(nome));
-
+		}
+		
 		utente.setNome(nome);
 		password = LoginView.inserisciPassword();
 		utente.setPassword(password);
 	}
 
+	//Nella prima versione non è usato
 	public static String inserisciRuolo() {
 		int ruolo;
 		boolean risposta;
