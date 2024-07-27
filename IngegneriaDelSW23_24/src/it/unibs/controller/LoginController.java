@@ -9,19 +9,17 @@ public class LoginController {
 	private static final String CONFIGURATORE = "Configuratore";
 
 	public Utente loginGenerale() {
-		String ruolo = inserisciRuolo();
-		String nome = LoginView.inserisciNome();
-		String password = LoginView.inserisciPassword();
+		Utente utente;
+		do {
+			String nome = LoginView.inserisciNome();
+			String password = LoginView.inserisciPassword();
 
-		if(ruolo.equals(CONFIGURATORE)) {
-			Utente utente = loginConfiguratore(nome, password);
-			return utente;
-		}
-		else {
-			return null;	//messaggio di errore
-		}
+			utente = loginConfiguratore(nome, password);
+
+		}while(utente == null);
+		return utente;
 	}
-	
+
 	//Si potrebbe distinguere tra accesso e registrazione
 	public Utente loginConfiguratore(String nome, String password) {
 		boolean isPrimoAccesso = ElencoUtenti.isPrimoAccesso(nome, password);
@@ -43,10 +41,11 @@ public class LoginController {
 			return null;
 		}
 	}
-	
+
 	public void cambiaCredenziali(Utente utente) {
 		String nome;
 		String password;
+		LoginView.faseCambiamentoCredenziali();
 
 		do {
 			nome = LoginView.inserisciNome();

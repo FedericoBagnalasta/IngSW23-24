@@ -14,11 +14,7 @@ public class Main {
 
 		ConfiguratoreController configuratore;
 
-		if(utente == null) {
-			return;
-		}
-
-		else if(utente.getRuolo() == "Configuratore") {
+		if(utente.getRuolo() == "Configuratore") {
 			configuratore = new ConfiguratoreController();
 			configuratore.setUtente(utente);
 			Menu.menu(configuratore);
