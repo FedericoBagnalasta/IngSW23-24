@@ -120,7 +120,7 @@ public class ClasseXML {
 		for(Gerarchia gerarchia : ElencoGerarchie.getElencoGerarchie()) {
 			Element elementoGerarchia = doc.createElement("gerarchia");
 			
-			Element elementoRadice = salvaCategoriaRadice(gerarchia, doc);
+			Element elementoRadice = salvaCategoriaRadice(gerarchia.getRadice(), doc);
 			salvaFigliCategoria(gerarchia.getRadice(), doc, elementoRadice);	
 			elementoGerarchia.appendChild(elementoRadice);
 			
@@ -145,21 +145,17 @@ public class ClasseXML {
 		}
 	}
 	
-	public static Element salvaCategoriaRadice(Gerarchia gerarchia, Document doc) {
+	public static Element salvaCategoriaRadice(Categoria categoria, Document doc) {
 		Element elementoRadice = doc.createElement("radice");
 		
-		elementoRadice.appendChild(creaElemento(doc, "nome", gerarchia.getRadice().getNome()));
+		elementoRadice.appendChild(creaElemento(doc, "nome", categoria.getNome()));
 		
-		elementoRadice.appendChild(creaElemento(doc, "campo", gerarchia.getRadice().getCampo()));
+		elementoRadice.appendChild(creaElemento(doc, "campo", categoria.getCampo()));
 		
 		Element elementoDominio = doc.createElement("dominio");
-		/*
-		for(ValoreDominio valore : gerarchia.getRadice().getDominio()) {
+		
+		for(ValoreDominio valore : categoria.getDominio()) {
 			salvaValoreDominio(valore, doc, elementoDominio);
-		}
-		*/
-		for(int i = 0; i < gerarchia.getRadice().getDominio().size(); i++) {
-			salvaValoreDominio(gerarchia.getRadice(), doc, elementoDominio);
 		}
 		elementoRadice.appendChild(elementoDominio);
 		
@@ -171,7 +167,7 @@ public class ClasseXML {
 		
 		elementoGerarchia.appendChild(creaElemento(doc, "radice", categoria.getCategoriaRadice().getNome()));
 		
-		salvaValoreDominio(categoria, doc, elementoGerarchia);
+		salvaValoreDominio(categoria.getValoreDominio(), doc, elementoGerarchia);
 	}
 	
 	public static void salvaCategoriaNonFoglia(Categoria categoria, Document doc, Element elementoGerarchia) {
@@ -180,22 +176,23 @@ public class ClasseXML {
 		elementoGerarchia.appendChild(creaElemento(doc, "campo", categoria.getCampo()));
 		
 		Element elementoDominio = doc.createElement("dominio");
-		for(int i = 0; i < categoria.getDominio().size(); i++) {
-			salvaValoreDominio(categoria, doc, elementoDominio);
+		
+		for(ValoreDominio valore : categoria.getDominio()) {
+			salvaValoreDominio(valore, doc, elementoDominio);
 		}
 		elementoGerarchia.appendChild(elementoDominio);
 		
 		elementoGerarchia.appendChild(creaElemento(doc, "radice", categoria.getCategoriaRadice().getNome()));
 		
-		salvaValoreDominio(categoria, doc, elementoGerarchia);
+		salvaValoreDominio(categoria.getValoreDominio(), doc, elementoGerarchia);
 	}
 	
-	public static void salvaValoreDominio(Categoria categoria, Document doc, Element elementoGerarchia) {
+	public static void salvaValoreDominio(ValoreDominio valoreDominio, Document doc, Element elementoGerarchia) {
 		Element elementoValoreDominio = doc.createElement("valoreDominio");
 		
-		elementoValoreDominio.appendChild(creaElemento(doc, "valore", categoria.getValoreDominio().getValore()));
+		elementoValoreDominio.appendChild(creaElemento(doc, "valore", valoreDominio.getValore()));
 		
-		elementoValoreDominio.appendChild(creaElemento(doc, "descrizione", categoria.getValoreDominio().getDescrizione()));
+		elementoValoreDominio.appendChild(creaElemento(doc, "descrizione", valoreDominio.getDescrizione()));
 
 		elementoGerarchia.appendChild(elementoValoreDominio);
 	}
