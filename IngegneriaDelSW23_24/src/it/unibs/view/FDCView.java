@@ -8,8 +8,9 @@ public class FDCView {
 		return InputDati.leggiDoubleRange("Inserisci un valore tra 0.5 e 2.0 per il Fattore di Conversione\n", 0.5, 2.0);
 	}
 
-	public static void visualizzaFattoreDiConversione(String nomeClasse1, String nomeClasse2, double valore) {
-		System.out.println("Il fattore di conversione tra " + nomeClasse1 + " e " + nomeClasse2 + " vale: " + valore);
+	public static void visualizzaFattoreDiConversione(String nomeClasse1, String nomeRadice1, String nomeClasse2, String nomeRadice2, double valore) {
+		System.out.println("Il fattore di conversione tra " + nomeClasse1 + " (" + nomeRadice1 + ") e "
+								+ nomeClasse2 + " (" + nomeRadice2 + ") vale: " + valore);
 	}
 
 	public static String inserisciFogliaPerFDC() {

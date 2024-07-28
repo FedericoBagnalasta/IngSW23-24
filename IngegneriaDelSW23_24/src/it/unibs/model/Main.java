@@ -7,7 +7,7 @@ import it.unibs.controller.Menu;
 public class Main {
 
 	public static void main(String[] args) {
-		ClasseXML.caricamentoCompleto();
+		GestioneGeneraleXML.caricamentoCompleto();
 		LoginController loginController = new LoginController();
 		Utente utente = loginController.loginGenerale();
 

@@ -245,7 +245,8 @@ public class ConfiguratoreController {
 		}
 		for(FattoreDiConversione fattore : ElencoFattoriDiConversione.getElencoFattoriDiConversione()) {
 			if(fattore.getC1().verificaUguaglianzaFoglie(foglia)) {
-				FDCView.visualizzaFattoreDiConversione(fattore.getC1().getNome(), fattore.getC2().getNome(), fattore.getValore());
+				FDCView.visualizzaFattoreDiConversione(fattore.getC1().getNome(), fattore.getC1().getCategoriaRadice().getNome(),
+						fattore.getC2().getNome(), fattore.getC2().getCategoriaRadice().getNome(), fattore.getValore());
 			}
 		}
 	}

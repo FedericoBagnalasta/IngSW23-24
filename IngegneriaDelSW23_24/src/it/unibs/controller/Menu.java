@@ -1,7 +1,7 @@
 package it.unibs.controller;
 
 import it.unibs.fp.mylib.MyMenu;
-import it.unibs.model.ClasseXML;
+import it.unibs.model.GestioneGeneraleXML;
 
 public class Menu {
 
@@ -40,10 +40,10 @@ public class Menu {
 						configuratore.selezionaCategoriaFogliaPerFDC());
 				break;
 			case 6:
-				ClasseXML.salvataggioCompleto();
+				GestioneGeneraleXML.salvataggioCompleto();
 				break;
 			case 7:
-				ClasseXML.formattazioneCompleta();
+				GestioneGeneraleXML.formattazioneCompleta();
 				break;
 			default:
 				break;
