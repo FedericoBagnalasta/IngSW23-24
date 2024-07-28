@@ -19,13 +19,13 @@ public class CategoriaRadice implements Categoria {
 	}
 	
 	//Costruttore per caricamento da xml
-	public CategoriaRadice(String nome, String campo, ArrayList<ValoreDominio> dominio, ArrayList<Categoria> figli) {
-		super();
-		this.nome = nome;
-		this.campo = campo;
-		this.dominio = dominio;
-		this.figli = figli;
-	}
+		public CategoriaRadice(String nome, String campo, ArrayList<ValoreDominio> dominio, ArrayList<Categoria> figli) {
+			super();
+			this.nome = nome;
+			this.campo = campo;
+			this.dominio = dominio;
+			this.figli = figli;
+		}
 
 	public void aggiungiFiglio(Categoria nuovoFiglio) {
 		figli.add(nuovoFiglio);

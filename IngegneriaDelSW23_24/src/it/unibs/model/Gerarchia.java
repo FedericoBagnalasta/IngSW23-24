@@ -11,6 +11,7 @@ public class Gerarchia {
 	}
 	
 	//Costruttore per caricamento da xml
+	//Sto costruendo una gerarchia con un insieme di figli di radice. E' sbagliato perche' la struttura e' un albero
 	public Gerarchia(String nome, String campo, ArrayList<ValoreDominio> dominio, ArrayList<Categoria> figli) {
 		this.radice = new CategoriaRadice(nome, campo, dominio, figli);
 	}

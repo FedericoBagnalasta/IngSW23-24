@@ -164,11 +164,18 @@ public class ConfiguratoreController {
 		ArrayList<ValoreDominio> dominio = new ArrayList<>();
 		String nomeValore;
 		String descrizione;
+		ArrayList<String> listaNomiValori = new ArrayList<>();
 
 		do {
 			descrizione = "Assente";
-
+			
 			nomeValore = GerarchiaView.inserisciNomeValoreDominio();
+			while(listaNomiValori.contains(nomeValore)) {
+				GerarchiaView.esisteGiaNomeValoreDominio();
+				nomeValore = GerarchiaView.inserisciNomeValoreDominio();
+			}
+			listaNomiValori.add(nomeValore);
+			
 			if(GerarchiaView.richiestaDescrizioneValoreDominio()) {
 				descrizione = GerarchiaView.inserisciDescrizioneValoreDominio();	
 			}
