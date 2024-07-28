@@ -7,7 +7,7 @@ public interface Categoria {
 	public String getTipo();
 
 	public ValoreDominio getValoreDominio();
-	
+
 	public ArrayList<ValoreDominio> getDominio();
 
 	public ArrayList<Categoria> getFigli();
@@ -15,9 +15,9 @@ public interface Categoria {
 	public String getNome();
 
 	public CategoriaRadice getCategoriaRadice();
-	
+
 	public String getCampo();
-	
+
 	default public ArrayList<String> getNomiGerarchia() {
 		ArrayList<String> nomiGerarchia = new ArrayList<>();
 		for(Categoria c : this.getFigli()) {

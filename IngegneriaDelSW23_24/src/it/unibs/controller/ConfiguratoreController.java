@@ -35,21 +35,18 @@ public class ConfiguratoreController {
 		while(ElencoGerarchie.verificaEsistenzaRadice(nomeRadice)) {
 			GerarchiaView.radiceGiaPresente();
 			nomeRadice = GerarchiaView.inserisciNomeRadiceGerarchia();
-
 		}
 
 		String campo = GerarchiaView.inserisciCampo();
 		ArrayList<ValoreDominio> dominio = creaDominio();
 		Gerarchia nuovaGerarchia = ElencoGerarchie.aggiungiGerarchia(nomeRadice, campo, dominio);
 
-		creaFigliCategoria(nuovaGerarchia.getRadice());//Si occupa di creare la struttura (Foglie e NonFoglie) della gerarchia
+		creaFigliCategoria(nuovaGerarchia.getRadice());
 	}
 
 	private void creaFigliCategoria(Categoria categoriaPadre) {
-		//DEVO POTER SCEGLIERE A QUALE CATEGORIA COLLEGARE IL NUOVO ELEMENTO	
 
 		for(ValoreDominio valore : categoriaPadre.getDominio()) {
-			//E' POSSIBILE NON ASSOCIARE UNA FOGLIA AD UN VALORE DEL DOMINIO
 			if(GerarchiaView.richiestaAggiuntaCategoriaFoglia(valore.getValore())) {
 				creaFoglia(categoriaPadre, valore);			
 			}
@@ -64,13 +61,14 @@ public class ConfiguratoreController {
 	public CategoriaFoglia creaFoglia(Categoria padre, ValoreDominio valore) {
 		String nomeFoglia;
 		ArrayList<String> elencoNomiGerarchia = padre.getCategoriaRadice().getNomiGerarchia();
+
 		do {
 			nomeFoglia = GerarchiaView.inserisciNomeFogliaGerarchia();
 		} while(elencoNomiGerarchia.contains(nomeFoglia));
+
 		CategoriaFoglia foglia = new CategoriaFoglia(nomeFoglia, valore, padre.getCategoriaRadice());
 		padre.getFigli().add(foglia);
-		//CHIEDE SE (FORSE OBBLIGATORIO) VUOLE AGGIUNGERE DEI FATTORI DI CONVERSIONE
-		//Verifica che non venga creato un fdc prima che ci siano almeno 2 foglie
+
 		if(ElencoGerarchie.dueOpiuFoglie()) {
 			FattoreDiConversione fdcNuovo = creaFattoreDiConversione(foglia);
 			ElencoFattoriDiConversione.creaFDC_Deducibili(fdcNuovo);
@@ -83,6 +81,7 @@ public class ConfiguratoreController {
 		String nomeNonFoglia;
 		CategoriaNonFoglia nonFoglia;
 		ArrayList<String> elencoNomiGerarchia = padre.getCategoriaRadice().getNomiGerarchia();
+
 		do {
 			nomeNonFoglia = GerarchiaView.inserisciNomeNonFogliaGerarchia();
 		} while(elencoNomiGerarchia.contains(nomeNonFoglia));
@@ -99,15 +98,14 @@ public class ConfiguratoreController {
 		FattoreDiConversione fdcNuovo;
 		CategoriaFoglia f1, f2;
 		double valore;
+
 		do {
 			visualizzaGerarchie();
-			//METODO PER MOSTRARE LA STRUTTURA DELLA GERARCHIA
+
 			do {
 				FDCView.inserimentoPrimaFoglia();
-				//Impongo che almeno una foglia della fdc sia della nuova gerarchia (ovvero abbia la stessa radice della gerarchia appena creata)
 				f1 = selezionaCategoriaFogliaConRadiceFissata(fogliaNuova.getCategoriaRadice());
 			} while(f1 == null);
-
 
 			do {
 				FDCView.inserimentoSecondaFoglia();
@@ -126,7 +124,6 @@ public class ConfiguratoreController {
 		String nomeFoglia = GerarchiaView.inserisciNomeFogliaRicerca();
 		String nomeRadice = GerarchiaView.inserisciNomeRadiceRicerca();
 
-		//FORSE Da fin modo da stampare messaggio per fallimento operazione di ricerca
 		CategoriaFoglia foglia = ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
 		if(foglia == null){
 			GerarchiaView.fogliaNonTrovata();
@@ -137,9 +134,7 @@ public class ConfiguratoreController {
 			FDCView.fogliaDiGerarchiaVecchia(radice.getNome());
 			return null;
 		}
-
 		else return foglia;
-
 	}
 
 	public CategoriaFoglia selezionaCategoriaFoglia() {
@@ -168,14 +163,15 @@ public class ConfiguratoreController {
 
 		do {
 			descrizione = "Assente";
-			
 			nomeValore = GerarchiaView.inserisciNomeValoreDominio();
+
 			while(listaNomiValori.contains(nomeValore)) {
 				GerarchiaView.esisteGiaNomeValoreDominio();
 				nomeValore = GerarchiaView.inserisciNomeValoreDominio();
 			}
+
 			listaNomiValori.add(nomeValore);
-			
+
 			if(GerarchiaView.richiestaDescrizioneValoreDominio()) {
 				descrizione = GerarchiaView.inserisciDescrizioneValoreDominio();	
 			}
@@ -201,6 +197,7 @@ public class ConfiguratoreController {
 
 		do {
 			String nuovoComune = ComprensorioView.inserisciComune();
+
 			if(elencoComuni.contains(nuovoComune)) {
 				ComprensorioView.comuneGiaPresente();
 			}
@@ -239,6 +236,7 @@ public class ConfiguratoreController {
 	}
 
 	public static void visualizzaFattoriDiConversione(CategoriaFoglia foglia) {
+
 		if(foglia == null) {
 			GerarchiaView.fogliaNonTrovata();
 			return;

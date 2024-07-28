@@ -42,7 +42,6 @@ public class CategoriaFoglia implements Categoria {
 		return radice;
 	}
 
-	//Potrebbero restituire null, senza dichiarare gli attributi
 	public ArrayList<ValoreDominio> getDominio() {
 		return dominio;
 	}
@@ -50,7 +49,7 @@ public class CategoriaFoglia implements Categoria {
 	public ArrayList<Categoria> getFigli() {
 		return figli;
 	}
-	
+
 	public String getCampo() {
 		return null;
 	}

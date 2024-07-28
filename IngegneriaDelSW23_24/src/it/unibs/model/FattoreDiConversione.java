@@ -42,11 +42,9 @@ public class FattoreDiConversione {
 		if(!(c12.getNome().equals(c1.getNome()) && c22.getNome().equals(c2.getNome()))) {
 			return false;
 		}
-		//Potrei fare controllo su valore per evitare inconsistenze 
 		return true;
 	}
 
-	//Controlla che non venga messo un fdc su una sola foglia
 	public boolean verificaFDCImpossibile() {
 		if(c1.verificaUguaglianzaFoglie(c2)){
 			return true;

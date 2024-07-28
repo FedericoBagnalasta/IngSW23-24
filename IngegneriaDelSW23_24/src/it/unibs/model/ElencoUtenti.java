@@ -13,6 +13,7 @@ public class ElencoUtenti {
 	}
 
 	public static boolean isPrimoAccesso(String nome, String password) {
+
 		if(nome.equals(utentePredefinito) && password.equals(passwordPredefinita)) {
 			return true;
 		}
@@ -20,6 +21,7 @@ public class ElencoUtenti {
 	}
 
 	public static boolean isDuplicato(String nome) {
+
 		for(Utente utente : elencoUtenti) {
 			if(utente.getNome().equals(nome) || utentePredefinito.equals(nome)) {
 				return true;
@@ -29,6 +31,7 @@ public class ElencoUtenti {
 	}
 
 	public static Utente trovaUtente(String nome, String password) {
+
 		for(Utente utente : getElencoUtenti()) {
 			if(utente.getNome().equals(nome) && utente.getPassword().equals(password)) {
 				return utente;
@@ -39,13 +42,5 @@ public class ElencoUtenti {
 
 	public static ArrayList<Utente> getElencoUtenti() {
 		return elencoUtenti;
-	}
-
-	//Metodo per verificare che un FRUITORE non stia facendo login con le credenziali base
-	public static boolean erratoUsoCredenzialiBase(String nome, String ruolo) {
-		if(nome.equals(utentePredefinito) && ruolo.equals("Fruitore")) {
-			return true;
-		}
-		return false;
 	}
 }

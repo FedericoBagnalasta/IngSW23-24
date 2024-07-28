@@ -10,7 +10,7 @@ public class FDCView {
 
 	public static void visualizzaFattoreDiConversione(String nomeClasse1, String nomeRadice1, String nomeClasse2, String nomeRadice2, double valore) {
 		System.out.println("Il fattore di conversione tra " + nomeClasse1 + " (" + nomeRadice1 + ") e "
-								+ nomeClasse2 + " (" + nomeRadice2 + ") vale: " + valore);
+				+ nomeClasse2 + " (" + nomeRadice2 + ") vale: " + valore);
 	}
 
 	public static String inserisciFogliaPerFDC() {

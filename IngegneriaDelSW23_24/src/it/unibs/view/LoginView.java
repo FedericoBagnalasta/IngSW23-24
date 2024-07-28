@@ -15,7 +15,7 @@ public class LoginView {
 	public static void msgConfiguratoreInesistente() {
 		System.out.println("Le credenziali inserite non corrispondono a nessun configuratore esistente");
 	}
-	
+
 	public static void msgConfiguratoreGiaEsistente() {
 		System.out.println("Il nome inserito corrisponde ad un configuratore gia' esistente");
 	}

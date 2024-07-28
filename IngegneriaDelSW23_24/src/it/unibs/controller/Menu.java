@@ -13,9 +13,10 @@ public class Menu {
 	private static final String SALVA_SU_XML = "Salva i dati sul file xml";
 	private static final String FORMATTA_XML = "Formatta i file xml";
 	private static final String SCELTA = "Scegli l'opzione";
-	
+
 	public static void menu(ConfiguratoreController configuratore) {
-		String[] vociConfiguratore = {CREA_COMPRENSORIO, CREA_GERARCHIA, VISUALIZZA_COMPRENSORI, VISUALIZZA_GERARCHIE, VISUALIZZA_FDC, SALVA_SU_XML, FORMATTA_XML};
+		String[] vociConfiguratore = {CREA_COMPRENSORIO, CREA_GERARCHIA, VISUALIZZA_COMPRENSORI, 
+				VISUALIZZA_GERARCHIE, VISUALIZZA_FDC, SALVA_SU_XML, FORMATTA_XML};
 		int scelta = 0;
 		MyMenu menu = new MyMenu(SCELTA, vociConfiguratore);
 

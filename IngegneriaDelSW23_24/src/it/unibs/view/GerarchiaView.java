@@ -37,7 +37,7 @@ public class GerarchiaView {
 	public static String inserisciNomeValoreDominio() {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome del valore del Dominio\n");
 	}
-	
+
 	public static void esisteGiaNomeValoreDominio() {
 		System.out.println("Esiste gia' un valore del dominio con questo nome");
 	}
