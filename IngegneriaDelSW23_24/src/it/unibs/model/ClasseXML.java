@@ -24,10 +24,10 @@ public class ClasseXML {
 	//PARTE SALVATAGGIO ======================================================================================
 	
 	public static void salvataggioCompleto() {
-		salvaElencoUtentiSuXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileUtenti.xml");
-		salvaElencoComprensoriSuXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileComprensori.xml");
-		salvaElencoGerarchieSuXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileGerarchie.xml");
-		salvaElencoFDCSuXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileFattoriDiConversione.xml");
+		salvaElencoUtentiSuXML("resources/FileUtenti.xml");
+		caricaElencoComprensoriDaXML("resources/FileComprensori.xml");
+		caricaElencoGerarchieDaXML("resources/FileGerarchie.xml");
+		caricaElencoFDCDaXML("resources/FileFattoriDiConversione.xml");
 	}
 	
 	public static void salvaElencoUtentiSuXML(String filePath) {
@@ -241,10 +241,10 @@ public class ClasseXML {
 	//PARTE CARICAMENTO ======================================================================================
 	
 	public static void caricamentoCompleto() {
-		caricaElencoUtentiDaXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileUtenti.xml");
-		caricaElencoComprensoriDaXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileComprensori.xml");
-		caricaElencoGerarchieDaXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileGerarchie.xml");
-		caricaElencoFDCDaXML("/Users/matteokovacic/git/IngSW23-24/IngegneriaDelSW23_24/FileFattoriDiConversione.xml");
+		caricaElencoUtentiDaXML("resources/FileUtenti.xml");
+		caricaElencoComprensoriDaXML("resources/FileComprensori.xml");
+		caricaElencoGerarchieDaXML("resources/FileGerarchie.xml");
+		caricaElencoFDCDaXML("resources/FileFattoriDiConversione.xml");
 	}
 	
 	public static void caricaElencoUtentiDaXML(String filePath) {
