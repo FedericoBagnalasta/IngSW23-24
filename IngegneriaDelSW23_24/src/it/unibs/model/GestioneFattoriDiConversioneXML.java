@@ -50,8 +50,9 @@ public class GestioneFattoriDiConversioneXML {
 
 				CategoriaFoglia foglia1 = null;
 				CategoriaFoglia foglia2 = null;
-
-				Node nodoFoglia1 = elementoFattore.getFirstChild();
+				
+				Node nodoFoglia1 = elementoFattore.getElementsByTagName("foglia1").item(0);
+				
 				if(nodoFoglia1.getNodeType() == Node.ELEMENT_NODE) {
 					Element elementoFoglia1 = (Element) nodoFoglia1;
 
@@ -60,8 +61,9 @@ public class GestioneFattoriDiConversioneXML {
 
 					foglia1 = GestioneGerarchieXML.caricaCategoriaFoglia(elementoFoglia1, radice1);
 				}
-
-				Node nodoFoglia2 = elementoFattore.getLastChild();
+				
+				Node nodoFoglia2 = elementoFattore.getElementsByTagName("foglia2").item(0);
+				
 				if(nodoFoglia2.getNodeType() == Node.ELEMENT_NODE) {
 					Element elementoFoglia2 = (Element) nodoFoglia2;
 
