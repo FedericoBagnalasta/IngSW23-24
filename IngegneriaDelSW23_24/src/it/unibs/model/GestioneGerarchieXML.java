@@ -110,7 +110,7 @@ public class GestioneGerarchieXML {
 			if(nodoGerarchia.getNodeType() == Node.ELEMENT_NODE) {
 				Element elementoGerarchia = (Element) nodoGerarchia;
 				
-				Node nodoRadice = elementoGerarchia.getFirstChild();
+				Node nodoRadice = elementoGerarchia.getElementsByTagName("radice").item(0);
 				if(nodoRadice.getNodeType() == Node.ELEMENT_NODE) {
 					Element elementoRadice = (Element)nodoRadice;
 
@@ -118,7 +118,7 @@ public class GestioneGerarchieXML {
 
 					String campoRadice = elementoRadice.getElementsByTagName("campo").item(0).getTextContent();
 
-					ArrayList<ValoreDominio> dominioRadice = caricaValoriDominio(elementoRadice);
+					ArrayList<ValoreDominio> dominioRadice = caricaValoriDominio(elementoRadice.getElementsByTagName("dominio").item(0));
 
 					CategoriaRadice radice = new CategoriaRadice(nomeRadice, campoRadice, dominioRadice);
 					
@@ -166,7 +166,7 @@ public class GestioneGerarchieXML {
 	public static CategoriaFoglia caricaCategoriaFoglia(Element elemento, CategoriaRadice radice) {
 		String nome = elemento.getElementsByTagName("nome").item(0).getTextContent();
 		
-		ValoreDominio valoreDominio = caricaValoreDominio(elemento.getLastChild());
+		ValoreDominio valoreDominio = caricaValoreDominio(elemento.getElementsByTagName("valoreDominio").item(0));
 		
 		return new CategoriaFoglia(nome, valoreDominio, radice);
 	}
@@ -176,17 +176,16 @@ public class GestioneGerarchieXML {
 		
 		String campo = elemento.getElementsByTagName("campo").item(0).getTextContent();
 		
-		ValoreDominio valoreDominio = caricaValoreDominio(elemento.getLastChild());
+		ValoreDominio valoreDominio = caricaValoreDominio(elemento.getElementsByTagName("valoreDominio").item(0));
 		
-		ArrayList<ValoreDominio> dominio = caricaValoriDominio(elemento);
+		ArrayList<ValoreDominio> dominio = caricaValoriDominio(elemento.getElementsByTagName("dominio").item(0));
 		
 		return new CategoriaNonFoglia(nome, campo, valoreDominio, dominio, radice, figli);
 	}
 	
 	public static ValoreDominio caricaValoreDominio(Node node) {
-		Node nodoValoreDominio = node;
-		if(nodoValoreDominio.getNodeType() == Node.ELEMENT_NODE) {
-			Element elementoValoreDominio = (Element)nodoValoreDominio;
+		if(node.getNodeType() == Node.ELEMENT_NODE) {
+			Element elementoValoreDominio = (Element)node;
 			
 			String valore = elementoValoreDominio.getElementsByTagName("valore").item(0).getTextContent();
 			
@@ -197,12 +196,14 @@ public class GestioneGerarchieXML {
 		return null;
 	}
 
-	public static ArrayList<ValoreDominio> caricaValoriDominio(Element elemento) {
-		NodeList listaValori = elemento.getElementsByTagName("valoreDominio");
+	public static ArrayList<ValoreDominio> caricaValoriDominio(Node node) {
+		NodeList listaValori = node.getChildNodes();
 		ArrayList<ValoreDominio> dominioRadice = new ArrayList<>();
 
 		for(int i = 0; i < listaValori.getLength(); i++) {
-			dominioRadice.add(caricaValoreDominio(listaValori.item(i)));
+			if(listaValori.item(i).getNodeName().equals("valoreDominio")) {
+				dominioRadice.add(caricaValoreDominio(listaValori.item(i)));
+			}
 		}
 		return dominioRadice;
 	}
