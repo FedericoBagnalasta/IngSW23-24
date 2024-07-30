@@ -19,7 +19,7 @@ public class LoginView {
 	public static void msgFruitoreInesistente() {
 		System.out.println("Le credenziali inserite non corrispondono a nessun Fruitore esistente");
 	}
-	
+
 	public static void msgConfiguratoreGiaEsistente() {
 		System.out.println("Esiste gia' un Configuratore con questo nome");
 	}

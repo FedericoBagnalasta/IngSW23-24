@@ -15,6 +15,7 @@ public class ElencoFattoriDiConversione {
 	}
 
 	public static boolean verificaEsistenzaFDC(FattoreDiConversione fdC) {
+
 		for(FattoreDiConversione f : elencoFattoriDiConversione) {
 			if(fdC.verificaUguaglianzaFattoriDiConversione(f)) {
 				return true;
@@ -22,14 +23,13 @@ public class ElencoFattoriDiConversione {
 		}
 		return false;
 	}
-	
+
 	public static void creaFDC_Deducibili(FattoreDiConversione fdcNuovo) {
 		FattoreDiConversione fdcDedotto;
 		double valore;
 
 		for(int i = 0; i < elencoFattoriDiConversione.size(); i++) {
 			valore = fdcNuovo.getValore() * elencoFattoriDiConversione.get(i).getValore();
-
 			valore = limitaValoreFDC(valore);
 
 			fdcDedotto = new FattoreDiConversione(fdcNuovo.getC1(), elencoFattoriDiConversione.get(i).getC2(), valore);
@@ -42,6 +42,7 @@ public class ElencoFattoriDiConversione {
 	}
 
 	private static double limitaValoreFDC(double valore) {
+
 		if(valore < VALORE_MIN_FDC) {
 			valore = VALORE_MIN_FDC;
 		}
@@ -50,7 +51,7 @@ public class ElencoFattoriDiConversione {
 		}
 		return valore;
 	}
-	
+
 	public static ArrayList<FattoreDiConversione> getElencoFattoriDiConversione() {
 		return elencoFattoriDiConversione;
 	}

@@ -17,11 +17,12 @@ public class GestioneUtentiXML {
 	private static final String INDIRIZZO = "indirizzo";
 
 	//PARTE SALVATAGGIO ======================================================================================================
-	
+
 	public static void salvaElencoUtentiSuXML(String filePath) {
 		Document doc = GestioneGeneraleXML.creaFileXML();
 		
 		Element elementoElencoUtenti = doc.createElement(ELENCO_UTENTI);
+
 		doc.appendChild(elementoElencoUtenti);
 
 		for(Utente utente : ElencoUtenti.getElencoUtenti()) {
@@ -58,7 +59,7 @@ public class GestioneUtentiXML {
 	}
 	
 	//PARTE CARICAMENTO ======================================================================================================
-	
+
 	public static void caricaElencoUtentiDaXML(String filePath) {
 		Document doc = GestioneGeneraleXML.caricaFileXML(filePath);
 		doc.getDocumentElement().normalize();
@@ -67,6 +68,7 @@ public class GestioneUtentiXML {
 
 		for(int i = 0; i < listaUtenti.getLength(); i++) {
 			Node nodoUtente = listaUtenti.item(i);
+
 			if(nodoUtente.getNodeType() == Node.ELEMENT_NODE) {
 				Element elementoUtente = (Element) nodoUtente;
 				
@@ -88,6 +90,7 @@ public class GestioneUtentiXML {
 				else {
 					utente = new Utente(nome, password, ruolo);
 				}
+				
 				ElencoUtenti.getElencoUtenti().add(utente);
 			}
 		}

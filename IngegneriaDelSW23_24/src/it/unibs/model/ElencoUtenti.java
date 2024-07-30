@@ -20,6 +20,7 @@ public class ElencoUtenti {
 	}
 
 	public static boolean isDuplicato(String nome) {
+
 		for(Utente utente : elencoUtenti) {
 			if(utente.getNome().equals(nome)) {
 				return true;
@@ -37,6 +38,7 @@ public class ElencoUtenti {
 	}
 
 	public static Utente trovaUtente(String nome, String password) {
+
 		for(Utente utente : getElencoUtenti()) {
 			if(utente.getNome().equals(nome) && utente.getPassword().equals(password)) {
 				return utente;

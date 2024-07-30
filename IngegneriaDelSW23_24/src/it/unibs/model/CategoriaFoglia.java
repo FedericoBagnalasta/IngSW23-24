@@ -50,7 +50,7 @@ public class CategoriaFoglia implements Categoria {
 	public ArrayList<Categoria> getFigli() {
 		return figli;
 	}
-	
+
 	public String getCampo() {
 		return campo;
 	}

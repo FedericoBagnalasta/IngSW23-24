@@ -9,12 +9,12 @@ public class Gerarchia {
 	public Gerarchia(String nome, String campo, ArrayList<ValoreDominio> dominio) {
 		this.radice = new CategoriaRadice(nome, campo, dominio);
 	}
-	
+
 	//Costruttore per caricamento da xml
 	public Gerarchia(String nome, String campo, ArrayList<ValoreDominio> dominio, ArrayList<Categoria> figli) {
 		this.radice = new CategoriaRadice(nome, campo, dominio, figli);
 	}
-	
+
 	public static CategoriaFoglia trovaFoglia(Categoria categoria, String nomeFoglia) {
 		CategoriaFoglia foglia;
 
@@ -23,6 +23,7 @@ public class Gerarchia {
 				return (CategoriaFoglia)c;
 			}
 			foglia = trovaFoglia(c, nomeFoglia);
+
 			if(foglia instanceof CategoriaFoglia) {
 				return foglia;
 			}

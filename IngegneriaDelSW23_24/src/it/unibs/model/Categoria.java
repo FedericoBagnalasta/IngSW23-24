@@ -7,17 +7,17 @@ public interface Categoria {
 	public String getTipo();
 
 	public ValoreDominio getValoreDominio();
-	
+
 	public ArrayList<ValoreDominio> getDominio();
 
 	public ArrayList<Categoria> getFigli();
 
 	public String getNome();
-
+	
 	public CategoriaRadice getRadice();
 	
 	public String getCampo();
-	
+
 	default public ArrayList<String> getNomiGerarchia() {
 		ArrayList<String> nomiGerarchia = new ArrayList<>();
 		for(Categoria c : this.getFigli()) {
@@ -25,5 +25,14 @@ public interface Categoria {
 			c.getNomiGerarchia();
 		}
 		return nomiGerarchia;
+	}
+	
+	default public Categoria selezionaFiglioDalValore(ValoreDominio valoreScelto) {
+		for(Categoria categoriaFiglio : getFigli()) {
+			if(categoriaFiglio.getValoreDominio().verificaUguaglianza(valoreScelto)) {
+				return categoriaFiglio;
+			}
+		}
+		return null;
 	}
 }

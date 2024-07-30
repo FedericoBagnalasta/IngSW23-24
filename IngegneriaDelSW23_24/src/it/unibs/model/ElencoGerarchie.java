@@ -13,6 +13,7 @@ public class ElencoGerarchie {
 	}
 
 	public static boolean verificaEsistenzaRadice(String nomeRadice) {
+
 		for(Gerarchia g : elencoGerarchie) {
 			if(g.getRadice().getNome().equals(nomeRadice)) {
 				return true;
@@ -20,8 +21,9 @@ public class ElencoGerarchie {
 		}
 		return false;
 	}
-	
+
 	public static CategoriaRadice trovaRadice(String nomeRadice) {
+
 		for(Gerarchia g : elencoGerarchie) {
 			if(g.getRadice().getNome().equals(nomeRadice)) {
 				return g.getRadice();
@@ -31,6 +33,7 @@ public class ElencoGerarchie {
 	}
 
 	public static CategoriaFoglia selezionaFoglia(String nomeFoglia, String nomeRadice) {
+
 		for(Gerarchia g : elencoGerarchie) {
 			if(g.getRadice().getNome().equals(nomeRadice)) {
 				return Gerarchia.trovaFoglia(g.getRadice(), nomeFoglia);
@@ -45,9 +48,11 @@ public class ElencoGerarchie {
 
 	public static boolean dueOpiuFoglie() {
 		int count = 0;
+
 		for(Gerarchia g : elencoGerarchie) {
 			count += contaFoglie(g.getRadice().getFigli());
 		}
+
 		if(count > 1) {
 			return true;
 		}
@@ -56,6 +61,7 @@ public class ElencoGerarchie {
 
 	public static int contaFoglie(ArrayList<Categoria> listaCategorie) {
 		int count = 0;
+
 		for(Categoria c : listaCategorie) {
 			if(c instanceof CategoriaFoglia) {
 				count++;

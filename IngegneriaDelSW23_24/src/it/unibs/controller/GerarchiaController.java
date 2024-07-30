@@ -13,7 +13,6 @@ import it.unibs.model.Gerarchia;
 import it.unibs.model.ValoreDominio;
 import it.unibs.view.FDCView;
 import it.unibs.view.GerarchiaView;
-import it.unibs.view.LoginView;
 
 public class GerarchiaController {
 
@@ -24,6 +23,7 @@ public class GerarchiaController {
 			GerarchiaView.msgRadiceGiaPresente();
 			nomeRadice = GerarchiaView.inserisciNomeRadiceGerarchia();
 		}
+
 		String campo = GerarchiaView.inserisciCampo();
 		ArrayList<ValoreDominio> dominio = creaDominio();
 		Gerarchia nuovaGerarchia = ElencoGerarchie.aggiungiGerarchia(nomeRadice, campo, dominio);
@@ -32,8 +32,8 @@ public class GerarchiaController {
 	}
 
 	private void creaFigliCategoria(Categoria categoriaPadre) {
+
 		for(ValoreDominio valore : categoriaPadre.getDominio()) {
-			
 			if(GerarchiaView.richiestaAggiuntaCategoriaFoglia(valore.getValore())) {
 				creaFoglia(categoriaPadre, valore);			
 			}
@@ -48,12 +48,14 @@ public class GerarchiaController {
 	public CategoriaFoglia creaFoglia(Categoria padre, ValoreDominio valore) {
 		String nomeFoglia;
 		ArrayList<String> elencoNomiGerarchia = padre.getRadice().getNomiGerarchia();
+
 		do {
 			nomeFoglia = GerarchiaView.inserisciNomeFogliaGerarchia();
 		} while(elencoNomiGerarchia.contains(nomeFoglia));
+
 		CategoriaFoglia foglia = new CategoriaFoglia(nomeFoglia, valore, padre.getRadice());
 		padre.getFigli().add(foglia);
-		
+
 		if(ElencoGerarchie.dueOpiuFoglie()) {
 			FattoreDiConversione fdcNuovo = creaFattoreDiConversione(foglia);
 			ElencoFattoriDiConversione.creaFDC_Deducibili(fdcNuovo);
@@ -61,33 +63,17 @@ public class GerarchiaController {
 		}
 		return foglia;
 	}
-
-	public CategoriaNonFoglia creaNonFoglia(Categoria padre, ValoreDominio valore) {
-		String nomeNonFoglia;
-		CategoriaNonFoglia nonFoglia;
-		ArrayList<String> elencoNomiGerarchia = padre.getRadice().getNomiGerarchia();
-		do {
-			nomeNonFoglia = GerarchiaView.inserisciNomeNonFogliaGerarchia();
-		} while(elencoNomiGerarchia.contains(nomeNonFoglia));
-
-		String campo = GerarchiaView.inserisciCampo();
-		ArrayList<ValoreDominio> dominio = creaDominio();
-
-		nonFoglia = new CategoriaNonFoglia(nomeNonFoglia, valore, padre.getRadice(), campo, dominio);
-		padre.getFigli().add(nonFoglia);
-		return nonFoglia;
-	}
-
+	
 	public FattoreDiConversione creaFattoreDiConversione(CategoriaFoglia fogliaNuova) {		
 		FattoreDiConversione fdcNuovo;
 		CategoriaFoglia f1, f2;
 		double valore;
+
 		do {
-			visualizzaGerarchie();
-			
+			GerarchiaController.visualizzaGerarchie();
+
 			do {
 				FDCView.inserimentoPrimaFoglia();
-				
 				f1 = selezionaCategoriaFogliaConRadiceFissata(fogliaNuova.getRadice());
 			} while(f1 == null);
 
@@ -104,6 +90,80 @@ public class GerarchiaController {
 		return fdcNuovo;
 	}
 
+	public CategoriaNonFoglia creaNonFoglia(Categoria padre, ValoreDominio valore) {
+		String nomeNonFoglia;
+		CategoriaNonFoglia nonFoglia;
+		ArrayList<String> elencoNomiGerarchia = padre.getRadice().getNomiGerarchia();
+
+		do {
+			nomeNonFoglia = GerarchiaView.inserisciNomeNonFogliaGerarchia();
+		} while(elencoNomiGerarchia.contains(nomeNonFoglia));
+
+		String campo = GerarchiaView.inserisciCampo();
+		ArrayList<ValoreDominio> dominio = creaDominio();
+
+		nonFoglia = new CategoriaNonFoglia(nomeNonFoglia, valore, padre.getRadice(), campo, dominio);
+		padre.getFigli().add(nonFoglia);
+		return nonFoglia;
+	}
+
+	public ArrayList<ValoreDominio> creaDominio() {
+		ArrayList<ValoreDominio> dominio = new ArrayList<>();
+		String nomeValore;
+		String descrizione;
+		ArrayList<String> listaNomiValori = new ArrayList<>();
+
+		do {
+			descrizione = "Assente";
+			nomeValore = GerarchiaView.inserisciNomeValoreDominio();
+
+			while(listaNomiValori.contains(nomeValore)) {
+				GerarchiaView.msgEsisteGiaNomeValoreDominio();
+				nomeValore = GerarchiaView.inserisciNomeValoreDominio();
+			}
+
+			listaNomiValori.add(nomeValore);
+
+			if(GerarchiaView.richiestaDescrizioneValoreDominio()) {
+				descrizione = GerarchiaView.inserisciDescrizioneValoreDominio();	
+			}
+			dominio.add(new ValoreDominio(nomeValore, descrizione));
+		} while(GerarchiaView.richiestaNomeValoreDominio());
+
+		return dominio;
+	}
+
+	public Categoria navigaGerarchiaFinoAFoglia() {
+		if(ElencoGerarchie.getElencoGerarchie().size() == 0) {
+			GerarchiaView.gerarchieAssenti();
+		}
+		CategoriaRadice radice = selezionaRadice();
+		return navigaStrutturaGerarchia(radice);
+	}
+
+	public Categoria navigaStrutturaGerarchia(Categoria padre) {		
+		visualizzaValoriCampo(padre);
+		String nomeValoreScelto = GerarchiaView.inserisciValoreScelto();
+		ValoreDominio valoreScelto = ValoreDominio.selezionaValore(nomeValoreScelto, padre.getDominio());
+
+		while(valoreScelto == null){
+			GerarchiaView.valoreNonTrovato();
+			nomeValoreScelto = GerarchiaView.inserisciValoreScelto();
+			valoreScelto = ValoreDominio.selezionaValore(nomeValoreScelto, padre.getDominio());
+		}
+
+		Categoria categoriaScelta = padre.selezionaFiglioDalValore(valoreScelto);
+
+		if(categoriaScelta instanceof CategoriaFoglia) {
+			GerarchiaView.visualizzaCategoria(categoriaScelta.getNome(), categoriaScelta.getTipo());
+			return categoriaScelta;
+		}
+		else {
+			GerarchiaView.visualizzaCategoria(categoriaScelta.getNome(), categoriaScelta.getTipo());
+			return navigaStrutturaGerarchia(categoriaScelta);
+		}
+	}
+
 	public CategoriaFoglia selezionaCategoriaFogliaConRadiceFissata(CategoriaRadice radice) {
 		String nomeFoglia = GerarchiaView.inserisciNomeFogliaRicerca();
 		String nomeRadice = GerarchiaView.inserisciNomeRadiceRicerca();
@@ -113,11 +173,18 @@ public class GerarchiaController {
 			GerarchiaView.fogliaNonTrovata();
 			return null;
 		}
+
 		if(!radice.getNome().equals(nomeRadice)) {
 			FDCView.msgFogliaDiGerarchiaSbagliata(radice.getNome());
 			return null;
 		}
 		else return foglia;
+	}
+
+	public CategoriaFoglia selezionaCategoriaFogliaPerFDC() {
+		String nomeFoglia = FDCView.inserisciFogliaPerFDC();
+		String nomeRadice = FDCView.inserisciRadicePerFDC();
+		return ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
 	}
 
 	public CategoriaFoglia selezionaCategoriaFoglia() {
@@ -132,37 +199,34 @@ public class GerarchiaController {
 		else return foglia;
 	}
 
-	public CategoriaFoglia selezionaCategoriaFogliaPerFDC() {
-		String nomeFoglia = FDCView.inserisciFogliaPerFDC();
-		String nomeRadice = FDCView.inserisciRadicePerFDC();
-		return ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
+	public CategoriaRadice selezionaRadice() {
+		visualizzaRadici();
+		String nomeRadice = GerarchiaView.inserisciNomeRadiceRicerca();
+
+		while(!ElencoGerarchie.verificaEsistenzaRadice(nomeRadice)) {
+			GerarchiaView.radiceNonEsiste();
+			nomeRadice = GerarchiaView.inserisciNomeRadiceRicerca();
+		}
+		return ElencoGerarchie.trovaRadice(nomeRadice);
 	}
 
-	public ArrayList<ValoreDominio> creaDominio() {
-		ArrayList<ValoreDominio> dominio = new ArrayList<>();
-		String nomeValore;
-		String descrizione;
-		ArrayList<String> listaNomiValori = new ArrayList<>();
-
-		do {
-			descrizione = "Assente";
-			
-			nomeValore = GerarchiaView.inserisciNomeValoreDominio();
-			while(listaNomiValori.contains(nomeValore)) {
-				GerarchiaView.msgEsisteGiaNomeValoreDominio();
-				nomeValore = GerarchiaView.inserisciNomeValoreDominio();
-			}
-			listaNomiValori.add(nomeValore);
-			
-			if(GerarchiaView.richiestaDescrizioneValoreDominio()) {
-				descrizione = GerarchiaView.inserisciDescrizioneValoreDominio();	
-			}
-			dominio.add(new ValoreDominio(nomeValore, descrizione));
-		} while(GerarchiaView.richiestaNomeValoreDominio());
-
-		return dominio;
+	public void visualizzaRadici() {
+		ArrayList<Gerarchia> elencoGerarchie = ElencoGerarchie.getElencoGerarchie();
+		GerarchiaView.introduzioneElencoGerarchie();
+		for(Gerarchia gerarchia : elencoGerarchie) {
+			GerarchiaView.visualizzaNomeRadiceGerarchia(gerarchia.getRadice().getNome());
+		}
 	}
-	
+
+	public static void visualizzaValoriCampo(Categoria categoria) {
+		GerarchiaView.presentazioneValoriDiCampo(categoria.getCampo());
+
+		for(ValoreDominio valore : categoria.getDominio()) {
+			Categoria categoriaFiglio = categoria.selezionaFiglioDalValore(valore);
+			GerarchiaView.visualizzaNomeValore(valore.getValore(), categoriaFiglio.getNome(), categoriaFiglio.getTipo());
+		}
+	}
+
 	public static void visualizzaGerarchie() {
 		for(Gerarchia gerarchia : ElencoGerarchie.getElencoGerarchie()) {
 			GerarchiaView.visualizzaNomeRadiceGerarchia(gerarchia.getRadice().getNome());
@@ -178,6 +242,7 @@ public class GerarchiaController {
 	}
 
 	public static void visualizzaFattoriDiConversione(CategoriaFoglia foglia) {
+
 		if(foglia == null) {
 			GerarchiaView.fogliaNonTrovata();
 			return;

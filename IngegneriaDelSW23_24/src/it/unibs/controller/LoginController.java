@@ -4,7 +4,7 @@ import it.unibs.model.*;
 import it.unibs.view.*;
 
 public class LoginController {
-	
+
 	private static final String FRUITORE = "Fruitore";
 	private static final String CONFIGURATORE = "Configuratore";
 	
@@ -20,7 +20,6 @@ public class LoginController {
 				utente = loginFruitore();
 			}
 		} while(utente == null);
-		
 		return utente;
 	}
 	
@@ -43,6 +42,7 @@ public class LoginController {
 			return utente;
 		}
 		utente = ElencoUtenti.trovaUtente(nome, password);
+
 		if(utente != null) {
 			return utente;
 		}
@@ -102,12 +102,15 @@ public class LoginController {
 		return comprensorio;
 	}
 
+	
 	public void cambiaCredenziali(Utente utente) {
 		String nome;
 		String password;
+		
 		LoginView.msgCambiamentoCredenziali();
 
 		nome = LoginView.inserisciNome();
+
 		while(ElencoUtenti.isDuplicato(nome)) {
 			LoginView.msgConfiguratoreGiaEsistente();
 			nome = LoginView.inserisciNome();
