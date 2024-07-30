@@ -55,7 +55,7 @@ public class LoginController {
 	public Utente loginFruitore(String nome, String password) {
 		Utente utente = ElencoUtenti.trovaUtente(nome, password);
 		
-		////////
+		/////////
 		if(utente.getRuolo() == CONFIGURATORE) {
 			utente = null;
 		}
