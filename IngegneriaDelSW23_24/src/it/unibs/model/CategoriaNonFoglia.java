@@ -23,7 +23,6 @@ public class CategoriaNonFoglia implements Categoria {
 		this.dominio = dominio;
 	}
 
-	//Costruttore per caricamento da xml
 	public CategoriaNonFoglia(String nome, ValoreDominio valore, CategoriaRadice radice,
 			String campo, ArrayList<ValoreDominio> dominio, ArrayList<Categoria> figli) {
 		this.nome = nome;

@@ -20,7 +20,6 @@ public class CategoriaRadice implements Categoria {
 		this.dominio = dominio;
 	}
 
-	//Costruttore per caricamento da xml
 	public CategoriaRadice(String nome, String campo, ArrayList<ValoreDominio> dominio, ArrayList<Categoria> figli) {
 		this.nome = nome;
 		this.campo = campo;

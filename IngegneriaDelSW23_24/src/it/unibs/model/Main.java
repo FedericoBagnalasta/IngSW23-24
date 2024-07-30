@@ -14,7 +14,7 @@ public class Main {
 		GestioneGeneraleXML.caricamentoCompleto();
 		
 		LoginController loginController = new LoginController();
-		Utente utente = loginController.loginGenerale2();
+		Utente utente = loginController.loginGenerale();
 
 		ComprensorioController comprensorio = new ComprensorioController();
 		GerarchiaController gerarchia = new GerarchiaController();

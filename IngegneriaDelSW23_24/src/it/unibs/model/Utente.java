@@ -14,7 +14,6 @@ public class Utente {
 		this.ruolo = ruolo;
 	}
 	
-	//Costruttore per caricamento da xml
 	public Utente(String nome, String password, String ruolo, Comprensorio comprensorio, String indirizzo) {
 		this.nome = nome;
 		this.password = password;

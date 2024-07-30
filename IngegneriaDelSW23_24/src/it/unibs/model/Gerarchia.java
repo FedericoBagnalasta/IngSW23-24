@@ -10,7 +10,6 @@ public class Gerarchia {
 		this.radice = new CategoriaRadice(nome, campo, dominio);
 	}
 
-	//Costruttore per caricamento da xml
 	public Gerarchia(String nome, String campo, ArrayList<ValoreDominio> dominio, ArrayList<Categoria> figli) {
 		this.radice = new CategoriaRadice(nome, campo, dominio, figli);
 	}

@@ -24,7 +24,6 @@ public class GestioneFattoriDiConversioneXML {
 		doc.appendChild(elementoElencoFDC);
 
 		for(FattoreDiConversione fattore : ElencoFattoriDiConversione.getElencoFattoriDiConversione()) {
-
 			Element elementoFDC = doc.createElement(FATTORE);
 			
 			Element elementoFoglia1 = doc.createElement(FOGLIA1);
@@ -62,9 +61,7 @@ public class GestioneFattoriDiConversioneXML {
 				CategoriaFoglia foglia1 = null;
 				CategoriaFoglia foglia2 = null;
 				
-
 				Node nodoFoglia1 = elementoFattore.getElementsByTagName(FOGLIA1).item(0);
-
 				if(nodoFoglia1.getNodeType() == Node.ELEMENT_NODE) {
 					Element elementoFoglia1 = (Element) nodoFoglia1;
 					
@@ -76,7 +73,6 @@ public class GestioneFattoriDiConversioneXML {
 				}
 
 				Node nodoFoglia2 = elementoFattore.getElementsByTagName(FOGLIA2).item(0);
-
 				if(nodoFoglia2.getNodeType() == Node.ELEMENT_NODE) {
 					Element elementoFoglia2 = (Element) nodoFoglia2;
 					

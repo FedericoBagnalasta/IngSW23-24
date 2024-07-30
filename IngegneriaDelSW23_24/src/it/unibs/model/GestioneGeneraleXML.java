@@ -78,7 +78,6 @@ public class GestioneGeneraleXML {
 	}
 
 	public static void salvaFileXML(Document doc, String filePath) {
-
 		try {
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();

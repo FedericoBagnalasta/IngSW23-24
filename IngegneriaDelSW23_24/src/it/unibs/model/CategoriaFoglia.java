@@ -26,6 +26,13 @@ public class CategoriaFoglia implements Categoria {
 		}
 		return false;
 	}
+	
+	public boolean haStessaRadice(CategoriaFoglia fogliaNuova) {
+		if(this.getRadice().getNome().equals(fogliaNuova.getRadice().getNome())) {
+			return true;
+		}
+		return false;
+	}
 
 	public String getNome() {
 		return nome;
@@ -53,12 +60,5 @@ public class CategoriaFoglia implements Categoria {
 
 	public String getCampo() {
 		return campo;
-	}
-
-	public boolean haStessaRadice(CategoriaFoglia fogliaNuova) {
-		if(this.getRadice().getNome().equals(fogliaNuova.getRadice().getNome())) {
-			return true;
-		}
-		return false;
 	}
 }

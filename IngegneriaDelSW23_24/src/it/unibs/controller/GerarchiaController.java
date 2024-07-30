@@ -32,7 +32,6 @@ public class GerarchiaController {
 	}
 
 	private void creaFigliCategoria(Categoria categoriaPadre) {
-
 		for(ValoreDominio valore : categoriaPadre.getDominio()) {
 			if(GerarchiaView.richiestaAggiuntaCategoriaFoglia(valore.getValore())) {
 				creaFoglia(categoriaPadre, valore);			
@@ -135,7 +134,8 @@ public class GerarchiaController {
 
 	public Categoria navigaGerarchiaFinoAFoglia() {
 		if(ElencoGerarchie.getElencoGerarchie().size() == 0) {
-			GerarchiaView.gerarchieAssenti();
+			GerarchiaView.msgGerarchieAssenti();
+			return null;
 		}
 		CategoriaRadice radice = selezionaRadice();
 		return navigaStrutturaGerarchia(radice);
@@ -146,8 +146,8 @@ public class GerarchiaController {
 		String nomeValoreScelto = GerarchiaView.inserisciValoreScelto();
 		ValoreDominio valoreScelto = ValoreDominio.selezionaValore(nomeValoreScelto, padre.getDominio());
 
-		while(valoreScelto == null){
-			GerarchiaView.valoreNonTrovato();
+		while(valoreScelto == null) {
+			GerarchiaView.msgValoreNonTrovato();
 			nomeValoreScelto = GerarchiaView.inserisciValoreScelto();
 			valoreScelto = ValoreDominio.selezionaValore(nomeValoreScelto, padre.getDominio());
 		}
@@ -204,16 +204,15 @@ public class GerarchiaController {
 		String nomeRadice = GerarchiaView.inserisciNomeRadiceRicerca();
 
 		while(!ElencoGerarchie.verificaEsistenzaRadice(nomeRadice)) {
-			GerarchiaView.radiceNonEsiste();
+			GerarchiaView.msgRadiceNonEsiste();
 			nomeRadice = GerarchiaView.inserisciNomeRadiceRicerca();
 		}
 		return ElencoGerarchie.trovaRadice(nomeRadice);
 	}
 
 	public void visualizzaRadici() {
-		ArrayList<Gerarchia> elencoGerarchie = ElencoGerarchie.getElencoGerarchie();
 		GerarchiaView.introduzioneElencoGerarchie();
-		for(Gerarchia gerarchia : elencoGerarchie) {
+		for(Gerarchia gerarchia : ElencoGerarchie.getElencoGerarchie()) {
 			GerarchiaView.visualizzaNomeRadiceGerarchia(gerarchia.getRadice().getNome());
 		}
 	}
@@ -242,7 +241,6 @@ public class GerarchiaController {
 	}
 
 	public static void visualizzaFattoriDiConversione(CategoriaFoglia foglia) {
-
 		if(foglia == null) {
 			GerarchiaView.fogliaNonTrovata();
 			return;

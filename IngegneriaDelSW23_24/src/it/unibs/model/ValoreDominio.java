@@ -13,13 +13,19 @@ public class ValoreDominio {
 	}
 
 	public static ValoreDominio selezionaValore(String valoreScelto, ArrayList<ValoreDominio> arrayValori) {
-
 		for(ValoreDominio valoreEsistente : arrayValori) {
 			if(valoreScelto.equals(valoreEsistente.getValore())){
 				return valoreEsistente;
 			}
 		}
 		return null;
+	}
+	
+	public boolean verificaUguaglianza(ValoreDominio valoreScelto) {
+		if(valore.equals(valoreScelto.getValore()) && descrizione.equals(valoreScelto.getDescrizione())) {
+			return true;
+		}
+		return false;
 	}
 
 	public String getValore() {
@@ -28,12 +34,5 @@ public class ValoreDominio {
 
 	public String getDescrizione() {
 		return descrizione;
-	}
-
-	public boolean verificaUguaglianza(ValoreDominio valoreScelto) {
-		if(valore.equals(valoreScelto.getValore()) && descrizione.equals(valoreScelto.getDescrizione())) {
-			return true;
-		}
-		return false;
 	}
 }

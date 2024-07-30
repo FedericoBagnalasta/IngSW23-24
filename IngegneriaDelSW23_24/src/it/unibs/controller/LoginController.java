@@ -8,11 +8,11 @@ public class LoginController {
 	private static final String FRUITORE = "Fruitore";
 	private static final String CONFIGURATORE = "Configuratore";
 	
-	public Utente loginGenerale2() {
+	public Utente loginGenerale() {
 		Utente utente;
 		
-		String ruolo = inserisciRuolo();
 		do {
+		String ruolo = inserisciRuolo();
 			if(ruolo.equals(CONFIGURATORE)) {
 				utente = loginConfiguratore();
 			}
@@ -74,6 +74,9 @@ public class LoginController {
 		password = LoginView.inserisciPassword();
 
 		Comprensorio comprensorio = scegliComprensorio();
+		if(comprensorio == null) {
+			return null;
+		}
 
 		String indirizzo = inserisciIndirizzo();
 
@@ -88,6 +91,11 @@ public class LoginController {
 	
 	public Comprensorio scegliComprensorio() {
 		Comprensorio comprensorio;
+		
+		if(ElencoComprensori.getElencoComprensori().size() == 0) {
+			ComprensorioView.msgComprensoriAssenti();
+			return null;
+		}
 		
 		ComprensorioController.visualizzaComprensori();
 		String nomeComprensorio = ComprensorioView.inserisciComprensorio();

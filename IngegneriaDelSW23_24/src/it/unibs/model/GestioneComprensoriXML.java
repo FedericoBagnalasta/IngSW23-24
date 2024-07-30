@@ -31,7 +31,6 @@ public class GestioneComprensoriXML {
 	}
 
 	public static void salvaComprensorioSuXML(Document doc, Comprensorio comprensorio, Element elementoPadre) {
-
 		Element elementoComprensorio = doc.createElement(COMPRENSORIO);
 		
 		elementoComprensorio.appendChild(GestioneGeneraleXML.creaElemento(doc, NOME, comprensorio.getNome()));

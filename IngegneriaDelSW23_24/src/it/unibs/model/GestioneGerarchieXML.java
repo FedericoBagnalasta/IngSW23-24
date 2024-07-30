@@ -44,7 +44,6 @@ public class GestioneGerarchieXML {
 	}
 
 	public static void salvaFigliCategoria(Categoria categoria, Document doc, Element elementoGerarchia) {
-
 		for(Categoria cat : categoria.getFigli()) {
 
 			Element nuovaCategoria = doc.createElement(CATEGORIA);
@@ -63,7 +62,6 @@ public class GestioneGerarchieXML {
 	}
 
 	public static Element salvaCategoriaRadice(Categoria categoria, Document doc) {
-
 		Element elementoRadice = doc.createElement(RADICE);
 		
 		elementoRadice.appendChild(GestioneGeneraleXML.creaElemento(doc, NOME, categoria.getNome()));
@@ -82,7 +80,6 @@ public class GestioneGerarchieXML {
 	}
 
 	public static void salvaCategoriaFoglia(Categoria categoria, Document doc, Element elementoGerarchia) {
-
 		elementoGerarchia.appendChild(GestioneGeneraleXML.creaElemento(doc, NOME, categoria.getNome()));
 		
 		elementoGerarchia.appendChild(GestioneGeneraleXML.creaElemento(doc, RADICE, categoria.getRadice().getNome()));
@@ -91,7 +88,6 @@ public class GestioneGerarchieXML {
 	}
 
 	public static void salvaCategoriaNonFoglia(Categoria categoria, Document doc, Element elementoGerarchia) {
-
 		elementoGerarchia.appendChild(GestioneGeneraleXML.creaElemento(doc, NOME, categoria.getNome()));
 		
 		elementoGerarchia.appendChild(GestioneGeneraleXML.creaElemento(doc, CAMPO, categoria.getCampo()));
@@ -111,7 +107,6 @@ public class GestioneGerarchieXML {
 	}
 
 	public static void salvaValoreDominio(ValoreDominio valoreDominio, Document doc, Element elementoGerarchia) {
-
 		Element elementoValoreDominio = doc.createElement(VALORE_DOMINIO);
 		
 		elementoValoreDominio.appendChild(GestioneGeneraleXML.creaElemento(doc, VALORE, valoreDominio.getValore()));
@@ -134,12 +129,10 @@ public class GestioneGerarchieXML {
 			if(nodoGerarchia.getNodeType() == Node.ELEMENT_NODE) {
 				Element elementoGerarchia = (Element) nodoGerarchia;
 
-				
 				Node nodoRadice = elementoGerarchia.getElementsByTagName(RADICE).item(0);
 
 				if(nodoRadice.getNodeType() == Node.ELEMENT_NODE) {
 					Element elementoRadice = (Element)nodoRadice;
-
 
 					String nomeRadice = elementoRadice.getElementsByTagName(NOME).item(0).getTextContent();
 
@@ -194,7 +187,6 @@ public class GestioneGerarchieXML {
 
 	public static CategoriaFoglia caricaCategoriaFoglia(Element elemento, CategoriaRadice radice) {
 		String nome = elemento.getElementsByTagName(NOME).item(0).getTextContent();
-		
 
 		ValoreDominio valoreDominio = caricaValoreDominio(elemento.getElementsByTagName(VALORE_DOMINIO).item(0));
 		
@@ -202,7 +194,6 @@ public class GestioneGerarchieXML {
 	}
 
 	public static CategoriaNonFoglia caricaCategoriaNonFoglia(Element elemento, CategoriaRadice radice, ArrayList<Categoria> figli) {
-
 		String nome = elemento.getElementsByTagName(NOME).item(0).getTextContent();
 		
 		String campo = elemento.getElementsByTagName(CAMPO).item(0).getTextContent();
@@ -215,7 +206,6 @@ public class GestioneGerarchieXML {
 	}
 
 	public static ValoreDominio caricaValoreDominio(Node node) {
-
 		if(node.getNodeType() == Node.ELEMENT_NODE) {
 			Element elementoValoreDominio = (Element)node;
 			
@@ -226,6 +216,7 @@ public class GestioneGerarchieXML {
 			return new ValoreDominio(valore, descrizione);
 		}
 		return null;
+		
 	}
 
 	public static ArrayList<ValoreDominio> caricaValoriDominio(Node node) {

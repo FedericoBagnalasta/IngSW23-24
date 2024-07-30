@@ -3,21 +3,7 @@ package it.unibs.model;
 import java.util.ArrayList;
 
 public interface Categoria {
-
-	public String getTipo();
-
-	public ValoreDominio getValoreDominio();
-
-	public ArrayList<ValoreDominio> getDominio();
-
-	public ArrayList<Categoria> getFigli();
-
-	public String getNome();
 	
-	public CategoriaRadice getRadice();
-	
-	public String getCampo();
-
 	default public ArrayList<String> getNomiGerarchia() {
 		ArrayList<String> nomiGerarchia = new ArrayList<>();
 		for(Categoria c : this.getFigli()) {
@@ -35,4 +21,18 @@ public interface Categoria {
 		}
 		return null;
 	}
+
+	public String getTipo();
+
+	public ValoreDominio getValoreDominio();
+
+	public ArrayList<ValoreDominio> getDominio();
+
+	public ArrayList<Categoria> getFigli();
+
+	public String getNome();
+	
+	public CategoriaRadice getRadice();
+	
+	public String getCampo();
 }

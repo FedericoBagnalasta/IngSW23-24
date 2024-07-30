@@ -15,18 +15,6 @@ public class FattoreDiConversione {
 		this.valore = new BigDecimal(valore).setScale(2, RoundingMode.HALF_EVEN).doubleValue();
 	}
 
-	public CategoriaFoglia getC1() {
-		return c1;
-	}
-
-	public CategoriaFoglia getC2() {
-		return c2;
-	}
-
-	public double getValore() {
-		return valore;
-	}
-
 	public FattoreDiConversione creaSimmetrico() {
 		return new FattoreDiConversione(getC2(), getC1(), 1/getValore());
 	}
@@ -50,5 +38,17 @@ public class FattoreDiConversione {
 			return true;
 		}
 		return false;
+	}
+	
+	public CategoriaFoglia getC1() {
+		return c1;
+	}
+
+	public CategoriaFoglia getC2() {
+		return c2;
+	}
+
+	public double getValore() {
+		return valore;
 	}
 }
