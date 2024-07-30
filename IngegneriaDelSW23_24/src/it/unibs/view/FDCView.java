@@ -9,7 +9,7 @@ public class FDCView {
 	}
 
 	public static void visualizzaFattoreDiConversione(String nomeClasse1, String nomeRadice1, String nomeClasse2, String nomeRadice2, double valore) {
-		System.out.println("Il fattore di conversione tra " + nomeClasse1 + " (" + nomeRadice1 + ") e "
+		System.out.println("Il Fattore di Conversione tra " + nomeClasse1 + " (" + nomeRadice1 + ") e "
 								+ nomeClasse2 + " (" + nomeRadice2 + ") vale: " + valore);
 	}
 
@@ -21,8 +21,8 @@ public class FDCView {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome della Categoria Radice della Gerarchia a cui appartiene la Foglia\n");
 	}
 
-	public static void fogliaDiGerarchiaVecchia(String nomeRadice) {
-		System.out.println("Attenzione: Devi inserire il nome di una categoria foglia che abbia come radice " + nomeRadice);
+	public static void msgFogliaDiGerarchiaSbagliata(String nomeRadice) {
+		System.out.println("Attenzione: Devi inserire il nome di una Categoria Foglia che abbia come Radice " + nomeRadice);
 	}
 
 	public static void inserimentoPrimaFoglia() {

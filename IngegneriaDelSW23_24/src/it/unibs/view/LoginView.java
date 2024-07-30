@@ -5,11 +5,11 @@ import it.unibs.fp.mylib.*;
 public class LoginView {
 
 	public static String inserisciNome() {
-		return InputDati.leggiStringaNonVuota("Inserisci un nome\n");
+		return InputDati.leggiStringaNonVuota("Inserisci un Nome\n");
 	}
 
 	public static String inserisciPassword() {
-		return InputDati.leggiStringaNonVuota("Inserisci una password\n");
+		return InputDati.leggiStringaNonVuota("Inserisci una Password\n");
 	}
 
 	public static void msgConfiguratoreInesistente() {
@@ -37,6 +37,6 @@ public class LoginView {
 	}
 	
 	public static String inserisciIndirizzo() {
-		return InputDati.leggiStringaNonVuota("Inserisci il tuo indirizzo di posta elettronica\n");
+		return InputDati.leggiStringaNonVuota("Inserisci il tuo Indirizzo di posta elettronica\n");
 	}
 }

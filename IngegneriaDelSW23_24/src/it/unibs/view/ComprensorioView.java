@@ -7,10 +7,10 @@ public class ComprensorioView {
 	//PARTE COMPRENSORIO
 
 	public static String inserisciComprensorio() {
-		return InputDati.leggiStringaNonVuota("Inserisci il nome del comprensorio geografico\n");
+		return InputDati.leggiStringaNonVuota("Inserisci il nome del Comprensorio geografico\n");
 	}
 
-	public static void comprensorioGiaPresente() {
+	public static void msgComprensorioGiaPresente() {
 		System.out.println("Esiste già un Comprensorio con questo nome");
 	}
 
@@ -18,8 +18,8 @@ public class ComprensorioView {
 		System.out.println("\nNome Comprensorio: " + nome);
 	}
 	
-	public static void comprensorioNonEsistente() {
-		System.out.println("Il comprensorio inserito non compare nell'elenco");
+	public static void msgComprensorioNonEsistente() {
+		System.out.println("Il Comprensorio inserito non compare nell'elenco");
 	}
 
 	//PARTE COMUNE DEL COMPRENSORIO
@@ -32,7 +32,7 @@ public class ComprensorioView {
 		return InputDati.yesOrNo("Vuoi inserire un altro Comune?\n");
 	}
 
-	public static void comuneGiaPresente() {
+	public static void msgComuneGiaPresente() {
 		System.out.println("Il Comune inserito è già presente in questo Comprensorio");
 	}
 

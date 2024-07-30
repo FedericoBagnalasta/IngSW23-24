@@ -12,7 +12,7 @@ public class ComprensorioController {
 		String nomeComprensorio = ComprensorioView.inserisciComprensorio();
 
 		while(ElencoComprensori.verificaEsistenzaComprensorio(nomeComprensorio)) {
-			ComprensorioView.comuneGiaPresente();
+			ComprensorioView.msgComuneGiaPresente();
 			nomeComprensorio = ComprensorioView.inserisciComprensorio();
 		}
 
@@ -25,7 +25,7 @@ public class ComprensorioController {
 		do {
 			String nuovoComune = ComprensorioView.inserisciComune();
 			if(elencoComuni.contains(nuovoComune)) {
-				ComprensorioView.comuneGiaPresente();
+				ComprensorioView.msgComuneGiaPresente();
 			}
 			else elencoComuni.add(nuovoComune);
 		} while(ComprensorioView.inserisciAltroComune());
@@ -55,7 +55,7 @@ public class ComprensorioController {
 		comprensorio = trovaComprensorio(nomeComprensorio);
 		
 		while(comprensorio == null) {
-			ComprensorioView.comprensorioNonEsistente();
+			ComprensorioView.msgComprensorioNonEsistente();
 			visualizzaComprensori();
 			nomeComprensorio = ComprensorioView.inserisciComprensorio();
 			comprensorio = trovaComprensorio(nomeComprensorio);

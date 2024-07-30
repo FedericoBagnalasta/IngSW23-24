@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public class ElencoFattoriDiConversione {
 
+	private static final double VALORE_MAX_FDC = 2.0;
+	private static final double VALORE_MIN_FDC = 0.5;
+	
 	private static ArrayList<FattoreDiConversione> elencoFattoriDiConversione = new ArrayList<>();
 
 	public static void aggiungiFDC(FattoreDiConversione fdC) {
@@ -39,11 +42,11 @@ public class ElencoFattoriDiConversione {
 	}
 
 	private static double limitaValoreFDC(double valore) {
-		if(valore < 0.5) {
-			valore = 0.5;
+		if(valore < VALORE_MIN_FDC) {
+			valore = VALORE_MIN_FDC;
 		}
-		if(valore > 2.0) {
-			valore = 2.0;
+		if(valore > VALORE_MAX_FDC) {
+			valore = VALORE_MAX_FDC;
 		}
 		return valore;
 	}

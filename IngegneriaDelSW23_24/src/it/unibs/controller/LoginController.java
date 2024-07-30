@@ -94,7 +94,7 @@ public class LoginController {
 		comprensorio = ComprensorioController.trovaComprensorio(nomeComprensorio);
 		
 		while(comprensorio == null) {
-			ComprensorioView.comprensorioNonEsistente();
+			ComprensorioView.msgComprensorioNonEsistente();
 			ComprensorioController.visualizzaComprensori();
 			nomeComprensorio = ComprensorioView.inserisciComprensorio();
 			comprensorio = ComprensorioController.trovaComprensorio(nomeComprensorio);

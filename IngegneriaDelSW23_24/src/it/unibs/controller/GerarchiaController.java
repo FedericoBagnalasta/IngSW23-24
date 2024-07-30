@@ -21,7 +21,7 @@ public class GerarchiaController {
 		String nomeRadice = GerarchiaView.inserisciNomeRadiceGerarchia();
 
 		while(ElencoGerarchie.verificaEsistenzaRadice(nomeRadice)) {
-			GerarchiaView.radiceGiaPresente();
+			GerarchiaView.msgRadiceGiaPresente();
 			nomeRadice = GerarchiaView.inserisciNomeRadiceGerarchia();
 		}
 		String campo = GerarchiaView.inserisciCampo();
@@ -114,7 +114,7 @@ public class GerarchiaController {
 			return null;
 		}
 		if(!radice.getNome().equals(nomeRadice)) {
-			FDCView.fogliaDiGerarchiaVecchia(radice.getNome());
+			FDCView.msgFogliaDiGerarchiaSbagliata(radice.getNome());
 			return null;
 		}
 		else return foglia;
@@ -149,7 +149,7 @@ public class GerarchiaController {
 			
 			nomeValore = GerarchiaView.inserisciNomeValoreDominio();
 			while(listaNomiValori.contains(nomeValore)) {
-				GerarchiaView.esisteGiaNomeValoreDominio();
+				GerarchiaView.msgEsisteGiaNomeValoreDominio();
 				nomeValore = GerarchiaView.inserisciNomeValoreDominio();
 			}
 			listaNomiValori.add(nomeValore);

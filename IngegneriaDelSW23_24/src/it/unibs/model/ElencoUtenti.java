@@ -5,15 +5,15 @@ import java.util.ArrayList;
 public class ElencoUtenti {
 
 	private static ArrayList<Utente> elencoUtenti = new ArrayList<>();
-	private static final String utentePredefinito = "utente";
-	private static final String passwordPredefinita = "password";
+	private static final String UTENTE_PREDEFINITO = "utente";
+	private static final String PASSWORD_PREDEFINITA = "password";
 
 	public static void aggiungiUtente(Utente newCredenziali) {
 		elencoUtenti.add(newCredenziali);	
 	}
 
 	public static boolean isPrimoAccesso(String nome, String password) {
-		if(nome.equals(utentePredefinito) && password.equals(passwordPredefinita)) {
+		if(nome.equals(UTENTE_PREDEFINITO) && password.equals(PASSWORD_PREDEFINITA)) {
 			return true;
 		}
 		return false;
@@ -45,21 +45,14 @@ public class ElencoUtenti {
 		return null;
 	}
 
+	public static boolean erratoUsoCredenzialiBase(String nome) {
+		if(nome.equals(UTENTE_PREDEFINITO)) {
+			return true;
+		}
+		return false;
+	}
+	
 	public static ArrayList<Utente> getElencoUtenti() {
 		return elencoUtenti;
-	}
-	/*
-	public static boolean erratoUsoCredenzialiBase(String nome, String ruolo) {
-		if(nome.equals(utentePredefinito) && ruolo.equals("Fruitore")) {
-			return true;
-		}
-		return false;
-	}
-	*/
-	public static boolean erratoUsoCredenzialiBase(String nome) {
-		if(nome.equals(utentePredefinito)) {
-			return true;
-		}
-		return false;
 	}
 }

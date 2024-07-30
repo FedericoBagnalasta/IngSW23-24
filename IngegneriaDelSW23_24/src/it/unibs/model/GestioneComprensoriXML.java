@@ -8,13 +8,18 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class GestioneComprensoriXML {
+
+	private static final String ELENCO_COMPRENSORI = "elencoComprensori";
+	private static final String COMPRENSORIO = "comprensorio";
+	private static final String NOME = "nome";
+	private static final String COMUNE = "comune";
 	
 	//PARTE SALVATAGGIO ======================================================================================================
 
 	public static void salvaElencoComprensoriSuXML(String filePath) {
 		Document doc = GestioneGeneraleXML.creaFileXML();
 		
-		Element elementoElencoComprensori = doc.createElement("elencoComprensori");
+		Element elementoElencoComprensori = doc.createElement(ELENCO_COMPRENSORI);
 		doc.appendChild(elementoElencoComprensori);
 
 		for(Comprensorio comprensorio : ElencoComprensori.getElencoComprensori()) {
@@ -24,12 +29,12 @@ public class GestioneComprensoriXML {
 	}
 	
 	public static void salvaComprensorioSuXML(Document doc, Comprensorio comprensorio, Element elementoPadre) {
-		Element elementoComprensorio = doc.createElement("comprensorio");
+		Element elementoComprensorio = doc.createElement(COMPRENSORIO);
 		
-		elementoComprensorio.appendChild(GestioneGeneraleXML.creaElemento(doc, "nome", comprensorio.getNome()));
+		elementoComprensorio.appendChild(GestioneGeneraleXML.creaElemento(doc, NOME, comprensorio.getNome()));
 		
 		for(String comune : comprensorio.getComuniComprensorio()) {
-			elementoComprensorio.appendChild(GestioneGeneraleXML.creaElemento(doc, "comune", comune));
+			elementoComprensorio.appendChild(GestioneGeneraleXML.creaElemento(doc, COMUNE, comune));
 		}
 		elementoPadre.appendChild(elementoComprensorio);
 	}
@@ -40,7 +45,7 @@ public class GestioneComprensoriXML {
 		Document doc = GestioneGeneraleXML.caricaFileXML(filePath);
 		doc.getDocumentElement().normalize();
 
-		NodeList listaComprensori = doc.getElementsByTagName("comprensorio");
+		NodeList listaComprensori = doc.getElementsByTagName(COMPRENSORIO);
 
 		for(int i = 0; i < listaComprensori.getLength(); i++) {
 			Node nodoComprensorio = listaComprensori.item(i);
@@ -55,9 +60,9 @@ public class GestioneComprensoriXML {
 	public static Comprensorio caricaComprensorioSuXML(Node nodoComprensorio) {
 		Element elementoComprensorio = (Element)nodoComprensorio;
 
-		String nome = elementoComprensorio.getElementsByTagName("nome").item(0).getTextContent();
+		String nome = elementoComprensorio.getElementsByTagName(NOME).item(0).getTextContent();
 
-		NodeList listaComuni = elementoComprensorio.getElementsByTagName("comune");
+		NodeList listaComuni = elementoComprensorio.getElementsByTagName(COMUNE);
 		ArrayList<String> comuniComprensorio = new ArrayList<>();
 
 		for(int j = 0; j < listaComuni.getLength(); j++) {

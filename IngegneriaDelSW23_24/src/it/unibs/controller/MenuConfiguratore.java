@@ -50,7 +50,7 @@ public class MenuConfiguratore {
 					//Dopo averla fatta, avviare un'altra sessione
 				}
 				else{
-					XMLView.formattazioneNonAvvenuta();
+					XMLView.msgFormattazioneNonAvvenuta();
 				}
 				break;
 			default:
