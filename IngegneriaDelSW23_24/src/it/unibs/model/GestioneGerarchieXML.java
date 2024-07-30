@@ -98,6 +98,8 @@ public class GestioneGerarchieXML {
 		
 		Element elementoDominio = doc.createElement(DOMINIO);
 		
+		salvaValoreDominio(categoria.getValoreDominio(), doc, elementoGerarchia);
+		
 		for(ValoreDominio valore : categoria.getDominio()) {
 			salvaValoreDominio(valore, doc, elementoDominio);
 		}
@@ -106,7 +108,6 @@ public class GestioneGerarchieXML {
 		
 		elementoGerarchia.appendChild(GestioneGeneraleXML.creaElemento(doc, RADICE, categoria.getRadice().getNome()));
 		
-		salvaValoreDominio(categoria.getValoreDominio(), doc, elementoGerarchia);
 	}
 
 	public static void salvaValoreDominio(ValoreDominio valoreDominio, Document doc, Element elementoGerarchia) {
