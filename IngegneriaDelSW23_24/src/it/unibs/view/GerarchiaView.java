@@ -12,10 +12,6 @@ public class GerarchiaView {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome della Categoria Radice della Gerarchia\n");
 	}
 
-	public static void visualizzaNomeRadiceGerarchia(Gerarchia gerarchia) {
-		System.out.println("\nRadice Gerarchia: " + gerarchia.getRadice().getNome());
-	}
-
 	public static void visualizzaNomeRadiceGerarchia(String nomeRadice) {
 		System.out.println("\nRadice gerarchia: " + nomeRadice);
 	}
@@ -56,9 +52,9 @@ public class GerarchiaView {
 
 	//PARTE CATEGORIA
 
-	public static void visualizzaNomeFiglioCategoria(Categoria categoria, Gerarchia gerarchia) {
+	/*public static void visualizzaNomeFiglioCategoria(Categoria categoria, Gerarchia gerarchia) {
 		System.out.println("Figlio di " + gerarchia.getRadice().getNome() + ": " + categoria.getNome());
-	}
+	}*/
 
 	public static boolean richiestaContinuazioneStruttura() {
 		return InputDati.yesOrNo("Desideri aggiungere un altro figlio alla Gerarchia?\n");
@@ -94,5 +90,42 @@ public class GerarchiaView {
 
 	public static void fogliaNonTrovata() {
 		System.out.println("La Categoria Foglia selezionata non esiste");
+	}
+
+	public static void introduzioneElencoGerarchie() {
+		System.out.println("Elenco delle gerarchie disponibili:");	
+	}
+
+	public static void radiceNonEsiste() {
+		System.out.println("La radice selezionata non esiste");
+	}
+	
+	public static void presentazioneValoriDiCampo(String nomeCampo) {
+		System.out.println("I Valori disponibili relativi al campo " + nomeCampo + " sono:");
+	}
+
+	public static void visualizzaNomeValore(String valore, String nomeCategoria, String tipo) {
+		System.out.println("Valore: "+ valore + ", Associato a: " + nomeCategoria + " (" + tipo + ")");
+	}
+	
+	public static void visualizzaNomeValoreSenzaCategoria(String valore) {
+		System.out.println("Valore: " + valore + ", Non associato a nessuna Categoria");
+		
+	}
+	
+	public static String inserisciValoreScelto() {
+		return InputDati.leggiStringaNonVuota("Inserisci il valore che desideri selezionare");
+	}
+
+	public static void valoreNonTrovato() {
+		System.out.println("Il valore selezionato non esiste");
+	}
+
+	public static void valoreNonAssociatoACategoria() {
+		System.out.println("Questo valore non è associato a nessuna categoria");
+	}
+
+	public static void visualizzaCategoria(String nome, String tipo) {
+		System.out.println("Categoria: " + nome + " di tipo " + tipo);
 	}
 }

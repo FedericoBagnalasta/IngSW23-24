@@ -13,8 +13,27 @@ public class Menu {
 	private static final String SALVA_SU_XML = "Salva i dati sul file xml";
 	private static final String FORMATTA_XML = "Formatta i file xml";
 	private static final String SCELTA = "Scegli l'opzione";
+	private static final String NAVIGA_GERARCHIA = "Naviga all'interno di una gerarchia a scelta per trovare una foglia";
+	
+	public static void menuFruitore(ComprensorioController comprensorioController, GerarchiaController gerarchiaController) {
+		String[] vociFruitore = {NAVIGA_GERARCHIA};
+		int scelta = 0;
+		MyMenu menu = new MyMenu(SCELTA, vociFruitore);
 
-	public static void menu(ConfiguratoreController configuratore) {
+		do {
+			scelta = menu.scegli();
+			switch(scelta) {
+			case 1:
+				//METODO PER NAVIGARE IN GERARCHIA
+				//gerarchiaController.navigaGerarchiaFinoAFoglia();
+				break;
+			default:
+				break;
+			}
+		} while(scelta != 0);
+	}
+
+	public static void menuConfiguratore(ComprensorioController comprensorioController, GerarchiaController gerarchiaController) {
 		String[] vociConfiguratore = {CREA_COMPRENSORIO, CREA_GERARCHIA, VISUALIZZA_COMPRENSORI, 
 				VISUALIZZA_GERARCHIE, VISUALIZZA_FDC, SALVA_SU_XML, FORMATTA_XML};
 		int scelta = 0;
@@ -24,21 +43,21 @@ public class Menu {
 			scelta = menu.scegli();
 			switch(scelta) {
 			case 1:
-				configuratore.creaComprensorio();
+				comprensorioController.creaComprensorio();
 				break;
 			case 2:
-				configuratore.creaGerarchia();
+				gerarchiaController.creaGerarchia();
 				break;
 			case 3:
-				ConfiguratoreController.visualizzaComprensori();
+				ComprensorioController.visualizzaComprensori();
 				break;
 			case 4:
-				ConfiguratoreController.visualizzaGerarchie();
+				GerarchiaController.visualizzaGerarchie();
 				break;
 			case 5:
-				ConfiguratoreController.visualizzaGerarchie();
-				ConfiguratoreController.visualizzaFattoriDiConversione(
-						configuratore.selezionaCategoriaFogliaPerFDC());
+				GerarchiaController.visualizzaGerarchie();
+				GerarchiaController.visualizzaFattoriDiConversione(
+						gerarchiaController.selezionaCategoriaFogliaPerFDC());
 				break;
 			case 6:
 				GestioneGeneraleXML.salvataggioCompleto();

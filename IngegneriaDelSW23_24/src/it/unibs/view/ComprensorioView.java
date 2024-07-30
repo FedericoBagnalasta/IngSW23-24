@@ -6,12 +6,16 @@ public class ComprensorioView {
 
 	//PARTE COMPRENSORIO
 
-	public static String inserisciNomeComprensorio() {
+	public static String inserisciNomeNuovoComprensorio() {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome del nuovo Comprensorio\n");
 	}
 
 	public static void comprensorioGiaPresente() {
 		System.out.println("Esiste già un Comprensorio con questo nome");
+	}
+	
+	public static String inserisciNomeComprensorio() {
+		return InputDati.leggiStringaNonVuota("Inserisci il nome del Comprensorio che vuoi selezionare");
 	}
 
 	public static void visualizzaNomeComprensorio(String nome) {

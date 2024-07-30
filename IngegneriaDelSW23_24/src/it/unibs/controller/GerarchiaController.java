@@ -1,33 +1,20 @@
 package it.unibs.controller;
 
 import java.util.ArrayList;
+
 import it.unibs.model.Categoria;
 import it.unibs.model.CategoriaFoglia;
 import it.unibs.model.CategoriaNonFoglia;
 import it.unibs.model.CategoriaRadice;
-import it.unibs.model.ElencoComprensori;
 import it.unibs.model.ElencoFattoriDiConversione;
 import it.unibs.model.ElencoGerarchie;
 import it.unibs.model.FattoreDiConversione;
-import it.unibs.model.Comprensorio;
 import it.unibs.model.Gerarchia;
-import it.unibs.model.Utente;
 import it.unibs.model.ValoreDominio;
-import it.unibs.view.ComprensorioView;
-import it.unibs.view.GerarchiaView;
 import it.unibs.view.FDCView;
+import it.unibs.view.GerarchiaView;
 
-public class ConfiguratoreController {
-
-	Utente utente;
-
-	public ConfiguratoreController() {
-		super();
-	}
-
-	public void setUtente(Utente utente) {
-		this.utente = utente;
-	}
+public class GerarchiaController {
 
 	public void creaGerarchia() {
 		String nomeRadice = GerarchiaView.inserisciNomeRadiceGerarchia();
@@ -76,31 +63,14 @@ public class ConfiguratoreController {
 		}
 		return foglia;
 	}
-
-	public CategoriaNonFoglia creaNonFoglia(Categoria padre, ValoreDominio valore) {
-		String nomeNonFoglia;
-		CategoriaNonFoglia nonFoglia;
-		ArrayList<String> elencoNomiGerarchia = padre.getCategoriaRadice().getNomiGerarchia();
-
-		do {
-			nomeNonFoglia = GerarchiaView.inserisciNomeNonFogliaGerarchia();
-		} while(elencoNomiGerarchia.contains(nomeNonFoglia));
-
-		String campo = GerarchiaView.inserisciCampo();
-		ArrayList<ValoreDominio> dominio = creaDominio();
-
-		nonFoglia = new CategoriaNonFoglia(nomeNonFoglia, campo, valore, dominio, padre.getCategoriaRadice());
-		padre.getFigli().add(nonFoglia);
-		return nonFoglia;
-	}
-
+	
 	public FattoreDiConversione creaFattoreDiConversione(CategoriaFoglia fogliaNuova) {		
 		FattoreDiConversione fdcNuovo;
 		CategoriaFoglia f1, f2;
 		double valore;
 
 		do {
-			visualizzaGerarchie();
+			GerarchiaController.visualizzaGerarchie();
 
 			do {
 				FDCView.inserimentoPrimaFoglia();
@@ -120,39 +90,21 @@ public class ConfiguratoreController {
 		return fdcNuovo;
 	}
 
-	public CategoriaFoglia selezionaCategoriaFogliaConRadiceFissata(CategoriaRadice radice) {
-		String nomeFoglia = GerarchiaView.inserisciNomeFogliaRicerca();
-		String nomeRadice = GerarchiaView.inserisciNomeRadiceRicerca();
+	public CategoriaNonFoglia creaNonFoglia(Categoria padre, ValoreDominio valore) {
+		String nomeNonFoglia;
+		CategoriaNonFoglia nonFoglia;
+		ArrayList<String> elencoNomiGerarchia = padre.getCategoriaRadice().getNomiGerarchia();
 
-		CategoriaFoglia foglia = ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
-		if(foglia == null){
-			GerarchiaView.fogliaNonTrovata();
-			return null;
-		}
+		do {
+			nomeNonFoglia = GerarchiaView.inserisciNomeNonFogliaGerarchia();
+		} while(elencoNomiGerarchia.contains(nomeNonFoglia));
 
-		if(!radice.getNome().equals(nomeRadice)) {
-			FDCView.fogliaDiGerarchiaVecchia(radice.getNome());
-			return null;
-		}
-		else return foglia;
-	}
+		String campo = GerarchiaView.inserisciCampo();
+		ArrayList<ValoreDominio> dominio = creaDominio();
 
-	public CategoriaFoglia selezionaCategoriaFoglia() {
-		String nomeFoglia = GerarchiaView.inserisciNomeFogliaRicerca();
-		String nomeRadice = GerarchiaView.inserisciNomeRadiceRicerca();
-		CategoriaFoglia foglia = ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
-
-		if(foglia == null) {
-			GerarchiaView.fogliaNonTrovata();
-			return null;
-		}
-		else return foglia;
-	}
-
-	public CategoriaFoglia selezionaCategoriaFogliaPerFDC() {
-		String nomeFoglia = FDCView.inserisciFogliaPerFDC();
-		String nomeRadice = FDCView.inserisciRadicePerFDC();
-		return ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
+		nonFoglia = new CategoriaNonFoglia(nomeNonFoglia, campo, valore, dominio, padre.getCategoriaRadice());
+		padre.getFigli().add(nonFoglia);
+		return nonFoglia;
 	}
 
 	public ArrayList<ValoreDominio> creaDominio() {
@@ -180,44 +132,100 @@ public class ConfiguratoreController {
 
 		return dominio;
 	}
+	
+	public Categoria navigaGerarchiaFinoAFoglia(Categoria padre) {		//DA MOSTRARE LE CATEGORIE ASSOCIATE AI VALORI DEL DOMINIO 
+		visualizzaValoriCampo(padre);
+		String nomeValoreScelto = GerarchiaView.inserisciValoreScelto();
+		ValoreDominio valoreScelto = ValoreDominio.selezionaValore(nomeValoreScelto, padre.getDominio());
+		
+		while(valoreScelto == null){
+			//FINCHE NON VIENE TROVATO UN VALORE, CONTINUA A CHIEDERLO
+			GerarchiaView.valoreNonTrovato();
+			nomeValoreScelto = GerarchiaView.inserisciValoreScelto();
+			valoreScelto = ValoreDominio.selezionaValore(nomeValoreScelto, padre.getDominio());
+		}
+		
+		Categoria categoriaScelta = padre.selezionaFiglioDalValore(valoreScelto);//ASSEGNO LA CATEGORIA A CUI è ASSEGNATO IL VALORE
+			
+		if(categoriaScelta instanceof CategoriaFoglia) {
+			GerarchiaView.visualizzaCategoria(categoriaScelta.getNome(), categoriaScelta.getTipo());
+			return categoriaScelta;
+		}
+		//CONTROLLO SE CATEGORIASCELTA NON è ASSOCIATA A NIENTE
+		if(categoriaScelta == null) {
+			GerarchiaView.valoreNonAssociatoACategoria();
+			return null;
+		}
+		else {
+			GerarchiaView.visualizzaCategoria(nomeValoreScelto, nomeValoreScelto);
+			return navigaGerarchiaFinoAFoglia(categoriaScelta);
+		}
+	}
 
-	public String creaNomeComprensorio() {
-		String nomeComprensorio = ComprensorioView.inserisciNomeComprensorio();
+	public CategoriaFoglia selezionaCategoriaFogliaConRadiceFissata(CategoriaRadice radice) {
+		String nomeFoglia = GerarchiaView.inserisciNomeFogliaRicerca();
+		String nomeRadice = GerarchiaView.inserisciNomeRadiceRicerca();
 
-		while(ElencoComprensori.verificaEsistenzaComprensorio(nomeComprensorio)) {
-			ComprensorioView.comuneGiaPresente();
-			nomeComprensorio = ComprensorioView.inserisciNomeComprensorio();
+		CategoriaFoglia foglia = ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
+		if(foglia == null){
+			GerarchiaView.fogliaNonTrovata();
+			return null;
 		}
 
-		return nomeComprensorio;
+		if(!radice.getNome().equals(nomeRadice)) {
+			FDCView.fogliaDiGerarchiaVecchia(radice.getNome());
+			return null;
+		}
+		else return foglia;
 	}
 
-	public ArrayList<String> creaComuniComprensorio() {
-		ArrayList<String> elencoComuni = new ArrayList<>();
+	public CategoriaFoglia selezionaCategoriaFogliaPerFDC() {
+		String nomeFoglia = FDCView.inserisciFogliaPerFDC();
+		String nomeRadice = FDCView.inserisciRadicePerFDC();
+		return ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
+	}
 
-		do {
-			String nuovoComune = ComprensorioView.inserisciComune();
+	public CategoriaFoglia selezionaCategoriaFoglia() {
+		String nomeFoglia = GerarchiaView.inserisciNomeFogliaRicerca();
+		String nomeRadice = GerarchiaView.inserisciNomeRadiceRicerca();
+		CategoriaFoglia foglia = ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
 
-			if(elencoComuni.contains(nuovoComune)) {
-				ComprensorioView.comuneGiaPresente();
+		if(foglia == null) {
+			GerarchiaView.fogliaNonTrovata();
+			return null;
+		}
+		else return foglia;
+	}
+
+	public CategoriaRadice selezionaRadice() {
+		visualizzaRadici();
+		String nomeRadice = GerarchiaView.inserisciNomeRadiceRicerca();
+
+		while(ElencoGerarchie.verificaEsistenzaRadice(nomeRadice)) {
+			GerarchiaView.radiceNonEsiste();
+			nomeRadice = GerarchiaView.inserisciNomeRadiceRicerca();
+		}
+		return ElencoGerarchie.trovaRadice(nomeRadice);
+	}
+
+	//DA FINIRE
+	public void visualizzaRadici() {
+		ArrayList<Gerarchia> elencoGerarchie = ElencoGerarchie.getElencoGerarchie();
+		GerarchiaView.introduzioneElencoGerarchie();
+
+		for(Gerarchia gerarchia : elencoGerarchie) {
+			GerarchiaView.visualizzaNomeRadiceGerarchia(gerarchia.getRadice().getNome());
+		}
+	}
+	
+	public static void visualizzaValoriCampo(Categoria categoria) {
+		GerarchiaView.presentazioneValoriDiCampo(categoria.getCampo());
+		for(ValoreDominio valore : categoria.getDominio()) {
+			Categoria categoriaFiglio = categoria.selezionaFiglioDalValore(valore);
+			if(categoriaFiglio == null) {
+				GerarchiaView.visualizzaNomeValoreSenzaCategoria(valore.getValore());
 			}
-			else elencoComuni.add(nuovoComune);
-		} while(ComprensorioView.inserisciAltroComune());
-
-		return elencoComuni;
-	}
-
-	public void creaComprensorio() {
-		Comprensorio comprensorio = new Comprensorio(creaNomeComprensorio(), creaComuniComprensorio());
-		ElencoComprensori.aggiungiComprensorio(comprensorio);
-	}
-
-	public static void visualizzaComprensori() {
-		for(Comprensorio comprensorio : ElencoComprensori.getElencoComprensori()) {
-			ComprensorioView.visualizzaNomeComprensorio(comprensorio.getNome());
-			for(String comune : comprensorio.getComuniComprensorio()) {
-				ComprensorioView.visualizzaNomeComune(comune);
-			}
+			GerarchiaView.visualizzaNomeValore(valore.getValore(), categoriaFiglio.getNome(), categoriaFiglio.getTipo());
 		}
 	}
 

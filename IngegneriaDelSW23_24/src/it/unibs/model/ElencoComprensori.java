@@ -22,4 +22,8 @@ public class ElencoComprensori {
 	public static ArrayList<Comprensorio> getElencoComprensori() {
 		return elencoComprensori;
 	}
+
+	public static int numeroComprensori() {
+		return elencoComprensori.size();
+	}
 }

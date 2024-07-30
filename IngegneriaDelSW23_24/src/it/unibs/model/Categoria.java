@@ -26,4 +26,13 @@ public interface Categoria {
 		}
 		return nomiGerarchia;
 	}
+	
+	default public Categoria selezionaFiglioDalValore(ValoreDominio valoreScelto) {
+		for(Categoria categoriaFiglio : getFigli()) {
+			if(categoriaFiglio.getValoreDominio().verificaUguaglianza(valoreScelto)) {
+				return categoriaFiglio;
+			}
+		}
+		return null;
+	}
 }
