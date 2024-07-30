@@ -20,27 +20,19 @@ public class ElencoFattoriDiConversione {
 		return false;
 	}
 	
-	//METTO FUORI UNA CHIAMATA ANCHE AL SIMMETRICO
-
-	//Tenere ciclo for non-enhanced per evitare ConcurrentModificationException
 	public static void creaFDC_Deducibili(FattoreDiConversione fdcNuovo) {
 		FattoreDiConversione fdcDedotto;
 		double valore;
 
 		for(int i = 0; i < elencoFattoriDiConversione.size(); i++) {
-			//Crea FDC con primo elemento quello del nuovo fdc e secondo quello di tutti quelli che
-			//hanno al primo elemento lo stesso del secondo elemeto del fdc nuovo
-			// FDCNuovo(c1, C2) fdcvecchio(C2, cx) Risultato: (c1, cx)
 			valore = fdcNuovo.getValore() * elencoFattoriDiConversione.get(i).getValore();
 
 			valore = limitaValoreFDC(valore);
 
-
 			fdcDedotto = new FattoreDiConversione(fdcNuovo.getC1(), elencoFattoriDiConversione.get(i).getC2(), valore);
 
-			//Controlla che non esista già e che non sia un fdc solo su una foglia
-			if(elencoFattoriDiConversione.get(i).getC1().verificaUguaglianzaFoglie(fdcNuovo.getC2())
-					&& !verificaEsistenzaFDC(fdcDedotto) && !fdcDedotto.verificaFDCImpossibile()) {
+			if(elencoFattoriDiConversione.get(i).getC1().verificaUguaglianzaFoglie(fdcNuovo.getC2()) &&
+					!verificaEsistenzaFDC(fdcDedotto) && !fdcDedotto.fDCSullaStessaFoglia()) {
 				aggiungiFDC(fdcDedotto);
 			}
 		}

@@ -5,11 +5,22 @@ public class Utente {
 	private String nome;
 	private String password;
 	private String ruolo;
+	private Comprensorio comprensorio;
+	private String indirizzo;
 
 	public Utente(String nome, String password, String ruolo) {
 		this.nome = nome;
 		this.password = password;
 		this.ruolo = ruolo;
+	}
+	
+	//Costruttore per caricamento da xml
+	public Utente(String nome, String password, String ruolo, Comprensorio comprensorio, String indirizzo) {
+		this.nome = nome;
+		this.password = password;
+		this.ruolo = ruolo;
+		this.comprensorio = comprensorio;
+		this.indirizzo = indirizzo;
 	}
 
 	public String getNome() {
@@ -32,7 +43,11 @@ public class Utente {
 		return ruolo;
 	}
 
-	public void setRuolo(String ruolo) {
-		this.ruolo = ruolo;
+	public Comprensorio getComprensorio() {
+		return comprensorio;
+	}
+	
+	public String getIndirizzo() {
+		return indirizzo;
 	}
 }

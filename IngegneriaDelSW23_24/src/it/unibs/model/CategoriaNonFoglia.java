@@ -4,32 +4,32 @@ import java.util.ArrayList;
 
 public class CategoriaNonFoglia implements Categoria {
 
+	private static final String NON_FOGLIA = "NonFoglia";
+	
 	private String nome;
+	private ValoreDominio valoreDominio;
+	private CategoriaRadice radice;
+	private final String tipo = NON_FOGLIA;
 	private String campo;
 	private ArrayList<ValoreDominio> dominio = new ArrayList<>();
-
-	private ValoreDominio valoreDominio;	//è un elemento del dominio. Eventuale descrizione => creazione classe
-
 	private ArrayList<Categoria> figli = new ArrayList<>();
-	private CategoriaRadice radice;
+	
 
-	public CategoriaNonFoglia(String nome, String campo, ValoreDominio valore, ArrayList<ValoreDominio> dominio, CategoriaRadice radice) {
-		super();
+	public CategoriaNonFoglia(String nome, ValoreDominio valore, CategoriaRadice radice, String campo, ArrayList<ValoreDominio> dominio) {
 		this.nome = nome;
-		this.campo = campo;
 		this.valoreDominio = valore;
-		this.dominio = dominio;
 		this.radice = radice;
+		this.campo = campo;
+		this.dominio = dominio;
 	}
 	
 	//Costruttore per caricamento da xml
-	public CategoriaNonFoglia(String nome, String campo, ValoreDominio valore, ArrayList<ValoreDominio> dominio, CategoriaRadice radice, ArrayList<Categoria> figli) {
-		super();
+	public CategoriaNonFoglia(String nome, ValoreDominio valore, CategoriaRadice radice, String campo, ArrayList<ValoreDominio> dominio, ArrayList<Categoria> figli) {
 		this.nome = nome;
-		this.campo = campo;
 		this.valoreDominio = valore;
-		this.dominio = dominio;
 		this.radice = radice;
+		this.campo = campo;
+		this.dominio = dominio;
 		this.figli = figli;
 	}
 
@@ -38,7 +38,7 @@ public class CategoriaNonFoglia implements Categoria {
 	}
 
 	public String getTipo() {
-		return "NonFoglia";
+		return tipo;
 	}
 
 	public String getCampo() {
@@ -57,7 +57,7 @@ public class CategoriaNonFoglia implements Categoria {
 		return figli;
 	}
 
-	public CategoriaRadice getCategoriaRadice() {
+	public CategoriaRadice getRadice() {
 		return radice;
 	}
 }

@@ -22,9 +22,4 @@ public class ElencoComprensori {
 	public static ArrayList<Comprensorio> getElencoComprensori() {
 		return elencoComprensori;
 	}
-	
-	//VIENE USATO SOLO DA FRUITORE
-	public static int numeroComprensori() {
-		return elencoComprensori.size();
-	}
 }

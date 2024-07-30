@@ -41,7 +41,6 @@ public class ElencoUtenti {
 		return elencoUtenti;
 	}
 
-	//Metodo per verificare che un FRUITORE non stia facendo login con le credenziali base
 	public static boolean erratoUsoCredenzialiBase(String nome, String ruolo) {
 		if(nome.equals(utentePredefinito) && ruolo.equals("Fruitore")) {
 			return true;

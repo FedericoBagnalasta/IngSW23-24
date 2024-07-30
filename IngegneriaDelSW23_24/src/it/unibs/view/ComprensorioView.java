@@ -6,8 +6,8 @@ public class ComprensorioView {
 
 	//PARTE COMPRENSORIO
 
-	public static String inserisciNomeComprensorio() {
-		return InputDati.leggiStringaNonVuota("Inserisci il nome del nuovo Comprensorio\n");
+	public static String inserisciComprensorio() {
+		return InputDati.leggiStringaNonVuota("Inserisci il nome del comprensorio geografico\n");
 	}
 
 	public static void comprensorioGiaPresente() {
@@ -16,6 +16,10 @@ public class ComprensorioView {
 
 	public static void visualizzaNomeComprensorio(String nome) {
 		System.out.println("\nNome Comprensorio: " + nome);
+	}
+	
+	public static void comprensorioNonEsistente() {
+		System.out.println("Il comprensorio inserito non compare nell'elenco");
 	}
 
 	//PARTE COMUNE DEL COMPRENSORIO

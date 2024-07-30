@@ -12,12 +12,8 @@ public class GerarchiaView {
 		return InputDati.leggiStringaNonVuota("Inserisci il nome della Categoria Radice della Gerarchia\n");
 	}
 
-	public static void visualizzaNomeRadiceGerarchia(Gerarchia gerarchia) {
-		System.out.println("\nRadice Gerarchia: " + gerarchia.getRadice().getNome());
-	}
-
 	public static void visualizzaNomeRadiceGerarchia(String nomeRadice) {
-		System.out.println("\nRadice gerarchia: " + nomeRadice);
+		System.out.println("\nRadice Gerarchia: " + nomeRadice);
 	}
 
 	public static void visualizzaNomeFiglioCategoria(String nomePadre, String nomeFiglio, String tipo) {

@@ -14,7 +14,7 @@ public interface Categoria {
 
 	public String getNome();
 
-	public CategoriaRadice getCategoriaRadice();
+	public CategoriaRadice getRadice();
 	
 	public String getCampo();
 	

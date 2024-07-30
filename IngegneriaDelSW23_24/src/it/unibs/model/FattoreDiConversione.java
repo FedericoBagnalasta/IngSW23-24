@@ -35,19 +35,17 @@ public class FattoreDiConversione {
 		CategoriaFoglia c12 = fdC.getC1();
 		CategoriaFoglia c22 = fdC.getC2();
 
-		if(!(c12.getCategoriaRadice().getNome().equals(c1.getCategoriaRadice().getNome())
-				&& c22.getCategoriaRadice().getNome().equals(c2.getCategoriaRadice().getNome()))) {
+		if(!(c12.getRadice().getNome().equals(c1.getRadice().getNome())
+				&& c22.getRadice().getNome().equals(c2.getRadice().getNome()))) {
 			return false;
 		}
 		if(!(c12.getNome().equals(c1.getNome()) && c22.getNome().equals(c2.getNome()))) {
 			return false;
 		}
-		//Potrei fare controllo su valore per evitare inconsistenze 
 		return true;
 	}
 
-	//Controlla che non venga messo un fdc su una sola foglia
-	public boolean verificaFDCImpossibile() {
+	public boolean fDCSullaStessaFoglia() {
 		if(c1.verificaUguaglianzaFoglie(c2)){
 			return true;
 		}

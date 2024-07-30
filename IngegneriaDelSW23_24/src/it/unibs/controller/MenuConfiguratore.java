@@ -2,8 +2,10 @@ package it.unibs.controller;
 
 import it.unibs.fp.mylib.MyMenu;
 import it.unibs.model.GestioneGeneraleXML;
+import it.unibs.view.LoginView;
+import it.unibs.view.XMLView;
 
-public class Menu {
+public class MenuConfiguratore {
 
 	private static final String CREA_COMPRENSORIO = "Crea un nuovo comprensorio geografico";
 	private static final String CREA_GERARCHIA = "Crea una nuova gerarchia di categorie";
@@ -14,36 +16,42 @@ public class Menu {
 	private static final String FORMATTA_XML = "Formatta i file xml";
 	private static final String SCELTA = "Scegli l'opzione";
 	
-	public static void menu(ConfiguratoreController configuratore) {
-		String[] vociConfiguratore = {CREA_COMPRENSORIO, CREA_GERARCHIA, VISUALIZZA_COMPRENSORI, VISUALIZZA_GERARCHIE, VISUALIZZA_FDC, SALVA_SU_XML, FORMATTA_XML};
+	public static void menuConfiguratore(ComprensorioController comprensorio, GerarchiaController gerarchia) {
+		String[] voci = {CREA_COMPRENSORIO, CREA_GERARCHIA, VISUALIZZA_COMPRENSORI, VISUALIZZA_GERARCHIE, VISUALIZZA_FDC, SALVA_SU_XML, FORMATTA_XML};
 		int scelta = 0;
-		MyMenu menu = new MyMenu(SCELTA, vociConfiguratore);
+		MyMenu menu = new MyMenu(SCELTA, voci);
 
 		do {
 			scelta = menu.scegli();
 			switch(scelta) {
 			case 1:
-				configuratore.creaComprensorio();
+				comprensorio.creaComprensorio();
 				break;
 			case 2:
-				configuratore.creaGerarchia();
+				gerarchia.creaGerarchia();
 				break;
 			case 3:
-				ConfiguratoreController.visualizzaComprensori();
+				ComprensorioController.visualizzaComprensori();
 				break;
 			case 4:
-				ConfiguratoreController.visualizzaGerarchie();
+				GerarchiaController.visualizzaGerarchie();
 				break;
 			case 5:
-				ConfiguratoreController.visualizzaGerarchie();
-				ConfiguratoreController.visualizzaFattoriDiConversione(
-						configuratore.selezionaCategoriaFogliaPerFDC());
+				GerarchiaController.visualizzaGerarchie();
+				GerarchiaController.visualizzaFattoriDiConversione(
+						gerarchia.selezionaCategoriaFogliaPerFDC());
 				break;
 			case 6:
 				GestioneGeneraleXML.salvataggioCompleto();
 				break;
 			case 7:
-				GestioneGeneraleXML.formattazioneCompleta();
+				if(LoginView.confermaScelta()) {
+					GestioneGeneraleXML.formattazioneCompleta();
+					//Dopo averla fatta, avviare un'altra sessione
+				}
+				else{
+					XMLView.formattazioneNonAvvenuta();
+				}
 				break;
 			default:
 				break;
