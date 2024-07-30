@@ -7,35 +7,35 @@ public class LoginController {
 	
 	private static final String FRUITORE = "Fruitore";
 	private static final String CONFIGURATORE = "Configuratore";
-
-	public Utente loginGenerale() {
+	
+	public Utente loginGenerale2() {
 		Utente utente;
-		String ruolo = inserisciRuolo();
 		
+		String ruolo = inserisciRuolo();
 		do {
-			String nome = LoginView.inserisciNome();
-			
-			while(ElencoUtenti.erratoUsoCredenzialiBase(nome, ruolo)) {
-				LoginView.msgErratoUsoCredenziali();
-				nome = LoginView.inserisciNome();
-			}
-			
-			String password = LoginView.inserisciPassword();
-			
 			if(ruolo.equals(CONFIGURATORE)) {
-				utente = loginConfiguratore(nome, password);
+				utente = loginConfiguratore();
 			}
 			else {
-				utente = loginFruitore(nome, password);
+				utente = loginFruitore();
 			}
 		} while(utente == null);
+		
 		return utente;
 	}
-
-	public Utente loginConfiguratore(String nome, String password) {
+	
+	public Utente loginConfiguratore() {
 		Utente utente;
-		boolean isPrimoAccesso = ElencoUtenti.isPrimoAccesso(nome, password);
+		
+		String nome = LoginView.inserisciNome();	
+		while(ElencoUtenti.verificaEsistenzaUtente(nome, FRUITORE)) {
+			LoginView.msgConfiguratoreGiaEsistente();
+			nome = LoginView.inserisciNome();
+		}
+		
+		String password = LoginView.inserisciPassword();
 
+		boolean isPrimoAccesso = ElencoUtenti.isPrimoAccesso(nome, password);
 		if(isPrimoAccesso) {
 			utente = new Utente(nome, password, CONFIGURATORE);
 			cambiaCredenziali(utente);
@@ -43,7 +43,7 @@ public class LoginController {
 			return utente;
 		}
 		utente = ElencoUtenti.trovaUtente(nome, password);
-		if(utente != null && utente.getRuolo() == CONFIGURATORE) {
+		if(utente != null) {
 			return utente;
 		}
 		else {
@@ -52,22 +52,33 @@ public class LoginController {
 		}
 	}
 	
-	public Utente loginFruitore(String nome, String password) {
-		Utente utente = ElencoUtenti.trovaUtente(nome, password);
+	public Utente loginFruitore() {
+		Utente utente;
 		
-		/////////
-		if(utente.getRuolo() == CONFIGURATORE) {
-			utente = null;
+		String password;
+
+		String nome = LoginView.inserisciNome();
+		while(ElencoUtenti.erratoUsoCredenzialiBase(nome) || ElencoUtenti.verificaEsistenzaUtente(nome, CONFIGURATORE)) {
+			LoginView.msgConfiguratoreGiaEsistente();
+			nome = LoginView.inserisciNome();
 		}
-		
-		if(utente == null) {
-			Comprensorio comprensorio = scegliComprensorio();
+		if(ElencoUtenti.verificaEsistenzaUtente(nome, FRUITORE)) {
+			password = LoginView.inserisciPassword();
 			
-			String indirizzo = inserisciIndirizzo();
-			
-			utente = new Utente(nome, password, FRUITORE, comprensorio, indirizzo);
-			ElencoUtenti.aggiungiUtente(utente);
+			utente = ElencoUtenti.trovaUtente(nome, password);
+			if(utente == null) {
+				LoginView.msgFruitoreInesistente();
+			}
+			return utente;
 		}
+		password = LoginView.inserisciPassword();
+
+		Comprensorio comprensorio = scegliComprensorio();
+
+		String indirizzo = inserisciIndirizzo();
+
+		utente = new Utente(nome, password, FRUITORE, comprensorio, indirizzo);
+		ElencoUtenti.aggiungiUtente(utente);
 		return utente;
 	}
 	

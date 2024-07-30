@@ -21,8 +21,16 @@ public class ElencoUtenti {
 
 	public static boolean isDuplicato(String nome) {
 		for(Utente utente : elencoUtenti) {
-			if(utente.getNome().equals(nome) || utentePredefinito.equals(nome)) {
+			if(utente.getNome().equals(nome)) {
 				return true;
+			}
+		}
+		return false;
+	}
+	public static boolean verificaEsistenzaUtente(String nome, String ruolo) {
+		for(Utente utente : ElencoUtenti.getElencoUtenti()) {
+			if(utente.getNome().equals(nome) && utente.getRuolo().equals(ruolo)) {
+				return true;	
 			}
 		}
 		return false;
@@ -40,9 +48,16 @@ public class ElencoUtenti {
 	public static ArrayList<Utente> getElencoUtenti() {
 		return elencoUtenti;
 	}
-
+	/*
 	public static boolean erratoUsoCredenzialiBase(String nome, String ruolo) {
 		if(nome.equals(utentePredefinito) && ruolo.equals("Fruitore")) {
+			return true;
+		}
+		return false;
+	}
+	*/
+	public static boolean erratoUsoCredenzialiBase(String nome) {
+		if(nome.equals(utentePredefinito)) {
 			return true;
 		}
 		return false;
