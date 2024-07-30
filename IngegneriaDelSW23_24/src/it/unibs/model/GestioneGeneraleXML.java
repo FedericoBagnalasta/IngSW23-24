@@ -17,14 +17,24 @@ import it.unibs.view.XMLView;
 import java.io.File;
 
 public class GestioneGeneraleXML {
-
+	
+	private static final String RESOURCES_FILE_UTENTI_XML = "resources/FileUtenti.xml";
+	private static final String RESOURCES_FILE_COMPRENSORI_XML = "resources/FileComprensori.xml";
+	private static final String RESOURCES_FILE_GERARCHIE_XML = "resources/FileGerarchie.xml";
+	private static final String RESOURCES_FILE_FATTORI_DI_CONVERSIONE_XML = "resources/FileFattoriDiConversione.xml";
+	
+	private static final String ELENCO_UTENTI = "elencoUtenti";
+	private static final String ELENCO_COMPRENSORI = "elencoComprensori";
+	private static final String ELENCO_GERARCHIE = "elencoGerarchie";
+	private static final String ELENCO_FATTORI_DI_CONVERSIONE = "elencoFattoriDiConversione";
+	
 	//PARTE FORMATTAZIONE ====================================================================================================
 
 	public static void formattazioneCompleta() {
-		formattaFileXML("resources/FileUtenti.xml", "elencoUtenti");
-		formattaFileXML("resources/FileComprensori.xml", "elencoComprensori");
-		formattaFileXML("resources/FileGerarchie.xml", "elencoGerarchie");
-		formattaFileXML("resources/FileFattoriDiConversione.xml", "elencoFattoriDiConversione");
+		formattaFileXML(RESOURCES_FILE_UTENTI_XML, ELENCO_UTENTI);
+		formattaFileXML(RESOURCES_FILE_COMPRENSORI_XML, ELENCO_COMPRENSORI);
+		formattaFileXML(RESOURCES_FILE_GERARCHIE_XML, ELENCO_GERARCHIE);
+		formattaFileXML(RESOURCES_FILE_FATTORI_DI_CONVERSIONE_XML, ELENCO_FATTORI_DI_CONVERSIONE);
 	}
 
 	public static void formattaFileXML(String filePath, String elenco) {
@@ -39,10 +49,10 @@ public class GestioneGeneraleXML {
 	//PARTE SALVATAGGIO ======================================================================================================
 
 	public static void salvataggioCompleto() {
-		GestioneUtentiXML.salvaElencoUtentiSuXML("resources/FileUtenti.xml");
-		GestioneComprensoriXML.salvaElencoComprensoriSuXML("resources/FileComprensori.xml");
-		GestioneGerarchieXML.salvaElencoGerarchieSuXML("resources/FileGerarchie.xml");
-		GestioneFattoriDiConversioneXML.salvaElencoFDCSuXML("resources/FileFattoriDiConversione.xml");
+		GestioneUtentiXML.salvaElencoUtentiSuXML(RESOURCES_FILE_UTENTI_XML);
+		GestioneComprensoriXML.salvaElencoComprensoriSuXML(RESOURCES_FILE_COMPRENSORI_XML);
+		GestioneGerarchieXML.salvaElencoGerarchieSuXML(RESOURCES_FILE_GERARCHIE_XML);
+		GestioneFattoriDiConversioneXML.salvaElencoFDCSuXML(RESOURCES_FILE_FATTORI_DI_CONVERSIONE_XML);
 	}
 
 	public static Element creaElemento(Document doc, String tagElemento, String datoElemento) {
@@ -76,7 +86,7 @@ public class GestioneGeneraleXML {
 			StreamResult result = new StreamResult(new File(filePath));
 			transformer.transform(source, result);
 
-			XMLView.salvataggioFileXML(filePath.substring(10));
+			XMLView.msgSalvataggioFileXML(filePath.substring(10));
 
 		} catch(TransformerException tfe) {
 			tfe.printStackTrace();
@@ -86,10 +96,10 @@ public class GestioneGeneraleXML {
 	//PARTE CARICAMENTO ======================================================================================================
 
 	public static void caricamentoCompleto() {
-		GestioneUtentiXML.caricaElencoUtentiDaXML("resources/FileUtenti.xml");
-		GestioneComprensoriXML.caricaElencoComprensoriDaXML("resources/FileComprensori.xml");
-		GestioneGerarchieXML.caricaElencoGerarchieDaXML("resources/FileGerarchie.xml");
-		GestioneFattoriDiConversioneXML.caricaElencoFDCDaXML("resources/FileFattoriDiConversione.xml");
+		GestioneUtentiXML.caricaElencoUtentiDaXML(RESOURCES_FILE_UTENTI_XML);
+		GestioneComprensoriXML.caricaElencoComprensoriDaXML(RESOURCES_FILE_COMPRENSORI_XML);
+		GestioneGerarchieXML.caricaElencoGerarchieDaXML(RESOURCES_FILE_GERARCHIE_XML);
+		GestioneFattoriDiConversioneXML.caricaElencoFDCDaXML(RESOURCES_FILE_FATTORI_DI_CONVERSIONE_XML);
 	}
 
 	public static Document caricaFileXML(String filePath) {

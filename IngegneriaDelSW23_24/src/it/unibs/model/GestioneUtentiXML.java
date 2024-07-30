@@ -6,35 +6,44 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class GestioneUtentiXML {
+	
+	private static final String ELENCO_UTENTI = "elencoUtenti";
+	private static final String CONFIGURATORE = "Configuratore";
+	private static final String UTENTE = "utente";
+	private static final String NOME = "nome";
+	private static final String PASSWORD = "password";
+	private static final String RUOLO = "ruolo";
+	private static final String COMPRENSORIO = "comprensorio";
+	private static final String INDIRIZZO = "indirizzo";
 
 	//PARTE SALVATAGGIO ======================================================================================================
 
 	public static void salvaElencoUtentiSuXML(String filePath) {
 		Document doc = GestioneGeneraleXML.creaFileXML();
-		Element elementoElencoUtenti = doc.createElement("elencoUtenti");
+		
+		Element elementoElencoUtenti = doc.createElement(ELENCO_UTENTI);
 
 		doc.appendChild(elementoElencoUtenti);
 
 		for(Utente utente : ElencoUtenti.getElencoUtenti()) {
-			Element elementoUtente = doc.createElement("utente");
+			Element elementoUtente = doc.createElement(UTENTE);
 			
-			if(utente.getRuolo().equals("Configuratore")) {
+			if(utente.getRuolo().equals(CONFIGURATORE)) {
 				salvaInfoBaseSuXML(elementoUtente, doc, utente, elementoElencoUtenti);
 			}
 			else {
 				salvaInfoExtraSuXML(elementoUtente, doc, utente, elementoElencoUtenti);
 			}
-			//salvaUtenteSuXML(elementoUtente, doc, utente, elementoElencoUtenti);
 		}
 		GestioneGeneraleXML.salvaFileXML(doc, filePath);
 	}
 	
 	public static void salvaInfoBaseSuXML(Element elementoUtente, Document doc, Utente utente, Element elementoElencoUtenti) {
-		elementoUtente.appendChild(GestioneGeneraleXML.creaElemento(doc, "nome", utente.getNome()));
+		elementoUtente.appendChild(GestioneGeneraleXML.creaElemento(doc, NOME, utente.getNome()));
 		
-		elementoUtente.appendChild(GestioneGeneraleXML.creaElemento(doc, "password", utente.getPassword()));
+		elementoUtente.appendChild(GestioneGeneraleXML.creaElemento(doc, PASSWORD, utente.getPassword()));
 		
-		elementoUtente.appendChild(GestioneGeneraleXML.creaElemento(doc, "ruolo", utente.getRuolo()));
+		elementoUtente.appendChild(GestioneGeneraleXML.creaElemento(doc, RUOLO, utente.getRuolo()));
 		
 		elementoElencoUtenti.appendChild(elementoUtente);
 	}
@@ -44,28 +53,10 @@ public class GestioneUtentiXML {
 		
 		GestioneComprensoriXML.salvaComprensorioSuXML(doc, utente.getComprensorio(), elementoUtente);
 		
-		elementoUtente.appendChild(GestioneGeneraleXML.creaElemento(doc, "indirizzo", utente.getIndirizzo()));
+		elementoUtente.appendChild(GestioneGeneraleXML.creaElemento(doc, INDIRIZZO, utente.getIndirizzo()));
 		
 		elementoElencoUtenti.appendChild(elementoUtente);
 	}
-	
-	/*
-	public static void salvaUtenteSuXML(Element elementoUtente, Document doc, Utente utente, Element elementoElencoUtenti) {
-		elementoUtente.appendChild(GestioneGeneraleXML.creaElemento(doc, "nome", utente.getNome()));
-		
-		elementoUtente.appendChild(GestioneGeneraleXML.creaElemento(doc, "password", utente.getPassword()));
-		
-		elementoUtente.appendChild(GestioneGeneraleXML.creaElemento(doc, "ruolo", utente.getRuolo()));
-		
-		elementoUtente.appendChild(GestioneGeneraleXML.creaElemento(doc, "comprensorio", utente.getComprensorio().getNome()));
-		
-		GestioneComprensoriXML.salvaComprensorioSuXML(doc, utente.getComprensorio(), elementoUtente);
-		
-		elementoUtente.appendChild(GestioneGeneraleXML.creaElemento(doc, "indirizzo", utente.getIndirizzo()));
-		
-		elementoElencoUtenti.appendChild(elementoUtente);
-	}
-	*/
 	
 	//PARTE CARICAMENTO ======================================================================================================
 
@@ -73,7 +64,7 @@ public class GestioneUtentiXML {
 		Document doc = GestioneGeneraleXML.caricaFileXML(filePath);
 		doc.getDocumentElement().normalize();
 
-		NodeList listaUtenti = doc.getElementsByTagName("utente");
+		NodeList listaUtenti = doc.getElementsByTagName(UTENTE);
 
 		for(int i = 0; i < listaUtenti.getLength(); i++) {
 			Node nodoUtente = listaUtenti.item(i);
@@ -83,16 +74,16 @@ public class GestioneUtentiXML {
 				
 				Utente utente;
 
-				String nome = elementoUtente.getElementsByTagName("nome").item(0).getTextContent();
+				String nome = elementoUtente.getElementsByTagName(NOME).item(0).getTextContent();
 				
-				String password = elementoUtente.getElementsByTagName("password").item(0).getTextContent();
+				String password = elementoUtente.getElementsByTagName(PASSWORD).item(0).getTextContent();
 				
-				String ruolo = elementoUtente.getElementsByTagName("ruolo").item(0).getTextContent();
+				String ruolo = elementoUtente.getElementsByTagName(RUOLO).item(0).getTextContent();
 				
-				if(elementoUtente.getElementsByTagName("comprensorio").item(0) != null) {
+				if(elementoUtente.getElementsByTagName(COMPRENSORIO).item(0) != null) {
 					Comprensorio comprensorio = GestioneComprensoriXML.caricaComprensorioSuXML(nodoUtente);
 					
-					String indirizzo = elementoUtente.getElementsByTagName("indirizzo").item(0).getTextContent();
+					String indirizzo = elementoUtente.getElementsByTagName(INDIRIZZO).item(0).getTextContent();
 					
 					utente = new Utente(nome, password, ruolo, comprensorio, indirizzo);
 				}

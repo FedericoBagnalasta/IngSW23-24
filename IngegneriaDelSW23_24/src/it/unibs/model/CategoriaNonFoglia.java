@@ -58,7 +58,7 @@ public class CategoriaNonFoglia implements Categoria {
 		return figli;
 	}
 
-	public CategoriaRadice getCategoriaRadice() {
+	public CategoriaRadice getRadice() {
 		return radice;
 	}
 }

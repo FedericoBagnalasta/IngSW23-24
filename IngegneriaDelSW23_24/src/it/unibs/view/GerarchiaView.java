@@ -1,8 +1,6 @@
 package it.unibs.view;
 
 import it.unibs.fp.mylib.InputDati;
-import it.unibs.model.Categoria;
-import it.unibs.model.Gerarchia;
 
 public class GerarchiaView {
 
@@ -20,7 +18,7 @@ public class GerarchiaView {
 		System.out.println("Figlio di " + nomePadre + ": " + nomeFiglio + " [" + tipo + "]");
 	}
 
-	public static void radiceGiaPresente() {
+	public static void msgRadiceGiaPresente() {
 		System.out.println("Esiste già una Categoria Radice con questo nome");
 	}
 
@@ -31,23 +29,23 @@ public class GerarchiaView {
 	}
 
 	public static String inserisciNomeValoreDominio() {
-		return InputDati.leggiStringaNonVuota("Inserisci il nome del valore del Dominio\n");
+		return InputDati.leggiStringaNonVuota("Inserisci il nome del Valore del Dominio\n");
 	}
 
-	public static void esisteGiaNomeValoreDominio() {
-		System.out.println("Esiste gia' un valore del dominio con questo nome");
+	public static void msgEsisteGiaNomeValoreDominio() {
+		System.out.println("Esiste gia' un Valore del Dominio con questo nome");
 	}
 
 	public static boolean richiestaNomeValoreDominio() {
-		return InputDati.yesOrNo("Desideri aggiungere un altro valore al Dominio?\n");
+		return InputDati.yesOrNo("Desideri aggiungere un altro Valore al Dominio?\n");
 	}
 
 	public static String inserisciDescrizioneValoreDominio() {
-		return InputDati.leggiStringaNonVuota("Inserisci la descrizione del valore del Dominio\n");
+		return InputDati.leggiStringaNonVuota("Inserisci la Descrizione del Valore del Dominio\n");
 	}
 
 	public static boolean richiestaDescrizioneValoreDominio() {
-		return InputDati.yesOrNo("Desideri aggiungere una descrizione al valore del dominio?\n");
+		return InputDati.yesOrNo("Desideri aggiungere una Descrizione al Valore del Dominio?\n");
 	}
 
 	//PARTE CATEGORIA

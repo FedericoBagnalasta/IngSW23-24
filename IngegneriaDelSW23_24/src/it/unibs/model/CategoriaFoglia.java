@@ -21,7 +21,7 @@ public class CategoriaFoglia implements Categoria {
 	}
 
 	public boolean verificaUguaglianzaFoglie(CategoriaFoglia foglia) {
-		if(this.getNome().equals(foglia.getNome()) && this.getCategoriaRadice().getNome().equals(foglia.getCategoriaRadice().getNome())) {
+		if(this.getNome().equals(foglia.getNome()) && this.getRadice().getNome().equals(foglia.getRadice().getNome())) {
 			return true;
 		}
 		return false;
@@ -35,7 +35,7 @@ public class CategoriaFoglia implements Categoria {
 		return valoreDominio;
 	}
 
-	public CategoriaRadice getCategoriaRadice() {
+	public CategoriaRadice getRadice() {
 		return radice;
 	}
 	
@@ -56,7 +56,7 @@ public class CategoriaFoglia implements Categoria {
 	}
 
 	public boolean haStessaRadice(CategoriaFoglia fogliaNuova) {
-		if(this.getCategoriaRadice().getNome().equals(fogliaNuova.getCategoriaRadice().getNome())) {
+		if(this.getRadice().getNome().equals(fogliaNuova.getRadice().getNome())) {
 			return true;
 		}
 		return false;

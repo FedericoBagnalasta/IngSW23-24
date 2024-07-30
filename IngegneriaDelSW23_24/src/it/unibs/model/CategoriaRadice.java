@@ -5,9 +5,10 @@ import java.util.ArrayList;
 public class CategoriaRadice implements Categoria {
 
 	private static final String RADICE = "Radice";
-
+	private static final String VALORE_DELL_ELEMENTO_RADICE = "Valore dell'elemento radice";
+	
 	private String nome;
-	private final ValoreDominio valore = new ValoreDominio("Radice", "Valore dell'elemento radice");
+	private final ValoreDominio valore = new ValoreDominio(RADICE, VALORE_DELL_ELEMENTO_RADICE);
 	private final String tipo = RADICE;
 	private String campo;
 	private ArrayList<ValoreDominio> dominio = new ArrayList<>();
@@ -55,7 +56,7 @@ public class CategoriaRadice implements Categoria {
 		return figli;
 	}
 
-	public CategoriaRadice getCategoriaRadice() {
+	public CategoriaRadice getRadice() {
 		return this;
 	}
 }
