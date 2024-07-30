@@ -37,7 +37,7 @@ public class GerarchiaController {
 			if(GerarchiaView.richiestaAggiuntaCategoriaFoglia(valore.getValore())) {
 				creaFoglia(categoriaPadre, valore);			
 			}
-			else if(GerarchiaView.richiestaAggiuntaCategoriaNonFoglia(valore.getValore())) {
+			else {
 				CategoriaNonFoglia nonFoglia = creaNonFoglia(categoriaPadre, valore);
 
 				creaFigliCategoria(nonFoglia);
