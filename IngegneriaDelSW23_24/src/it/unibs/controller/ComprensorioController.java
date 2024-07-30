@@ -40,6 +40,7 @@ public class ComprensorioController {
 	}
 
 	/*public boolean verificaEsistenzaComprensorio(String nomeComprensorio) {
+	 
 		//Il foreach dà errore
 		for(int i = 0; i < ElencoComprensori.numeroComprensori(); i++) {
 			if(ElencoComprensori.getElencoComprensori().get(i).getNome().equals(nomeComprensorio)) {
