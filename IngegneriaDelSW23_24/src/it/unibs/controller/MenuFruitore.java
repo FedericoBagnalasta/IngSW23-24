@@ -20,9 +20,11 @@ public class MenuFruitore {
 			switch(scelta) {
 			case 1:
 				//visualizza
+				gerarchia.visualizzaRadici();
 				break;
 			case 2:
 				//naviga
+				gerarchia.navigaGerarchiaFinoAFoglia();
 				break;
 			case 3:
 				GestioneGeneraleXML.salvataggioCompleto();

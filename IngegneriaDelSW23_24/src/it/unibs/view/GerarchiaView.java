@@ -105,7 +105,7 @@ public class GerarchiaView {
 	}
 
 	public static void visualizzaNomeValore(String valore, String nomeCategoria, String tipo) {
-		System.out.println("Valore: "+ valore + ", Associato a: " + nomeCategoria + " (" + tipo + ")");
+		System.out.println("Valore: "+ valore + ", Associato a: " + nomeCategoria + " [" + tipo + "]");
 	}
 	
 	public static void visualizzaNomeValoreSenzaCategoria(String valore) {
@@ -127,5 +127,9 @@ public class GerarchiaView {
 
 	public static void visualizzaCategoria(String nome, String tipo) {
 		System.out.println("Categoria: " + nome + " di tipo " + tipo);
+	}
+
+	public static void gerarchieAssenti() {
+		System.out.println("Non sono state create Gerarchie dai Configuratori");
 	}
 }

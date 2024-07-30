@@ -133,7 +133,21 @@ public class GerarchiaController {
 		return dominio;
 	}
 	
-	public Categoria navigaGerarchiaFinoAFoglia(Categoria padre) {		//DA MOSTRARE LE CATEGORIE ASSOCIATE AI VALORI DEL DOMINIO 
+	public Categoria navigaGerarchiaFinoAFoglia() {
+		if(ElencoGerarchie.getElencoGerarchie().size() == 0) {
+			GerarchiaView.gerarchieAssenti();
+		}
+		CategoriaRadice radice = selezionaRadice();
+		return navigaStrutturaGerarchia(radice);
+	}
+	
+	
+	
+				//PROBLEMA SEINSERISCO VALORE CHE NON ESISTE TRA I VALORIDOMINIO
+	
+	
+	
+	public Categoria navigaStrutturaGerarchia(Categoria padre) {		//DA MOSTRARE LE CATEGORIE ASSOCIATE AI VALORI DEL DOMINIO 
 		visualizzaValoriCampo(padre);
 		String nomeValoreScelto = GerarchiaView.inserisciValoreScelto();
 		ValoreDominio valoreScelto = ValoreDominio.selezionaValore(nomeValoreScelto, padre.getDominio());
@@ -151,14 +165,9 @@ public class GerarchiaController {
 			GerarchiaView.visualizzaCategoria(categoriaScelta.getNome(), categoriaScelta.getTipo());
 			return categoriaScelta;
 		}
-		//CONTROLLO SE CATEGORIASCELTA NON è ASSOCIATA A NIENTE
-		if(categoriaScelta == null) {
-			GerarchiaView.valoreNonAssociatoACategoria();
-			return null;
-		}
 		else {
-			GerarchiaView.visualizzaCategoria(nomeValoreScelto, nomeValoreScelto);
-			return navigaGerarchiaFinoAFoglia(categoriaScelta);
+			GerarchiaView.visualizzaCategoria(categoriaScelta.getNome(), categoriaScelta.getTipo());
+			return navigaStrutturaGerarchia(categoriaScelta);
 		}
 	}
 
@@ -201,7 +210,7 @@ public class GerarchiaController {
 		visualizzaRadici();
 		String nomeRadice = GerarchiaView.inserisciNomeRadiceRicerca();
 
-		while(ElencoGerarchie.verificaEsistenzaRadice(nomeRadice)) {
+		while(!ElencoGerarchie.verificaEsistenzaRadice(nomeRadice)) {
 			GerarchiaView.radiceNonEsiste();
 			nomeRadice = GerarchiaView.inserisciNomeRadiceRicerca();
 		}
@@ -222,9 +231,9 @@ public class GerarchiaController {
 		GerarchiaView.presentazioneValoriDiCampo(categoria.getCampo());
 		for(ValoreDominio valore : categoria.getDominio()) {
 			Categoria categoriaFiglio = categoria.selezionaFiglioDalValore(valore);
-			if(categoriaFiglio == null) {
+			/*if(categoriaFiglio == null) {
 				GerarchiaView.visualizzaNomeValoreSenzaCategoria(valore.getValore());
-			}
+			}*/
 			GerarchiaView.visualizzaNomeValore(valore.getValore(), categoriaFiglio.getNome(), categoriaFiglio.getTipo());
 		}
 	}

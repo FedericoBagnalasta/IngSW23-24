@@ -13,11 +13,15 @@ public class LoginView {
 	}
 
 	public static void msgConfiguratoreInesistente() {
-		System.out.println("Le credenziali inserite non corrispondono a nessun configuratore esistente");
+		System.out.println("Le credenziali inserite non corrispondono a nessun Configuratore esistente");
+	}
+	
+	public static void msgFruitoreInesistente() {
+		System.out.println("Le credenziali inserite non corrispondono a nessun Fruitore esistente");
 	}
 
 	public static void msgConfiguratoreGiaEsistente() {
-		System.out.println("Il nome inserito corrisponde ad un configuratore gia' esistente");
+		System.out.println("Esiste gia' un Configuratore con questo nome");
 	}
 
 	public static int sceltaRuolo() {
@@ -34,9 +38,5 @@ public class LoginView {
 	
 	public static String inserisciIndirizzo() {
 		return InputDati.leggiStringaNonVuota("Inserisci il tuo indirizzo di posta elettronica\n");
-	}
-	
-	public static void msgErratoUsoCredenziali() {
-		System.out.println("Non e' possibile utilizzare questo nome");
 	}
 }

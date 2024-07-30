@@ -1,1 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><elencoUtenti><utente><nome>a</nome><password>s</password><ruolo>Configuratore</ruolo></utente><utente><nome>d</nome><password>f</password><ruolo>Fruitore</ruolo><comprensorio><nome>d</nome><comune>comu</comune></comprensorio><indirizzo>mail</indirizzo></utente><utente><nome>g</nome><password>h</password><ruolo>Fruitore</ruolo><comprensorio><nome>g</nome><comune>comu</comune></comprensorio><indirizzo>mail2</indirizzo></utente></elencoUtenti>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><elencoUtenti/>
