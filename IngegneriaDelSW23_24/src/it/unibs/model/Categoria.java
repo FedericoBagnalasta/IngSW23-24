@@ -13,9 +13,9 @@ public interface Categoria {
 	public ArrayList<Categoria> getFigli();
 
 	public String getNome();
-
+	
 	public CategoriaRadice getCategoriaRadice();
-
+	
 	public String getCampo();
 
 	default public ArrayList<String> getNomiGerarchia() {

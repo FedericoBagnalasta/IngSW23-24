@@ -61,7 +61,6 @@ public class GestioneFattoriDiConversioneXML {
 
 					foglia1 = GestioneGerarchieXML.caricaCategoriaFoglia(elementoFoglia1, radice1);
 				}
-				
 				Node nodoFoglia2 = elementoFattore.getElementsByTagName("foglia2").item(0);
 				
 				if(nodoFoglia2.getNodeType() == Node.ELEMENT_NODE) {

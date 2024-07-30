@@ -3,23 +3,25 @@ package it.unibs.model;
 import it.unibs.controller.ComprensorioController;
 import it.unibs.controller.GerarchiaController;
 import it.unibs.controller.LoginController;
-import it.unibs.controller.Menu;
+import it.unibs.controller.MenuConfiguratore;
+import it.unibs.controller.MenuFruitore;
 
 public class Main {
 
 	public static void main(String[] args) {
 		GestioneGeneraleXML.caricamentoCompleto();
+		
 		LoginController loginController = new LoginController();
 		Utente utente = loginController.loginGenerale();
 
-		ComprensorioController comprensorioController = new ComprensorioController();
-		GerarchiaController gerarchiaController = new GerarchiaController();
+		ComprensorioController comprensorio = new ComprensorioController();
+		GerarchiaController gerarchia = new GerarchiaController();
 
 		if(utente.getRuolo().equals("Configuratore")) {
-			Menu.menuConfiguratore(comprensorioController, gerarchiaController);
+			MenuConfiguratore.menuConfiguratore(comprensorio, gerarchia);
 		}
-		if(utente.getRuolo().equals("Fruitore")) {
-			Menu.menuFruitore(comprensorioController, gerarchiaController);
+		else {
+			MenuFruitore.menuFruitore(comprensorio, gerarchia);
 		}
 	}
 }

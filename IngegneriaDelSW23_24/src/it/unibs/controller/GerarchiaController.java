@@ -84,7 +84,7 @@ public class GerarchiaController {
 
 			valore = FDCView.inserisciValoreFDC();
 			fdcNuovo = new FattoreDiConversione(f1, f2, valore);
-		} while(ElencoFattoriDiConversione.verificaEsistenzaFDC(fdcNuovo) || fdcNuovo.verificaFDCImpossibile());
+		} while(ElencoFattoriDiConversione.verificaEsistenzaFDC(fdcNuovo) || fdcNuovo.fDCSullaStessaFoglia());
 
 		ElencoFattoriDiConversione.aggiungiFDC(fdcNuovo);
 		return fdcNuovo;
@@ -102,7 +102,7 @@ public class GerarchiaController {
 		String campo = GerarchiaView.inserisciCampo();
 		ArrayList<ValoreDominio> dominio = creaDominio();
 
-		nonFoglia = new CategoriaNonFoglia(nomeNonFoglia, campo, valore, dominio, padre.getCategoriaRadice());
+		nonFoglia = new CategoriaNonFoglia(nomeNonFoglia, valore, padre.getCategoriaRadice(), campo, dominio);
 		padre.getFigli().add(nonFoglia);
 		return nonFoglia;
 	}

@@ -76,7 +76,7 @@ public class GestioneGeneraleXML {
 			StreamResult result = new StreamResult(new File(filePath));
 			transformer.transform(source, result);
 
-			XMLView.salvataggioFileXML();
+			XMLView.salvataggioFileXML(filePath.substring(10));
 
 		} catch(TransformerException tfe) {
 			tfe.printStackTrace();

@@ -45,7 +45,7 @@ public class FattoreDiConversione {
 		return true;
 	}
 
-	public boolean verificaFDCImpossibile() {
+	public boolean fDCSullaStessaFoglia() {
 		if(c1.verificaUguaglianzaFoglie(c2)){
 			return true;
 		}

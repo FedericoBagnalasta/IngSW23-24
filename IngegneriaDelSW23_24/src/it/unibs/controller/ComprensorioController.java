@@ -13,15 +13,6 @@ public class ComprensorioController {
 		ElencoComprensori.aggiungiComprensorio(comprensorio);
 	}
 
-	public static void visualizzaComprensori() {
-		for(Comprensorio comprensorio : ElencoComprensori.getElencoComprensori()) {
-			ComprensorioView.visualizzaNomeComprensorio(comprensorio.getNome());
-			for(String comune : comprensorio.getComuniComprensorio()) {
-				ComprensorioView.visualizzaNomeComune(comune);
-			}
-		}
-	}
-
 	public String creaNomeComprensorio() {
 		String nomeComprensorio = ComprensorioView.inserisciNomeComprensorio();
 
@@ -48,19 +39,7 @@ public class ComprensorioController {
 		return elencoComuni;
 	}
 
-
-	public Comprensorio scegliComprensorio() {
-		//FruitoreView.visualizzaNomiComprensori();	DA CAMBIARE
-
-		String nomeComprensorio;
-		do {
-			nomeComprensorio = ComprensorioView.inserisciNomeComprensorio();
-		} while(!verificaEsistenzaComprensorio(nomeComprensorio));
-
-		return recuperaComprensorio(nomeComprensorio);
-	}
-
-	public boolean verificaEsistenzaComprensorio(String nomeComprensorio) {
+	/*public boolean verificaEsistenzaComprensorio(String nomeComprensorio) {
 		//Il foreach dà errore
 		for(int i = 0; i < ElencoComprensori.numeroComprensori(); i++) {
 			if(ElencoComprensori.getElencoComprensori().get(i).getNome().equals(nomeComprensorio)) {
@@ -69,7 +48,7 @@ public class ComprensorioController {
 		}
 		return false;
 	}
-
+*/
 	//Probabilmente c'è già un metodo in java che lo fa
 	public Comprensorio recuperaComprensorio(String nomeComprensorio) {
 		for(Comprensorio c : ElencoComprensori.getElencoComprensori()) {
@@ -78,5 +57,39 @@ public class ComprensorioController {
 			}
 		}
 		return null;	//eccezione o messaggio di errore
+	}
+
+	public static void visualizzaComprensori() {
+		for(Comprensorio comprensorio : ElencoComprensori.getElencoComprensori()) {
+			ComprensorioView.visualizzaNomeComprensorio(comprensorio.getNome());
+			for(String comune : comprensorio.getComuniComprensorio()) {
+				ComprensorioView.visualizzaNomeComune(comune);
+			}
+		}
+	}
+
+	public static Comprensorio scegliComprensorio() {
+		Comprensorio comprensorio;
+
+		visualizzaComprensori();
+		String nomeComprensorio = ComprensorioView.inserisciComprensorio();
+		comprensorio = trovaComprensorio(nomeComprensorio);
+
+		while(comprensorio == null) {
+			ComprensorioView.comprensorioNonEsistente();
+			visualizzaComprensori();
+			nomeComprensorio = ComprensorioView.inserisciComprensorio();
+			comprensorio = trovaComprensorio(nomeComprensorio);
+		}
+		return comprensorio;
+	}
+
+	public static Comprensorio trovaComprensorio(String nomeComprensorio) {
+		for(Comprensorio c : ElencoComprensori.getElencoComprensori()) {
+			if(c.getNome().equals(nomeComprensorio)) {
+				return c;
+			}
+		}
+		return null;
 	}
 }

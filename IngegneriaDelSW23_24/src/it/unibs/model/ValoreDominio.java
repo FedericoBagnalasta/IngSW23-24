@@ -8,7 +8,6 @@ public class ValoreDominio {
 	private String descrizione;
 
 	public ValoreDominio(String valore, String descrizione) {
-		super();
 		this.valore = valore;
 		this.descrizione = descrizione;
 	}

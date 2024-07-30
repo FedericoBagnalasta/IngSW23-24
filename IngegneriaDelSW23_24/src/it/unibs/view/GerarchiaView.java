@@ -13,7 +13,7 @@ public class GerarchiaView {
 	}
 
 	public static void visualizzaNomeRadiceGerarchia(String nomeRadice) {
-		System.out.println("\nRadice gerarchia: " + nomeRadice);
+		System.out.println("\nRadice Gerarchia: " + nomeRadice);
 	}
 
 	public static void visualizzaNomeFiglioCategoria(String nomePadre, String nomeFiglio, String tipo) {

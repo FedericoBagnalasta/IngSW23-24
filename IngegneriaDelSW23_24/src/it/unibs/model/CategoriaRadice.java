@@ -4,21 +4,23 @@ import java.util.ArrayList;
 
 public class CategoriaRadice implements Categoria {
 
+	private static final String RADICE = "Radice";
+
 	private String nome;
+	private final ValoreDominio valore = new ValoreDominio("Radice", "Valore dell'elemento radice");
+	private final String tipo = RADICE;
 	private String campo;
 	private ArrayList<ValoreDominio> dominio = new ArrayList<>();
 	private ArrayList<Categoria> figli = new ArrayList<>();
-	private final ValoreDominio valore = new ValoreDominio("Radice", "Valore dell'elemento radice");
 
 	public CategoriaRadice(String nome, String campo, ArrayList<ValoreDominio> dominio) {
-		super();
 		this.nome = nome;
 		this.campo = campo;
 		this.dominio = dominio;
 	}
 
+	//Costruttore per caricamento da xml
 	public CategoriaRadice(String nome, String campo, ArrayList<ValoreDominio> dominio, ArrayList<Categoria> figli) {
-		super();
 		this.nome = nome;
 		this.campo = campo;
 		this.dominio = dominio;
@@ -34,7 +36,7 @@ public class CategoriaRadice implements Categoria {
 	}
 
 	public String getTipo() {
-		return "Radice";
+		return tipo;
 	}
 
 	public String getCampo() {

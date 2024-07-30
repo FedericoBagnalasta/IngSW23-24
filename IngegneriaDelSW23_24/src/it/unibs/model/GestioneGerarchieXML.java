@@ -65,8 +65,9 @@ public class GestioneGerarchieXML {
 
 	public static void salvaCategoriaFoglia(Categoria categoria, Document doc, Element elementoGerarchia) {
 		elementoGerarchia.appendChild(GestioneGeneraleXML.creaElemento(doc, "nome", categoria.getNome()));
-		elementoGerarchia.appendChild(GestioneGeneraleXML.creaElemento(doc, "radice", categoria.getCategoriaRadice().getNome()));
 
+		elementoGerarchia.appendChild(GestioneGeneraleXML.creaElemento(doc, "radice", categoria.getCategoriaRadice().getNome()));
+		
 		salvaValoreDominio(categoria.getValoreDominio(), doc, elementoGerarchia);
 	}
 
@@ -81,6 +82,7 @@ public class GestioneGerarchieXML {
 		}
 
 		elementoGerarchia.appendChild(elementoDominio);
+		
 		elementoGerarchia.appendChild(GestioneGeneraleXML.creaElemento(doc, "radice", categoria.getCategoriaRadice().getNome()));
 
 		salvaValoreDominio(categoria.getValoreDominio(), doc, elementoGerarchia);
@@ -174,8 +176,8 @@ public class GestioneGerarchieXML {
 		String campo = elemento.getElementsByTagName("campo").item(0).getTextContent();	
 		ValoreDominio valoreDominio = caricaValoreDominio(elemento.getElementsByTagName("valoreDominio").item(0));	
 		ArrayList<ValoreDominio> dominio = caricaValoriDominio(elemento.getElementsByTagName("dominio").item(0));
-
-		return new CategoriaNonFoglia(nome, campo, valoreDominio, dominio, radice, figli);
+		
+		return new CategoriaNonFoglia(nome, valoreDominio, radice, campo, dominio, figli);
 	}
 
 	public static ValoreDominio caricaValoreDominio(Node node) {

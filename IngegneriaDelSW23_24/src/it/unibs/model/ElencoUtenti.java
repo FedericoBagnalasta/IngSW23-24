@@ -43,4 +43,11 @@ public class ElencoUtenti {
 	public static ArrayList<Utente> getElencoUtenti() {
 		return elencoUtenti;
 	}
+
+	public static boolean erratoUsoCredenzialiBase(String nome, String ruolo) {
+		if(nome.equals(utentePredefinito) && ruolo.equals("Fruitore")) {
+			return true;
+		}
+		return false;
+	}
 }

@@ -28,10 +28,11 @@ public class ElencoFattoriDiConversione {
 		for(int i = 0; i < elencoFattoriDiConversione.size(); i++) {
 			valore = fdcNuovo.getValore() * elencoFattoriDiConversione.get(i).getValore();
 			valore = limitaValoreFDC(valore);
+
 			fdcDedotto = new FattoreDiConversione(fdcNuovo.getC1(), elencoFattoriDiConversione.get(i).getC2(), valore);
 
-			if(elencoFattoriDiConversione.get(i).getC1().verificaUguaglianzaFoglie(fdcNuovo.getC2())
-					&& !verificaEsistenzaFDC(fdcDedotto) && !fdcDedotto.verificaFDCImpossibile()) {
+			if(elencoFattoriDiConversione.get(i).getC1().verificaUguaglianzaFoglie(fdcNuovo.getC2()) &&
+					!verificaEsistenzaFDC(fdcDedotto) && !fdcDedotto.fDCSullaStessaFoglia()) {
 				aggiungiFDC(fdcDedotto);
 			}
 		}

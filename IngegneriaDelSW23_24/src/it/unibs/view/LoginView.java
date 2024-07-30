@@ -28,7 +28,15 @@ public class LoginView {
 		return InputDati.yesOrNo("Sei sicuro della tua scelta?\n");
 	}
 
-	public static void faseCambiamentoCredenziali() {
-		System.out.println("Creazione di credenziali personali:");	
+	public static void msgCambiamentoCredenziali() {
+		System.out.println("\nCreazione di credenziali personali:");	
+	}
+	
+	public static String inserisciIndirizzo() {
+		return InputDati.leggiStringaNonVuota("Inserisci il tuo indirizzo di posta elettronica\n");
+	}
+	
+	public static void msgErratoUsoCredenziali() {
+		System.out.println("Non e' possibile utilizzare questo nome");
 	}
 }
