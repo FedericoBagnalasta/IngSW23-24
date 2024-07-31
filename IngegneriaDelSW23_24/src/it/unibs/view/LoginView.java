@@ -3,6 +3,14 @@ package it.unibs.view;
 import it.unibs.fp.mylib.*;
 
 public class LoginView {
+	
+	public static void inserisciSpaziatura() {
+		System.out.println("-----------------------------------------------------------------------------");
+	}
+	
+	public static int sceltaRuolo() {
+		return InputDati.leggiInteroRange("Inserisci 1 per Configuratore e 2 per Fruitore\n", 1, 2);
+	}
 
 	public static String inserisciNome() {
 		return InputDati.leggiStringaNonVuota("Inserisci un Nome\n");
@@ -13,19 +21,15 @@ public class LoginView {
 	}
 
 	public static void msgConfiguratoreInesistente() {
-		System.out.println("Le credenziali inserite non corrispondono a nessun Configuratore esistente");
+		System.out.println("Le credenziali inserite non corrispondono a nessun Configuratore esistente\n");
 	}
 	
 	public static void msgFruitoreInesistente() {
-		System.out.println("Le credenziali inserite non corrispondono a nessun Fruitore esistente");
+		System.out.println("Le credenziali inserite non corrispondono a nessun Fruitore esistente\n");
 	}
 
 	public static void msgConfiguratoreGiaEsistente() {
 		System.out.println("Esiste gia' un Configuratore con questo nome");
-	}
-
-	public static int sceltaRuolo() {
-		return InputDati.leggiInteroRange("Inserisci 1 per Configuratore e 2 per Fruitore\n", 1, 2);
 	}
 
 	public static boolean confermaScelta() {

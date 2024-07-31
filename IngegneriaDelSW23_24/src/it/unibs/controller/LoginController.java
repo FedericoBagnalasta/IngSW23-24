@@ -12,14 +12,15 @@ public class LoginController {
 		Utente utente;
 		
 		do {
-		String ruolo = inserisciRuolo();
-			if(ruolo.equals(CONFIGURATORE)) {
-				utente = loginConfiguratore();
-			}
-			else {
-				utente = loginFruitore();
-			}
-		} while(utente == null);
+			LoginView.inserisciSpaziatura();
+			String ruolo = inserisciRuolo();
+				if(ruolo.equals(CONFIGURATORE)) {
+					utente = loginConfiguratore();
+				}
+				else {
+					utente = loginFruitore();
+				}
+			} while(utente == null);
 		return utente;
 	}
 	
@@ -98,7 +99,7 @@ public class LoginController {
 		}
 		
 		ComprensorioController.visualizzaComprensori();
-		String nomeComprensorio = ComprensorioView.inserisciComprensorio();
+		String nomeComprensorio = ComprensorioView.selezionaComprensorio();
 		comprensorio = ComprensorioController.trovaComprensorio(nomeComprensorio);
 		
 		while(comprensorio == null) {

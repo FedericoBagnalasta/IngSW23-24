@@ -15,7 +15,6 @@ public class ElencoFattoriDiConversione {
 	}
 
 	public static boolean verificaEsistenzaFDC(FattoreDiConversione fdC) {
-
 		for(FattoreDiConversione f : elencoFattoriDiConversione) {
 			if(fdC.verificaUguaglianzaFattoriDiConversione(f)) {
 				return true;
@@ -42,7 +41,6 @@ public class ElencoFattoriDiConversione {
 	}
 
 	private static double limitaValoreFDC(double valore) {
-
 		if(valore < VALORE_MIN_FDC) {
 			valore = VALORE_MIN_FDC;
 		}
@@ -50,6 +48,15 @@ public class ElencoFattoriDiConversione {
 			valore = VALORE_MAX_FDC;
 		}
 		return valore;
+	}
+	
+	public static FattoreDiConversione trovaFDC(CategoriaFoglia c1, CategoriaFoglia c2) {
+		for(FattoreDiConversione fdc : elencoFattoriDiConversione) {
+			if(fdc.getC1().verificaUguaglianzaFoglie(c1) && fdc.getC2().verificaUguaglianzaFoglie(c2)) {
+				return fdc;
+			}
+		}
+		return null;
 	}
 
 	public static ArrayList<FattoreDiConversione> getElencoFattoriDiConversione() {

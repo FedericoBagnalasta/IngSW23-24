@@ -20,11 +20,9 @@ public class GestioneComprensoriXML {
 		Document doc = GestioneGeneraleXML.creaFileXML();
 
 		Element elementoElencoComprensori = doc.createElement(ELENCO_COMPRENSORI);
-		
 		doc.appendChild(elementoElencoComprensori);
 
 		for(Comprensorio comprensorio : ElencoComprensori.getElencoComprensori()) {
-
 			salvaComprensorioSuXML(doc, comprensorio, elementoElencoComprensori);
 		}
 		GestioneGeneraleXML.salvaFileXML(doc, filePath);
@@ -38,6 +36,7 @@ public class GestioneComprensoriXML {
 		for(String comune : comprensorio.getComuniComprensorio()) {
 			elementoComprensorio.appendChild(GestioneGeneraleXML.creaElemento(doc, COMUNE, comune));
 		}
+		
 		elementoPadre.appendChild(elementoComprensorio);
 	}
 
@@ -53,7 +52,6 @@ public class GestioneComprensoriXML {
 			Node nodoComprensorio = listaComprensori.item(i);
 
 			if(nodoComprensorio.getNodeType() == Node.ELEMENT_NODE) {
-
 				Comprensorio comprensorio = caricaComprensorioSuXML(nodoComprensorio);
 
 				ElencoComprensori.getElencoComprensori().add(comprensorio);

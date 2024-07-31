@@ -72,12 +72,12 @@ public class GerarchiaController {
 			GerarchiaController.visualizzaGerarchie();
 
 			do {
-				FDCView.inserimentoPrimaFoglia();
+				FDCView.inserimentoPrimaFogliaPerFDC();
 				f1 = selezionaCategoriaFogliaConRadiceFissata(fogliaNuova.getRadice());
 			} while(f1 == null);
 
 			do {
-				FDCView.inserimentoSecondaFoglia();
+				FDCView.inserimentoSecondaFogliaPerFDC();
 				f2 = selezionaCategoriaFoglia();
 			} while(f2 == null);
 

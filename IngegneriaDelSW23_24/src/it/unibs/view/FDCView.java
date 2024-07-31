@@ -14,7 +14,7 @@ public class FDCView {
 	}
 
 	public static String inserisciFogliaPerFDC() {
-		return InputDati.leggiStringaNonVuota("Inserisci il nome della Categoria Foglia di cui vuoi conoscere tutti i Fattori di Conversione\n");
+		return InputDati.leggiStringaNonVuota("\nInserisci il nome della Categoria Foglia di cui vuoi conoscere tutti i Fattori di Conversione\n");
 	}
 
 	public static String inserisciRadicePerFDC() {
@@ -22,14 +22,14 @@ public class FDCView {
 	}
 
 	public static void msgFogliaDiGerarchiaSbagliata(String nomeRadice) {
-		System.out.println("Attenzione: Devi inserire il nome di una Categoria Foglia che abbia come Radice " + nomeRadice);
+		System.out.println("ATTENZIONE\nDevi inserire il nome di una Categoria Foglia che abbia come Radice " + nomeRadice);
 	}
 
-	public static void inserimentoPrimaFoglia() {
-		System.out.println("INSERIMENTO PRIMA FOGLIA");
+	public static void inserimentoPrimaFogliaPerFDC() {
+		System.out.print("\nINSERIMENTO PRIMA FOGLIA");
 	}
 
-	public static void inserimentoSecondaFoglia() {
-		System.out.println("INSERIMENTO SECONDA FOGLIA");
+	public static void inserimentoSecondaFogliaPerFDC() {
+		System.out.print("\nINSERIMENTO SECONDA FOGLIA");
 	}
 }

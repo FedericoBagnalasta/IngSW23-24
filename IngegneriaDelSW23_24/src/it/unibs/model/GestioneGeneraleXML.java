@@ -22,11 +22,13 @@ public class GestioneGeneraleXML {
 	private static final String RESOURCES_FILE_COMPRENSORI_XML = "resources/FileComprensori.xml";
 	private static final String RESOURCES_FILE_GERARCHIE_XML = "resources/FileGerarchie.xml";
 	private static final String RESOURCES_FILE_FATTORI_DI_CONVERSIONE_XML = "resources/FileFattoriDiConversione.xml";
+	private static final String RESOURCES_FILE_SCAMBI_XML = "resources/FileScambi.xml";
 	
 	private static final String ELENCO_UTENTI = "elencoUtenti";
 	private static final String ELENCO_COMPRENSORI = "elencoComprensori";
 	private static final String ELENCO_GERARCHIE = "elencoGerarchie";
 	private static final String ELENCO_FATTORI_DI_CONVERSIONE = "elencoFattoriDiConversione";
+	private static final String ELENCO_SCAMBI = "elencoScambi";
 	
 	//PARTE FORMATTAZIONE ====================================================================================================
 
@@ -35,6 +37,7 @@ public class GestioneGeneraleXML {
 		formattaFileXML(RESOURCES_FILE_COMPRENSORI_XML, ELENCO_COMPRENSORI);
 		formattaFileXML(RESOURCES_FILE_GERARCHIE_XML, ELENCO_GERARCHIE);
 		formattaFileXML(RESOURCES_FILE_FATTORI_DI_CONVERSIONE_XML, ELENCO_FATTORI_DI_CONVERSIONE);
+		formattaFileXML(RESOURCES_FILE_SCAMBI_XML, ELENCO_SCAMBI);
 	}
 
 	public static void formattaFileXML(String filePath, String elenco) {
@@ -53,6 +56,7 @@ public class GestioneGeneraleXML {
 		GestioneComprensoriXML.salvaElencoComprensoriSuXML(RESOURCES_FILE_COMPRENSORI_XML);
 		GestioneGerarchieXML.salvaElencoGerarchieSuXML(RESOURCES_FILE_GERARCHIE_XML);
 		GestioneFattoriDiConversioneXML.salvaElencoFDCSuXML(RESOURCES_FILE_FATTORI_DI_CONVERSIONE_XML);
+		GestioneScambiXML.salvaElencoScambiSuXML(RESOURCES_FILE_SCAMBI_XML);
 	}
 
 	public static Element creaElemento(Document doc, String tagElemento, String datoElemento) {
@@ -99,6 +103,7 @@ public class GestioneGeneraleXML {
 		GestioneComprensoriXML.caricaElencoComprensoriDaXML(RESOURCES_FILE_COMPRENSORI_XML);
 		GestioneGerarchieXML.caricaElencoGerarchieDaXML(RESOURCES_FILE_GERARCHIE_XML);
 		GestioneFattoriDiConversioneXML.caricaElencoFDCDaXML(RESOURCES_FILE_FATTORI_DI_CONVERSIONE_XML);
+		GestioneScambiXML.caricaElencoScambiDaXML(RESOURCES_FILE_SCAMBI_XML);
 	}
 
 	public static Document caricaFileXML(String filePath) {

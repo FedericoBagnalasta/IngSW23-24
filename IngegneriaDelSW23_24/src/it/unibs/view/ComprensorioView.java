@@ -7,15 +7,15 @@ public class ComprensorioView {
 	//PARTE COMPRENSORIO
 
 	public static String inserisciComprensorio() {
-		return InputDati.leggiStringaNonVuota("Inserisci il nome del Comprensorio geografico\n");
+		return InputDati.leggiStringaNonVuota("Inserisci il nome del Comprensorio che vuoi creare\n");
 	}
 
 	public static void msgComprensorioGiaPresente() {
 		System.out.println("Esiste gia' un Comprensorio con questo nome");
 	}
 	
-	public static String inserisciNomeComprensorio() {
-		return InputDati.leggiStringaNonVuota("Inserisci il nome del Comprensorio che vuoi selezionare\n");
+	public static String selezionaComprensorio() {
+		return InputDati.leggiStringaNonVuota("\nInserisci il nome del Comprensorio che vuoi selezionare\n");
 	}
 
 	public static void visualizzaNomeComprensorio(String nome) {
