@@ -5,13 +5,14 @@ import it.unibs.model.ElencoFattoriDiConversione;
 import it.unibs.model.ElencoScambi;
 import it.unibs.model.FattoreDiConversione;
 import it.unibs.model.Scambio;
+import it.unibs.model.Utente;
 import it.unibs.view.ScambioView;
 
 public class ScambioController {
 
 	private static final String APERTO = "Aperto";
 
-	public static void creaScambio() {
+	public static void creaScambio(Utente utente) {
 		GerarchiaController gerarchiaController = new GerarchiaController();
 		boolean proposta;
 		
@@ -32,7 +33,7 @@ public class ScambioController {
 			
 			ScambioView.visualizzaScambio(categoriaRichiesta.getNome(), categoriaOfferta.getNome(), oreRichiesta, oreOfferta);
 			if(ScambioView.confermaScambio()) {
-				Scambio scambio = new Scambio(categoriaRichiesta, categoriaOfferta, oreRichiesta, oreOfferta);
+				Scambio scambio = new Scambio(categoriaRichiesta, categoriaOfferta, oreRichiesta, oreOfferta, utente);
 				scambio.setStato(APERTO);
 				ElencoScambi.aggiungiScambio(scambio);
 				break;

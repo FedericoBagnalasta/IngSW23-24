@@ -7,12 +7,14 @@ public class Scambio {
 	private int oreRichiesta;
 	private int oreOfferta;
 	private String stato;
+	private Utente utente;
 	
-	public Scambio(CategoriaFoglia richiesta, CategoriaFoglia offerta, int oreRichiesta, int oreOfferta) {
+	public Scambio(CategoriaFoglia richiesta, CategoriaFoglia offerta, int oreRichiesta, int oreOfferta, Utente utente) {
 		this.fogliaRichiesta = richiesta;
 		this.fogliaOfferta = offerta;
 		this.oreRichiesta = oreRichiesta;
 		this.oreOfferta = oreOfferta;
+		this.utente = utente;
 	}
 
 	public String getStato() {
@@ -37,5 +39,9 @@ public class Scambio {
 
 	public int getOreOfferta() {
 		return oreOfferta;
+	}
+
+	public Utente getUtente() {
+		return utente;
 	}
 }

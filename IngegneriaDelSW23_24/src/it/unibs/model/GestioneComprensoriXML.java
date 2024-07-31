@@ -52,16 +52,16 @@ public class GestioneComprensoriXML {
 			Node nodoComprensorio = listaComprensori.item(i);
 
 			if(nodoComprensorio.getNodeType() == Node.ELEMENT_NODE) {
-				Comprensorio comprensorio = caricaComprensorioSuXML(nodoComprensorio);
+				Element elementoComprensorio = (Element)nodoComprensorio;
+				
+				Comprensorio comprensorio = caricaComprensorioSuXML(elementoComprensorio);
 
 				ElencoComprensori.getElencoComprensori().add(comprensorio);
 			}
 		}
 	}
 
-	public static Comprensorio caricaComprensorioSuXML(Node nodoComprensorio) {
-		Element elementoComprensorio = (Element)nodoComprensorio;
-
+	public static Comprensorio caricaComprensorioSuXML(Element elementoComprensorio) {
 		String nome = elementoComprensorio.getElementsByTagName(NOME).item(0).getTextContent();
 
 		NodeList listaComuni = elementoComprensorio.getElementsByTagName(COMUNE);

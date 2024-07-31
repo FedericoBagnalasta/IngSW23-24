@@ -73,26 +73,34 @@ public class GestioneUtentiXML {
 				Element elementoUtente = (Element) nodoUtente;
 				
 				Utente utente;
-
-				String nome = elementoUtente.getElementsByTagName(NOME).item(0).getTextContent();
 				
-				String password = elementoUtente.getElementsByTagName(PASSWORD).item(0).getTextContent();
-				
-				String ruolo = elementoUtente.getElementsByTagName(RUOLO).item(0).getTextContent();
+				utente = caricaInfoBaseSuXML(elementoUtente);
 				
 				if(elementoUtente.getElementsByTagName(COMPRENSORIO).item(0) != null) {
-					Comprensorio comprensorio = GestioneComprensoriXML.caricaComprensorioSuXML(nodoUtente);
-					
-					String indirizzo = elementoUtente.getElementsByTagName(INDIRIZZO).item(0).getTextContent();
-					
-					utente = new Utente(nome, password, ruolo, comprensorio, indirizzo);
+					utente = caricaInfoExtraSuXML(elementoUtente);
 				}
-				else {
-					utente = new Utente(nome, password, ruolo);
-				}
-				
 				ElencoUtenti.getElencoUtenti().add(utente);
 			}
 		}
+	}
+	
+	public static Utente caricaInfoBaseSuXML(Element elementoUtente) {
+		String nome = elementoUtente.getElementsByTagName(NOME).item(0).getTextContent();
+		
+		String password = elementoUtente.getElementsByTagName(PASSWORD).item(0).getTextContent();
+		
+		String ruolo = elementoUtente.getElementsByTagName(RUOLO).item(0).getTextContent();
+		
+		return new Utente(nome, password, ruolo);
+	}
+	
+	public static Utente caricaInfoExtraSuXML(Element elementoUtente) {
+		Utente utente = caricaInfoBaseSuXML(elementoUtente);
+		
+		Comprensorio comprensorio = GestioneComprensoriXML.caricaComprensorioSuXML(elementoUtente);
+		
+		String indirizzo = elementoUtente.getElementsByTagName(INDIRIZZO).item(0).getTextContent();
+		
+		return new Utente(utente.getNome(), utente.getPassword(), utente.getRuolo(), comprensorio, indirizzo);
 	}
 }

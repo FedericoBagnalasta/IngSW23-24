@@ -44,6 +44,9 @@ public class GestioneScambiXML {
 		
 		elementoScambio.appendChild(GestioneGeneraleXML.creaElemento(doc, ORE_OFFERTA, String.valueOf(scambio.getOreOfferta())));
 		
+		Element elementoUtente = doc.createElement("fruitore");
+		GestioneUtentiXML.salvaInfoExtraSuXML(elementoUtente, doc, scambio.getUtente(), elementoScambio);
+		
 		elementoPadre.appendChild(elementoScambio);
 	}
 	
@@ -61,8 +64,6 @@ public class GestioneScambiXML {
 			if(nodoScambio.getNodeType() == Node.ELEMENT_NODE) {
 				Scambio scambio = caricaScambioSuXML(nodoScambio);
 				
-				
-
 				ElencoScambi.getElencoScambi().add(scambio);
 			}
 		}
@@ -100,6 +101,8 @@ public class GestioneScambiXML {
 			fogliaOfferta = GestioneGerarchieXML.caricaCategoriaFoglia(elementoFogliaOfferta, radiceFogliaOfferta);
 		}
 		
-		return new Scambio(fogliaRichiesta, fogliaOfferta, oreRichiesta, oreOfferta);
+		Utente utente = GestioneUtentiXML.caricaInfoExtraSuXML(elementoScambio);
+		
+		return new Scambio(fogliaRichiesta, fogliaOfferta, oreRichiesta, oreOfferta, utente);
 	}
 }

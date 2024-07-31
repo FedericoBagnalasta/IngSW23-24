@@ -26,7 +26,7 @@ public class Main {
 				MenuConfiguratore.menuConfiguratore(comprensorio, gerarchia);
 			}
 			else {
-				MenuFruitore.menuFruitore(comprensorio, gerarchia, scambio);
+				MenuFruitore.menuFruitore(comprensorio, gerarchia, scambio, utente);
 			}
 		}
 	}
