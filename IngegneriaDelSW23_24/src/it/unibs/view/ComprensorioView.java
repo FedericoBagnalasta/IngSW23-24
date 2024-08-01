@@ -27,7 +27,7 @@ public class ComprensorioView {
 	}
 	
 	public static void msgComprensoriAssenti() {
-		System.out.println("Non e' stato creato alcun Comprensorio dai Configuratori, quindi non e' possibile continuare come fruitore\n");
+		System.out.println("Non e' stato creato alcun Comprensorio dai Configuratori, quindi non e' possibile continuare come Fruitore\n");
 	}
 
 	//PARTE COMUNE DEL COMPRENSORIO

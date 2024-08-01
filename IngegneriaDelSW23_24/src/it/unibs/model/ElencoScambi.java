@@ -12,7 +12,7 @@ public class ElencoScambi {
 	
 	public static Scambio trovaScambioComplementare(Scambio scambio) {
 		for(Scambio scambioSalvato : elencoScambi) {
-			if(scambio.verificaUguaglianzaScambio(scambio)) {
+			if(scambioSalvato.verificaUguaglianzaScambio(scambio)) {
 				return scambioSalvato;
 			}
 		}

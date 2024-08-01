@@ -5,7 +5,7 @@ import it.unibs.fp.mylib.InputDati;
 public class FDCView {
 
 	public static double inserisciValoreFDC() {
-		return InputDati.leggiDoubleRange("Inserisci un valore tra 0.5 e 2.0 per il Fattore di Conversione\n", 0.5, 2.0);
+		return InputDati.leggiDoubleRange("\nInserisci un valore tra 0.5 e 2.0 per il Fattore di Conversione\n", 0.5, 2.0);
 	}
 
 	public static void visualizzaFattoreDiConversione(String nomeClasse1, String nomeRadice1, String nomeClasse2, String nomeRadice2, double valore) {

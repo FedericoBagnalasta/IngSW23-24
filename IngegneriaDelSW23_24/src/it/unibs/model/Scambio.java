@@ -1,7 +1,9 @@
 package it.unibs.model;
 
 public class Scambio {
-
+	
+	private static final String APERTO = "Aperto";
+	
 	private CategoriaFoglia fogliaRichiesta;
 	private CategoriaFoglia fogliaOfferta;
 	private int oreRichiesta;
@@ -9,16 +11,28 @@ public class Scambio {
 	private String stato;
 	private Utente utente;
 	
-	public Scambio(CategoriaFoglia richiesta, CategoriaFoglia offerta, int oreRichiesta, int oreOfferta, Utente utente) {
-		this.fogliaRichiesta = richiesta;
-		this.fogliaOfferta = offerta;
+	public Scambio(CategoriaFoglia fogliaRichiesta, CategoriaFoglia fogliaOfferta,
+			int oreRichiesta, int oreOfferta, Utente utente) {
+		this.fogliaRichiesta = fogliaRichiesta;
+		this.fogliaOfferta =fogliaOfferta;
 		this.oreRichiesta = oreRichiesta;
 		this.oreOfferta = oreOfferta;
 		this.utente = utente;
 	}
+
+	public Scambio(CategoriaFoglia fogliaRichiesta, CategoriaFoglia fogliaOfferta,
+			int oreRichiesta, int oreOfferta, String stato, Utente utente) {
+		this.fogliaRichiesta = fogliaRichiesta;
+		this.fogliaOfferta = fogliaOfferta;
+		this.oreRichiesta = oreRichiesta;
+		this.oreOfferta = oreOfferta;
+		this.stato = stato;
+		this.utente = utente;
+	}
 	
 	public boolean verificaUguaglianzaScambio(Scambio scambio) {
-		if(this.getStato().equals("Aperto") &&
+		if(this.getStato().equals(APERTO) &&
+				!(this.getUtente().getNome().equals(scambio.getUtente().getNome())) &&
 				this.getUtente().getComprensorio().getNome().equals(scambio.getUtente().getComprensorio().getNome()) &&
 				this.getFogliaRichiesta().verificaUguaglianzaFoglie(scambio.getFogliaOfferta()) &&
 				this.getFogliaOfferta().verificaUguaglianzaFoglie(scambio.getFogliaRichiesta()) &&

@@ -14,6 +14,8 @@ public class GestioneScambiXML {
 	private static final String RADICE = "radice";
 	private static final String ORE_RICHIESTA = "oreRichiesta";
 	private static final String ORE_OFFERTA = "oreOfferta";
+	private static final String STATO = "stato";
+	private static final String FRUITORE = "fruitore";
 	
 	//PARTE SALVATAGGIO ======================================================================================================
 
@@ -44,7 +46,9 @@ public class GestioneScambiXML {
 		
 		elementoScambio.appendChild(GestioneGeneraleXML.creaElemento(doc, ORE_OFFERTA, String.valueOf(scambio.getOreOfferta())));
 		
-		Element elementoUtente = doc.createElement("fruitore");
+		elementoScambio.appendChild(GestioneGeneraleXML.creaElemento(doc, STATO, String.valueOf(scambio.getStato())));
+		
+		Element elementoUtente = doc.createElement(FRUITORE);
 		GestioneUtentiXML.salvaInfoExtraSuXML(elementoUtente, doc, scambio.getUtente(), elementoScambio);
 		
 		elementoPadre.appendChild(elementoScambio);
@@ -101,8 +105,10 @@ public class GestioneScambiXML {
 			fogliaOfferta = GestioneGerarchieXML.caricaCategoriaFoglia(elementoFogliaOfferta, radiceFogliaOfferta);
 		}
 		
+		String stato = elementoScambio.getElementsByTagName(STATO).item(0).getTextContent();
+		
 		Utente utente = GestioneUtentiXML.caricaInfoExtraUtenteSuXML(elementoScambio);
 		
-		return new Scambio(fogliaRichiesta, fogliaOfferta, oreRichiesta, oreOfferta, utente);
+		return new Scambio(fogliaRichiesta, fogliaOfferta, oreRichiesta, oreOfferta, stato, utente);
 	}
 }

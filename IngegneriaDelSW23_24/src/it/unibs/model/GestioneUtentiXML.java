@@ -10,7 +10,7 @@ public class GestioneUtentiXML {
 	private static final String ELENCO_UTENTI = "elencoUtenti";
 	private static final String CONFIGURATORE = "Configuratore";
 	private static final String UTENTE = "utente";
-	private static final String NOME = "nome";
+	private static final String NOME = "nomeU";
 	private static final String PASSWORD = "password";
 	private static final String RUOLO = "ruolo";
 	private static final String COMPRENSORIO = "comprensorio";

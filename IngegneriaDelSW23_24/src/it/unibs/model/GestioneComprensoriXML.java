@@ -11,7 +11,7 @@ public class GestioneComprensoriXML {
 
 	private static final String ELENCO_COMPRENSORI = "elencoComprensori";
 	private static final String COMPRENSORIO = "comprensorio";
-	private static final String NOME = "nome";
+	private static final String NOME = "nomeC";
 	private static final String COMUNE = "comune";
 	
 	//PARTE SALVATAGGIO ======================================================================================================

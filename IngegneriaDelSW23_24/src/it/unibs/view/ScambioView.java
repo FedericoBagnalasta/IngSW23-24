@@ -32,7 +32,27 @@ public class ScambioView {
 		System.out.println("Questo scambio e' stato annullato");
 	}
 	
-	public static boolean propostaScambio() {
+	public static boolean propostaNuovoScambio() {
 		return InputDati.yesOrNo("Vuoi creare un'altra proposta di scambio?\n");
+	}
+	
+	public static void visualizzaScambiFruitore() {
+		System.out.println("\nQuesti sono gli scambi che hai creato:");
+	}
+	
+	public static void visualizzaScambiConfiguratore(String nomeFoglia) {
+		System.out.println("\nQuesti sono gli scambi che riguardano la foglia " + nomeFoglia + ":");
+	}
+	
+	public static boolean propostaRitiroScambio() {
+		return InputDati.yesOrNo("Vuoi ritirare questo scambio?\n");
+	}
+	
+	public static void msgScambioAssente() {
+		System.out.println("Non e' ancora stata creata alcuna proposta di Scambio");
+	}
+	
+	public static void msgScambioNonTrovato() {
+		System.out.println("\nNon e' stato trovato alcuno Scambio");
 	}
 }
