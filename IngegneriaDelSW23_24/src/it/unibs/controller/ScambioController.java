@@ -34,7 +34,15 @@ public class ScambioController {
 			ScambioView.visualizzaScambio(categoriaRichiesta.getNome(), categoriaOfferta.getNome(), oreRichiesta, oreOfferta);
 			if(ScambioView.confermaScambio()) {
 				Scambio scambio = new Scambio(categoriaRichiesta, categoriaOfferta, oreRichiesta, oreOfferta, utente);
+				
 				scambio.setStato(APERTO);
+				
+				Scambio scambioComplementare = ElencoScambi.trovaScambioComplementare(scambio);
+				if(scambioComplementare != null){
+					scambio.setStato("Chiuso");
+					scambioComplementare.setStato("Chiuso");
+				}
+				
 				ElencoScambi.aggiungiScambio(scambio);
 				break;
 			} else {

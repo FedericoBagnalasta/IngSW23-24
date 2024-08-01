@@ -16,6 +16,18 @@ public class Scambio {
 		this.oreOfferta = oreOfferta;
 		this.utente = utente;
 	}
+	
+	public boolean verificaUguaglianzaScambio(Scambio scambio) {
+		if(this.getStato().equals("Aperto") &&
+				this.getUtente().getComprensorio().getNome().equals(scambio.getUtente().getComprensorio().getNome()) &&
+				this.getFogliaRichiesta().verificaUguaglianzaFoglie(scambio.getFogliaOfferta()) &&
+				this.getFogliaOfferta().verificaUguaglianzaFoglie(scambio.getFogliaRichiesta()) &&
+				this.getOreRichiesta() == scambio.getOreOfferta() &&
+				this.getOreOfferta() == scambio.getOreRichiesta()) {
+			return true;
+		}
+		return false;
+	}
 
 	public String getStato() {
 		return stato;

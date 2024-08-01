@@ -101,7 +101,7 @@ public class GestioneScambiXML {
 			fogliaOfferta = GestioneGerarchieXML.caricaCategoriaFoglia(elementoFogliaOfferta, radiceFogliaOfferta);
 		}
 		
-		Utente utente = GestioneUtentiXML.caricaInfoExtraSuXML(elementoScambio);
+		Utente utente = GestioneUtentiXML.caricaInfoExtraUtenteSuXML(elementoScambio);
 		
 		return new Scambio(fogliaRichiesta, fogliaOfferta, oreRichiesta, oreOfferta, utente);
 	}
