@@ -13,7 +13,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		GestioneGeneraleXML.caricamentoCompleto();
-		
+
 		LoginController loginController = new LoginController();
 		Utente utente = loginController.loginGenerale();
 
