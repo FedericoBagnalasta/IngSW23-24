@@ -12,6 +12,7 @@ import it.unibs.view.ScambioView;
 
 public class ScambioController {
 
+	private static final int MAX_LUNGHEZZA_ANELLO_SCAMBI = 3;	//Serve a non rendere la ricerca infinita o comunque troppo lunga
 	private static final String APERTO = "Aperto";
 	private static final String CHIUSO = "Chiuso";
 	private static final String RITIRATO = "Ritirato";
@@ -23,6 +24,7 @@ public class ScambioController {
 		do {
 			ScambioView.scegliFogliaRichiesta();
 			CategoriaFoglia fogliaRichiesta = (CategoriaFoglia)gerarchiaController.navigaGerarchiaFinoAFoglia();
+			
 			int oreRichiesta = ScambioView.inserisciOreRichiesta();
 			
 			ScambioView.scegliFogliaOfferta();
@@ -37,19 +39,22 @@ public class ScambioController {
 			
 			ScambioView.visualizzaScambio(fogliaRichiesta.getNome(), fogliaOfferta.getNome(), oreRichiesta, oreOfferta);
 			if(ScambioView.confermaScambio()) {
-				Scambio scambio = new Scambio(fogliaRichiesta, fogliaOfferta, oreRichiesta, oreOfferta, APERTO, utente);
+				Scambio nuovoScambio = new Scambio(fogliaRichiesta, fogliaOfferta, oreRichiesta, oreOfferta, APERTO, utente);
 				
-				scambio.setStato(APERTO);				
+				nuovoScambio.setStato(APERTO);
 				
-				Scambio scambioComplementare = ElencoScambi.trovaScambioComplementare(scambio);
-				if(scambioComplementare != null) {
-					scambio.setStato(CHIUSO);
-					scambioComplementare.setStato(CHIUSO);
+				int lunghezzaMax = MAX_LUNGHEZZA_ANELLO_SCAMBI;
+				ArrayList<Scambio> anelloDiScambi = ElencoScambi.trovaAnelloDiScambi(nuovoScambio, lunghezzaMax);
+				if(anelloDiScambi != null) {
+					for(Scambio scambio : anelloDiScambi) {
+						scambio.setStato(CHIUSO);
+					}
 				}
 				
-				ElencoScambi.aggiungiScambio(scambio);
+				ElencoScambi.aggiungiScambio(nuovoScambio);
 				break;
-			} else {
+			}
+			else {
 				proposta = ScambioView.propostaNuovoScambio();
 			}
 		} while(proposta);
@@ -129,15 +134,20 @@ public class ScambioController {
 	}
 	
 	public static void cambiaStatoScambio(Utente utente) {
-		ScambioView.visualizzaScambiFruitore();
-		
-		for(Scambio scambio : ElencoScambi.getElencoScambi()) {
-			if(scambio.getUtente().getNome().equals(utente.getNome())) {
-				ScambioView.visualizzaScambio(scambio.getFogliaRichiesta().getNome(),
-						scambio.getFogliaOfferta().getNome(), scambio.getOreRichiesta(), scambio.getOreOfferta());
-				
-				if(ScambioView.propostaRitiroScambio()) {
-					scambio.setStato(RITIRATO);
+		if(ElencoScambi.getElencoScambi().size() == 0) {
+			ScambioView.msgScambioAssente();
+		}
+		else {
+			ScambioView.visualizzaScambiFruitore();
+			
+			for(Scambio scambio : ElencoScambi.getElencoScambi()) {
+				if(scambio.getUtente().getNome().equals(utente.getNome())) {
+					ScambioView.visualizzaScambio(scambio.getFogliaRichiesta().getNome(),
+							scambio.getFogliaOfferta().getNome(), scambio.getOreRichiesta(), scambio.getOreOfferta());
+					
+					if(ScambioView.propostaRitiroScambio()) {
+						scambio.setStato(RITIRATO);
+					}
 				}
 			}
 		}

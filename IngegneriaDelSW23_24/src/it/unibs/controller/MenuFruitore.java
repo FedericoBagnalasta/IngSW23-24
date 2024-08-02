@@ -6,16 +6,15 @@ import it.unibs.model.Utente;
 
 public class MenuFruitore {
 	
-	private static final String VISUALIZZA_RADICI = "Visualizza tutte le radici delle gerarchie presenti";
-	private static final String NAVIGA_GERARCHIA = "Naviga nella gerarchia selezionata";
+	private static final String NAVIGA_GERARCHIA = "Scegli una Gerarchia ed esplorala";
 	private static final String PROPONI_SCAMBIO = "Formula una proposta di scambio";
 	private static final String RITIRA_SCAMBIO = "Ritira uno scambio tra quelli che hai creato";
-	private static final String VISUALIZZA_SCAMBI = "Visualizza gli scambi di cui sei l'autore";
+	private static final String VISUALIZZA_SCAMBI = "Visualizza tutti gli scambi di cui sei l'autore";
 	private static final String SALVA_SU_XML = "Salva i dati sul file xml";
 	private static final String SCELTA = "Scegli l'opzione";
 	
-	public static void menuFruitore(ComprensorioController comprensorio, GerarchiaController gerarchia, ScambioController scambio, Utente utente) {
-		String[] voci = {VISUALIZZA_RADICI, NAVIGA_GERARCHIA, PROPONI_SCAMBIO, RITIRA_SCAMBIO, VISUALIZZA_SCAMBI, SALVA_SU_XML};
+	public static void menuFruitore(GerarchiaController gerarchia, Utente utente) {
+		String[] voci = {NAVIGA_GERARCHIA, PROPONI_SCAMBIO, RITIRA_SCAMBIO, VISUALIZZA_SCAMBI, SALVA_SU_XML};
 		int scelta = 0;
 		MyMenu menu = new MyMenu(SCELTA, voci);
 
@@ -23,21 +22,18 @@ public class MenuFruitore {
 			scelta = menu.scegli();
 			switch(scelta) {
 			case 1:
-				gerarchia.visualizzaRadici();
-				break;
-			case 2:
 				gerarchia.navigaGerarchiaFinoAFoglia();
 				break;
-			case 3:
+			case 2:
 				ScambioController.creaScambio(utente);
 				break;
-			case 4:
+			case 3:
 				ScambioController.cambiaStatoScambio(utente);
 				break;
-			case 5:
+			case 4:
 				ScambioController.visualizzaScambiFruitore(utente);
 				break;
-			case 6:
+			case 5:
 				GestioneGeneraleXML.salvataggioCompleto();
 				break;
 			default:

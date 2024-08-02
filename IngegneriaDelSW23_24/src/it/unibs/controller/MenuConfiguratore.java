@@ -12,9 +12,9 @@ public class MenuConfiguratore {
 	private static final String VISUALIZZA_COMPRENSORI = "Visualizza tutti i Comprensori";
 	private static final String VISUALIZZA_GERARCHIE = "Visualizza tutte le gerarchie";
 	private static final String VISUALIZZA_FDC = "Visualizza tutti i Fattori di Conversione di una certa Foglia";
-	private static final String VISUALIZZA_SCAMBI = "Visualizza gli Scambi che riguardano una certa Foglia";
-	private static final String SALVA_SU_XML = "Salva i dati sul file xml";
-	private static final String FORMATTA_XML = "Formatta i file xml";
+	private static final String VISUALIZZA_SCAMBI = "Visualizza tutti gli Scambi che riguardano una certa Foglia";
+	private static final String SALVA_SU_XML = "Salva tutti i dati sui file xml";
+	private static final String FORMATTA_XML = "Formatta tutti i file xml";
 	private static final String SCELTA = "Scegli l'opzione";
 	
 	public static void menuConfiguratore(ComprensorioController comprensorio, GerarchiaController gerarchia) {

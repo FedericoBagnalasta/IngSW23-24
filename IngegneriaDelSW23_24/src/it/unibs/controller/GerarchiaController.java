@@ -70,7 +70,7 @@ public class GerarchiaController {
 
 		do {
 			GerarchiaController.visualizzaGerarchie();
-
+			
 			do {
 				FDCView.inserimentoPrimaFogliaPerFDC();
 				f1 = selezionaCategoriaFogliaConRadiceFissata(fogliaNuova.getRadice());
