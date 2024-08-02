@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import it.unibs.model.CategoriaFoglia;
 import it.unibs.model.ElencoFattoriDiConversione;
+import it.unibs.model.ElencoInsiemiChiusi;
 import it.unibs.model.ElencoScambi;
 import it.unibs.model.FattoreDiConversione;
 import it.unibs.model.Scambio;
@@ -49,6 +50,7 @@ public class ScambioController {
 					for(Scambio scambio : anelloDiScambi) {
 						scambio.setStato(CHIUSO);
 					}
+					ElencoInsiemiChiusi.aggiungiScambio(anelloDiScambi);
 				}
 				
 				ElencoScambi.aggiungiScambio(nuovoScambio);
@@ -148,6 +150,23 @@ public class ScambioController {
 					if(ScambioView.propostaRitiroScambio()) {
 						scambio.setStato(RITIRATO);
 					}
+				}
+			}
+		}
+	}
+	
+	public static void visualizzaInsiemiChiusi() {
+		if(ElencoInsiemiChiusi.getElencoInsiemiChiusi().size() == 0) {
+			ScambioView.msgInsiemeChiusoAssente();
+		}
+		else {
+			ScambioView.visualizzaInsiemiChiusi();
+			
+			for(ArrayList<Scambio> anelloDiScambi : ElencoInsiemiChiusi.getElencoInsiemiChiusi()) {
+				ScambioView.delimitazioneInsiemiChiusi();
+				for(Scambio scambio : anelloDiScambi) {
+					ScambioView.visualizzaScambio(scambio.getFogliaRichiesta().getNome(),
+							scambio.getFogliaOfferta().getNome(), scambio.getOreRichiesta(), scambio.getOreOfferta());
 				}
 			}
 		}

@@ -55,4 +55,16 @@ public class ScambioView {
 	public static void msgScambioNonTrovato() {
 		System.out.println("\nNon e' stato trovato alcuno Scambio");
 	}
+	
+	public static void visualizzaInsiemiChiusi() {
+		System.out.println("\nQuesti sono gli Insiemi chiusi formati dalle proposte di Scambio dei Fruitori");
+	}
+	
+	public static void msgInsiemeChiusoAssente() {
+		System.out.println("Non e' ancora stato formato alcun insieme chiuso");
+	}
+	
+	public static void delimitazioneInsiemiChiusi() {
+		System.out.println("\nInsieme chiuso:");
+	}
 }

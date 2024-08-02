@@ -26,7 +26,7 @@ public class GestioneScambiXML {
 		doc.appendChild(elementoElencoScambi);
 
 		for(Scambio scambio : ElencoScambi.getElencoScambi()) {
-			salvaScambioSuXML(doc,scambio, elementoElencoScambi);
+			salvaScambioSuXML(doc, scambio, elementoElencoScambi);
 		}
 		GestioneGeneraleXML.salvaFileXML(doc, filePath);
 	}

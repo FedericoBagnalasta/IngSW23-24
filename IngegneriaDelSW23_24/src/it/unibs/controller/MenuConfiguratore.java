@@ -13,12 +13,14 @@ public class MenuConfiguratore {
 	private static final String VISUALIZZA_GERARCHIE = "Visualizza tutte le gerarchie";
 	private static final String VISUALIZZA_FDC = "Visualizza tutti i Fattori di Conversione di una certa Foglia";
 	private static final String VISUALIZZA_SCAMBI = "Visualizza tutti gli Scambi che riguardano una certa Foglia";
+	private static final String VISUALIZZA_INSIEMI_CHIUSI = "Visualizza tutti gli Insiemi chiusi";
 	private static final String SALVA_SU_XML = "Salva tutti i dati sui file xml";
 	private static final String FORMATTA_XML = "Formatta tutti i file xml";
 	private static final String SCELTA = "Scegli l'opzione";
 	
 	public static void menuConfiguratore(ComprensorioController comprensorio, GerarchiaController gerarchia) {
-		String[] voci = {CREA_COMPRENSORIO, CREA_GERARCHIA, VISUALIZZA_COMPRENSORI, VISUALIZZA_GERARCHIE, VISUALIZZA_FDC, VISUALIZZA_SCAMBI, SALVA_SU_XML, FORMATTA_XML};
+		String[] voci = {CREA_COMPRENSORIO, CREA_GERARCHIA, VISUALIZZA_COMPRENSORI, VISUALIZZA_GERARCHIE, VISUALIZZA_FDC,
+				VISUALIZZA_SCAMBI, VISUALIZZA_INSIEMI_CHIUSI, SALVA_SU_XML, FORMATTA_XML};
 		int scelta = 0;
 		MyMenu menu = new MyMenu(SCELTA, voci);
 
@@ -46,9 +48,12 @@ public class MenuConfiguratore {
 				ScambioController.visualizzaScambiConfiguratore(gerarchia);
 				break;
 			case 7:
-				GestioneGeneraleXML.salvataggioCompleto();
+				ScambioController.visualizzaInsiemiChiusi();
 				break;
 			case 8:
+				GestioneGeneraleXML.salvataggioCompleto();
+				break;
+			case 9:
 				if(LoginView.confermaScelta()) {
 					GestioneGeneraleXML.formattazioneCompleta();
 					//Dopo averla fatta, avviare un'altra sessione
