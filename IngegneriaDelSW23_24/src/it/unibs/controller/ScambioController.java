@@ -38,7 +38,8 @@ public class ScambioController {
 			FattoreDiConversione fdc = ElencoFattoriDiConversione.trovaFDC(fogliaRichiesta, fogliaOfferta);
 			int oreOfferta = (int)(Math.round(oreRichiesta * fdc.getValore()));
 			
-			ScambioView.visualizzaScambio(fogliaRichiesta.getNome(), fogliaOfferta.getNome(), oreRichiesta, oreOfferta);
+			ScambioView.visualizzaScambio(fogliaRichiesta.getNome(), fogliaRichiesta.getRadice().getNome(), oreRichiesta,
+					fogliaOfferta.getNome(), fogliaOfferta.getRadice().getNome(), oreOfferta);
 			if(ScambioView.confermaScambio()) {
 				Scambio nuovoScambio = new Scambio(fogliaRichiesta, fogliaOfferta, oreRichiesta, oreOfferta, APERTO, utente);
 				
@@ -75,13 +76,15 @@ public class ScambioController {
 				ScambioView.msgScambioNonTrovato();
 			}
 			else {
-				ScambioView.visualizzaScambiConfiguratore(fogliaRichiesta.getNome());
+				ScambioView.visualizzaScambiConfiguratore(fogliaRichiesta.getNome(), fogliaRichiesta.getRadice().getNome());
 				
 				for(Scambio scambio : listaScambi) {
 					if(scambio.getFogliaRichiesta().verificaUguaglianzaFoglie(fogliaRichiesta) ||
 							scambio.getFogliaOfferta().verificaUguaglianzaFoglie(fogliaRichiesta)) {
 						ScambioView.visualizzaScambio(scambio.getFogliaRichiesta().getNome(),
-								scambio.getFogliaOfferta().getNome(), scambio.getOreRichiesta(), scambio.getOreOfferta());
+								scambio.getFogliaRichiesta().getRadice().getNome(), scambio.getOreRichiesta(),
+								scambio.getFogliaOfferta().getNome(), scambio.getFogliaOfferta().getRadice().getNome(),
+								scambio.getOreOfferta());
 					}
 				}
 			}
@@ -116,7 +119,9 @@ public class ScambioController {
 				for(Scambio scambio : listaScambi) {
 					if(scambio.getUtente().getNome().equals(utente.getNome())) {
 						ScambioView.visualizzaScambio(scambio.getFogliaRichiesta().getNome(),
-								scambio.getFogliaOfferta().getNome(), scambio.getOreRichiesta(), scambio.getOreOfferta());
+								scambio.getFogliaRichiesta().getRadice().getNome(), scambio.getOreRichiesta(),
+								scambio.getFogliaOfferta().getNome(), scambio.getFogliaOfferta().getRadice().getNome(),
+								scambio.getOreOfferta());
 					}
 				}
 			}
@@ -145,7 +150,9 @@ public class ScambioController {
 			for(Scambio scambio : ElencoScambi.getElencoScambi()) {
 				if(scambio.getUtente().getNome().equals(utente.getNome())) {
 					ScambioView.visualizzaScambio(scambio.getFogliaRichiesta().getNome(),
-							scambio.getFogliaOfferta().getNome(), scambio.getOreRichiesta(), scambio.getOreOfferta());
+							scambio.getFogliaRichiesta().getRadice().getNome(), scambio.getOreRichiesta(),
+							scambio.getFogliaOfferta().getNome(), scambio.getFogliaOfferta().getRadice().getNome(),
+							scambio.getOreOfferta());
 					
 					if(ScambioView.propostaRitiroScambio()) {
 						scambio.setStato(RITIRATO);
@@ -166,7 +173,9 @@ public class ScambioController {
 				ScambioView.delimitazioneInsiemiChiusi();
 				for(Scambio scambio : anelloDiScambi) {
 					ScambioView.visualizzaScambio(scambio.getFogliaRichiesta().getNome(),
-							scambio.getFogliaOfferta().getNome(), scambio.getOreRichiesta(), scambio.getOreOfferta());
+							scambio.getFogliaRichiesta().getRadice().getNome(), scambio.getOreRichiesta(),
+							scambio.getFogliaOfferta().getNome(), scambio.getFogliaOfferta().getRadice().getNome(),
+							scambio.getOreOfferta());
 				}
 			}
 		}

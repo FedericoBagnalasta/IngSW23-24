@@ -17,11 +17,14 @@ public class ScambioView {
 	}
 	
 	public static void msgStessaFoglia() {
-		System.out.println("\nATTENZIONE\nHai selezionato la stessa prestazione per la richiesta e per l'offerta\nSeleziona un'altra prestazione da offrire");
+		System.out.println("\nATTENZIONE\nHai selezionato la stessa prestazione per la richiesta e per l'offerta\n"
+				+ "Seleziona un'altra prestazione da offrire");
 	}
 	
-	public static void visualizzaScambio(String nomeRichiesta, String nomeOfferta, int oreRichiesta, int oreOfferta) {
-		System.out.println("\nRichiesta: [" + nomeRichiesta + ", " + oreRichiesta + " ore]\nOfferta: [" + nomeOfferta + ", " + oreOfferta + " ore]");
+	public static void visualizzaScambio(String fogliaRichiesta, String radiceRichiesta, int oreRichiesta,
+			String fogliaOfferta, String radiceOfferta, int oreOfferta) {
+		System.out.println("\nRichiesta: [" + fogliaRichiesta + " (" + radiceRichiesta + "), " + oreRichiesta + " ore]\n"
+				+ "Offerta: [" + fogliaOfferta + " (" + radiceOfferta + "), " + oreOfferta + " ore]");
 	}
 	
 	public static boolean confermaScambio() {
@@ -40,8 +43,8 @@ public class ScambioView {
 		System.out.println("\nQuesti sono gli scambi che hai creato:");
 	}
 	
-	public static void visualizzaScambiConfiguratore(String nomeFoglia) {
-		System.out.println("\nQuesti sono gli scambi che riguardano la foglia " + nomeFoglia + ":");
+	public static void visualizzaScambiConfiguratore(String nomeFoglia, String radiceFoglia) {
+		System.out.println("\nQuesti sono gli scambi che riguardano la foglia " + nomeFoglia + " (" + radiceFoglia + "):");
 	}
 	
 	public static boolean propostaRitiroScambio() {
