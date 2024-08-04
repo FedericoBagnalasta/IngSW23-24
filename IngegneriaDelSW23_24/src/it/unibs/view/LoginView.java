@@ -4,8 +4,10 @@ import it.unibs.fp.mylib.*;
 
 public class LoginView {
 	
-	public static void inserisciSpaziatura() {
-		System.out.println("-----------------------------------------------------------------------------");
+	public static void visualizzazioneInizioLogin() {
+		System.out.println("--------------------------------");
+		System.out.println("FASE DI LOGIN");
+		System.out.println("--------------------------------");
 	}
 	
 	public static int sceltaRuolo() {
@@ -13,7 +15,7 @@ public class LoginView {
 	}
 
 	public static String inserisciNome() {
-		return InputDati.leggiStringaNonVuota("Inserisci un Nome\n");
+		return InputDati.leggiStringaNonVuota("\nInserisci un Nome\n");
 	}
 
 	public static String inserisciPassword() {
@@ -31,6 +33,10 @@ public class LoginView {
 	public static void msgConfiguratoreGiaEsistente() {
 		System.out.println("Esiste gia' un Configuratore con questo nome");
 	}
+	
+	public static void msgFruitoreGiaEsistente() {
+		System.out.println("Esiste gia' un Fruitore con questo nome");
+	}
 
 	public static boolean confermaScelta() {
 		return InputDati.yesOrNo("Sei sicuro della tua scelta?\n");
@@ -42,5 +48,9 @@ public class LoginView {
 	
 	public static String inserisciIndirizzo() {
 		return InputDati.leggiStringaNonVuota("Inserisci il tuo Indirizzo di posta elettronica\n");
+	}
+	
+	public static void msgIndirizzoErrato() {
+		System.out.println("Questo indirizzo di posta elettronica e' gia' in uso");
 	}
 }

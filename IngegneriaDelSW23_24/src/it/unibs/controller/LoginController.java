@@ -12,7 +12,7 @@ public class LoginController {
 		Utente utente;
 		
 		do {
-			LoginView.inserisciSpaziatura();
+			LoginView.visualizzazioneInizioLogin();
 			String ruolo = inserisciRuolo();
 				if(ruolo.equals(CONFIGURATORE)) {
 					utente = loginConfiguratore();
@@ -29,7 +29,7 @@ public class LoginController {
 		
 		String nome = LoginView.inserisciNome();	
 		while(ElencoUtenti.verificaEsistenzaUtente(nome, FRUITORE)) {
-			LoginView.msgConfiguratoreGiaEsistente();
+			LoginView.msgFruitoreGiaEsistente();
 			nome = LoginView.inserisciNome();
 		}
 		
@@ -80,6 +80,10 @@ public class LoginController {
 		}
 
 		String indirizzo = inserisciIndirizzo();
+		while(ElencoUtenti.esisteIndirizzo(indirizzo)) {
+			LoginView.msgIndirizzoErrato();
+			indirizzo = inserisciIndirizzo();
+		}
 
 		utente = new Utente(nome, password, FRUITORE, comprensorio, indirizzo);
 		ElencoUtenti.aggiungiUtente(utente);

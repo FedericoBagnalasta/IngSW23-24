@@ -22,9 +22,10 @@ public class ScambioView {
 	}
 	
 	public static void visualizzaScambio(String fogliaRichiesta, String radiceRichiesta, int oreRichiesta,
-			String fogliaOfferta, String radiceOfferta, int oreOfferta) {
+			String fogliaOfferta, String radiceOfferta, int oreOfferta, String stato) {
 		System.out.println("\nRichiesta: [" + fogliaRichiesta + " (" + radiceRichiesta + "), " + oreRichiesta + " ore]\n"
-				+ "Offerta: [" + fogliaOfferta + " (" + radiceOfferta + "), " + oreOfferta + " ore]");
+				+ "Offerta: [" + fogliaOfferta + " (" + radiceOfferta + "), " + oreOfferta + " ore]\n"
+				+ "Stato: [" + stato + "]");
 	}
 	
 	public static boolean confermaScambio() {
@@ -53,6 +54,10 @@ public class ScambioView {
 	
 	public static void msgScambioAssente() {
 		System.out.println("Non e' ancora stata creata alcuna proposta di Scambio");
+	}
+	
+	public static void msgScambioRitirabileAssente() {
+		System.out.println("Non e' stato trovato alcuno Scambio che tu possa ritirare");
 	}
 	
 	public static void msgScambioNonTrovato() {

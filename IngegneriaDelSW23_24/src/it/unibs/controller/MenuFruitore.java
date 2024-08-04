@@ -7,11 +7,11 @@ import it.unibs.model.Utente;
 public class MenuFruitore {
 	
 	private static final String NAVIGA_GERARCHIA = "Scegli una Gerarchia ed esplorala";
-	private static final String PROPONI_SCAMBIO = "Formula una proposta di scambio";
-	private static final String RITIRA_SCAMBIO = "Ritira uno scambio tra quelli che hai creato";
-	private static final String VISUALIZZA_SCAMBI = "Visualizza tutti gli scambi di cui sei l'autore";
-	private static final String SALVA_SU_XML = "Salva i dati sul file xml";
-	private static final String SCELTA = "Scegli l'opzione";
+	private static final String PROPONI_SCAMBIO = "Formula una proposta di Scambio";
+	private static final String RITIRA_SCAMBIO = "Ritira uno Scambio tra quelli che hai creato";
+	private static final String VISUALIZZA_SCAMBI = "Visualizza tutti gli Scambi di cui sei l'autore";
+	private static final String SALVA_SU_XML = "Salva tutti i dati sui file xml";
+	private static final String SCELTA = "MENU' FRUITORE";
 	
 	public static void menuFruitore(GerarchiaController gerarchia, Utente utente) {
 		String[] voci = {NAVIGA_GERARCHIA, PROPONI_SCAMBIO, RITIRA_SCAMBIO, VISUALIZZA_SCAMBI, SALVA_SU_XML};

@@ -49,6 +49,17 @@ public class ElencoScambi {
 		}
 		return null;
 	}
+	
+	public static ArrayList<Scambio> trovaScambiRitirabili(Utente utente) {
+		ArrayList<Scambio> scambiRitirabili = new ArrayList<>();
+	
+		for(Scambio scambio : ElencoScambi.getElencoScambi()) {
+			if(scambio.getUtente().getNome().equals(utente.getNome()) && scambio.getStato().equals(APERTO)) {
+				scambiRitirabili.add(scambio);
+			}
+		}
+		return scambiRitirabili;
+	}
 
 	public static ArrayList<Scambio> getElencoScambi() {
 		return elencoScambi;

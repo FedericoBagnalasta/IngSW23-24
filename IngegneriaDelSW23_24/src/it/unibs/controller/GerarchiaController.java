@@ -45,12 +45,14 @@ public class GerarchiaController {
 	}
 
 	public CategoriaFoglia creaFoglia(Categoria padre, ValoreDominio valore) {
-		String nomeFoglia;
 		ArrayList<String> elencoNomiGerarchia = padre.getRadice().getNomiGerarchia();
 
-		do {
+		String nomeFoglia = GerarchiaView.inserisciNomeFogliaGerarchia();
+		
+		while(elencoNomiGerarchia.contains(nomeFoglia)) {
+			GerarchiaView.msgCategoriaGiaEsistente();
 			nomeFoglia = GerarchiaView.inserisciNomeFogliaGerarchia();
-		} while(elencoNomiGerarchia.contains(nomeFoglia));
+		}
 
 		CategoriaFoglia foglia = new CategoriaFoglia(nomeFoglia, valore, padre.getRadice());
 		padre.getFigli().add(foglia);
@@ -90,13 +92,15 @@ public class GerarchiaController {
 	}
 
 	public CategoriaNonFoglia creaNonFoglia(Categoria padre, ValoreDominio valore) {
-		String nomeNonFoglia;
 		CategoriaNonFoglia nonFoglia;
 		ArrayList<String> elencoNomiGerarchia = padre.getRadice().getNomiGerarchia();
 
-		do {
+		String nomeNonFoglia = GerarchiaView.inserisciNomeNonFogliaGerarchia();
+		
+		while(elencoNomiGerarchia.contains(nomeNonFoglia)) {
+			GerarchiaView.msgCategoriaGiaEsistente();
 			nomeNonFoglia = GerarchiaView.inserisciNomeNonFogliaGerarchia();
-		} while(elencoNomiGerarchia.contains(nomeNonFoglia));
+		}
 
 		String campo = GerarchiaView.inserisciCampo();
 		ArrayList<ValoreDominio> dominio = creaDominio();
@@ -170,7 +174,7 @@ public class GerarchiaController {
 
 		CategoriaFoglia foglia = ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
 		if(foglia == null){
-			GerarchiaView.fogliaNonTrovata();
+			GerarchiaView.msgFogliaNonTrovata();
 			return null;
 		}
 
@@ -193,7 +197,7 @@ public class GerarchiaController {
 		CategoriaFoglia foglia = ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
 
 		if(foglia == null) {
-			GerarchiaView.fogliaNonTrovata();
+			GerarchiaView.msgFogliaNonTrovata();
 			return null;
 		}
 		else return foglia;
@@ -242,7 +246,7 @@ public class GerarchiaController {
 
 	public static void visualizzaFattoriDiConversione(CategoriaFoglia foglia) {
 		if(foglia == null) {
-			GerarchiaView.fogliaNonTrovata();
+			GerarchiaView.msgFogliaNonTrovata();
 			return;
 		}
 		for(FattoreDiConversione fattore : ElencoFattoriDiConversione.getElencoFattoriDiConversione()) {

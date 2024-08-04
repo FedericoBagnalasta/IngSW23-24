@@ -15,6 +15,10 @@ public class GerarchiaView {
 	public static void visualizzaCategoria(String nome, String tipo) {
 		System.out.println("Categoria: " + nome + " di tipo " + tipo);
 	}
+	
+	public static void msgCategoriaGiaEsistente() {
+		System.out.println("Esiste gia' una Categoria con questo nome in questa Gerarchia");
+	}
 
 	//PARTE CATEGORIA RADICE DELLA GERARCHIA =====================================================================================
 
@@ -110,7 +114,7 @@ public class GerarchiaView {
 		return InputDati.leggiStringaNonVuota("\nInserisci il nome della Categoria Foglia che desideri selezionare\n");
 	}
 	
-	public static void fogliaNonTrovata() {
+	public static void msgFogliaNonTrovata() {
 		System.out.println("La Categoria Foglia selezionata non esiste");
 	}
 	
