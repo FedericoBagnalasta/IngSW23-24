@@ -104,17 +104,16 @@ public class LoginController {
 		
 		ComprensorioController.visualizzaComprensori();
 		String nomeComprensorio = ComprensorioView.selezionaComprensorio();
-		comprensorio = ComprensorioController.trovaComprensorio(nomeComprensorio);
+		comprensorio = ElencoComprensori.trovaComprensorio(nomeComprensorio);
 		
 		while(comprensorio == null) {
 			ComprensorioView.msgComprensorioNonEsistente();
 			ComprensorioController.visualizzaComprensori();
 			nomeComprensorio = ComprensorioView.inserisciComprensorio();
-			comprensorio = ComprensorioController.trovaComprensorio(nomeComprensorio);
+			comprensorio = ElencoComprensori.trovaComprensorio(nomeComprensorio);
 		}
 		return comprensorio;
 	}
-
 	
 	public void cambiaCredenziali(Utente utente) {
 		String nome;
