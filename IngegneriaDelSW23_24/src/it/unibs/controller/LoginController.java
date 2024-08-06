@@ -55,7 +55,6 @@ public class LoginController {
 	
 	public Utente loginFruitore() {
 		Utente utente;
-		
 		String password;
 
 		String nome = LoginView.inserisciNome();
