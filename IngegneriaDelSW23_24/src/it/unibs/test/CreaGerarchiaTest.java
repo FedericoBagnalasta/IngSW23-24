@@ -31,5 +31,4 @@ class CreaGerarchiaTest {
 		
 		System.setIn(System.in);
 	}
-
 }

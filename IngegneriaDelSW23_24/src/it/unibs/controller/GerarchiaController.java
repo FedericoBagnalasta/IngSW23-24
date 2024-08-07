@@ -26,7 +26,8 @@ public class GerarchiaController {
 
 		String campo = GerarchiaView.inserisciCampo();
 		ArrayList<ValoreDominio> dominio = creaDominio();
-		Gerarchia nuovaGerarchia = ElencoGerarchie.aggiungiGerarchia(nomeRadice, campo, dominio);
+		Gerarchia nuovaGerarchia = new Gerarchia(nomeRadice, campo, dominio);
+		ElencoGerarchie.aggiungiGerarchia(nuovaGerarchia);
 
 		creaFigliCategoria(nuovaGerarchia.getRadice());
 	}
@@ -173,7 +174,7 @@ public class GerarchiaController {
 		String nomeRadice = GerarchiaView.inserisciNomeRadiceRicerca();
 
 		CategoriaFoglia foglia = ElencoGerarchie.selezionaFoglia(nomeFoglia, nomeRadice);
-		if(foglia == null){
+		if(foglia == null) {
 			GerarchiaView.msgFogliaNonTrovata();
 			return null;
 		}

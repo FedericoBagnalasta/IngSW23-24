@@ -5,11 +5,10 @@ import java.util.ArrayList;
 public class ElencoGerarchie {
 
 	private static ArrayList<Gerarchia> elencoGerarchie = new ArrayList<>();
-
-	public static Gerarchia aggiungiGerarchia(String nome, String campo, ArrayList<ValoreDominio> dominio) {
-		Gerarchia nuovaGerarchia = new Gerarchia(nome, campo, dominio);
-		elencoGerarchie.add(nuovaGerarchia);
-		return nuovaGerarchia;
+	
+	//ref parte 2
+	public static void aggiungiGerarchia(Gerarchia gerarchia) {
+		elencoGerarchie.add(gerarchia);
 	}
 
 	public static boolean verificaEsistenzaRadice(String nomeRadice) {

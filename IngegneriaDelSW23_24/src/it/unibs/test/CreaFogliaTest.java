@@ -8,9 +8,12 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import it.unibs.controller.GerarchiaController;
-import it.unibs.model.Categoria;
 import it.unibs.model.CategoriaFoglia;
 import it.unibs.model.CategoriaRadice;
+import it.unibs.model.ElencoFattoriDiConversione;
+import it.unibs.model.ElencoGerarchie;
+import it.unibs.model.FattoreDiConversione;
+import it.unibs.model.Gerarchia;
 import it.unibs.model.ValoreDominio;
 
 class CreaFogliaTest {
@@ -19,25 +22,32 @@ class CreaFogliaTest {
 
 	@Test
 	void creaFogliaTest() {
-		String simulatedInput = "nomeF1\nnomeF1\nradiceF1\nfdc\nnomeF2\nradiceF2\n";
+		String simulatedInput = "nomeFogliaNuova\nnomeFogliaNuova\nnomeRadice\nnomeFogliaVecchia\nnomeRadice\n1\n";
 		ByteArrayInputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
 		System.setIn(inputStream);
 		
-		String nomeRadice = "radiceF1";
-		String campo = "campo";
 		ArrayList<ValoreDominio> dominio = new ArrayList<>();
-		Categoria padre = new CategoriaRadice(nomeRadice, campo, dominio);
+		Gerarchia gerarchia = new Gerarchia("nomeRadice", "campo", dominio);
+		CategoriaRadice radice = gerarchia.getRadice();
 		
-		String nomeValore = "nomeV";
-		String descrizione = "descrizione";
-		ValoreDominio valoreDominio = new ValoreDominio(nomeValore, descrizione);
+		ValoreDominio valoreDominioFogliaVecchia = new ValoreDominio("nomeValoreFogliaVecchia", "Assente");
+		dominio.add(valoreDominioFogliaVecchia);
+		CategoriaFoglia fogliaVecchia = new CategoriaFoglia("nomeFogliaVecchia", valoreDominioFogliaVecchia, radice);
 		
-		CategoriaFoglia foglia = gerarchiaController.creaFoglia(padre, valoreDominio);
+		radice.getFigli().add(fogliaVecchia);
+		ElencoGerarchie.aggiungiGerarchia(gerarchia);
 		
-		assertEquals("nomeF1", foglia.getNome());
-		assertTrue(foglia.getValoreDominio().verificaUguaglianza(valoreDominio));
-		assertEquals("radiceF1", foglia.getRadice().getNome());
-		assertEquals("campo", foglia.getRadice().getCampo());
+		
+		ValoreDominio valoreDominioFogliaNuova = new ValoreDominio("nomeValoreFogliaNuova", "Assente");
+		dominio.add(valoreDominioFogliaNuova);
+		CategoriaFoglia fogliaNuova = gerarchiaController.creaFoglia(radice, valoreDominioFogliaNuova);
+		
+		FattoreDiConversione fdc = ElencoFattoriDiConversione.trovaFDC(fogliaNuova, fogliaVecchia);
+		
+		assertEquals("nomeFogliaNuova", fogliaNuova.getNome());
+		assertEquals("nomeRadice", fogliaNuova.getRadice().getNome());
+		assertTrue(fogliaNuova.getValoreDominio().verificaUguaglianza(valoreDominioFogliaNuova));
+		assertTrue(fogliaNuova.verificaUguaglianzaFoglie(fdc.getC1()));
 		
 		System.setIn(System.in);
 	}
