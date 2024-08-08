@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class FattoreDiConversione {
+	
+	private static final double VALORE_MAX_FDC = 2.0;
+	private static final double VALORE_MIN_FDC = 0.5;
 
 	private CategoriaFoglia c1;
 	private CategoriaFoglia c2;
@@ -38,6 +41,17 @@ public class FattoreDiConversione {
 			return true;
 		}
 		return false;
+	}
+	
+	//ref parte 2 (era in elenco)
+	public static double limitaValoreFDC(double valore) {
+		if(valore < VALORE_MIN_FDC) {
+			valore = VALORE_MIN_FDC;
+		}
+		if(valore > VALORE_MAX_FDC) {
+			valore = VALORE_MAX_FDC;
+		}
+		return valore;
 	}
 	
 	public CategoriaFoglia getC1() {

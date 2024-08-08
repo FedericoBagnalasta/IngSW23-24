@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Gerarchia {
 
+	private static final String FOGLIA = "Foglia";
+	
 	private CategoriaRadice radice;
 
 	public Gerarchia(String nome, String campo, ArrayList<ValoreDominio> dominio) {
@@ -18,7 +20,7 @@ public class Gerarchia {
 		CategoriaFoglia foglia;
 
 		for(Categoria c : categoria.getFigli()) {
-			if(c.getNome().equals(nomeFoglia) && c instanceof CategoriaFoglia) {
+			if(c.getNome().equals(nomeFoglia) && c.getTipo().equals(FOGLIA)) {
 				return (CategoriaFoglia)c;
 			}
 			foglia = trovaFoglia(c, nomeFoglia);

@@ -30,6 +30,16 @@ public class CategoriaRadice implements Categoria {
 	public void aggiungiFiglio(Categoria nuovoFiglio) {
 		figli.add(nuovoFiglio);
 	}
+	
+	//
+	@Override
+	public int contaFoglieCategoria() {
+		int count = 0;
+		for(Categoria c : this.getFigli()) {
+			count += c.contaFoglieCategoria();
+		}
+		return count;
+	}
 
 	public String getNome() {
 		return nome;

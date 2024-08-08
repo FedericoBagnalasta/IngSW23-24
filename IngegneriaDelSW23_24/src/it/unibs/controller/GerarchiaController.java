@@ -16,6 +16,9 @@ import it.unibs.view.GerarchiaView;
 
 public class GerarchiaController {
 
+	private static final String ASSENTE = "Assente";
+	private static final String FOGLIA = "Foglia";
+
 	public void creaGerarchia() {
 		String nomeRadice = GerarchiaView.inserisciNomeRadiceGerarchia();
 
@@ -118,7 +121,7 @@ public class GerarchiaController {
 		ArrayList<String> listaNomiValori = new ArrayList<>();
 
 		do {
-			descrizione = "Assente";
+			descrizione = ASSENTE;
 			nomeValore = GerarchiaView.inserisciNomeValoreDominio();
 
 			while(listaNomiValori.contains(nomeValore)) {
@@ -137,13 +140,13 @@ public class GerarchiaController {
 		return dominio;
 	}
 
-	public Categoria navigaGerarchiaFinoAFoglia() {
+	public CategoriaFoglia navigaGerarchiaFinoAFoglia() {
 		if(ElencoGerarchie.getElencoGerarchie().size() == 0) {
 			GerarchiaView.msgGerarchieAssenti();
 			return null;
 		}
 		CategoriaRadice radice = selezionaRadice();
-		return navigaStrutturaGerarchia(radice);
+		return (CategoriaFoglia)navigaStrutturaGerarchia(radice);
 	}
 
 	public Categoria navigaStrutturaGerarchia(Categoria padre) {		
@@ -159,7 +162,7 @@ public class GerarchiaController {
 
 		Categoria categoriaScelta = padre.selezionaFiglioDalValore(valoreScelto);
 
-		if(categoriaScelta instanceof CategoriaFoglia) {
+		if(categoriaScelta.getTipo().equals(FOGLIA)) {
 			GerarchiaView.visualizzaCategoria(categoriaScelta.getNome(), categoriaScelta.getTipo());
 			return categoriaScelta;
 		}

@@ -24,15 +24,15 @@ public class ScambioController {
 		
 		do {
 			ScambioView.scegliFogliaRichiesta();
-			CategoriaFoglia fogliaRichiesta = (CategoriaFoglia)gerarchiaController.navigaGerarchiaFinoAFoglia();
+			CategoriaFoglia fogliaRichiesta = gerarchiaController.navigaGerarchiaFinoAFoglia();
 			
 			int oreRichiesta = ScambioView.inserisciOreRichiesta();
 			
 			ScambioView.scegliFogliaOfferta();
-			CategoriaFoglia fogliaOfferta = (CategoriaFoglia)gerarchiaController.navigaGerarchiaFinoAFoglia();
+			CategoriaFoglia fogliaOfferta = gerarchiaController.navigaGerarchiaFinoAFoglia();
 			while(fogliaOfferta.verificaUguaglianzaFoglie(fogliaRichiesta)) {
 				ScambioView.msgStessaFoglia();
-				fogliaOfferta = (CategoriaFoglia)gerarchiaController.navigaGerarchiaFinoAFoglia();
+				fogliaOfferta = gerarchiaController.navigaGerarchiaFinoAFoglia();
 			}
 			
 			FattoreDiConversione fdc = ElencoFattoriDiConversione.trovaFDC(fogliaRichiesta, fogliaOfferta);
@@ -69,7 +69,7 @@ public class ScambioController {
 		}
 		else {
 			ScambioView.scegliFogliaRichiesta();
-			CategoriaFoglia fogliaRichiesta = (CategoriaFoglia)gerarchia.navigaGerarchiaFinoAFoglia();		
+			CategoriaFoglia fogliaRichiesta = gerarchia.navigaGerarchiaFinoAFoglia();		
 			
 			ArrayList<Scambio> listaScambi = trovaScambioConFoglia(fogliaRichiesta);
 			if(listaScambi.size() == 0) {

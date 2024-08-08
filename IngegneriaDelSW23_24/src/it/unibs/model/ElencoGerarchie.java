@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class ElencoGerarchie {
 
+	private static final String FOGLIA = "Foglia";
+	
 	private static ArrayList<Gerarchia> elencoGerarchie = new ArrayList<>();
 	
 	//ref parte 2
@@ -42,7 +44,8 @@ public class ElencoGerarchie {
 		int count = 0;
 
 		for(Gerarchia g : elencoGerarchie) {
-			count += contaFoglie(g.getRadice().getFigli());
+			//count += contaFoglie(g.getRadice().getFigli());
+			count += g.getRadice().contaFoglieCategoria();
 		}
 
 		if(count > 1) {
@@ -50,19 +53,24 @@ public class ElencoGerarchie {
 		}
 		return false;
 	}
-
+	/*
 	public static int contaFoglie(ArrayList<Categoria> listaCategorie) {
 		int count = 0;
+		
+		//
+		for(Categoria c : listaCategorie) {
+			count += c.contaFoglieCategoria();
+		}
 
 		for(Categoria c : listaCategorie) {
-			if(c instanceof CategoriaFoglia) {
+			if(c.getTipo().equals(FOGLIA)) {
 				count++;
 			}
 			count += contaFoglie(c.getFigli());
 		}
 		return count;
 	}
-	
+	*/
 	public static ArrayList<Gerarchia> getElencoGerarchie() {
 		return elencoGerarchie;
 	}

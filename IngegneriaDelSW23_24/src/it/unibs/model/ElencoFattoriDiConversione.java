@@ -3,9 +3,6 @@ package it.unibs.model;
 import java.util.ArrayList;
 
 public class ElencoFattoriDiConversione {
-
-	private static final double VALORE_MAX_FDC = 2.0;
-	private static final double VALORE_MIN_FDC = 0.5;
 	
 	private static ArrayList<FattoreDiConversione> elencoFattoriDiConversione = new ArrayList<>();
 
@@ -29,7 +26,7 @@ public class ElencoFattoriDiConversione {
 
 		for(int i = 0; i < elencoFattoriDiConversione.size(); i++) {
 			valore = fdcNuovo.getValore() * elencoFattoriDiConversione.get(i).getValore();
-			valore = limitaValoreFDC(valore);
+			valore = FattoreDiConversione.limitaValoreFDC(valore);
 
 			fdcDedotto = new FattoreDiConversione(fdcNuovo.getC1(), elencoFattoriDiConversione.get(i).getC2(), valore);
 
@@ -38,16 +35,6 @@ public class ElencoFattoriDiConversione {
 				aggiungiFDC(fdcDedotto);
 			}
 		}
-	}
-
-	private static double limitaValoreFDC(double valore) {
-		if(valore < VALORE_MIN_FDC) {
-			valore = VALORE_MIN_FDC;
-		}
-		if(valore > VALORE_MAX_FDC) {
-			valore = VALORE_MAX_FDC;
-		}
-		return valore;
 	}
 	
 	public static FattoreDiConversione trovaFDC(CategoriaFoglia c1, CategoriaFoglia c2) {
