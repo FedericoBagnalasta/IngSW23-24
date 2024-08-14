@@ -1,6 +1,6 @@
 package it.unibs.view;
 
-import it.unibs.fp.mylib.InputDati;
+import it.unibs.mylib.InputDati;
 
 public class ComprensorioView {
 

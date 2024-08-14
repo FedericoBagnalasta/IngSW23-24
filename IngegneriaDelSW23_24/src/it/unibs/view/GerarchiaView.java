@@ -1,19 +1,20 @@
 package it.unibs.view;
 
-import it.unibs.fp.mylib.InputDati;
+import it.unibs.model.Categoria;
+import it.unibs.mylib.InputDati;
 
 public class GerarchiaView {
 	
-	public static void visualizzaNomeFiglioCategoria(String nomePadre, String nomeFiglio, String tipo) {
-		System.out.println("Figlio di " + nomePadre + ": " + nomeFiglio + " [" + tipo + "]");
+	public static void visualizzaNomeFiglioCategoria(String nomePadre, Categoria categoria) {
+		System.out.println("Figlio di " + nomePadre + ": " + categoria.getNome() + " [" + categoria.getTipo() + "]");
 	}
 	
 	public static boolean richiestaContinuazioneStruttura() {
 		return InputDati.yesOrNo("Desideri aggiungere un altro figlio alla Gerarchia?\n");
 	}
 	
-	public static void visualizzaCategoria(String nome, String tipo) {
-		System.out.println("Categoria: " + nome + " di tipo " + tipo);
+	public static void visualizzaCategoria(Categoria categoria) {
+		System.out.println("Categoria: " + categoria.getNome() + " di tipo " + categoria.getTipo());
 	}
 	
 	public static void msgCategoriaGiaEsistente() {
@@ -80,8 +81,9 @@ public class GerarchiaView {
 		System.out.println("I Valori disponibili relativi al campo " + nomeCampo + " sono:\n");
 	}
 
-	public static void visualizzaNomeValore(String valore, String nomeCategoria, String tipo) {
-		System.out.println("Valore: "+ valore + ", Associato a: " + nomeCategoria + " [" + tipo + "]");
+	public static void visualizzaNomeValore(String valore, Categoria categoria) {
+		System.out.println("Valore: "+ valore + ", Associato a: " + categoria.getNome()
+			+ " [" + categoria.getTipo() + "]");
 	}
 	
 	public static void visualizzaNomeValoreSenzaCategoria(String valore) {

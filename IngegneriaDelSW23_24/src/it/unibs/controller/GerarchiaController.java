@@ -163,11 +163,11 @@ public class GerarchiaController {
 		Categoria categoriaScelta = padre.selezionaFiglioDalValore(valoreScelto);
 
 		if(categoriaScelta.getTipo().equals(FOGLIA)) {
-			GerarchiaView.visualizzaCategoria(categoriaScelta.getNome(), categoriaScelta.getTipo());
+			GerarchiaView.visualizzaCategoria(categoriaScelta);
 			return categoriaScelta;
 		}
 		else {
-			GerarchiaView.visualizzaCategoria(categoriaScelta.getNome(), categoriaScelta.getTipo());
+			GerarchiaView.visualizzaCategoria(categoriaScelta);
 			return navigaStrutturaGerarchia(categoriaScelta);
 		}
 	}
@@ -230,7 +230,7 @@ public class GerarchiaController {
 
 		for(ValoreDominio valore : categoria.getDominio()) {
 			Categoria categoriaFiglio = categoria.selezionaFiglioDalValore(valore);
-			GerarchiaView.visualizzaNomeValore(valore.getValore(), categoriaFiglio.getNome(), categoriaFiglio.getTipo());
+			GerarchiaView.visualizzaNomeValore(valore.getValore(), categoriaFiglio);
 		}
 	}
 
@@ -241,10 +241,10 @@ public class GerarchiaController {
 		}
 	}
 
-	public static void visualizzaFigliCategoria(Categoria categoria) {
-		for(Categoria c : categoria.getFigli()) {
-			GerarchiaView.visualizzaNomeFiglioCategoria(categoria.getNome(), c.getNome(), c.getTipo());
-			visualizzaFigliCategoria(c);
+	public static void visualizzaFigliCategoria(Categoria categoriaPadre) {
+		for(Categoria categoria : categoriaPadre.getFigli()) {
+			GerarchiaView.visualizzaNomeFiglioCategoria(categoriaPadre.getNome(), categoria);
+			visualizzaFigliCategoria(categoria);
 		}
 	}
 
@@ -255,8 +255,7 @@ public class GerarchiaController {
 		}
 		for(FattoreDiConversione fattore : ElencoFattoriDiConversione.getElencoFattoriDiConversione()) {
 			if(fattore.getC1().verificaUguaglianzaFoglie(foglia)) {
-				FDCView.visualizzaFattoreDiConversione(fattore.getC1().getNome(), fattore.getC1().getRadice().getNome(),
-						fattore.getC2().getNome(), fattore.getC2().getRadice().getNome(), fattore.getValore());
+				FDCView.visualizzaFattoreDiConversione(fattore);
 			}
 		}
 	}

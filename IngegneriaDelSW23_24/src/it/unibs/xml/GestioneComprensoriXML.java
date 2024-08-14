@@ -1,4 +1,4 @@
-package it.unibs.model;
+package it.unibs.xml;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import it.unibs.model.Comprensorio;
+import it.unibs.model.ElencoComprensori;
 
 public class GestioneComprensoriXML {
 
@@ -28,13 +31,16 @@ public class GestioneComprensoriXML {
 		GestioneGeneraleXML.salvaFileXML(doc, filePath);
 	}
 
-	public static void salvaComprensorioSuXML(Document doc, Comprensorio comprensorio, Element elementoPadre) {
+	public static void salvaComprensorioSuXML(Document doc,
+			Comprensorio comprensorio, Element elementoPadre) {
 		Element elementoComprensorio = doc.createElement(COMPRENSORIO);
 		
-		elementoComprensorio.appendChild(GestioneGeneraleXML.creaElemento(doc, NOME, comprensorio.getNome()));
+		elementoComprensorio.appendChild(GestioneGeneraleXML.creaElemento(doc, NOME,
+				comprensorio.getNome()));
 		
 		for(String comune : comprensorio.getComuniComprensorio()) {
-			elementoComprensorio.appendChild(GestioneGeneraleXML.creaElemento(doc, COMUNE, comune));
+			elementoComprensorio.appendChild(GestioneGeneraleXML.creaElemento(doc,
+					COMUNE, comune));
 		}
 		
 		elementoPadre.appendChild(elementoComprensorio);

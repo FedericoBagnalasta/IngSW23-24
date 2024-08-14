@@ -33,7 +33,7 @@ public class CategoriaNonFoglia implements Categoria {
 		this.figli = figli;
 	}
 	
-	//
+	//ref parte 2 (polimorfismo, open-closed, composite)
 	@Override
 	public int contaFoglieCategoria() {
 		int count = 0;

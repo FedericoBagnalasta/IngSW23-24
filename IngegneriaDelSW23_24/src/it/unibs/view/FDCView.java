@@ -1,6 +1,7 @@
 package it.unibs.view;
 
-import it.unibs.fp.mylib.InputDati;
+import it.unibs.model.FattoreDiConversione;
+import it.unibs.mylib.InputDati;
 
 public class FDCView {
 
@@ -8,9 +9,9 @@ public class FDCView {
 		return InputDati.leggiDoubleRange("\nInserisci un valore tra 0.5 e 2.0 per il Fattore di Conversione\n", 0.5, 2.0);
 	}
 
-	public static void visualizzaFattoreDiConversione(String nomeClasse1, String nomeRadice1, String nomeClasse2, String nomeRadice2, double valore) {
-		System.out.println("Il Fattore di Conversione tra " + nomeClasse1 + " (" + nomeRadice1 + ") e "
-								+ nomeClasse2 + " (" + nomeRadice2 + ") vale: " + valore);
+	public static void visualizzaFattoreDiConversione(FattoreDiConversione fdc) {
+		System.out.println("Il Fattore di Conversione tra " + fdc.getC1().getNome() + " (" + fdc.getC1().getRadice().getNome() + ") e "
+			+ fdc.getC2().getNome() + " (" + fdc.getC2().getRadice().getNome() + ") vale: " + fdc.getValore());
 	}
 
 	public static String inserisciFogliaPerFDC() {

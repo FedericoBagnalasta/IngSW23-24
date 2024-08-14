@@ -22,7 +22,8 @@ public interface Categoria {
 		return null;
 	}
 	
-	public int contaFoglieCategoria();//
+	//ref parte 2 (polimorfismo, open-closed, composite)
+	public int contaFoglieCategoria();
 
 	public String getTipo();
 

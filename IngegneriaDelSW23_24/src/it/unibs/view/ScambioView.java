@@ -1,6 +1,7 @@
 package it.unibs.view;
 
-import it.unibs.fp.mylib.InputDati;
+import it.unibs.model.Categoria;
+import it.unibs.mylib.InputDati;
 
 public class ScambioView {
 
@@ -18,14 +19,14 @@ public class ScambioView {
 	
 	public static void msgStessaFoglia() {
 		System.out.println("\nATTENZIONE\nHai selezionato la stessa prestazione per la richiesta e per l'offerta\n"
-				+ "Seleziona un'altra prestazione da offrire");
+			+ "Seleziona un'altra prestazione da offrire");
 	}
 	
-	public static void visualizzaScambio(String fogliaRichiesta, String radiceRichiesta, int oreRichiesta,
-			String fogliaOfferta, String radiceOfferta, int oreOfferta, String stato) {
-		System.out.println("\nRichiesta: [" + fogliaRichiesta + " (" + radiceRichiesta + "), " + oreRichiesta + " ore]\n"
-				+ "Offerta: [" + fogliaOfferta + " (" + radiceOfferta + "), " + oreOfferta + " ore]\n"
-				+ "Stato: [" + stato + "]");
+	public static void visualizzaScambio(Categoria fogliaRichiesta, int oreRichiesta,
+		Categoria fogliaOfferta, int oreOfferta, String stato) {
+			System.out.println("\nRichiesta: [" + fogliaRichiesta.getNome() + " (" + fogliaRichiesta.getRadice().getNome()
+			+ "), " + oreRichiesta + " ore]\n" + "Offerta: [" + fogliaOfferta.getNome() + " ("
+			+ fogliaOfferta.getRadice().getNome() + "), " + oreOfferta + " ore]\n" + "Stato: [" + stato + "]");
 	}
 	
 	public static boolean confermaScambio() {
@@ -36,16 +37,17 @@ public class ScambioView {
 		System.out.println("Questo scambio e' stato annullato");
 	}
 	
-	public static boolean propostaNuovoScambio() {
-		return InputDati.yesOrNo("Vuoi creare un'altra proposta di scambio?\n");
+	public static void msgAnnullamentoScambio() {
+		System.out.println("\nScambio annullato con successo");
 	}
 	
 	public static void visualizzaScambiFruitore() {
 		System.out.println("\nQuesti sono gli scambi che hai creato:");
 	}
 	
-	public static void visualizzaScambiConfiguratore(String nomeFoglia, String radiceFoglia) {
-		System.out.println("\nQuesti sono gli scambi che riguardano la foglia " + nomeFoglia + " (" + radiceFoglia + "):");
+	public static void visualizzaScambiConfiguratore(Categoria categoria) {
+		System.out.println("\nQuesti sono gli scambi che riguardano la foglia " + categoria.getNome()
+			+ " (" + categoria.getRadice().getNome() + "):");
 	}
 	
 	public static boolean propostaRitiroScambio() {

@@ -1,9 +1,13 @@
-package it.unibs.model;
+package it.unibs.xml;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import it.unibs.model.Comprensorio;
+import it.unibs.model.ElencoUtenti;
+import it.unibs.model.Utente;
 
 public class GestioneUtentiXML {
 	

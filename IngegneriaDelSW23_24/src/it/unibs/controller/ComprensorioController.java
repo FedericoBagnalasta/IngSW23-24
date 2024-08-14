@@ -9,7 +9,8 @@ import it.unibs.view.ComprensorioView;
 public class ComprensorioController {
 
 	public void creaComprensorio() {
-		Comprensorio comprensorio = new Comprensorio(creaNomeComprensorio(), creaComuniComprensorio());
+		Comprensorio comprensorio = new Comprensorio(creaNomeComprensorio(),
+				creaComuniComprensorio());
 		ElencoComprensori.aggiungiComprensorio(comprensorio);
 	}
 
