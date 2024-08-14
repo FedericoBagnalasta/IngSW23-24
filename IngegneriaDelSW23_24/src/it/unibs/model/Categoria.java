@@ -21,6 +21,8 @@ public interface Categoria {
 		}
 		return null;
 	}
+	
+	public int contaFoglieCategoria();//
 
 	public String getTipo();
 

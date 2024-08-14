@@ -32,6 +32,16 @@ public class CategoriaNonFoglia implements Categoria {
 		this.dominio = dominio;
 		this.figli = figli;
 	}
+	
+	//
+	@Override
+	public int contaFoglieCategoria() {
+		int count = 0;
+		for(Categoria c : this.getFigli()) {
+			count += c.contaFoglieCategoria();
+		}
+		return count;
+	}
 
 	public String getNome() {
 		return nome;

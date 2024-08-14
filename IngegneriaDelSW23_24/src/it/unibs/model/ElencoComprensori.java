@@ -18,6 +18,15 @@ public class ElencoComprensori {
 		}
 		return false;
 	}
+	
+	public static Comprensorio trovaComprensorio(String nomeComprensorio) {
+		for(Comprensorio c : elencoComprensori) {
+			if(c.getNome().equals(nomeComprensorio)) {
+				return c;
+			}
+		}
+		return null;
+	}
 
 	public static ArrayList<Comprensorio> getElencoComprensori() {
 		return elencoComprensori;

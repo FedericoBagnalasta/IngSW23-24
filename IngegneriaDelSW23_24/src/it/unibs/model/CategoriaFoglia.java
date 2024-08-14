@@ -33,6 +33,12 @@ public class CategoriaFoglia implements Categoria {
 		}
 		return false;
 	}
+	
+	//
+	@Override
+	public int contaFoglieCategoria() {
+		return 1;
+	}
 
 	public String getNome() {
 		return nome;

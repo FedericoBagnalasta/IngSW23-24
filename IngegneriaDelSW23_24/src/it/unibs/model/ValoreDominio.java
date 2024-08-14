@@ -14,7 +14,7 @@ public class ValoreDominio {
 
 	public static ValoreDominio selezionaValore(String valoreScelto, ArrayList<ValoreDominio> arrayValori) {
 		for(ValoreDominio valoreEsistente : arrayValori) {
-			if(valoreScelto.equals(valoreEsistente.getValore())){
+			if(valoreScelto.equals(valoreEsistente.getValore())) {
 				return valoreEsistente;
 			}
 		}

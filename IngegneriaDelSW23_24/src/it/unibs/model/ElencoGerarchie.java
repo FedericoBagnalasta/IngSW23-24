@@ -4,12 +4,13 @@ import java.util.ArrayList;
 
 public class ElencoGerarchie {
 
+	private static final String FOGLIA = "Foglia";
+	
 	private static ArrayList<Gerarchia> elencoGerarchie = new ArrayList<>();
-
-	public static Gerarchia aggiungiGerarchia(String nome, String campo, ArrayList<ValoreDominio> dominio) {
-		Gerarchia nuovaGerarchia = new Gerarchia(nome, campo, dominio);
-		elencoGerarchie.add(nuovaGerarchia);
-		return nuovaGerarchia;
+	
+	//ref parte 2
+	public static void aggiungiGerarchia(Gerarchia gerarchia) {
+		elencoGerarchie.add(gerarchia);
 	}
 
 	public static boolean verificaEsistenzaRadice(String nomeRadice) {
@@ -43,7 +44,8 @@ public class ElencoGerarchie {
 		int count = 0;
 
 		for(Gerarchia g : elencoGerarchie) {
-			count += contaFoglie(g.getRadice().getFigli());
+			//count += contaFoglie(g.getRadice().getFigli());
+			count += g.getRadice().contaFoglieCategoria();
 		}
 
 		if(count > 1) {
@@ -51,19 +53,24 @@ public class ElencoGerarchie {
 		}
 		return false;
 	}
-
+	/*
 	public static int contaFoglie(ArrayList<Categoria> listaCategorie) {
 		int count = 0;
+		
+		//
+		for(Categoria c : listaCategorie) {
+			count += c.contaFoglieCategoria();
+		}
 
 		for(Categoria c : listaCategorie) {
-			if(c instanceof CategoriaFoglia) {
+			if(c.getTipo().equals(FOGLIA)) {
 				count++;
 			}
 			count += contaFoglie(c.getFigli());
 		}
 		return count;
 	}
-	
+	*/
 	public static ArrayList<Gerarchia> getElencoGerarchie() {
 		return elencoGerarchie;
 	}
