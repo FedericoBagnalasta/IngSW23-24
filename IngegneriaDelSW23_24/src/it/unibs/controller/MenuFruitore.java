@@ -1,8 +1,8 @@
 package it.unibs.controller;
 
-import it.unibs.fp.mylib.MyMenu;
-import it.unibs.model.GestioneGeneraleXML;
 import it.unibs.model.Utente;
+import it.unibs.xml.FacciataXML;
+import it.unibs.mylib.MyMenu;
 
 public class MenuFruitore {
 	
@@ -34,7 +34,7 @@ public class MenuFruitore {
 				ScambioController.visualizzaScambiFruitore(utente);
 				break;
 			case 5:
-				GestioneGeneraleXML.salvataggioCompleto();
+				FacciataXML.salvataggioCompleto();
 				break;
 			default:
 				break;

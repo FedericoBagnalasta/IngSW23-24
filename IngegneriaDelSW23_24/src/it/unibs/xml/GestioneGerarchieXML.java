@@ -1,4 +1,4 @@
-package it.unibs.model;
+package it.unibs.xml;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,14 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import it.unibs.model.Categoria;
+import it.unibs.model.CategoriaFoglia;
+import it.unibs.model.CategoriaNonFoglia;
+import it.unibs.model.CategoriaRadice;
+import it.unibs.model.ElencoGerarchie;
+import it.unibs.model.Gerarchia;
+import it.unibs.model.ValoreDominio;
 
 public class GestioneGerarchieXML {
 

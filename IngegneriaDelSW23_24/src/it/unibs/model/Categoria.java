@@ -8,7 +8,8 @@ public interface Categoria {
 
 	public ArrayList<String> getNomiGerarchia();
 
-	public int contaFoglieCategoria();//
+	//ref parte 2 (polimorfismo, open-closed, composite)
+	public int contaFoglieCategoria();
 
 	public String getTipo();
 

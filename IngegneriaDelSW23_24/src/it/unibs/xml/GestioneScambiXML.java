@@ -1,9 +1,16 @@
-package it.unibs.model;
+package it.unibs.xml;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import it.unibs.model.CategoriaFoglia;
+import it.unibs.model.CategoriaRadice;
+import it.unibs.model.ElencoGerarchie;
+import it.unibs.model.ElencoScambi;
+import it.unibs.model.Scambio;
+import it.unibs.model.Utente;
 
 public class GestioneScambiXML {
 	

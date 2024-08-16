@@ -44,7 +44,7 @@ public class CategoriaFoglia implements Categoria {
 		return null;
 	}
 
-	//
+	//ref parte 2 (polimorfismo, open-closed, composite)
 	@Override
 	public int contaFoglieCategoria() {
 		return 1;

@@ -3,8 +3,6 @@ package it.unibs.model;
 import java.util.ArrayList;
 
 public class ElencoGerarchie {
-
-	private static final String FOGLIA = "Foglia";
 	
 	private static ArrayList<Gerarchia> elencoGerarchie = new ArrayList<>();
 	
@@ -40,11 +38,11 @@ public class ElencoGerarchie {
 		return null;	 
 	}
 
+	//ref parte 2 (polimorfismo, open-closed, composite)
 	public static boolean dueOpiuFoglie() {
 		int count = 0;
 
 		for(Gerarchia g : elencoGerarchie) {
-			//count += contaFoglie(g.getRadice().getFigli());
 			count += g.getRadice().contaFoglieCategoria();
 		}
 
@@ -53,24 +51,7 @@ public class ElencoGerarchie {
 		}
 		return false;
 	}
-	/*
-	public static int contaFoglie(ArrayList<Categoria> listaCategorie) {
-		int count = 0;
-		
-		//
-		for(Categoria c : listaCategorie) {
-			count += c.contaFoglieCategoria();
-		}
-
-		for(Categoria c : listaCategorie) {
-			if(c.getTipo().equals(FOGLIA)) {
-				count++;
-			}
-			count += contaFoglie(c.getFigli());
-		}
-		return count;
-	}
-	*/
+	
 	public static ArrayList<Gerarchia> getElencoGerarchie() {
 		return elencoGerarchie;
 	}

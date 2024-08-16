@@ -3,11 +3,25 @@ package it.unibs.model;
 import java.util.ArrayList;
 
 public class ElencoInsiemiChiusi {
+	
+	private static final int MAX_LUNGHEZZA_ANELLO_SCAMBI = 3;	//Serve a non rendere la ricerca infinita o comunque troppo lunga
+	private static final String CHIUSO = "Chiuso";
 
 	private static ArrayList<ArrayList<Scambio>> elencoInsiemiChiusi = new ArrayList<>();
 	
-	public static void aggiungiScambio(ArrayList<Scambio> anelloScambi) {
+	public static void aggiungiInsiemeChiuso(ArrayList<Scambio> anelloScambi) {
 		elencoInsiemiChiusi.add(anelloScambi);
+	}
+	
+	//ref parte 2 (extract e move method)
+	public static void controllaInsiemeChiuso(Scambio nuovoScambio) {
+		ArrayList<Scambio> anelloDiScambi = ElencoScambi.trovaAnelloDiScambi(nuovoScambio, MAX_LUNGHEZZA_ANELLO_SCAMBI);
+		if(anelloDiScambi != null) {
+			for(Scambio scambio : anelloDiScambi) {
+				scambio.setStato(CHIUSO);
+			}
+			aggiungiInsiemeChiuso(anelloDiScambi);
+		}
 	}
 
 	public static ArrayList<ArrayList<Scambio>> getElencoInsiemiChiusi() {

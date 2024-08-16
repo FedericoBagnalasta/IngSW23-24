@@ -1,4 +1,4 @@
-package it.unibs.model;
+package it.unibs.xml;
 
 import java.util.ArrayList;
 
@@ -6,6 +6,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import it.unibs.model.ElencoInsiemiChiusi;
+import it.unibs.model.Scambio;
 
 public class GestioneInsiemiChiusiXML {
 

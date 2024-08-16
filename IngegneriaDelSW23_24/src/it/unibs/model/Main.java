@@ -5,13 +5,13 @@ import it.unibs.controller.GerarchiaController;
 import it.unibs.controller.LoginController;
 import it.unibs.controller.MenuConfiguratore;
 import it.unibs.controller.MenuFruitore;
+import it.unibs.xml.FacciataXML;
 
 public class Main {
-
 	private static final String CONFIGURATORE = "Configuratore";
 
 	public static void main(String[] args) {
-		GestioneGeneraleXML.caricamentoCompleto();
+		FacciataXML.caricamentoCompleto();
 
 		LoginController loginController = new LoginController();
 		Utente utente = loginController.loginGenerale();
