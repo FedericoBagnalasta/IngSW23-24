@@ -23,6 +23,7 @@ public class Gerarchia {
 				return (CategoriaFoglia)categoria;
 			}
 			foglia = trovaFoglia(categoria, nomeFoglia);
+			
 			if(foglia != null) {
 				return foglia;
 			}
