@@ -56,7 +56,7 @@ public class ScambioController {
 			ScambioView.scegliFogliaRichiesta();
 			CategoriaFoglia fogliaRichiesta = gerarchia.navigaGerarchiaFinoAFoglia();		
 			
-			ArrayList<Scambio> listaScambi = trovaScambioConFoglia(fogliaRichiesta);
+			ArrayList<Scambio> listaScambi = ElencoScambi.trovaScambioConFoglia(fogliaRichiesta);
 			if(listaScambi.size() == 0) {
 				ScambioView.msgScambioNonTrovato();
 			}
@@ -74,25 +74,12 @@ public class ScambioController {
 		}
 	}
 	
-	public static ArrayList<Scambio> trovaScambioConFoglia(CategoriaFoglia foglia) {
-		ArrayList<Scambio> listaScambi = new ArrayList<>();
-		
-		for(Scambio scambio : ElencoScambi.getElencoScambi()) {
-			if(scambio.getFogliaRichiesta().verificaUguaglianzaFoglie(foglia) ||
-					scambio.getFogliaOfferta().verificaUguaglianzaFoglie(foglia)) {
-				listaScambi.add(scambio);
-			}
-		}
-		
-		return listaScambi;
-	}
-	
 	public static void visualizzaScambiFruitore(Utente utente) {
 		if(ElencoScambi.getElencoScambi().size() == 0) {
 			ScambioView.msgScambioAssente();
 		}
 		else {
-			ArrayList<Scambio> listaScambi = trovaScambioConFruitore(utente);
+			ArrayList<Scambio> listaScambi = ElencoScambi.trovaScambioConFruitore(utente);
 			if(listaScambi.size() == 0) {
 				ScambioView.msgScambioNonTrovato();
 			}
@@ -100,33 +87,26 @@ public class ScambioController {
 				ScambioView.visualizzaScambiFruitore();
 				
 				for(Scambio scambio : listaScambi) {
-					if(scambio.getUtente().getNome().equals(utente.getNome())) {
-						ScambioView.visualizzaScambio(scambio.getFogliaRichiesta(), scambio.getOreRichiesta(),
-								scambio.getFogliaOfferta(), scambio.getOreOfferta(), scambio.getStato());
-					}
+					ScambioView.visualizzaScambio(scambio.getFogliaRichiesta(), scambio.getOreRichiesta(),
+							scambio.getFogliaOfferta(), scambio.getOreOfferta(), scambio.getStato());
 				}
 			}
 		}
 	}
 	
-	public static ArrayList<Scambio> trovaScambioConFruitore(Utente utente) {
-		ArrayList<Scambio> listaScambi = new ArrayList<>();
-		
-		for(Scambio scambio : ElencoScambi.getElencoScambi()) {
-			if(scambio.getUtente().getNome().equals(utente.getNome())) {
-				listaScambi.add(scambio);
-			}
-		}
-		
-		return listaScambi;
-	}
-	
 	public static void cambiaStatoScambio(Utente utente) {
+		ArrayList<Scambio> scambiRitirabili = new ArrayList<>();
+		
 		if(ElencoScambi.getElencoScambi().size() == 0) {
 			ScambioView.msgScambioAssente();
 		}
 		else {
-			ArrayList<Scambio> scambiRitirabili = ElencoScambi.trovaScambiRitirabili(utente);
+			ArrayList<Scambio> listaScambi = ElencoScambi.trovaScambioConFruitore(utente);
+			for(Scambio s : listaScambi) {
+				if(s.getStato().equals(APERTO)) {
+					scambiRitirabili.add(s);
+				}
+			}
 			if(scambiRitirabili.size() == 0) {
 				ScambioView.msgScambioRitirabileAssente();
 			}
@@ -134,13 +114,11 @@ public class ScambioController {
 				ScambioView.visualizzaScambiFruitore();
 
 				for(Scambio scambio : scambiRitirabili) {
-					if(scambio.getUtente().getNome().equals(utente.getNome()) && scambio.getStato().equals(APERTO)) {
-						ScambioView.visualizzaScambio(scambio.getFogliaRichiesta(), scambio.getOreRichiesta(),
-								scambio.getFogliaOfferta(), scambio.getOreOfferta(), scambio.getStato());
+					ScambioView.visualizzaScambio(scambio.getFogliaRichiesta(), scambio.getOreRichiesta(),
+							scambio.getFogliaOfferta(), scambio.getOreOfferta(), scambio.getStato());
 
-						if(ScambioView.propostaRitiroScambio()) {
-							scambio.setStato(RITIRATO);
-						}
+					if(ScambioView.propostaRitiroScambio()) {
+						scambio.setStato(RITIRATO);
 					}
 				}
 			}

@@ -16,16 +16,15 @@ public class Gerarchia {
 		this.radice = new CategoriaRadice(nome, campo, dominio, figli);
 	}
 
-	public static CategoriaFoglia trovaFoglia(Categoria categoria, String nomeFoglia) {
+	public static CategoriaFoglia trovaFoglia(Categoria categoriaPadre, String nomeFoglia) {
 		CategoriaFoglia foglia;
-
-		for(Categoria c : categoria.getFigli()) {
-			if(c.getNome().equals(nomeFoglia) && c.getTipo().equals(FOGLIA)) {
-				return (CategoriaFoglia)c;
+		for(Categoria categoria : categoriaPadre.getFigli()) {
+			if(categoria.getTipo().equals(FOGLIA) && categoria.getNome().equals(nomeFoglia)) {
+				return (CategoriaFoglia)categoria;
 			}
-			foglia = trovaFoglia(c, nomeFoglia);
-
-			if(foglia instanceof CategoriaFoglia) {
+			foglia = trovaFoglia(categoria, nomeFoglia);
+			
+			if(foglia != null) {
 				return foglia;
 			}
 		}

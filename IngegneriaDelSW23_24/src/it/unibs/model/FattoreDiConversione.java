@@ -19,7 +19,7 @@ public class FattoreDiConversione {
 	}
 
 	public FattoreDiConversione creaSimmetrico() {
-		return new FattoreDiConversione(getC2(), getC1(), 1/getValore());
+		return new FattoreDiConversione(getC2(), getC1(), 1 / getValore());
 	}
 
 	public boolean verificaUguaglianzaFattoriDiConversione(FattoreDiConversione fdC) {

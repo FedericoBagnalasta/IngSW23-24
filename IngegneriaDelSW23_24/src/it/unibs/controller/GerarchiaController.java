@@ -22,7 +22,7 @@ public class GerarchiaController {
 	public void creaGerarchia() {
 		String nomeRadice = GerarchiaView.inserisciNomeRadiceGerarchia();
 
-		while(ElencoGerarchie.verificaEsistenzaRadice(nomeRadice)) {
+		while(ElencoGerarchie.trovaRadice(nomeRadice) != null) {
 			GerarchiaView.msgRadiceGiaPresente();
 			nomeRadice = GerarchiaView.inserisciNomeRadiceGerarchia();
 		}
@@ -211,7 +211,7 @@ public class GerarchiaController {
 		visualizzaRadici();
 		String nomeRadice = GerarchiaView.inserisciNomeRadiceRicerca();
 
-		while(!ElencoGerarchie.verificaEsistenzaRadice(nomeRadice)) {
+		while(ElencoGerarchie.trovaRadice(nomeRadice) == null) {
 			GerarchiaView.msgRadiceNonEsiste();
 			nomeRadice = GerarchiaView.inserisciNomeRadiceRicerca();
 		}

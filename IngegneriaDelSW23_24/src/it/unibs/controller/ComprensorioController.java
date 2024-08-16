@@ -17,7 +17,7 @@ public class ComprensorioController {
 	public String creaNomeComprensorio() {
 		String nomeComprensorio = ComprensorioView.inserisciComprensorio();
 
-		while(ElencoComprensori.verificaEsistenzaComprensorio(nomeComprensorio)) {
+		while(ElencoComprensori.trovaComprensorio(nomeComprensorio) != null) {
 			ComprensorioView.msgComprensorioGiaPresente();
 			nomeComprensorio = ComprensorioView.inserisciComprensorio();
 		}
