@@ -7,7 +7,7 @@ public interface Categoria {
 	public Categoria selezionaFiglioDalValore(ValoreDominio valoreScelto);
 
 	public ArrayList<String> getNomiGerarchia();
-
+	
 	//ref parte 2 (polimorfismo, open-closed, composite)
 	public int contaFoglieCategoria();
 
