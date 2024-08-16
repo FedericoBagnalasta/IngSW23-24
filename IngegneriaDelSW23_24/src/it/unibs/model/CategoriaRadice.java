@@ -41,6 +41,24 @@ public class CategoriaRadice implements Categoria {
 		return count;
 	}
 
+	public ArrayList<String> getNomiGerarchia() {
+		ArrayList<String> nomiGerarchia = new ArrayList<>();
+		nomiGerarchia.add(nome);
+		for(Categoria c : this.getFigli()) {
+			nomiGerarchia.addAll(c.getNomiGerarchia());
+		}
+		return nomiGerarchia;
+	}
+
+	public Categoria selezionaFiglioDalValore(ValoreDominio valoreScelto) {
+		for(Categoria categoriaFiglio : getFigli()) {
+			if(categoriaFiglio.getValoreDominio().verificaUguaglianza(valoreScelto)) {
+				return categoriaFiglio;
+			}
+		}
+		return null;
+	}
+
 	public String getNome() {
 		return nome;
 	}

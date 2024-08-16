@@ -33,7 +33,17 @@ public class CategoriaFoglia implements Categoria {
 		}
 		return false;
 	}
-	
+
+	public ArrayList<String> getNomiGerarchia() {
+		ArrayList<String> nomiGerarchia = new ArrayList<>();
+		nomiGerarchia.add(nome);
+		return nomiGerarchia;
+	}
+
+	public Categoria selezionaFiglioDalValore(ValoreDominio valoreScelto) {
+		return null;
+	}
+
 	//
 	@Override
 	public int contaFoglieCategoria() {
