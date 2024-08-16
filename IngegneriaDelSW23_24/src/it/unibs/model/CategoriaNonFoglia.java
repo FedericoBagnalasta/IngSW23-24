@@ -32,7 +32,7 @@ public class CategoriaNonFoglia implements Categoria {
 		this.dominio = dominio;
 		this.figli = figli;
 	}
-	
+
 	//ref parte 2 (polimorfismo, open-closed, composite)
 	@Override
 	public int contaFoglieCategoria() {
@@ -41,6 +41,24 @@ public class CategoriaNonFoglia implements Categoria {
 			count += c.contaFoglieCategoria();
 		}
 		return count;
+	}
+
+	public ArrayList<String> getNomiGerarchia() {
+		ArrayList<String> nomiGerarchia = new ArrayList<>();
+		nomiGerarchia.add(nome);
+		for(Categoria c : this.getFigli()) {
+			nomiGerarchia.addAll(c.getNomiGerarchia());
+		}
+		return nomiGerarchia;
+	}
+
+	public Categoria selezionaFiglioDalValore(ValoreDominio valoreScelto) {
+		for(Categoria categoriaFiglio : getFigli()) {
+			if(categoriaFiglio.getValoreDominio().verificaUguaglianza(valoreScelto)) {
+				return categoriaFiglio;
+			}
+		}
+		return null;
 	}
 
 	public String getNome() {

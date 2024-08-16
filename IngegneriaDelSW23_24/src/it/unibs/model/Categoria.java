@@ -2,25 +2,11 @@ package it.unibs.model;
 
 import java.util.ArrayList;
 
-public interface Categoria {
-	
-	default public ArrayList<String> getNomiGerarchia() {
-		ArrayList<String> nomiGerarchia = new ArrayList<>();
-		for(Categoria c : this.getFigli()) {
-			nomiGerarchia.add(c.getNome());
-			c.getNomiGerarchia();
-		}
-		return nomiGerarchia;
-	}
-	
-	default public Categoria selezionaFiglioDalValore(ValoreDominio valoreScelto) {
-		for(Categoria categoriaFiglio : getFigli()) {
-			if(categoriaFiglio.getValoreDominio().verificaUguaglianza(valoreScelto)) {
-				return categoriaFiglio;
-			}
-		}
-		return null;
-	}
+public interface Categoria {	
+
+	public Categoria selezionaFiglioDalValore(ValoreDominio valoreScelto);
+
+	public ArrayList<String> getNomiGerarchia();
 	
 	//ref parte 2 (polimorfismo, open-closed, composite)
 	public int contaFoglieCategoria();
