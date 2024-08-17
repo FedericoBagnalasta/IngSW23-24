@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class CategoriaRadice implements Categoria {
 
-	private static final String RADICE = "Radice";
 	private static final String VALORE_DELL_ELEMENTO_RADICE = "Valore dell'elemento radice";
 	
 	private String nome;
-	private final ValoreDominio valore = new ValoreDominio(RADICE, VALORE_DELL_ELEMENTO_RADICE);
-	private final String tipo = RADICE;
+	private final ValoreDominio valore = new ValoreDominio(TipoCategoria.RADICE.getDescrizione(),
+			VALORE_DELL_ELEMENTO_RADICE);
+	private final String tipo = TipoCategoria.RADICE.getDescrizione();
 	private String campo;
 	private ArrayList<ValoreDominio> dominio = new ArrayList<>();
 	private ArrayList<Categoria> figli = new ArrayList<>();
@@ -30,17 +30,9 @@ public class CategoriaRadice implements Categoria {
 	public void aggiungiFiglio(Categoria nuovoFiglio) {
 		figli.add(nuovoFiglio);
 	}
-	
-	//ref parte 2 (polimorfismo, open-closed, composite)
-	@Override
-	public int contaFoglieCategoria() {
-		int count = 0;
-		for(Categoria c : this.getFigli()) {
-			count += c.contaFoglieCategoria();
-		}
-		return count;
-	}
 
+	//ref parte 2 (composite)
+	@Override
 	public ArrayList<String> getNomiGerarchia() {
 		ArrayList<String> nomiGerarchia = new ArrayList<>();
 		nomiGerarchia.add(nome);
@@ -50,6 +42,8 @@ public class CategoriaRadice implements Categoria {
 		return nomiGerarchia;
 	}
 
+	//ref parte 2 (composite)
+	@Override
 	public Categoria selezionaFiglioDalValore(ValoreDominio valoreScelto) {
 		for(Categoria categoriaFiglio : getFigli()) {
 			if(categoriaFiglio.getValoreDominio().verificaUguaglianza(valoreScelto)) {
@@ -57,6 +51,16 @@ public class CategoriaRadice implements Categoria {
 			}
 		}
 		return null;
+	}
+	
+	//ref parte 2 (open-closed)
+	@Override
+	public int contaFoglieCategoria() {
+		int count = 0;
+		for(Categoria c : this.getFigli()) {
+			count += c.contaFoglieCategoria();
+		}
+		return count;
 	}
 
 	public String getNome() {

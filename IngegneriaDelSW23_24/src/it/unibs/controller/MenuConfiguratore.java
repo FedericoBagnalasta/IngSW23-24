@@ -1,6 +1,7 @@
 package it.unibs.controller;
 
 import it.unibs.view.LoginView;
+import it.unibs.view.MenuView;
 import it.unibs.view.XMLView;
 import it.unibs.xml.FacciataXML;
 import it.unibs.mylib.MyMenu;
@@ -34,21 +35,21 @@ public class MenuConfiguratore {
 				gerarchia.creaGerarchia();
 				break;
 			case 3:
-				ComprensorioController.visualizzaComprensori();
+				GestioneViewComprensorio.visualizzaComprensori();
 				break;
 			case 4:
-				GerarchiaController.visualizzaGerarchie();
+				GestioneViewGerarchia.visualizzaGerarchie();
 				break;
 			case 5:
-				GerarchiaController.visualizzaGerarchie();
-				GerarchiaController.visualizzaFattoriDiConversione(
+				GestioneViewGerarchia.visualizzaGerarchie();
+				GestioneViewGerarchia.visualizzaFattoriDiConversione(
 						gerarchia.selezionaCategoriaFogliaPerFDC());
 				break;
 			case 6:
-				ScambioController.visualizzaScambiConfiguratore(gerarchia);
+				GestioneViewScambi.visualizzaScambiConfiguratore(gerarchia);
 				break;
 			case 7:
-				ScambioController.visualizzaInsiemiChiusi();
+				GestioneViewScambi.visualizzaInsiemiChiusi();
 				break;
 			case 8:
 				FacciataXML.salvataggioCompleto();
@@ -66,5 +67,7 @@ public class MenuConfiguratore {
 				break;
 			}
 		} while(scelta != 0);
+
+		MenuView.uscitaApplicazione();
 	}
 }

@@ -3,15 +3,13 @@ package it.unibs.model;
 import java.util.ArrayList;
 
 public class CategoriaFoglia implements Categoria {
-
-	private static final String FOGLIA = "Foglia";
 	
 	private String nome;
 	private ValoreDominio valoreDominio;
 	private CategoriaRadice radice;
-	private final String tipo = FOGLIA;
+	private final String tipo = TipoCategoria.FOGLIA.getDescrizione();
 	private final String campo = null;
-	private final ArrayList<ValoreDominio> dominio = new ArrayList<ValoreDominio>();
+	private final ArrayList<ValoreDominio> dominio = new ArrayList<>();
 	private final ArrayList<Categoria> figli = new ArrayList<>();
 
 	public CategoriaFoglia(String nome, ValoreDominio valore, CategoriaRadice radice) {
@@ -34,17 +32,21 @@ public class CategoriaFoglia implements Categoria {
 		return false;
 	}
 
+	//ref parte 2 (composite)
+	@Override
 	public ArrayList<String> getNomiGerarchia() {
 		ArrayList<String> nomiGerarchia = new ArrayList<>();
 		nomiGerarchia.add(nome);
 		return nomiGerarchia;
 	}
 
+	//ref parte 2 (composite)
+	@Override
 	public Categoria selezionaFiglioDalValore(ValoreDominio valoreScelto) {
 		return null;
 	}
 
-	//ref parte 2 (polimorfismo, open-closed, composite)
+	//ref parte 2 (open-closed)
 	@Override
 	public int contaFoglieCategoria() {
 		return 1;

@@ -3,8 +3,6 @@ package it.unibs.model;
 import java.util.ArrayList;
 
 public class ElencoScambi {
-
-	private static final String APERTO = "Aperto";
 	
 	private static ArrayList<Scambio> elencoScambi = new ArrayList<>();
 	
@@ -24,14 +22,14 @@ public class ElencoScambi {
 		}
 
 		for(Scambio prossimo : elencoScambi) {
-			if(!percorsoCorrente.contains(prossimo) && prossimo.getStato().equals(APERTO) &&
+			if(!percorsoCorrente.contains(prossimo) && prossimo.getStato().equals(StatoScambio.APERTO.getDescrizione()) &&
 				!(prossimo.getUtente().getNome().equals(corrente.getUtente().getNome())) &&
 				prossimo.getUtente().getComprensorio().getNome().equals(corrente.getUtente().getComprensorio().getNome()) &&
 				prossimo.getFogliaRichiesta().verificaUguaglianzaFoglie(corrente.getFogliaOfferta()) &&
 				prossimo.getOreRichiesta() == corrente.getOreOfferta()) {
 				percorsoCorrente.add(prossimo);
 
-				if(percorsoCorrente.size() > 1 && prossimo.getStato().equals(APERTO) &&
+				if(percorsoCorrente.size() > 1 && prossimo.getStato().equals(StatoScambio.APERTO.getDescrizione()) &&
 					!(prossimo.getUtente().getNome().equals(percorsoCorrente.get(0).getUtente().getNome())) &&
 					prossimo.getUtente().getComprensorio().getNome().equals(percorsoCorrente.get(0).getUtente().getComprensorio().getNome()) &&
 					prossimo.getFogliaOfferta().verificaUguaglianzaFoglie(percorsoCorrente.get(0).getFogliaRichiesta()) &&

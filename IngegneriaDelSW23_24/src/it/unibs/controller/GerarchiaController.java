@@ -10,6 +10,7 @@ import it.unibs.model.ElencoFattoriDiConversione;
 import it.unibs.model.ElencoGerarchie;
 import it.unibs.model.FattoreDiConversione;
 import it.unibs.model.Gerarchia;
+import it.unibs.model.TipoCategoria;
 import it.unibs.model.ValoreDominio;
 import it.unibs.view.FDCView;
 import it.unibs.view.GerarchiaView;
@@ -17,7 +18,6 @@ import it.unibs.view.GerarchiaView;
 public class GerarchiaController {
 
 	private static final String ASSENTE = "Assente";
-	private static final String FOGLIA = "Foglia";
 
 	public void creaGerarchia() {
 		String nomeRadice = GerarchiaView.inserisciNomeRadiceGerarchia();
@@ -75,7 +75,7 @@ public class GerarchiaController {
 		double valore;
 
 		do {
-			GerarchiaController.visualizzaGerarchie();
+			GestioneViewGerarchia.visualizzaGerarchie();
 			
 			do {
 				FDCView.inserimentoPrimaFogliaPerFDC();
@@ -150,7 +150,7 @@ public class GerarchiaController {
 	}
 
 	public Categoria navigaStrutturaGerarchia(Categoria padre) {		
-		visualizzaValoriCampo(padre);
+		GestioneViewGerarchia.visualizzaValoriCampo(padre);
 		String nomeValoreScelto = GerarchiaView.inserisciValoreScelto();
 		ValoreDominio valoreScelto = ValoreDominio.selezionaValore(nomeValoreScelto, padre.getDominio());
 
@@ -162,7 +162,7 @@ public class GerarchiaController {
 
 		Categoria categoriaScelta = padre.selezionaFiglioDalValore(valoreScelto);
 
-		if(categoriaScelta.getTipo().equals(FOGLIA)) {
+		if(categoriaScelta.getTipo().equals(TipoCategoria.FOGLIA.getDescrizione())) {
 			GerarchiaView.visualizzaCategoria(categoriaScelta);
 			return categoriaScelta;
 		}
@@ -208,7 +208,7 @@ public class GerarchiaController {
 	}
 
 	public CategoriaRadice selezionaRadice() {
-		visualizzaRadici();
+		GestioneViewGerarchia.visualizzaRadici();
 		String nomeRadice = GerarchiaView.inserisciNomeRadiceRicerca();
 
 		while(ElencoGerarchie.trovaRadice(nomeRadice) == null) {
@@ -216,47 +216,5 @@ public class GerarchiaController {
 			nomeRadice = GerarchiaView.inserisciNomeRadiceRicerca();
 		}
 		return ElencoGerarchie.trovaRadice(nomeRadice);
-	}
-
-	public void visualizzaRadici() {
-		GerarchiaView.introduzioneElencoGerarchie();
-		for(Gerarchia gerarchia : ElencoGerarchie.getElencoGerarchie()) {
-			GerarchiaView.visualizzaNomeRadiceGerarchia(gerarchia.getRadice().getNome());
-		}
-	}
-
-	public static void visualizzaValoriCampo(Categoria categoria) {
-		GerarchiaView.presentazioneValoriDiCampo(categoria.getCampo());
-
-		for(ValoreDominio valore : categoria.getDominio()) {
-			Categoria categoriaFiglio = categoria.selezionaFiglioDalValore(valore);
-			GerarchiaView.visualizzaNomeValore(valore.getValore(), categoriaFiglio);
-		}
-	}
-
-	public static void visualizzaGerarchie() {
-		for(Gerarchia gerarchia : ElencoGerarchie.getElencoGerarchie()) {
-			GerarchiaView.visualizzaNomeRadiceGerarchia(gerarchia.getRadice().getNome());
-			visualizzaFigliCategoria(gerarchia.getRadice());
-		}
-	}
-
-	public static void visualizzaFigliCategoria(Categoria categoriaPadre) {
-		for(Categoria categoria : categoriaPadre.getFigli()) {
-			GerarchiaView.visualizzaNomeFiglioCategoria(categoriaPadre.getNome(), categoria);
-			visualizzaFigliCategoria(categoria);
-		}
-	}
-
-	public static void visualizzaFattoriDiConversione(CategoriaFoglia foglia) {
-		if(foglia == null) {
-			GerarchiaView.msgFogliaNonTrovata();
-			return;
-		}
-		for(FattoreDiConversione fattore : ElencoFattoriDiConversione.getElencoFattoriDiConversione()) {
-			if(fattore.getC1().verificaUguaglianzaFoglie(foglia)) {
-				FDCView.visualizzaFattoreDiConversione(fattore);
-			}
-		}
 	}
 }

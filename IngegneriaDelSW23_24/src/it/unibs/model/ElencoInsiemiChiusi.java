@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class ElencoInsiemiChiusi {
 	
 	private static final int MAX_LUNGHEZZA_ANELLO_SCAMBI = 3;	//Serve a non rendere la ricerca infinita o comunque troppo lunga
-	private static final String CHIUSO = "Chiuso";
 
 	private static ArrayList<ArrayList<Scambio>> elencoInsiemiChiusi = new ArrayList<>();
 	
@@ -18,7 +17,7 @@ public class ElencoInsiemiChiusi {
 		ArrayList<Scambio> anelloDiScambi = ElencoScambi.trovaAnelloDiScambi(nuovoScambio, MAX_LUNGHEZZA_ANELLO_SCAMBI);
 		if(anelloDiScambi != null) {
 			for(Scambio scambio : anelloDiScambi) {
-				scambio.setStato(CHIUSO);
+				scambio.setStato(StatoScambio.CHIUSO.getDescrizione());
 			}
 			aggiungiInsiemeChiuso(anelloDiScambi);
 		}

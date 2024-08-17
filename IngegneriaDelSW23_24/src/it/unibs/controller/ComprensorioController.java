@@ -40,25 +40,16 @@ public class ComprensorioController {
 		return elencoComuni;
 	}
 
-	public static void visualizzaComprensori() {
-		for(Comprensorio comprensorio : ElencoComprensori.getElencoComprensori()) {
-			ComprensorioView.visualizzaNomeComprensorio(comprensorio.getNome());
-			for(String comune : comprensorio.getComuniComprensorio()) {
-				ComprensorioView.visualizzaNomeComune(comune);
-			}
-		}
-	}
-
 	public static Comprensorio scegliComprensorio() {
 		Comprensorio comprensorio;
 
-		visualizzaComprensori();
+		GestioneViewComprensorio.visualizzaComprensori();
 		String nomeComprensorio = ComprensorioView.inserisciComprensorio();
 		comprensorio = ElencoComprensori.trovaComprensorio(nomeComprensorio);
 
 		while(comprensorio == null) {
 			ComprensorioView.msgComprensorioNonEsistente();
-			visualizzaComprensori();
+			GestioneViewComprensorio.visualizzaComprensori();
 			nomeComprensorio = ComprensorioView.inserisciComprensorio();
 			comprensorio = ElencoComprensori.trovaComprensorio(nomeComprensorio);
 		}

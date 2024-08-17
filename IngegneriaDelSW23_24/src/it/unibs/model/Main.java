@@ -8,7 +8,6 @@ import it.unibs.controller.MenuFruitore;
 import it.unibs.xml.FacciataXML;
 
 public class Main {
-	private static final String CONFIGURATORE = "Configuratore";
 
 	public static void main(String[] args) {
 		FacciataXML.caricamentoCompleto();
@@ -20,7 +19,7 @@ public class Main {
 		GerarchiaController gerarchia = new GerarchiaController();
 
 		if(utente != null) {
-			if(utente.getRuolo().equals(CONFIGURATORE)) {
+			if(utente.getRuolo().equals(RuoloUtente.CONFIGURATORE.getDescrizione())) {
 				MenuConfiguratore.menuConfiguratore(comprensorio, gerarchia);
 			}
 			else {
