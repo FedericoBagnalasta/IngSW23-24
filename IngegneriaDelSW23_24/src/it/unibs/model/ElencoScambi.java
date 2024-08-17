@@ -50,15 +50,29 @@ public class ElencoScambi {
 		return null;
 	}
 	
-	public static ArrayList<Scambio> trovaScambiRitirabili(Utente utente) {
-		ArrayList<Scambio> scambiRitirabili = new ArrayList<>();
-	
-		for(Scambio scambio : ElencoScambi.getElencoScambi()) {
-			if(scambio.getUtente().getNome().equals(utente.getNome()) && scambio.getStato().equals(APERTO)) {
-				scambiRitirabili.add(scambio);
+	public static ArrayList<Scambio> trovaScambioConFoglia(CategoriaFoglia foglia) {
+		ArrayList<Scambio> listaScambi = new ArrayList<>();
+		
+		for(Scambio scambio : elencoScambi) {
+			if(scambio.getFogliaRichiesta().verificaUguaglianzaFoglie(foglia) ||
+					scambio.getFogliaOfferta().verificaUguaglianzaFoglie(foglia)) {
+				listaScambi.add(scambio);
 			}
 		}
-		return scambiRitirabili;
+		
+		return listaScambi;
+	}
+	
+	public static ArrayList<Scambio> trovaScambioConFruitore(Utente utente) {
+		ArrayList<Scambio> listaScambi = new ArrayList<>();
+		
+		for(Scambio scambio : elencoScambi) {
+			if(scambio.getUtente().getNome().equals(utente.getNome())) {
+				listaScambi.add(scambio);
+			}
+		}
+		
+		return listaScambi;
 	}
 
 	public static ArrayList<Scambio> getElencoScambi() {

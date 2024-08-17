@@ -11,15 +11,6 @@ public class ElencoGerarchie {
 		elencoGerarchie.add(gerarchia);
 	}
 
-	public static boolean verificaEsistenzaRadice(String nomeRadice) {
-		for(Gerarchia g : elencoGerarchie) {
-			if(g.getRadice().getNome().equals(nomeRadice)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	public static CategoriaRadice trovaRadice(String nomeRadice) {
 		for(Gerarchia g : elencoGerarchie) {
 			if(g.getRadice().getNome().equals(nomeRadice)) {
