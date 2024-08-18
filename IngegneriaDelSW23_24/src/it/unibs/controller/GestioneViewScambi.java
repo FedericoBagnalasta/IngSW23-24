@@ -9,7 +9,7 @@ import it.unibs.model.Scambio;
 import it.unibs.model.Utente;
 import it.unibs.view.ScambioView;
 
-//ref parte 2 (SRO)
+//ref parte 2 (SRP)
 public class GestioneViewScambi {
 
 	public static void visualizzaScambiConfiguratore(GerarchiaController gerarchia) {
