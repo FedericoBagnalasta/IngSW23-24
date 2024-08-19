@@ -3,8 +3,6 @@ package it.unibs.model;
 import java.util.ArrayList;
 
 public class Gerarchia {
-
-	private static final String FOGLIA = "Foglia";
 	
 	private CategoriaRadice radice;
 
@@ -18,8 +16,9 @@ public class Gerarchia {
 
 	public static CategoriaFoglia trovaFoglia(Categoria categoriaPadre, String nomeFoglia) {
 		CategoriaFoglia foglia;
+		
 		for(Categoria categoria : categoriaPadre.getFigli()) {
-			if(categoria.getTipo().equals(FOGLIA) && categoria.getNome().equals(nomeFoglia)) {
+			if(categoria.getTipo().equals(TipoCategoria.FOGLIA.getDescrizione()) && categoria.getNome().equals(nomeFoglia)) {
 				return (CategoriaFoglia)categoria;
 			}
 			foglia = trovaFoglia(categoria, nomeFoglia);

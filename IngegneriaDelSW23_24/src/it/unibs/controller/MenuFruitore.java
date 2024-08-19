@@ -3,6 +3,7 @@ package it.unibs.controller;
 import it.unibs.model.Utente;
 import it.unibs.xml.FacciataXML;
 import it.unibs.mylib.MyMenu;
+import it.unibs.view.MenuView;
 
 public class MenuFruitore {
 	
@@ -31,7 +32,7 @@ public class MenuFruitore {
 				ScambioController.cambiaStatoScambio(utente);
 				break;
 			case 4:
-				ScambioController.visualizzaScambiFruitore(utente);
+				GestioneViewScambi.visualizzaScambiFruitore(utente);
 				break;
 			case 5:
 				FacciataXML.salvataggioCompleto();
@@ -40,5 +41,7 @@ public class MenuFruitore {
 				break;
 			}
 		} while(scelta != 0);
+		
+		MenuView.uscitaApplicazione();
 	}
 }

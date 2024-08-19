@@ -3,13 +3,11 @@ package it.unibs.model;
 import java.util.ArrayList;
 
 public class CategoriaNonFoglia implements Categoria {
-
-	private static final String NON_FOGLIA = "NonFoglia";
 	
 	private String nome;
 	private ValoreDominio valoreDominio;
 	private CategoriaRadice radice;
-	private final String tipo = NON_FOGLIA;
+	private final String tipo = TipoCategoria.NON_FOGLIA.getDescrizione();
 	private String campo;
 	private ArrayList<ValoreDominio> dominio = new ArrayList<>();
 	private ArrayList<Categoria> figli = new ArrayList<>();	
@@ -33,16 +31,8 @@ public class CategoriaNonFoglia implements Categoria {
 		this.figli = figli;
 	}
 
-	//ref parte 2 (polimorfismo, open-closed, composite)
+	//ref parte 2 (composite)
 	@Override
-	public int contaFoglieCategoria() {
-		int count = 0;
-		for(Categoria c : this.getFigli()) {
-			count += c.contaFoglieCategoria();
-		}
-		return count;
-	}
-
 	public ArrayList<String> getNomiGerarchia() {
 		ArrayList<String> nomiGerarchia = new ArrayList<>();
 		nomiGerarchia.add(nome);
@@ -52,6 +42,8 @@ public class CategoriaNonFoglia implements Categoria {
 		return nomiGerarchia;
 	}
 
+	//ref parte 2 (composite)
+	@Override
 	public Categoria selezionaFiglioDalValore(ValoreDominio valoreScelto) {
 		for(Categoria categoriaFiglio : getFigli()) {
 			if(categoriaFiglio.getValoreDominio().verificaUguaglianza(valoreScelto)) {
@@ -59,6 +51,16 @@ public class CategoriaNonFoglia implements Categoria {
 			}
 		}
 		return null;
+	}
+	
+	//ref parte 2 (open-closed)
+	@Override
+	public int contaFoglieCategoria() {
+		int count = 0;
+		for(Categoria c : this.getFigli()) {
+			count += c.contaFoglieCategoria();
+		}
+		return count;
 	}
 
 	public String getNome() {

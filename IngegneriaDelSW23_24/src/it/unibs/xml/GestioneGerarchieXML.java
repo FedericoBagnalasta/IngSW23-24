@@ -13,12 +13,12 @@ import it.unibs.model.CategoriaNonFoglia;
 import it.unibs.model.CategoriaRadice;
 import it.unibs.model.ElencoGerarchie;
 import it.unibs.model.Gerarchia;
+import it.unibs.model.TipoCategoria;
 import it.unibs.model.ValoreDominio;
 
 public class GestioneGerarchieXML {
 
 	private static final String ELENCO_GERARCHIE = "elencoGerarchie";
-	private static final String FOGLIA = "Foglia";
 	private static final String GERARCHIA = "gerarchia";
 	private static final String RADICE = "radice";
 	private static final String CATEGORIA = "categoria";
@@ -56,7 +56,7 @@ public class GestioneGerarchieXML {
 
 			Element nuovaCategoria = doc.createElement(CATEGORIA);
 			
-			if(cat.getTipo().equals(FOGLIA)) {
+			if(cat.getTipo().equals(TipoCategoria.FOGLIA.getDescrizione())) {
 
 				salvaCategoriaFoglia(cat, doc, nuovaCategoria);
 			}

@@ -6,7 +6,6 @@ public class ElencoUtenti {
 
 	private static final String UTENTE_PREDEFINITO = "utente";
 	private static final String PASSWORD_PREDEFINITA = "password";
-	private static final String FRUITORE = "Fruitore";
 	
 	private static ArrayList<Utente> elencoUtenti = new ArrayList<>();
 
@@ -56,7 +55,7 @@ public class ElencoUtenti {
 	
 	public static boolean esisteIndirizzo(String indirizzo) {
 		for(Utente utente : getElencoUtenti()) {
-			if(utente.getRuolo().equals(FRUITORE) && utente.getIndirizzo().equals(indirizzo)) {
+			if(utente.getRuolo().equals(RuoloUtente.FRUITORE.getDescrizione()) && utente.getIndirizzo().equals(indirizzo)) {
 				return true;
 			}
 		}
