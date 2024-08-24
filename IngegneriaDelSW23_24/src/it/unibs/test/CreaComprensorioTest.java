@@ -18,7 +18,7 @@ class CreaComprensorioTest {
 	@Test
 	void creaComprensorioTest() {
 		String simulatedInput = "comprensorio\ncomune1\ns\ncomune2\nn\n" + // (1), (4)
-				"comprensorio\ncomprensorio2\ncomune1\ns\ncomune1\ncomune3\nn\n" + // (2), (5)
+				"comprensorio\ncomprensorio2\ncomune1\ns\ncomune1\ns\ncomune3\nn\n" + // (2), (5)
 				"\ncomprensorio3\n\ncomune1\nn\n"; // (3), (6)
 		ByteArrayInputStream inputStream = new ByteArrayInputStream(simulatedInput.getBytes());
 		System.setIn(inputStream);
